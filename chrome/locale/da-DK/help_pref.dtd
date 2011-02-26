@@ -1,0 +1,13 @@
+<!ENTITY prefs.addon.description "Indstillingsrude">
+<!ENTITY prefs.addon.pntone "Denne indstilling bestemmer hvilken online-database dine sangtekster hentes fra. Den bruges også af visningsruden, metadata-redaktøren og batch hentningsvinduet. Hvis den database du har valgt ikke finder sangteksterne til den sang du leder efter så prøv, at skifte database og prøv at hente sangteksterne igen.">
+<!ENTITY prefs.addon.pnttwo "Denne indstilling viser LyricMaster hvordan det meste af brugerens bibliotek er sat op. Selvom dette ikke virker for alle spor, kan det hjælpe med, at hente sangtekster til det meste af biblioteket. Denne indstilling bruges også i visningsruden, metadata-redaktøren og batch hentningsvinduet.">
+<!ENTITY prefs.addon.pntthreeptone "Denne indstilling hører til visningsruden. Den fortæller LyricMaster hvordan den skal gemme sangteksterne, når de er hentet af visningsruden.">
+<!ENTITY prefs.addon.pntthreepttwo "Gem aldrig/Spørg aldrig:">
+<!ENTITY prefs.addon.pntthreeptthree "Med denne indstilling gemmes sangtekster aldrig og brugeren vil aldrig blive spurgt. Det er bedst at bruge denne indstilling, hvis brugeren ikke ønsker at gemme nogen sangtekster til sporet.">
+<!ENTITY prefs.addon.pntthreeptfour "Spørg om der skal gemmes/Spørg altid:">
+<!ENTITY prefs.addon.pntthreeptfive "Med denne indstilling kan brugeren få besked når nye sangtekster er fundet. Sangteksterne gemmes ikke uden brugeren giver programmet besked på, at gøre det.">
+<!ENTITY prefs.addon.pntthreeptsix "Gem altid/Spørg aldrig:">
+<!ENTITY prefs.addon.pntthreeptseven "Med denne indstilling bliver brugeren aldrig spurgt om sangteksterne skal gemmes. Programmet gemmer automatisk hvad det finder.">
+<!ENTITY prefs.addon.pntfour "Denne indstilling hører også til visningsruden. Hvis &apos;Nej&apos; vælges får brugeren ikke besked om, at der ikke er fundet sangtekster for det afspillede spor. Med indstillingen sat til &apos;Nej&apos; gives brugeren heller ikke mulighed for, at foretage en web-søgning efter sangteksterne.">
+<!ENTITY prefs.addon.pntfive "Denne indstilling afgør hvilke informationer der vises i visningsruden når sangteksterne vises. I øjeblikket er albumnavn den eneste valgfrie information, der kan slås til og fra.">
+<!ENTITY prefs.addon.pntsix "Med denne indstilling vælger brugeren den grafiske stil i visningsruden. Der er flere muligheder og afhængigt af brugerens fjer, kan en lignende stil som regel findes. Udviklere af fjer kan tilføje deres egen stil ved, at tilføje filen lyricmaster.css til skin-mappen i deres fjer-tilføjelse. For yderligere information om definition af stilen, se eksemplet Definer stil.">

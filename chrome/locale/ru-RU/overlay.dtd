@@ -1,0 +1,109 @@
+<!ENTITY mlyrics.trackeditor.caption "Мульти сбор MLyrics">
+<!ENTITY mlyrics.trackeditor.fbtnlabel "Сравнение">
+<!ENTITY mlyrics.trackeditor.fbtntooltextdef "Получить текст песни с помощью MLyrics!">
+<!ENTITY mlyrics.trackeditor.cbtntooltextdef "Очистить текст песни">
+<!ENTITY mlyrics.trackeditor.btninstr "Без слов">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Записать, что песня не имеет текста">
+<!ENTITY mlyrics.trackeditor.bbtnlabel "Сбор">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Должно быть выбрано от 2 до 1000 песен чтобы разблокировать Сбор.">
+<!ENTITY mlyrics.trackeditor.btnremtransl "Удалить перевод">
+<!ENTITY mlyrics.manuoverlay.batchmenulabel "Собрать тексты">
+<!ENTITY mlyrics.menuoverlay.addonhelplabel "Справка дополнений">
+<!ENTITY mlyrics.menuoverlay.lmhelplabel "Справка MLyrics">
+<!ENTITY mlyrics.batchwin.winlabel "Сборщик MLyrics">
+<!ENTITY mlyrics.batchwin.btncheckall "Выделить все">
+<!ENTITY mlyrics.batchwin.btnuncheckall "Убрать все">
+<!ENTITY mlyrics.batchwin.btnaccept "Принять изменения">
+<!ENTITY mlyrics.prefs.winlabel "Настройки MLyrics">
+<!ENTITY mlyrics.prefs.weblocupbtn "Вверх">
+<!ENTITY mlyrics.prefs.weblocdownbtn "Вниз">
+<!ENTITY mlyrics.prefs.webloclabel "Из каких источников брать тексты песен?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "Хотите использовать перевод с помощью Google?">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "Искать перевод для уже сохраненных текстов">
+<!ENTITY mlyrics.prefs.libstylelabel "Какая схема именования исполнителя используется?">
+<!ENTITY mlyrics.prefs.savelyricslabel "Что делать если найден текст?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "Что делать если сделан перевод?">
+<!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Не переводить с:">
+<!ENTITY mlyrics.prefs.saveoptneversave "Никогда не сохранять / Никогда не спрашивать">
+<!ENTITY mlyrics.prefs.saveoptprompt "Запрашивать подтверждение / Всегда спрашивать">
+<!ENTITY mlyrics.prefs.saveoptalways "Всегда сохранять / Никогда не спрашивать">
+<!ENTITY mlyrics.prefs.miscellaneous "Разное">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "Прятать текст при переключении на другую вкладку">
+<!ENTITY mlyrics.prefs.notiflabel "Уведомлять если текст не найден">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Искать в Гугле если не найден текст">
+<!ENTITY mlyrics.prefs.notifInstrlabel "Показывать если текст без слов">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Сохранять текст в базе при ошибке записи в файл">
+<!ENTITY mlyrics.prefs.displabel "Что MLyrics должен показывать?">
+<!ENTITY mlyrics.prefs.dispoptartist "Имя исполнителя">
+<!ENTITY mlyrics.prefs.dispopttrack "Название песни">
+<!ENTITY mlyrics.prefs.dispoptalbum "Название альбома">
+<!ENTITY mlyrics.prefs.stylelabel "Какой стиль отображения использовать?">
+<!ENTITY mlyrics.prefs.stloptnone "Нету">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Текущий">
+<!ENTITY mlyrics.prefs.stloptbluq "Blue Quote">
+<!ENTITY mlyrics.prefs.stloptlite "Blue Quote - Lite">
+<!ENTITY mlyrics.prefs.stlopteclp "Eclipse">
+<!ENTITY mlyrics.prefs.stloptglid "Glided">
+<!ENTITY mlyrics.prefs.stlopthigh "High Contrast">
+<!ENTITY mlyrics.prefs.stloptolds "Old School">
+<!ENTITY mlyrics.prefs.stloptsong "Songbird - RubberDucky">
+<!ENTITY mlyrics.prefs.stloptstar "Stars">
+<!ENTITY mlyrics.prefs.scanlib "Пересканировать базу песен на наличие\отсутсвие сохраненных текстов">
+<!ENTITY mlyrics.prefs.linkInfo1 "Хотите больше возможностей, есть идеи? Нашли ошибку?">
+<!ENTITY mlyrics.prefs.linkInfo2 "Не забудьте пожалуйста проверить комментарии">
+<!ENTITY mlyrics.helloworld.label "Do HelloWorld">
+<!ENTITY mlyrics.helloworld.accesskey "H">
+<!ENTITY mlyrics.pane.label "Это панель отображения">
+<!ENTITY mlyrics.pane.button "Узнать больше">
+<!ENTITY mlyrics.helpwin.winlabel "Справка MLyrics">
+<!ENTITY mlyrics.helpwin.startlabel "Обложка">
+<!ENTITY mlyrics.helpwin.displabel "Панель отображения">
+<!ENTITY mlyrics.helpwin.preflabel "Панель настроек">
+<!ENTITY mlyrics.helpwin.metalabel "Редактор метаданных">
+<!ENTITY mlyrics.helpwin.batchlabel "Сбор текстов">
+<!ENTITY mlyrics.helpwin.haslyrlabel "Наличие иконки текста песни">
+<!ENTITY mlyrics.helpwin.lisclabel "Лицензия MLyrics">
+<!ENTITY mlyrics.helpwin.aboutlabel "О MLyrics">
+<!ENTITY mlyrics.helpwin.stylelabel "Определения стиля">
+<!ENTITY mlyrics.pane.contxtRefresh "Обновить текст песни">
+<!ENTITY mlyrics.pane.contxtRefreshObO "По очереди">
+<!ENTITY mlyrics.pane.contxtRefreshTag "Из тега">
+<!ENTITY mlyrics.pane.contxtMakeInstr "Сделать инструментальной">
+<!ENTITY mlyrics.pane.contxtClear "Очистить текст песни">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "Включить уведомления">
+<!ENTITY mlyrics.pane.contxtNotifDisabled "Отключить уведомления">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "Включить автопрокрутку">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "Отключить автопрокрутку">
+<!ENTITY mlyrics.pane.showSettings "Настройки">
+<!ENTITY mlyrics.pane.showEditDialog "Редактировать текст песни">
+<!ENTITY mlyrics.pane.contxWebSrch "Web Поиск">
+<!ENTITY mlyrics.pane.viewModeMenu0 "Показать только оригинальный текст">
+<!ENTITY mlyrics.pane.viewModeMenu1 "Показать только перевод">
+<!ENTITY mlyrics.pane.viewModeMenu2 "Показать смешано линию за линией">
+<!ENTITY mlyrics.pane.viewModeMenu3 "Показать как есть">
+<!ENTITY mlyrics.pane.viewModeMenu4 "Показать куплет за куплетом">
+<!ENTITY mlyrics.pane.saveButton "Сохранить">
+<!ENTITY mlyrics.pane.cancelButton "Отменить">
+<!ENTITY mlyrics.pane.showSelected "Показывать для выбранных">
+<!ENTITY mlyrics.pane.showNowPlaying "Показывать для проигрываемых">
+<!ENTITY mlyrics.font.confFont "Настроить стиль">
+<!ENTITY mlyrics.font.sizeLabel "Размер:">
+<!ENTITY mlyrics.font.leftLabel "Слева">
+<!ENTITY mlyrics.font.centerLabel "По центру">
+<!ENTITY mlyrics.font.rightLabel "Справа">
+<!ENTITY mlyrics.font.topLabel "Сверху">
+<!ENTITY mlyrics.font.bottomLabel "Снизу">
+<!ENTITY mlyrics.font.applyRules "Применять установки">
+<!ENTITY mlyrics.font.background "Фон">
+<!ENTITY mlyrics.font.title "Песня">
+<!ENTITY mlyrics.font.artist "Исполнитель">
+<!ENTITY mlyrics.font.album "Альбом">
+<!ENTITY mlyrics.font.lyrics "Текст">
+<!ENTITY mlyrics.font.transLyrics "Переведенный текст">
+<!ENTITY mlyrics.font.opacityLabel "Прозрачность:">
+<!ENTITY mlyrics.font.colorLabel "Цвет:">
+<!ENTITY mlyrics.font.bgColorLabel "Фоновый цвет:">
+<!ENTITY mlyrics.font.showStaticPicIf "Показывать выбранную картинку при отсутсвии обложки">
+<!ENTITY mlyrics.font.color2Label "Цвет">
+<!ENTITY mlyrics.font.imageLabel "Изображение">
+<!ENTITY mlyrics.font.coverImageLabel "Изображение обложки">

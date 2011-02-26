@@ -1,0 +1,109 @@
+<!ENTITY mlyrics.trackeditor.caption "MLyrics Multi Fetch">
+<!ENTITY mlyrics.trackeditor.fbtnlabel "Hent">
+<!ENTITY mlyrics.trackeditor.fbtntooltextdef "Hent disse sangtekster med MLyrics!">
+<!ENTITY mlyrics.trackeditor.cbtntooltextdef "Ryd disse sangtekster.">
+<!ENTITY mlyrics.trackeditor.btninstr "Instrumental">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Make these lyrics instrumental">
+<!ENTITY mlyrics.trackeditor.bbtnlabel "Batch">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Markeringen skal indeholde 2 - 1000 spor for at aktivere knappen Batch.">
+<!ENTITY mlyrics.trackeditor.btnremtransl "Remove translation">
+<!ENTITY mlyrics.manuoverlay.batchmenulabel "Gather Lyrics">
+<!ENTITY mlyrics.menuoverlay.addonhelplabel "Tilføjelseshjælp">
+<!ENTITY mlyrics.menuoverlay.lmhelplabel "MLyrics Hjælp">
+<!ENTITY mlyrics.batchwin.winlabel "MLyrics aggregator">
+<!ENTITY mlyrics.batchwin.btncheckall "Check all">
+<!ENTITY mlyrics.batchwin.btnuncheckall "Uncheck all">
+<!ENTITY mlyrics.batchwin.btnaccept "Accept Changes">
+<!ENTITY mlyrics.prefs.winlabel "MLyrics indstillinger">
+<!ENTITY mlyrics.prefs.weblocupbtn "UP">
+<!ENTITY mlyrics.prefs.weblocdownbtn "DOWN">
+<!ENTITY mlyrics.prefs.webloclabel "Hvorfra vil du hente sangtekster?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "Do you want to add Google lyrics translate?">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "Check translation for saved lyrics">
+<!ENTITY mlyrics.prefs.libstylelabel "Hvordan er dine kunstneres navnesammensætningen?">
+<!ENTITY mlyrics.prefs.savelyricslabel "Hvordan vil du have dine sangtekster gemt?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "How do you want your translation saved?">
+<!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Ignore translation from:">
+<!ENTITY mlyrics.prefs.saveoptneversave "Gem aldrig/Spørg aldrig">
+<!ENTITY mlyrics.prefs.saveoptprompt "Spørg om der skal gemmes/Spørg altid">
+<!ENTITY mlyrics.prefs.saveoptalways "Gem altid/Spørg aldrig">
+<!ENTITY mlyrics.prefs.miscellaneous "Miscellaneous">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "Hide lyrics if tab switched">
+<!ENTITY mlyrics.prefs.notiflabel "Vil du have besked hvis ingen sangtekster er fundet?">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Google search if no lyrics found">
+<!ENTITY mlyrics.prefs.notifInstrlabel "Show if lyrics instrumental">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Store lyrics in database in case of write error">
+<!ENTITY mlyrics.prefs.displabel "Hvad skal MLyrics vise?">
+<!ENTITY mlyrics.prefs.dispoptartist "Kunstner">
+<!ENTITY mlyrics.prefs.dispopttrack "Spornavn">
+<!ENTITY mlyrics.prefs.dispoptalbum "Albumnavn">
+<!ENTITY mlyrics.prefs.stylelabel "Hvilken selvvalgt stil ønsker du at bruge?">
+<!ENTITY mlyrics.prefs.stloptnone "Ingen">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Nuværende fjer">
+<!ENTITY mlyrics.prefs.stloptbluq "Blue Quote">
+<!ENTITY mlyrics.prefs.stloptlite "Blue Quote - Lite">
+<!ENTITY mlyrics.prefs.stlopteclp "Eclipse">
+<!ENTITY mlyrics.prefs.stloptglid "Glided">
+<!ENTITY mlyrics.prefs.stlopthigh "High Contrast">
+<!ENTITY mlyrics.prefs.stloptolds "Old School">
+<!ENTITY mlyrics.prefs.stloptsong "Songbird - RubberDucky">
+<!ENTITY mlyrics.prefs.stloptstar "Stars">
+<!ENTITY mlyrics.prefs.scanlib "Scan entire library for saved lyrics.">
+<!ENTITY mlyrics.prefs.linkInfo1 "Want more features, have idea? Maybe found bug?">
+<!ENTITY mlyrics.prefs.linkInfo2 "Also please do not forget to check comments :)">
+<!ENTITY mlyrics.helloworld.label "Do HelloWorld">
+<!ENTITY mlyrics.helloworld.accesskey "H">
+<!ENTITY mlyrics.pane.label "Dette er en visningsrude">
+<!ENTITY mlyrics.pane.button "Lær mere">
+<!ENTITY mlyrics.helpwin.winlabel "MLyrics Hjælp">
+<!ENTITY mlyrics.helpwin.startlabel "Forside">
+<!ENTITY mlyrics.helpwin.displabel "Visningsrude">
+<!ENTITY mlyrics.helpwin.preflabel "Indstillingsrude">
+<!ENTITY mlyrics.helpwin.metalabel "Metadata-redaktør">
+<!ENTITY mlyrics.helpwin.batchlabel "Batch hentningsvindue">
+<!ENTITY mlyrics.helpwin.haslyrlabel "Har sangtekst-ikon">
+<!ENTITY mlyrics.helpwin.lisclabel "MLyrics licens">
+<!ENTITY mlyrics.helpwin.aboutlabel "Om MLyrics">
+<!ENTITY mlyrics.helpwin.stylelabel "Definer stil">
+<!ENTITY mlyrics.pane.contxtRefresh "Opdater sangtekster">
+<!ENTITY mlyrics.pane.contxtRefreshObO "In turn">
+<!ENTITY mlyrics.pane.contxtRefreshTag "From the tag">
+<!ENTITY mlyrics.pane.contxtMakeInstr "Make instrumental">
+<!ENTITY mlyrics.pane.contxtClear "Ryd sangtekster">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "Beskeder aktiveret">
+<!ENTITY mlyrics.pane.contxtNotifDisabled "Beskeder suspenderet">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "Enable Autoscroll">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "Disable Autoscroll">
+<!ENTITY mlyrics.pane.showSettings "Indstillinger">
+<!ENTITY mlyrics.pane.showEditDialog "Redigere Lyrics">
+<!ENTITY mlyrics.pane.contxWebSrch "Web-søgning">
+<!ENTITY mlyrics.pane.viewModeMenu0 "Show only original lyrics">
+<!ENTITY mlyrics.pane.viewModeMenu1 "Show only translation">
+<!ENTITY mlyrics.pane.viewModeMenu2 "Show mix line by line">
+<!ENTITY mlyrics.pane.viewModeMenu3 "Show as is">
+<!ENTITY mlyrics.pane.viewModeMenu4 "Show mix couplet by couplet">
+<!ENTITY mlyrics.pane.saveButton "Save">
+<!ENTITY mlyrics.pane.cancelButton "Cancel">
+<!ENTITY mlyrics.pane.showSelected "Show now selected">
+<!ENTITY mlyrics.pane.showNowPlaying "Show now playing">
+<!ENTITY mlyrics.font.confFont "Configure style">
+<!ENTITY mlyrics.font.sizeLabel "Size:">
+<!ENTITY mlyrics.font.leftLabel "Left">
+<!ENTITY mlyrics.font.centerLabel "Center">
+<!ENTITY mlyrics.font.rightLabel "Right">
+<!ENTITY mlyrics.font.topLabel "Top">
+<!ENTITY mlyrics.font.bottomLabel "Bottom">
+<!ENTITY mlyrics.font.applyRules "Apply custom rules">
+<!ENTITY mlyrics.font.background "Background">
+<!ENTITY mlyrics.font.title "Title">
+<!ENTITY mlyrics.font.artist "Artist">
+<!ENTITY mlyrics.font.album "Album">
+<!ENTITY mlyrics.font.lyrics "Lyrics">
+<!ENTITY mlyrics.font.transLyrics "Translated Lyrics">
+<!ENTITY mlyrics.font.opacityLabel "Opacity:">
+<!ENTITY mlyrics.font.colorLabel "Color:">
+<!ENTITY mlyrics.font.bgColorLabel "BG Color:">
+<!ENTITY mlyrics.font.showStaticPicIf "Show static picture if no cover">
+<!ENTITY mlyrics.font.color2Label "Color">
+<!ENTITY mlyrics.font.imageLabel "Image">
+<!ENTITY mlyrics.font.coverImageLabel "Cover Image">

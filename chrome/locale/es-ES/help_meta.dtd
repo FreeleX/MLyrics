@@ -1,0 +1,5 @@
+<!ENTITY meta.addon.description "Editor de metadatos">
+<!ENTITY meta.addon.firstpoint "Cuando haya letras editables o cuando se encuentren letras mediante el botón &apos;Buscar&apos;, aparecerán en este cuadro. Cuando se completen todas las ediciones, la información se guardará en la pista pulsando sobre el botón &apos;Guardar&apos;.">
+<!ENTITY meta.addon.secpoint "Cuando se pulsa sobre el botón &apos;Buscar&apos;, LyricMaster buscará las letras de las pista seleccionada actualmente. El botón &apos;Buscar&apos; estará desactivado si se ha seleccionado más de una pista. La base de datos usada para buscar está configurada en las opciones de LyricMaster.">
+<!ENTITY meta.addon.thirdpoint "El botón &apos;Limpiar&apos; limpiará cualquier datos de la caja de letras. Esto funcionará haya seleccionada una o varias pistas.">
+<!ENTITY meta.addon.fourpoint "Si se seleccionan varias pistas, se activará el botón &apos;Buscar todas&apos;. Cuando se pulse por el usuario, mostrará la ventana Buscar todas.">

@@ -1,0 +1,13 @@
+<!ENTITY prefs.addon.description "Voorkeuren">
+<!ENTITY prefs.addon.pntone "Deze instelling geeft aan welke databank MLyrics moet gebruiken bij het ophalen van de songteksten. Dit wordt gebruikt in het weergave paneel, de metadata bewerker en het batchvenster. Als de geselecteerde databank de gevraagde songteksten niet vindt, probeer het dan nogmaals met een andere databank.">
+<!ENTITY prefs.addon.pnttwo "Deze instelling geeft aan hoe de meerderheid van de collectie is opgebouwd. Hoewel het niet voor elk nummer zal werken, helpt het voor het grootste deel van jouw collectie. Deze instelling wordt gebruikt in het weergave paneel, de metadata bewerker en het batchvenster.">
+<!ENTITY prefs.addon.pntthreeptone "Dit is een instelling voor het weergave venster. Het bepaalt hoe MLyrics de songteksten opslaat wanneer ze door het weergave paneel verkregen worden.">
+<!ENTITY prefs.addon.pntthreepttwo "Nooit Opslaan / Nooit vragen:">
+<!ENTITY prefs.addon.pntthreeptthree "Deze optie zorgt ervoor dat er nooit een tekst wordt opgeslagen en hier nooit achter gevraagd wordt. Dit wordt aangeraden voor gebruikers die geen enkele tekst willen opslaan.">
+<!ENTITY prefs.addon.pntthreeptfour "Vragen voor op te slaan / Altijd vragen:">
+<!ENTITY prefs.addon.pntthreeptfive "Deze optie zorgt ervoor dat de gebruiker ingelicht wordt indien er een tekst gevonden is, maar zal deze niet opslaan zolang de gebruiker hier niet de toestemming voor geeft.">
+<!ENTITY prefs.addon.pntthreeptsix "Altijd opslaan / Nooit vragen:">
+<!ENTITY prefs.addon.pntthreeptseven "Gebruik deze optie om automatisch alle gevonden teksten op te slaan zonder vragen.">
+<!ENTITY prefs.addon.pntfour "Dit is een instelling voor de berichtgeving in het weergave venster indien er geen teksten werden gevonden. Als er voor 'NEE' is gekozen ontvang je geen berichtgeving. Tevens is er dan ook geen mogelijkheid om handmatig op het web te zoeken.">
+<!ENTITY prefs.addon.pntfive "Gebruik deze instelling om aan te geven welke informatie er getoond moet worden in het weergave paneel. Momenteel is de albumtitel de enige optionele informatie die in- of uitgeschakeld kan worden.">
+<!ENTITY prefs.addon.pntsix "Deze optie stelt de stijl van het weergave paneel in. Er zijn een aantal opties, afhankelijk van de gebruikte Songbird veren, kan er meestal een passende stijl worden gevonden. Ontwikkelaars van veren kunnen hun eigen stijl toevoegen door het bestand: lyricmaster.css toe te voegen aan de 'skin' map van hun veren. Bekijk het voorbeeld voor meer informatie over de ontwikkeling van een stijl.">

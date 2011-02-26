@@ -1,0 +1,109 @@
+<!ENTITY mlyrics.trackeditor.caption "MLyrics Batch-ophaling">
+<!ENTITY mlyrics.trackeditor.fbtnlabel "Ophalen">
+<!ENTITY mlyrics.trackeditor.fbtntooltextdef "Haal deze teksten op met MLyrics!">
+<!ENTITY mlyrics.trackeditor.cbtntooltextdef "Deze teksten verwijderen.">
+<!ENTITY mlyrics.trackeditor.btninstr "Instrumentaal">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Maak deze songtekst instrumentaal">
+<!ENTITY mlyrics.trackeditor.bbtnlabel "Batch">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Er moeten 2 tot 1000 elementen geselecteerd zijn om de Batch-knop te kunnen gebruiken.">
+<!ENTITY mlyrics.trackeditor.btnremtransl "Verwijder vertaling">
+<!ENTITY mlyrics.manuoverlay.batchmenulabel "Verzamel songteksten">
+<!ENTITY mlyrics.menuoverlay.addonhelplabel "Help voor uitbreidingen">
+<!ENTITY mlyrics.menuoverlay.lmhelplabel "Help voor MLyrics">
+<!ENTITY mlyrics.batchwin.winlabel "MLyrics Batchverwerker">
+<!ENTITY mlyrics.batchwin.btncheckall "Selecteer alles">
+<!ENTITY mlyrics.batchwin.btnuncheckall "Selecteer niets">
+<!ENTITY mlyrics.batchwin.btnaccept "Doe aanpassingen">
+<!ENTITY mlyrics.prefs.winlabel "MLyrics Instellingen">
+<!ENTITY mlyrics.prefs.weblocupbtn "HOGER">
+<!ENTITY mlyrics.prefs.weblocdownbtn "LAGER">
+<!ENTITY mlyrics.prefs.webloclabel "Waar wilt u de songteksten van halen?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "Wilt u de songteksten kunnen vertalen met Google?">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "Haal vertaling voor opgeslagen songtekst">
+<!ENTITY mlyrics.prefs.libstylelabel "Hoe is de naamgeving van uw artiesten?">
+<!ENTITY mlyrics.prefs.savelyricslabel "Hoe wilt u de songteksten opslaan?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "Hoe wilt u de vertaling opslaan?">
+<!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Negeer vertaling van:">
+<!ENTITY mlyrics.prefs.saveoptneversave "Nooit opslaan / Nooit vragen">
+<!ENTITY mlyrics.prefs.saveoptprompt "Vragen voor op te slaan / Altijd vragen">
+<!ENTITY mlyrics.prefs.saveoptalways "Altijd opslaan / Nooit vragen">
+<!ENTITY mlyrics.prefs.miscellaneous "Diversen">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "Verberg songtekst bij ander tabblad">
+<!ENTITY mlyrics.prefs.notiflabel "Verwittig als er geen songtekst werd gevonden">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Doorzoek Google wanneer geen songtekst gevonden wordt">
+<!ENTITY mlyrics.prefs.notifInstrlabel "Toon indien het lied instrumentaal is">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Songtekst opslaan in databank in het geval van schrijffouten">
+<!ENTITY mlyrics.prefs.displabel "Wat moet MLyrics tonen?">
+<!ENTITY mlyrics.prefs.dispoptartist "Artiest">
+<!ENTITY mlyrics.prefs.dispopttrack "Titel">
+<!ENTITY mlyrics.prefs.dispoptalbum "Album">
+<!ENTITY mlyrics.prefs.stylelabel "Welke weergavestijl wilt u gebruiken?">
+<!ENTITY mlyrics.prefs.stloptnone "Geen">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Huidige veren">
+<!ENTITY mlyrics.prefs.stloptbluq "Blauw citaat">
+<!ENTITY mlyrics.prefs.stloptlite "Blauw citaat - licht">
+<!ENTITY mlyrics.prefs.stlopteclp "Zonsverduistering">
+<!ENTITY mlyrics.prefs.stloptglid "Glided">
+<!ENTITY mlyrics.prefs.stlopthigh "Hoog contrast">
+<!ENTITY mlyrics.prefs.stloptolds "Old School">
+<!ENTITY mlyrics.prefs.stloptsong "SongBird - RubberDucky">
+<!ENTITY mlyrics.prefs.stloptstar "Sterren">
+<!ENTITY mlyrics.prefs.scanlib "Zoek in complete collectie naar opgeslagen songteksten.">
+<!ENTITY mlyrics.prefs.linkInfo1 "Wil je meer functionaliteit, heb je een idee? Misschien een fout gevonden?">
+<!ENTITY mlyrics.prefs.linkInfo2 "Vergeet ook niet naar de commentaar te kijken :)">
+<!ENTITY mlyrics.helloworld.label "Doe hallo wereld">
+<!ENTITY mlyrics.helloworld.accesskey "H">
+<!ENTITY mlyrics.pane.label "Dit is een weergave paneel">
+<!ENTITY mlyrics.pane.button "Meer weten">
+<!ENTITY mlyrics.helpwin.winlabel "MLyrics Help">
+<!ENTITY mlyrics.helpwin.startlabel "Voorpagina">
+<!ENTITY mlyrics.helpwin.displabel "Weergave Paneel">
+<!ENTITY mlyrics.helpwin.preflabel "Voorkeuren">
+<!ENTITY mlyrics.helpwin.metalabel "Metadata wijzigen">
+<!ENTITY mlyrics.helpwin.batchlabel "Batch-ophaling venster">
+<!ENTITY mlyrics.helpwin.haslyrlabel "Heeft een songtekst pictogram">
+<!ENTITY mlyrics.helpwin.lisclabel "MLyrics licentie">
+<!ENTITY mlyrics.helpwin.aboutlabel "Over MLyrics">
+<!ENTITY mlyrics.helpwin.stylelabel "Stijl instellen">
+<!ENTITY mlyrics.pane.contxtRefresh "Songtekst vernieuwen">
+<!ENTITY mlyrics.pane.contxtRefreshObO "Bronnen doorzoeken">
+<!ENTITY mlyrics.pane.contxtRefreshTag "Van het muziekbestand">
+<!ENTITY mlyrics.pane.contxtMakeInstr "Maak instrumentaal">
+<!ENTITY mlyrics.pane.contxtClear "Songtekst verwijderen">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "Mededelingen inschakelen">
+<!ENTITY mlyrics.pane.contxtNotifDisabled "Mededelingen uitschakelen">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "Autoscroll inschakelen">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "Autoscroll uitschakelen">
+<!ENTITY mlyrics.pane.showSettings "Instellingen">
+<!ENTITY mlyrics.pane.showEditDialog "Songtekst aanpassen">
+<!ENTITY mlyrics.pane.contxWebSrch "Zoeken op het web">
+<!ENTITY mlyrics.pane.viewModeMenu0 "Toon de originele songtekst">
+<!ENTITY mlyrics.pane.viewModeMenu1 "Toon de vertaling">
+<!ENTITY mlyrics.pane.viewModeMenu2 "Mix de songtekst met de vertaling">
+<!ENTITY mlyrics.pane.viewModeMenu3 "Toon de songtekst zoals ze is">
+<!ENTITY mlyrics.pane.viewModeMenu4 "Toon mix stuk voor stuk">
+<!ENTITY mlyrics.pane.saveButton "Opslaan">
+<!ENTITY mlyrics.pane.cancelButton "Annuleer">
+<!ENTITY mlyrics.pane.showSelected "Geef selectie weer">
+<!ENTITY mlyrics.pane.showNowPlaying "Geef huidig nummer weer">
+<!ENTITY mlyrics.font.confFont "Configureer stijl">
+<!ENTITY mlyrics.font.sizeLabel "Grootte:">
+<!ENTITY mlyrics.font.leftLabel "Links">
+<!ENTITY mlyrics.font.centerLabel "Midden">
+<!ENTITY mlyrics.font.rightLabel "Rechts">
+<!ENTITY mlyrics.font.topLabel "Top">
+<!ENTITY mlyrics.font.bottomLabel "Onderkant">
+<!ENTITY mlyrics.font.applyRules "Aangepaste regels toepassen">
+<!ENTITY mlyrics.font.background "Achtergrond">
+<!ENTITY mlyrics.font.title "Titel">
+<!ENTITY mlyrics.font.artist "Artiest">
+<!ENTITY mlyrics.font.album "Album">
+<!ENTITY mlyrics.font.lyrics "Songtekst">
+<!ENTITY mlyrics.font.transLyrics "Vertaalde songtekst">
+<!ENTITY mlyrics.font.opacityLabel "Doorzichtigheid:">
+<!ENTITY mlyrics.font.colorLabel "Kleur:">
+<!ENTITY mlyrics.font.bgColorLabel "Achtergrondkleur:">
+<!ENTITY mlyrics.font.showStaticPicIf "Statische afbeelding tonen als er geen cover is">
+<!ENTITY mlyrics.font.color2Label "Kleur">
+<!ENTITY mlyrics.font.imageLabel "Afbeelding">
+<!ENTITY mlyrics.font.coverImageLabel "Afbeelding van cover">

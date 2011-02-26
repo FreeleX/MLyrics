@@ -1,0 +1,17 @@
+content mlyrics  chrome/content/
+skin    mlyrics  classic/1.0 chrome/skin/
+
+locale  mlyrics  en-US  chrome/locale/en-US/
+locale  mlyrics  es-ES  chrome/locale/es-ES/
+locale  mlyrics  da-DK  chrome/locale/da-DK/
+locale  mlyrics  nl  	chrome/locale/nl/
+locale  mlyrics  ru-RU  chrome/locale/ru-RU/
+locale  mlyrics  pt-PT  chrome/locale/pt-PT/
+locale  mlyrics  fr  	chrome/locale/fr/
+locale  mlyrics  uk-UA  chrome/locale/uk-UA/
+locale  mlyrics  de  	chrome/locale/de/
+locale  mlyrics  sv-SE  chrome/locale/sv-SE/
+
+overlay chrome://songbird/content/xul/layoutBaseOverlay.xul 	chrome://mlyrics/content/xul/base.xul
+overlay chrome://songbird/content/xul/trackEditor.xul 		chrome://mlyrics/content/xul/lyricsEditor.xul
+overlay windowtype:Songbird:MediaPage 				chrome://mlyrics/content/xul/overlayPlaylist.xul

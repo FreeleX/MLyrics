@@ -1,0 +1,13 @@
+<!ENTITY about.addon.description "MLyrics is an add-on based on LyricMaster for Songbird that will:">
+<!ENTITY about.display.lyrics "Display they lyrics a song has embedded through metadata.">
+<!ENTITY about.fetch.lyrics "Fetch the lyrics from multiple sites if the song contains no lyric metadata.">
+<!ENTITY about.opts.lyrics "Give the user and option to search the web for lyrics if no appropriate lyrics are found.">
+<!ENTITY about.edit.lyrics "Allow the user to edit the lyrics a song contains.">
+<!ENTITY about.batch.lyrics "Fetch the lyrics for one or more songs at a time.">
+<!ENTITY about.icon.lyrics "Disply an icon in your library for tracks that have lyrics.">
+<!ENTITY about.thanks.lyrics "SPECIAL THANKS!!">
+<!ENTITY about.gege.lyrics "Gege - from the MediaMonkey forums,  His Lyric and Comment Viewer was the inspiration for LyricMaster, and his HTML and CSS are now used by LyricMaster!">
+<!ENTITY about.erich.lyrics "Erich Schroeter - who answered the call for a new Icon for LyricMaster! Great Work!">
+<!ENTITY about.nickj.lyrics "Nick J. (supercompman) -who is a walking, breathing JavaScript book, who could give me some pointers when they were needed! ">
+<!ENTITY about.stevel.lyrics "Stephen Lau - who helped me figure out parts of the Songbird API, without which this add-on wouldn't be possible!">
+<!ENTITY style.fetch.lyrics "Some of the definitions are currently not being used, but may be in the future.">

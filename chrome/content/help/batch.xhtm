@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" [
+
+<!ENTITY % mlyricsDTD SYSTEM "chrome://mlyrics/locale/help_batch.dtd" >
+%mlyricsDTD;
+
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+  <link href="chrome://songbird/skin/html.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body  leftmargin="0px" topmargin="0px" rightmargin="0px" bottommargin="0px" style="padding: 15px"> 
+<center>
+<h3>&batch.addon.description;</h3><br />
+<img src="chrome://mlyrics/content/help/batpane.png" border="0" /><br /><br />
+</center>
+<ol>
+<li>&batch.addon.firstpoint;</li>
+<br />
+<li>&batch.addon.secpoint;</li>
+<br />
+<li>&batch.addon.thirdpoint;</li>
+<br /><br />
+<center><small><i><b>&batch.addon.note;</b></i></small> </center>
+</ol>
+</body>
+</html>

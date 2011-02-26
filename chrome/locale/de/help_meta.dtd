@@ -1,0 +1,5 @@
+<!ENTITY meta.addon.description "Metadaten-Editor">
+<!ENTITY meta.addon.firstpoint "Wenn es Lyrics gibt, die bearbeitet werden sollen oder Lyrics mithilfe der Schaltfläche &quot;Suchen&quot; gefunden werden, werden diese in der Box angezeigt. Nachdem alle Änderungen vollständig sind, werden mithilfe der &quot;Speichern&quot; Schaltfläche Lyrics im Titel gespeichert.">
+<!ENTITY meta.addon.secpoint "Wenn die Schaltfläche &quot;Suchen&quot; verwendet wird, sucht LyricMaster die Lyrics für den derzeit gewählten Titel. Die Schaltfläche ist nicht verfügbar, wenn mehr als ein Eintrag bearbeitet wird. Welche Datenbestände durchsucht werden, wird in den Einstellungen festgelegt.">
+<!ENTITY meta.addon.thirdpoint "Die Schaltfläche &quot;Löschen&quot; löscht den gesamten Inhalt der Lyrics-Box. Diese Schaltfläche funktioniert auch, wenn mehrere Titel bearbeitet werden.">
+<!ENTITY meta.addon.fourpoint "Wenn mehrere Titel bearbeitet werden, ist die Schaltfläche &quot;Massen-Abruf&quot; verfügbar. Mit dieser kann das Massen-Download Fenster geöffnet werden.">

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:songbird="http://www.songbirdnest.com/2007/addon-metadata-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+         
+  <RDF:Description RDF:about="rdf:#$wGbMF2"
+                   songbird:contentTitle="MLyrics"
+                   songbird:contentUrl="chrome://mlyrics/content/xul/pane.xul"
+                   songbird:contentIcon="chrome://mlyrics/skin/pane-icon.png"
+                   songbird:defaultWidth="250"
+                   songbird:defaultHeight="*"
+                   songbird:suggestedContentGroups="sidebar"
+                   songbird:showOnInstall="true" />
+                   
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="{6039188e-d135-11df-bcc9-c7e1ded72085}"
+                   em:type="2"
+                   em:name="MLyrics"
+                   em:version="1.1.4"
+                   em:creator="LookingMan"
+                   em:description="Displays and Gathers and Translates Lyrics from Multiple Sources"
+                   em:iconURL="chrome://mlyrics/skin/icon.png"
+                   em:optionsURL="chrome://mlyrics/content/xul/options.xul">
+                   
+    <em:contributor>Ryan C. Winter (creator of LyricMaster)</em:contributor>
+    <em:contributor>rsjtdrjgfuzkfg (de translation and committer)</em:contributor>
+    <em:contributor>DanyBoss (pt-PT translation and icons)</em:contributor>
+    <em:contributor>Glodenox (nl translation)</em:contributor>
+    <em:contributor>Looler (fr translation)</em:contributor>
+    <em:contributor>AlePerez92 (es-ES translation)</em:contributor>
+    <em:contributor>Lakrits (sv-SE translation)</em:contributor>
+    <em:contributor>BeowulfBjornson</em:contributor>
+    <em:contributor>Fredrik Kilegran</em:contributor>
+    <em:contributor>EliasCury</em:contributor>
+
+    <em:targetApplication RDF:resource="rdf:#$rGbMF2"/>
+    <songbird:displayPane RDF:resource="rdf:#$wGbMF2"/>
+    
+  </RDF:Description>
+  
+  <RDF:Description RDF:about="rdf:#$rGbMF2"
+                   em:id="songbird@songbirdnest.com"
+                   em:maxVersion="1.10.*"
+                   em:minVersion="1.2.*" />
+</RDF:RDF>

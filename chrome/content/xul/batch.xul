@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://songbird/skin/songbird.css" type="text/css" title="Skin"?>
+<?xml-stylesheet href="chrome://songbird/content/bindings/bindings.css" type="text/css"?>
+
+<!DOCTYPE window [
+	<!ENTITY % sbDTD SYSTEM "chrome://songbird/locale/songbird.dtd">
+	%sbDTD;
+	<!ENTITY % lmDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
+	%lmDTD;
+]>
+
+<window title="&mlyrics.batchwin.winlabel;"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+        
+        <script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/uniFuncs.js"/>
+        <script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/fetch.js"/>
+        <script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/batchWindow.js"/>
+	
+	<vbox flex="1" style="overflow:auto">
+		<hbox flex="1">
+			<vbox id="ML-batch-bbox" flex="1" style="overflow: auto">
+				<hbox 	id="ML-batch-hbox-base" 
+					flex="1" 
+					hidden="true" 
+					onmouseover="onhboxmouseover(this)"
+					onmouseout="onhboxmouseout(this)">
+					
+					<vbox flex="1">
+						<label value="Artist" />
+						<label value="Album" />
+						<label value="Track" style="font-weight: bold; font-size: 16px" />
+						<label value="Source" style="font-style: italic" />
+					</vbox>
+					
+					<vbox align="center" hidden="true">
+						<spacer flex="1" />
+						<image  src="chrome://mlyrics/content/images/play.png"
+							onmouseup="onplaycommand()"
+						/>
+						<spacer flex="1" />
+					</vbox>
+					
+					<vbox align="center" hidden="true">
+						<spacer flex="1" />
+						<image  src="chrome://mlyrics/content/images/stop.png"
+							onmouseup="onplaycommand()"
+						/>
+						<spacer flex="1" />
+					</vbox>
+					
+					<label width="20" />
+					
+					<vbox align="center">
+						<spacer flex="1" />
+						<image  src="" 
+							onmouseup="onLyricsCheck(this)"
+						/>
+						<spacer flex="1" />
+					</vbox>
+					
+					<textbox
+						readonly="true"
+						multiline="true"
+						minwidth="300"
+						maxwidth="300"
+						minheight="100"
+						maxheight="100" />
+				</hbox>
+				
+			</vbox>
+			
+			<vbox>
+				<textbox
+					id="ML-maintextbox-multi"
+					flex="1"
+					multiline="true"
+					minwidth="300"
+					minheight="400"
+					oninput="onMainTextboxChange()"/>
+					
+				<hbox>
+					<menulist id="refreshMenuItem" label="&mlyrics.pane.contxtRefresh;" flex="1">
+						<menupopup id="ML_sourcesPopup">
+							<menuitem label="&mlyrics.pane.contxtRefreshObO;" 
+								oncommand="refetch()"/>
+								
+							<menuseparator />
+							
+							<!-- list of lyrics sources -->
+							
+							<menuitem id="ML_contextSourcesSeparator" 
+								disabled="true"
+								label="---------------------------"/>
+						</menupopup>
+					</menulist>
+					
+					<button id="ML_sourceAddressNextButton" 
+								label=">" 
+								hidden="true" 
+								disabled="true" 
+								oncommand="refetch(this.nextSourceIndex)"/>
+				</hbox>
+				
+				<progressmeter id="ML-progress-multi" mode="undetermined"/>
+			</vbox>
+		
+		</hbox>
+			
+		<hbox>
+			<button 
+				id="ML-accept-btn-checkall"
+				disabled="true"
+				label="&mlyrics.batchwin.btncheckall;" 
+				oncommand="checkAll(true)" />
+				
+			<button 
+				id="ML-accept-btn-uncheckall"
+				disabled="true"
+				label="&mlyrics.batchwin.btnuncheckall;" 
+				oncommand="checkAll(false)" />
+				
+			<button 
+				id="ML-accept-btn-batch"
+				disabled="true"
+				flex="1" 
+				label="&mlyrics.batchwin.btnaccept;" 
+				oncommand="onAcceptChages(this)"/>
+		</hbox>
+	</vbox>
+</window>

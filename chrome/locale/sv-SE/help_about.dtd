@@ -1,0 +1,13 @@
+<!ENTITY about.addon.description "MLyrics är ett tillägg baserat på LyricMaster för Songbird, och:">
+<!ENTITY about.display.lyrics "Visar sångtexten en låt har inbäddad som metadata.">
+<!ENTITY about.fetch.lyrics "Hämtar sångtexten från flera olika webbplatser om låten inte innehåller någon sångtextmetadata.">
+<!ENTITY about.opts.lyrics "Ger användaren alternativet att söka på webben efter sångtexter om inga passande sångtexter hittas.">
+<!ENTITY about.edit.lyrics "Tillåter användaren att redigera sångtexten en låt innehåller.">
+<!ENTITY about.batch.lyrics "Hämtar sångtexter för en eller flera låtar på samma gång.">
+<!ENTITY about.icon.lyrics "Visar en ikon i ditt bibliotek för låtar som har sångtexter.">
+<!ENTITY about.thanks.lyrics "ETT SÄRSKILT TACK!!">
+<!ENTITY about.gege.lyrics "Gege - från MediaMonkey-forumet.  Hans &quot;Lyric and Comment Viewer&quot; var inspirationen för LyricMaster, och hans HTML och CSS används numera av LyricMaster!">
+<!ENTITY about.erich.lyrics "Erich Schroeter - som tog utmaningen om en ny ikon för LyricMaster! Lysande arbete!">
+<!ENTITY about.nickj.lyrics "Nick J. (supercompman) - som är en vandrande, levande JavaScript-bok och som kunde ge mig lite hjälp på traven när det behövdes! ">
+<!ENTITY about.stevel.lyrics "Stephen Lau - som hjälpte mig att klura ut delar av Songbird-API:n och med vars hjälp det här tillägget överhuvudtaget blev möjligt!">
+<!ENTITY style.fetch.lyrics "El den av definitionerna används inte för tillfället, men kan komma att användas i framtiden.">

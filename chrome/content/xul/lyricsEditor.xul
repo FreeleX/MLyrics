@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay [
+	<!ENTITY % sbDTD SYSTEM "chrome://songbird/locale/songbird.dtd">
+	%sbDTD;
+	<!ENTITY % lmDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
+	%lmDTD;
+]>
+
+<overlay id="mlyricsOverlay"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/JSON2.js"/>
+<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/fetch.js"/>
+<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/batch.js"/>
+<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/uniFuncs.js"/>
+<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/lyricsEditorWindow.js"/>
+
+<tabbox id="trackeditor-tabbox">
+	<tabs id="trackeditor-tabs" hidden="false" >
+		 <tab insertafter="edit" label="&trackeditor.tab.lyrics.title;" />
+	</tabs>
+
+	<tabpanels id="trackeditor-tabpanels" >
+		<tabpanel insertafter="info-tab" flex="1">
+			<hbox align="stretch" flex="1">
+				<vbox flex="1">
+					<textbox
+						id="lyrics-editor"
+						multiline="true" flex="1"
+						property="http://songbirdnest.com/data/1.0#lyrics"
+					/>
+					<label 
+						id="lyrics-edit-source"
+						hidden="true"
+						property="http://songbirdnest.com/data/1.0#lyricistName"
+					/>
+					<hbox>
+						<progressmeter id="ML_TrE_sourceFetchProgress" mode="undetermined" flex="1" hidden="true" />
+					</hbox>
+				</vbox>
+				
+				<vbox>
+					<hbox>
+						<menulist height="27" id="refreshMenuItem" label="&mlyrics.pane.contxtRefresh;">
+							<menupopup id="ML_sourcesPopup">
+								<menuitem label="&mlyrics.trackeditor.fbtnlabel;" image="chrome://mlyrics/content/images/fetch.png" oncommand="multiFetch();"/>
+								
+								<menuseparator />
+								
+								<!-- list of lyrics sources -->
+									
+								<menuitem
+									id="ML_contextSourcesSeparator"
+									label="---------------------------"
+									disabled="true"/>
+									
+								<menuitem id="contxtTranslateMetaMenu" 
+									label="translate.google.com" 
+									oncommand="translateLyrics();"/>
+									
+								<menuitem  
+									label="---------------------------"
+									disabled="true"/>
+									
+								<menuitem id="ML_contxtRefreshTagMenu"
+									selected="true"
+									label="&mlyrics.pane.contxtRefreshTag;" 
+									style="font-style: italic" 
+									oncommand="resetLyrics();"/>
+							</menupopup>
+						</menulist>
+						
+						<button id="ML_sourceAddressNextButton" label=">" hidden="false" disabled="false" oncommand="onFetch(this.nextSourceIndex)"/>
+					</hbox>
+					
+					<button image="chrome://mlyrics/content/images/batch.png" 
+						id="batch_btn" 
+						label=" &mlyrics.trackeditor.bbtnlabel;" 
+						tooltiptext="&mlyrics.trackeditor.bbtntooltextdef;" 
+						hidden="true" 
+						oncommand="batchFetch()"/>
+						
+					<button image="chrome://mlyrics/content/images/clear.png" 
+						id="clear_btn" 
+						label=" &albumart.displaypane.selected.menu.clear;" 
+						tooltiptext="&mlyrics.trackeditor.cbtntooltextdef;" 
+						oncommand="onClear()"/>
+						
+					<button image="chrome://mlyrics/content/images/instrumental.png" 
+						id="instr_btn" label=" &mlyrics.trackeditor.btninstr;" 
+						tooltiptext="&mlyrics.trackeditor.btninstrtip;" 
+						oncommand="onInstrumental()"/>
+						
+					<button 
+						id="clearr_transl_btn" label="&mlyrics.trackeditor.btnremtransl;" 
+						oncommand="onRemoveTranslation()"/>
+				</vbox>
+			</hbox>
+		</tabpanel>
+	</tabpanels>
+</tabbox>
+</overlay>

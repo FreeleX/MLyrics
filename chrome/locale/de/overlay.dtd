@@ -1,0 +1,109 @@
+<!ENTITY mlyrics.trackeditor.caption "MLyrics Massen-Abruf">
+<!ENTITY mlyrics.trackeditor.fbtnlabel "Abrufen">
+<!ENTITY mlyrics.trackeditor.fbtntooltextdef "Diese Lyrics mit MLyrics abrufen!">
+<!ENTITY mlyrics.trackeditor.cbtntooltextdef "Diese Lyrics löschen.">
+<!ENTITY mlyrics.trackeditor.btninstr "Instrumental">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Diese Lyrics als Instrumental markieren">
+<!ENTITY mlyrics.trackeditor.bbtnlabel "Massen-Abruf">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Es müssen 2-1000 Titel bearbeitet werden, um die Schaltfläche Massen-Abruf zu aktivieren.">
+<!ENTITY mlyrics.trackeditor.btnremtransl "Übersetzung entfernen">
+<!ENTITY mlyrics.manuoverlay.batchmenulabel "Massen-Abruf">
+<!ENTITY mlyrics.menuoverlay.addonhelplabel "Add-on Hilfe">
+<!ENTITY mlyrics.menuoverlay.lmhelplabel "MLyrics Hilfe">
+<!ENTITY mlyrics.batchwin.winlabel "MLyrics Massen-Abruf">
+<!ENTITY mlyrics.batchwin.btncheckall "Alle auswählen">
+<!ENTITY mlyrics.batchwin.btnuncheckall "Auswahl aufheben">
+<!ENTITY mlyrics.batchwin.btnaccept "Änderungen übernehmen">
+<!ENTITY mlyrics.prefs.winlabel "MLyrics Einstellungen">
+<!ENTITY mlyrics.prefs.weblocupbtn "NACH OBEN">
+<!ENTITY mlyrics.prefs.weblocdownbtn "NACH UNTEN">
+<!ENTITY mlyrics.prefs.webloclabel "Aus welcher Quelle sollen Lyrics abgerufen werden?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "Wollen Sie von Google übersetzte Lyrics hinzufügen?">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "Übersetzung für bereits gespeicherte Lyrics nachladen">
+<!ENTITY mlyrics.prefs.libstylelabel "Was ist das Namensschema der Interpreten in der Mediathek?">
+<!ENTITY mlyrics.prefs.savelyricslabel "Wann sollen Lyrics gespeichert werden?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "Wann sollen Übersetzungen gespeichert werden?">
+<!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Übersetzungen ignorieren von:">
+<!ENTITY mlyrics.prefs.saveoptneversave "Niemals speichern">
+<!ENTITY mlyrics.prefs.saveoptprompt "Fragen, ob gespeichert werden soll">
+<!ENTITY mlyrics.prefs.saveoptalways "Immer speichern">
+<!ENTITY mlyrics.prefs.miscellaneous "Verschiedenes">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "Lyrics verstecken, wenn der Tab gewechselt wird?">
+<!ENTITY mlyrics.prefs.notiflabel "Eine Nachricht ausgeben, wenn keine Lyrics gefunden werden?">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Google-Suche wenn keine Lyrics gefunden wurden">
+<!ENTITY mlyrics.prefs.notifInstrlabel "Lyrics bei instrumentalen Titeln anzeigen">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Lyrics in Datenbank speichern, wenn ein Schreibfehler auftritt">
+<!ENTITY mlyrics.prefs.displabel "Was soll MLyrics anzeigen?">
+<!ENTITY mlyrics.prefs.dispoptartist "Interpret">
+<!ENTITY mlyrics.prefs.dispopttrack "Titel">
+<!ENTITY mlyrics.prefs.dispoptalbum "Albumtitel">
+<!ENTITY mlyrics.prefs.stylelabel "Welcher benutzerdefinierte Stil soll verwendet werden?">
+<!ENTITY mlyrics.prefs.stloptnone "Kein Stil">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Aktuelles Federkleid">
+<!ENTITY mlyrics.prefs.stloptbluq "Blue Quote">
+<!ENTITY mlyrics.prefs.stloptlite "Blue Quote - Lite">
+<!ENTITY mlyrics.prefs.stlopteclp "Eclipse">
+<!ENTITY mlyrics.prefs.stloptglid "Glided">
+<!ENTITY mlyrics.prefs.stlopthigh "Hoher Kontrast">
+<!ENTITY mlyrics.prefs.stloptolds "Old School">
+<!ENTITY mlyrics.prefs.stloptsong "Songbird - RubberDucky">
+<!ENTITY mlyrics.prefs.stloptstar "Stars">
+<!ENTITY mlyrics.prefs.scanlib "Bibilothek nach Lyrics durchsuchen...">
+<!ENTITY mlyrics.prefs.linkInfo1 "Haben Sie Ideen, wie dieses Add-on verbessert werden könnte? Vielleicht haben Sie auch einen Fehler gefunden?">
+<!ENTITY mlyrics.prefs.linkInfo2 "Bitte vergessen Sie nicht, die Kommentare anzusehen :)">
+<!ENTITY mlyrics.helloworld.label "Do HelloWorld">
+<!ENTITY mlyrics.helloworld.accesskey "H">
+<!ENTITY mlyrics.pane.label "Das ist die Seitenleiste">
+<!ENTITY mlyrics.pane.button "Mehr erfahren">
+<!ENTITY mlyrics.helpwin.winlabel "MLyrics Hilfe">
+<!ENTITY mlyrics.helpwin.startlabel "Startseite">
+<!ENTITY mlyrics.helpwin.displabel "Seitenleiste">
+<!ENTITY mlyrics.helpwin.preflabel "Einstellungen">
+<!ENTITY mlyrics.helpwin.metalabel "Metadaten-Editor">
+<!ENTITY mlyrics.helpwin.batchlabel "Massen-Download Fenster">
+<!ENTITY mlyrics.helpwin.haslyrlabel "Lyrics-vorhanden-Symbol">
+<!ENTITY mlyrics.helpwin.lisclabel "Lizenz">
+<!ENTITY mlyrics.helpwin.aboutlabel "Über MLyrics">
+<!ENTITY mlyrics.helpwin.stylelabel "Stil definieren">
+<!ENTITY mlyrics.pane.contxtRefresh "Lyrics aktualisieren">
+<!ENTITY mlyrics.pane.contxtRefreshObO "Der Reihe nach">
+<!ENTITY mlyrics.pane.contxtRefreshTag "Aus den Metadaten">
+<!ENTITY mlyrics.pane.contxtMakeInstr "Als Instrumental markieren">
+<!ENTITY mlyrics.pane.contxtClear "Lyrics löschen">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "Benachrichtigungen aktiviert">
+<!ENTITY mlyrics.pane.contxtNotifDisabled "Benachrichtigungen deaktiviert">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "Automatisches Scrollen aktivieren">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "Automatisches Scrollen deaktivieren">
+<!ENTITY mlyrics.pane.showSettings "Einstellungen">
+<!ENTITY mlyrics.pane.showEditDialog "Lyrics bearbeiten">
+<!ENTITY mlyrics.pane.contxWebSrch "Websuche">
+<!ENTITY mlyrics.pane.viewModeMenu0 "Ausschließlich Original-Lyrics anzeigen">
+<!ENTITY mlyrics.pane.viewModeMenu1 "Ausschließlich übersetzte Lyrics anzeigen">
+<!ENTITY mlyrics.pane.viewModeMenu2 "Zeile für Zeile mischen">
+<!ENTITY mlyrics.pane.viewModeMenu3 "Wie gewohnt anzeigen">
+<!ENTITY mlyrics.pane.viewModeMenu4 "Strophe für Strophe mischen">
+<!ENTITY mlyrics.pane.saveButton "Speichern">
+<!ENTITY mlyrics.pane.cancelButton "Abbrechen">
+<!ENTITY mlyrics.pane.showSelected "Jetzt ausgewählt anzeigen">
+<!ENTITY mlyrics.pane.showNowPlaying "Aktuellen Titel anzeigen">
+<!ENTITY mlyrics.font.confFont "Stil konfigurieren">
+<!ENTITY mlyrics.font.sizeLabel "Größe:">
+<!ENTITY mlyrics.font.leftLabel "Links">
+<!ENTITY mlyrics.font.centerLabel "Zentriert">
+<!ENTITY mlyrics.font.rightLabel "Rechts">
+<!ENTITY mlyrics.font.topLabel "Oben">
+<!ENTITY mlyrics.font.bottomLabel "Unten">
+<!ENTITY mlyrics.font.applyRules "Benutzerdefinierte Regeln anwenden">
+<!ENTITY mlyrics.font.background "Hintergrund">
+<!ENTITY mlyrics.font.title "Titel">
+<!ENTITY mlyrics.font.artist "Interpret">
+<!ENTITY mlyrics.font.album "Albumtitel">
+<!ENTITY mlyrics.font.lyrics "Lyrics">
+<!ENTITY mlyrics.font.transLyrics "Übersetzte Lyrics">
+<!ENTITY mlyrics.font.opacityLabel "Transparenz:">
+<!ENTITY mlyrics.font.colorLabel "Farbe:">
+<!ENTITY mlyrics.font.bgColorLabel "Hintergrundfarbe:">
+<!ENTITY mlyrics.font.showStaticPicIf "Statisches Bild anzeigen, wenn kein Cover-Bild verfügbar ist">
+<!ENTITY mlyrics.font.color2Label "Farbe">
+<!ENTITY mlyrics.font.imageLabel "Bild">
+<!ENTITY mlyrics.font.coverImageLabel "Cover-Bild">

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" [
+
+<!ENTITY % mlyricsDTD SYSTEM "chrome://mlyrics/locale/help_about.dtd" >
+%mlyricsDTD;
+
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+  <link href="chrome://songbird/skin/html.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body  leftmargin="0px" topmargin="0px" rightmargin="0px" bottommargin="0px" style="padding: 15px"> 
+
+<table cellpadding="5px">
+<tr width="100%"><td width="100%">
+&about.addon.description;
+<ul>
+<li>&about.display.lyrics;</li>
+<li>&about.fetch.lyrics;</li>
+<li>&about.opts.lyrics;</li>
+<li>&about.edit.lyrics;</li>
+<li>&about.batch.lyrics;</li>
+<li>&about.icon.lyrics;</li>
+</ul>
+<br /><br />
+</td></tr>
+<tr width="100%"><td bgcolor="000000" >
+<table  bgcolor="#FFCC00" width="100%" cellpadding="20px">
+<tr><td>
+<center><h3>&about.thanks.lyrics;</h3></center>
+<li> &about.gege.lyrics;</li>
+<br />
+<li>&about.erich.lyrics;</li>
+<br />
+<li> &about.nickj.lyrics; </li>
+<br />
+<li> &about.stevel.lyrics;</li>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+</body>
+</html>

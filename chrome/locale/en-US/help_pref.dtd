@@ -1,0 +1,13 @@
+<!ENTITY prefs.addon.description "Preferences Pane">
+<!ENTITY prefs.addon.pntone "This option sets which online database to fetch your lyrics from.  This will be used in the Display Pane, the Metadata Editor, and the Batch Fetching Window.  If a the database you are currently set to isn't finding the lyrics for the song you are looking for, try switching databases and then try fetching the lyrics again.">
+<!ENTITY prefs.addon.pnttwo "This option tells LyricMaster how the majority of the user's library is set up.  While this won't work for every track, it can help retrieve the lyrics for the majority of your library.  This setting is also used in the Display Pane, the Metadata Editor, and the Batch Fetching Window.">
+<!ENTITY prefs.addon.pntthreeptone "This option pertains to the Display Pane.  It tells LyricMaster how it should handle saving the lyrics when they are fetched by the display pane.">
+<!ENTITY prefs.addon.pntthreepttwo "Never Save/Never Ask:">
+<!ENTITY prefs.addon.pntthreeptthree "This sets the save method so it will never save any lyrics and will not even ask the user to save.  This is the best method to use if the user doesn't want any of the lyric information to be saved to the track.">
+<!ENTITY prefs.addon.pntthreeptfour "Prompt to Save/Always Ask:">
+<!ENTITY prefs.addon.pntthreeptfive "When new lyrics are found, this option will notify the user that new lyrics were found, but will not save the lyrics unless the user tells the program to do so.">
+<!ENTITY prefs.addon.pntthreeptsix "Always Save/Never Ask:">
+<!ENTITY prefs.addon.pntthreeptseven "Use of this option will never prompt the user to save the lyrics.  It will automatically save what it finds.">
+<!ENTITY prefs.addon.pntfour "This option also pertains to the Display Pane. If 'NO' is selected, there will be no notifications letting the user know that there is no lyrics found for the playing track.  Setting this option to 'NO' will also not give the user the option for a one click web search for the lyrics.">
+<!ENTITY prefs.addon.pntfive "This option tells the Display Pane which information to show when it is displaying the lyrics.  Currently, the only optional information that can be toggled on or off is the album name.">
+<!ENTITY prefs.addon.pntsix "This option sets the graphical style to use in the Display Pane.  There are a number of options, depending on the user's feather, a simalar style can usally be found.  Feather Developers can add their own style by adding lyricmaster.css file to the skin folder of their feather add-on.  For more information on the definition of the style, Please see the Defining Style example.">

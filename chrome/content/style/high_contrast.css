@@ -1,0 +1,39 @@
+body { font:9pt 'Trebuchet MS', Arial, sans serif;
+       background:#000 url('high_contrast_bg.jpg') repeat-x;
+       margin:5 0 0 10px;
+       padding:10px 12px;  
+       
+       }
+
+th { padding:0 0 1px 0; }
+td { padding:0 0 1px 0; }
+
+h1,h2,h3,h4,h5,h6 { color:#bbf;margin:0;clear:both; }
+
+h1 { font-size:16pt;font-style:italic;padding:0 0 5px 0;letter-spacing:-1.2pt; }   /*  Song Title  */
+h2 { font-size:13pt;font-weight:normal;padding:0; }                                /*  Artist      */
+h3 { font-size:12pt;font-weight:normal;padding:0; }                                /*  Album       */
+h4 { font-size:10pt;font-weight:normal;padding:0; }                                /*  Year        */
+h5 { font-size:10pt;font-weight:normal;padding:0 0 10px 0; }                       /*  Composer    */
+h6 { font-size:10pt;font-weight:normal;padding:0 0 10px 0; }                       /*              */
+
+p  { font:12pt 'Trebuchet MS', Arial, sans serif;color:#FFFFFF;margin:0;padding:0 0 0 0px; }
+
+a  { color:#222; }
+
+/* The following are "p" spare classes, which you can use as additional formating
+   elements. If you don't want to use them, just use display:none to hide them. 
+   Otherwise use display:block with additional parameters to give them the
+   appearence you want them to have. Their position in the page are as folows:
+   .header     = above the song title
+   .separator1 = between song title and additional information
+   .separator2 = between additional information and lyrics
+   .footer     = below lyrics */
+
+/* .header, .separator1, .separator2, .footer { display:none; }   */
+
+.header, .separator1, .footer { display:none; }
+
+.separator2, .separator3
+   { font-size:6pt;text-align:center;margin-top:5;margin-bottom:5;display:block;
+  /* background:#CCCCCC url('separator.png') no-repeat; */ }

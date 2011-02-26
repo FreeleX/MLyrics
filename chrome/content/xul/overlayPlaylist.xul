@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay [
+	<!ENTITY % sbDTD SYSTEM "chrome://songbird/locale/songbird.dtd">
+	%sbDTD;
+	<!ENTITY % lmDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
+	%lmDTD;
+]>
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:xbl="http://www.mozilla.org/xbl">
+  
+	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/playlist.js"/>
+	
+	<popup id="sb-playlist-popup" onpopupshowing="mlyrics.playlist.onpopupshowing()">
+	<menuitem
+			id="mlyrics-gather-contextmenu"
+			label="&mlyrics.manuoverlay.batchmenulabel;"
+			oncommand="mlyrics.playlist.onbatchcommand()"
+		/>
+	</popup>
+	
+</overlay>

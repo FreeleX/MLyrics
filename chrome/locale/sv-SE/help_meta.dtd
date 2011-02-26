@@ -1,0 +1,5 @@
+<!ENTITY meta.addon.description "Metadataredigeraren">
+<!ENTITY meta.addon.firstpoint "När det finns sångtexter att redigera eller när sångtexter hittas m.h.a. &quot;Hämta&quot;-knappen, så kommer de att dyka upp i den här rutan.  När allt redigeringsarbete är färdigt klickar du på &quot;Spara&quot; i nederkanten av fönstret för att spara informationen till spåret.">
+<!ENTITY meta.addon.secpoint "När &quot;Hämta&quot;-knappen klickas kommer LyricMaster att hämta sångtexten för det markerade spåret. &quot;Hämta&quot;-knappen är inaktiverad om fler än ett spår är markerade.  Vilken databas som används för hämtningen ställs in i LyricMasters inställningar.">
+<!ENTITY meta.addon.thirdpoint "&quot;Rensa&quot;-knappen rensar bort vad som än står i sångtextrutan.  Det här fungerar oavsett om endast ett eller om flera spår är markerade.">
+<!ENTITY meta.addon.fourpoint "Om flera spår markeras kommer &quot;Parti&quot;-knappen att aktiveras.  När användaren klickar på den öppnas Partihämtningsfönstret.">

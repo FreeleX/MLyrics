@@ -1,0 +1,13 @@
+<!ENTITY prefs.addon.description "Einstellungen">
+<!ENTITY prefs.addon.pntone "Diese Einstellung legt fest, welche Online-Datenbanken durchsucht werden sollen. Eine solche Durchsuchung kann von der Seitenleiste (ein Titel ohne Lyrics wird abgespielt), aus dem Metadaten-Editor oder aus dem Massen-Download Fenster (jeweils über die entsprechende Schaltfläche) gestartet werden. Wenn die derzeit gewählten Datenbanken keine Lyrics für einen Titel finden, kann es helfen, diese Einstellung zu verändern.">
+<!ENTITY prefs.addon.pnttwo "Diese Einstellung legt fest, welches Schema die Mehrheit der Titel der Bibilothek für den Interpreten verwendet.">
+<!ENTITY prefs.addon.pntthreeptone "Diese Einstellung bezieht sich auf die Seitenleiste. Sie legt fest, wie LyricMaster mit gefundenen Lyrics umgehen soll (in Metadaten des Titels speichern oder nicht).">
+<!ENTITY prefs.addon.pntthreepttwo "Niemals speichern:">
+<!ENTITY prefs.addon.pntthreeptthree "Es werden keine Lyrics in Metadaten gespeichert, Sie werden, wenn diese Option aktiv ist, nicht gefragt, ob sie Lyrics speichern wollen.">
+<!ENTITY prefs.addon.pntthreeptfour "Fragen, ob gespeichert werden soll">
+<!ENTITY prefs.addon.pntthreeptfive "Wenn neue Lyrics gefunden werden, wird, sofern diese Option aktiv ist, eine Mitteilung eingeblendet, die Ihnen die Möglichkeit bietet, die Lyrics zu speichern. Lyrics werden niemals direkt gespeichert.">
+<!ENTITY prefs.addon.pntthreeptsix "Immer speichern">
+<!ENTITY prefs.addon.pntthreeptseven "Alle gefundenen Lyrics werden ohne jede Rückfrage in den Metadaten gespeichert.">
+<!ENTITY prefs.addon.pntfour "Wird diese Einstellung auf 'Nein' gesetzt, werden keine Benachrichtigungen angezeigt, wenn keine Lyrics gefunden werden. Dies sorgt außerdem dafür, dass die direkte Websuche nicht genutzt werden kann, da der Knopf hierfür an diese Benachrichtigung gebunden ist.">
+<!ENTITY prefs.addon.pntfive "Diese Einstellung legt fest, welche Informationen gezeigt werden sollen, wenn Lyrics in der Seitenleiste angezeigt werden.">
+<!ENTITY prefs.addon.pntsix "Diese Einstellung left fest, in welchem Stil die Lyrics auf der Seitenleiste gezeigt werden sollen. Neben den &quot;Standard&quot;-Stilen kann auch ein Stil des Entwicklers ihres Federkleides (Feather / Skin) gewählt werden, sofern dieser einen solchen Stil in das Federkleid eingebaut hat.">

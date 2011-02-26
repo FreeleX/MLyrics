@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay [
+  <!ENTITY % sbDTD SYSTEM "chrome://songbird/locale/songbird.dtd">
+	%sbDTD;
+	<!ENTITY % lmDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
+	%lmDTD;
+]>
+
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	 id="songbird_menu_overlay">
+	
+	<script type="application/x-javascript"
+		src="chrome://mlyrics/content/jscripts/baseWindow.js"/>
+	
+	<menupopup id="menu_HelpPopup">
+		<menu id="addonHelp"
+		      label="&mlyrics.menuoverlay.addonhelplabel;"
+		      insertbefore="updateCmd">
+			<menupopup>
+				<menuitem id="LM_help"
+					  label="&mlyrics.menuoverlay.lmhelplabel;"
+					  oncommand="mlyrics.base.openHelp()"/>
+			</menupopup>
+		</menu>
+		
+		<menuseparator id="addonHelpSep" insertbefore="updateCmd" />
+	</menupopup>
+	
+</overlay>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" [
+
+<!ENTITY % mlyricsDTD SYSTEM "chrome://mlyrics/locale/help_about.dtd" >
+%mlyricsDTD;
+
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+  <link href="chrome://songbird/skin/html.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body  leftmargin="0px" topmargin="0px" rightmargin="0px" bottommargin="0px" style="padding: 15px">
+<i>chrome://songbird/skin/mlyrics.css</i><br /><br /><br />
+
+<code>
+body { font:9pt 'Tahoma', Arial, sans serif;<br />
+       background:#CCCCCC url('chrome://songbird/skin/mlyrics/glided_bg.jpg') repeat-x;<br />
+       margin:0 0 0 10px;<br />
+       padding:10px 12px; <br />
+       <br />
+       }<br />
+<br />
+th { padding:0 0 1px 0; }<br />
+td { padding:0 0 1px 0; }<br />
+<br />
+h1,h2,h3,h4,h5,h6 { color:#222;margin:0;clear:both; }<br />
+<br />
+h1 { font-size:14pt;font-weight:normal;padding:0 0 5px 0;color:#FF3300; }  /*  Song Title  */<br />
+h2 { font-size:11pt;font-weight:normal;padding:0; }                        /*  Artist      */<br />
+h3 { font-size:10pt;font-weight:normal;padding:0; }                        /*  Album       */<br />
+h4 { font-size:9pt;font-weight:normal;padding:0; }                         /*  Year        */<br />
+h5 { font-size:9pt;font-weight:normal;font-style:italic;padding:0; }       /*  Composer    */<br />
+h6 { font-size:9pt;font-weight:normal;padding:0; }                         /*              */<br />
+<br />
+p  { font:9pt 'Trebuchet MS', Arial, sans serif;color:#505050;margin:0;padding:0 0 0 0px; }	/* Original text */<br />
+u  { font:9pt 'Trebuchet MS', Arial, sans serif;color:#505050;margin:0;padding:0 0 0 0px; }	/* Translated text */<br />
+<br />
+a  { color:#222; }<br />
+<br />
+/* The following are "p" spare classes, which you can use as additional formating<br />
+   elements. If you don't want to use them, just use display:none to hide them. <br />
+   Otherwise use display:block with additional parameters to give them the<br />
+   appearence you want them to have. Their position in the page are as folows:<br />
+   .header     = above the song title<br />
+   .separator1 = between song title and additional information<br />
+   .separator2 = between additional information and lyrics<br />
+   .footer     = below lyrics */<br />
+<br />
+/* .header, .separator1, .separator2, .footer { display:none; }   */<br />
+<br />
+.header, .separator1, .footer { display:none; }<br />
+<br />
+.separator2, .separator3<br />
+   { font-size:1pt;text-align:center;margin-top:5;margin-bottom:5;display:block;<br />
+     background:url('glided_separator.png') no-repeat; }<br /><br />
+
+</code>
+<br /><br />
+<center><font COLOR="RED"><small><b><i>&style.fetch.lyrics;</i></b></small></font></center>
+</body>
+</html>

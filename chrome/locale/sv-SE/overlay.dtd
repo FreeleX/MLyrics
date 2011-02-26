@@ -1,0 +1,109 @@
+<!ENTITY mlyrics.trackeditor.caption "MLyrics Multihämtning">
+<!ENTITY mlyrics.trackeditor.fbtnlabel "Hämta">
+<!ENTITY mlyrics.trackeditor.fbtntooltextdef "Hämta sångtexter med MLyrics!">
+<!ENTITY mlyrics.trackeditor.cbtntooltextdef "Rensa sångtexter.">
+<!ENTITY mlyrics.trackeditor.btninstr "Instrumentell">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Gör sångtexter instrumentella">
+<!ENTITY mlyrics.trackeditor.bbtnlabel "Parti">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Markeringen måste innehålla 2-1000 objekt för att &quot;Parti&quot;-knappen skall aktiveras.">
+<!ENTITY mlyrics.trackeditor.btnremtransl "Ta bort översättning">
+<!ENTITY mlyrics.manuoverlay.batchmenulabel "Samla in sångtexter">
+<!ENTITY mlyrics.menuoverlay.addonhelplabel "Hjälp med tillägget">
+<!ENTITY mlyrics.menuoverlay.lmhelplabel "Hjälp med MLyrics">
+<!ENTITY mlyrics.batchwin.winlabel "MLyrics samlare">
+<!ENTITY mlyrics.batchwin.btncheckall "Markera alla">
+<!ENTITY mlyrics.batchwin.btnuncheckall "Avmarkera alla">
+<!ENTITY mlyrics.batchwin.btnaccept "Godkänn ändringar">
+<!ENTITY mlyrics.prefs.winlabel "Inställningar för MLyrics">
+<!ENTITY mlyrics.prefs.weblocupbtn "Uppåt">
+<!ENTITY mlyrics.prefs.weblocdownbtn "Nedåt">
+<!ENTITY mlyrics.prefs.webloclabel "Varifrån vill du hämta sångtexter?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "Vill du lägga till Googles sångtextöversättning?">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "Kontrollera översättningar för sparade sångtexter">
+<!ENTITY mlyrics.prefs.libstylelabel "Vilket är namngivningsschemat för dina artister?">
+<!ENTITY mlyrics.prefs.savelyricslabel "Hur vill du att dina sångtexter skall sparas?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "Hur vill du att din översättning skall sparas?">
+<!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Ignorera översättning från:">
+<!ENTITY mlyrics.prefs.saveoptneversave "Spara aldrig/Fråga aldrig">
+<!ENTITY mlyrics.prefs.saveoptprompt "Påminn mig om att spara/Fråga alltid">
+<!ENTITY mlyrics.prefs.saveoptalways "Spara alltid/Fråga aldrig">
+<!ENTITY mlyrics.prefs.miscellaneous "Övrigt">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "När du byter flik, vill du att sångtexterna skall gömmas?">
+<!ENTITY mlyrics.prefs.notiflabel "Om inga sångtexter hittas, vill du meddelas därom?">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Sök på Google om inga sångtexter hittas">
+<!ENTITY mlyrics.prefs.notifInstrlabel "Visa om sångtexter är instrumentella">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Lagra sångtexter i en databas om ett skrivfel skulle inträffa">
+<!ENTITY mlyrics.prefs.displabel "Vad skall MLyrics visa?">
+<!ENTITY mlyrics.prefs.dispoptartist "Artistnamn">
+<!ENTITY mlyrics.prefs.dispopttrack "Spårtitel">
+<!ENTITY mlyrics.prefs.dispoptalbum "Albumnamn">
+<!ENTITY mlyrics.prefs.stylelabel "Vilken anpassad visningsstil vill du använda?">
+<!ENTITY mlyrics.prefs.stloptnone "Ingen">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Nuvarande fjäder">
+<!ENTITY mlyrics.prefs.stloptbluq "Blått citat">
+<!ENTITY mlyrics.prefs.stloptlite "Blått citat (lättversion)">
+<!ENTITY mlyrics.prefs.stlopteclp "Eklips">
+<!ENTITY mlyrics.prefs.stloptglid "Glidning">
+<!ENTITY mlyrics.prefs.stlopthigh "Hög kontrast">
+<!ENTITY mlyrics.prefs.stloptolds "Gammaldags">
+<!ENTITY mlyrics.prefs.stloptsong "Songbird (Rubberducky)">
+<!ENTITY mlyrics.prefs.stloptstar "Stjärnor">
+<!ENTITY mlyrics.prefs.scanlib "Sök igenom hela biblioteket efter sparade sångtexter.">
+<!ENTITY mlyrics.prefs.linkInfo1 "Vill du ha fler funktioner? Har du en bra idé? Kanske hittat en bugg?">
+<!ENTITY mlyrics.prefs.linkInfo2 "Och glöm inte att först läsa igenom andras kommentarer :)">
+<!ENTITY mlyrics.helloworld.label "Gör &quot;Hej världen&quot;">
+<!ENTITY mlyrics.helloworld.accesskey "H">
+<!ENTITY mlyrics.pane.label "Det här är en Visningspanel">
+<!ENTITY mlyrics.pane.button "Läs mer">
+<!ENTITY mlyrics.helpwin.winlabel "Hjälp med MLyrics">
+<!ENTITY mlyrics.helpwin.startlabel "Startsida">
+<!ENTITY mlyrics.helpwin.displabel "Visningspanelen">
+<!ENTITY mlyrics.helpwin.preflabel "Inställningar-fönstret">
+<!ENTITY mlyrics.helpwin.metalabel "Metadataredigeraren">
+<!ENTITY mlyrics.helpwin.batchlabel "Partihämtningsfönstret">
+<!ENTITY mlyrics.helpwin.haslyrlabel "&quot;Har sångtext&quot;-ikonen">
+<!ENTITY mlyrics.helpwin.lisclabel "Licens för MLyrics">
+<!ENTITY mlyrics.helpwin.aboutlabel "Om MLyrics">
+<!ENTITY mlyrics.helpwin.stylelabel "Definiera stil">
+<!ENTITY mlyrics.pane.contxtRefresh "Uppdatera sångtexten">
+<!ENTITY mlyrics.pane.contxtRefreshObO "I tur och ordning">
+<!ENTITY mlyrics.pane.contxtRefreshTag "Efter tagg">
+<!ENTITY mlyrics.pane.contxtMakeInstr "Gör instrumentell">
+<!ENTITY mlyrics.pane.contxtClear "Rensa sångtexter">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "Aktivera meddelanden">
+<!ENTITY mlyrics.pane.contxtNotifDisabled "Inaktivera meddelanden">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "Aktivera automatisk rullning">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "Inaktivera automatisk rullning">
+<!ENTITY mlyrics.pane.showSettings "Inställningar">
+<!ENTITY mlyrics.pane.showEditDialog "Redigera sångtexten">
+<!ENTITY mlyrics.pane.contxWebSrch "Webbsökning">
+<!ENTITY mlyrics.pane.viewModeMenu0 "Visa endast originalsångtexten">
+<!ENTITY mlyrics.pane.viewModeMenu1 "Visa endast översättningen">
+<!ENTITY mlyrics.pane.viewModeMenu2 "Visa båda varvade, rad för rad">
+<!ENTITY mlyrics.pane.viewModeMenu3 "Visa som det är">
+<!ENTITY mlyrics.pane.viewModeMenu4 "Visa en mix, verspar för verspar">
+<!ENTITY mlyrics.pane.saveButton "Spara">
+<!ENTITY mlyrics.pane.cancelButton "Avbryt">
+<!ENTITY mlyrics.pane.showSelected "Visa markerade objekt">
+<!ENTITY mlyrics.pane.showNowPlaying "Visa &quot;Nu spelas&quot;">
+<!ENTITY mlyrics.font.confFont "Konfigurera format">
+<!ENTITY mlyrics.font.sizeLabel "Storlek:">
+<!ENTITY mlyrics.font.leftLabel "Vänster">
+<!ENTITY mlyrics.font.centerLabel "Centrera">
+<!ENTITY mlyrics.font.rightLabel "Höger">
+<!ENTITY mlyrics.font.topLabel "Överst">
+<!ENTITY mlyrics.font.bottomLabel "Nederst">
+<!ENTITY mlyrics.font.applyRules "Verkställ anpassade regler">
+<!ENTITY mlyrics.font.background "Bakgrund">
+<!ENTITY mlyrics.font.title "Titel">
+<!ENTITY mlyrics.font.artist "Artist">
+<!ENTITY mlyrics.font.album "Album">
+<!ENTITY mlyrics.font.lyrics "Sångtexter">
+<!ENTITY mlyrics.font.transLyrics "Översatta sångtexter">
+<!ENTITY mlyrics.font.opacityLabel "Genomskinlighet:">
+<!ENTITY mlyrics.font.colorLabel "Färg:">
+<!ENTITY mlyrics.font.bgColorLabel "Bg-färg:">
+<!ENTITY mlyrics.font.showStaticPicIf "Visa statisk bild om inget omslag finns">
+<!ENTITY mlyrics.font.color2Label "Färg">
+<!ENTITY mlyrics.font.imageLabel "Bild">
+<!ENTITY mlyrics.font.coverImageLabel "Omslagsbild">

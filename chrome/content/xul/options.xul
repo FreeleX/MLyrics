@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://mlyrics/skin/options.css" type="text/css"?>
+
+<!DOCTYPE page [
+	<!ENTITY % sbDTD SYSTEM "chrome://songbird/locale/songbird.dtd">
+	%sbDTD;
+	<!ENTITY % lmDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
+	%lmDTD;
+]>
+  
+<prefwindow id="mlyrics-prefs"
+	    title="&mlyrics.prefs.winlabel;"
+	    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	    onunload="onsaveunload()"
+	    ondialogaccept="onsaveaccept()">
+
+	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/uniFuncs.js"/>
+	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/scanLib.js"/>
+	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/optionsWindow.js"/>
+	
+	<prefpane id="lm-prefs-pane" label="&mlyrics.prefs.winlabel;">
+		<preferences>
+			<preference id="pref_libStyle" 		name="extensions.mlyrics.libStyle" 		type="string" />
+			<preference id="pref_saveLyrics" 	name="extensions.mlyrics.saveLyrics" 		type="string" />
+			<preference id="pref_saveTranslation" 	name="extensions.mlyrics.saveTranslation" 	type="string" />
+			<preference id="pref_noLyrFound" 	name="extensions.mlyrics.noLyrFound" 		type="bool" />
+			<preference id="pref_autoSearchLyr"	name="extensions.mlyrics.autoSearchLyr" 	type="bool" />
+			<preference id="pref_foundInstr"	name="extensions.mlyrics.instrFound"		type="bool" />
+			<preference id="pref_hideOnSwitch" 	name="extensions.mlyrics.hideOnSwitch" 		type="bool" />
+			<preference id="pref_saveInDB"		name="extensions.mlyrics.saveInDB"		type="bool" />
+			<preference id="pref_dispAlbum" 	name="extensions.mlyrics.dispAlbum" 		type="bool" />
+			<preference id="pref_dispArtist" 	name="extensions.mlyrics.dispArtist" 		type="bool" />
+			<preference id="pref_dispTrack" 	name="extensions.mlyrics.dispTrack" 		type="bool" />
+			<preference id="pref_enableTranslate" 	name="extensions.mlyrics.enableTranslate" 	type="string" />
+			<preference id="pref_trLang" 		name="extensions.mlyrics.trLang" 		type="string" />
+			<preference id="pref_trMetadata" 	name="extensions.mlyrics.translateMetadata" 	type="bool" />
+		</preferences>
+		
+		<vbox flex="1">
+			<tabbox>
+				<tabs>
+					<tab label="1"/>
+					<tab label="2"/>
+				</tabs>
+				
+				<tabpanels>
+					<tabpanel>
+						<vbox flex="1">
+							<groupbox flex="1" width="100%">
+								<caption label="&mlyrics.prefs.webloclabel;"/>
+								
+								<button  id="upSourceButton" 
+										label="&mlyrics.prefs.weblocupbtn;" 
+										disabled="true" 
+										oncommand="moveSourceUp()" />
+								
+								<listbox id="fetchListBox" 
+										flex="1"
+										onselect="enableUpDownButtons()" 
+								>
+									<listcols>
+										<listcol/>
+										<listcol flex="1"/>
+										<listcol/>
+										<listcol/>
+									</listcols>
+								</listbox>
+								
+								<button  id="downSourceButton"
+										label="&mlyrics.prefs.weblocdownbtn;" 
+										disabled="true" 
+										oncommand="moveSourceDown()" />
+							</groupbox>
+							
+							<hbox flex="1">
+								<vbox flex="1">
+									<groupbox flex="1" width="100%">
+										<caption label="&mlyrics.prefs.miscellaneous;"/>
+										
+										<checkbox flex="1" id="needHideOnSwitch" label="&mlyrics.prefs.hideonswitchlabel;" preference="pref_hideOnSwitch" />
+										<checkbox flex="1" id="noLyrFound" label="&mlyrics.prefs.notiflabel;" preference="pref_noLyrFound" />
+										<checkbox flex="1" id="autoSearchLyr" label="&mlyrics.prefs.autoSearchLyr;" preference="pref_autoSearchLyr" />
+										<checkbox flex="1" id="hideOnInstrLabel" label="&mlyrics.prefs.notifInstrlabel;" preference="pref_foundInstr" />
+										<checkbox flex="1" id="saveInDBCheckbox" label="&mlyrics.prefs.saveInDBLabel;" preference="pref_saveInDB" />
+									</groupbox>
+								</vbox>
+								
+								<vbox flex="1">
+									<groupbox flex="1" width="100%">
+										<caption label="&mlyrics.prefs.displabel;"/>
+										
+										<checkbox flex="1" label="&mlyrics.prefs.dispoptartist;" id="dispArtist" preference="pref_dispArtist" />
+										<checkbox flex="1" label="&mlyrics.prefs.dispopttrack;"  id="dispTrack"  preference="pref_dispTrack"/>
+										<checkbox flex="1" label="&mlyrics.prefs.dispoptalbum;"  id="dispAlbum"  preference="pref_dispAlbum" />
+										<checkbox flex="1" label="&trackeditor.tab.lyrics.title;" disabled="true" checked="true"  />
+									</groupbox>
+								</vbox>
+							</hbox>
+						</vbox>
+					</tabpanel>
+					
+					<tabpanel>
+						<vbox>
+							<hbox>
+								<vbox>
+									<groupbox flex="1" width="100%">
+										<caption label="&mlyrics.prefs.enabletranslatelabel;"/>
+										
+										<radiogroup flex="1" 
+											id="saveLyrics" 
+											preference="pref_enableTranslate" 
+											oncommand="enableTranslateLanguage(this.value == 'TRANSLATE')">
+											
+											<radio label="&window.yes;" id="TRANSLATE" 	value="TRANSLATE" />
+											<radio label="&window.no;"  id="NOTRANSLATE" 	value="NOTRANSLATE" />
+										</radiogroup>
+										
+										<menulist id="trLanguageMenu" preference="pref_trLang">
+											<menupopup id="trLanguagePopup">
+												<menuitem label="Afrikaans" 	value="af" />
+												<menuitem label="Albanian" 	value="sq" />
+												<menuitem label="Arabic" 	value="ar" />
+												<menuitem label="Armenian" 	value="hy" />
+												<menuitem label="Azerbaijani" 	value="az" />
+												<menuitem label="Basque" 	value="eu" />
+												<menuitem label="Belarusian" 	value="be" />
+												<menuitem label="Bulgarian" 	value="bg" />
+												<menuitem label="Catalan" 	value="ca" />
+												<menuitem label="Chinese" 	value="zh-CN" />
+												<menuitem label="Croatian" 	value="hr" />
+												<menuitem label="Czech" 	value="cs" />
+												<menuitem label="Danish" 	value="da" />
+												<menuitem label="Dutch" 	value="nl" />
+												<menuitem label="English" 	value="en" />
+												<menuitem label="Estonian" 	value="et" />
+												<menuitem label="Filipino" 	value="tl" />
+												<menuitem label="Finnish" 	value="fi" />
+												<menuitem label="French" 	value="fr" />
+												<menuitem label="Galician" 	value="gl" />
+												<menuitem label="Georgian" 	value="ka" />
+												<menuitem label="German" 	value="de" />
+												<menuitem label="Greek" 	value="el" />
+												<menuitem label="Haitian Creole" value="ht" />
+												<menuitem label="Hebrew" 	value="iw" />
+												<menuitem label="Hindi" 	value="hi" />
+												<menuitem label="Hungarian" 	value="hu" />
+												<menuitem label="Icelandic" 	value="is" />
+												<menuitem label="Indonesian" 	value="id" />
+												<menuitem label="Irish" 	value="ga" />
+												<menuitem label="Italian" 	value="it" />
+												<menuitem label="Japanese" 	value="ja" />
+												<menuitem label="Korean" 	value="ko" />
+												<menuitem label="Latin" 	value="la" />
+												<menuitem label="Latvian" 	value="lv" />
+												<menuitem label="Lithuanian" 	value="lt" />
+												<menuitem label="Macedonian" 	value="mk" />
+												<menuitem label="Malay" 	value="ms" />
+												<menuitem label="Maltese" 	value="mt" />
+												<menuitem label="Norwegian" 	value="no" />
+												<menuitem label="Persian" 	value="fa" />
+												<menuitem label="Polish" 	value="pl" />
+												<menuitem label="Portuguese" 	value="pt" />
+												<menuitem label="Romanian" 	value="ro" />
+												<menuitem label="Russian" 	value="ru" />
+												<menuitem label="Serbian" 	value="sr" />
+												<menuitem label="Slovak" 	value="sk" />
+												<menuitem label="Slovenian" 	value="sl" />
+												<menuitem label="Spanish" 	value="es" />
+												<menuitem label="Swahili" 	value="sw" />
+												<menuitem label="Swedish" 	value="sv" />
+												<menuitem label="Thai" 		value="th" />
+												<menuitem label="Turkish" 	value="tr" />
+												<menuitem label="Ukrainian" 	value="uk" />
+												<menuitem label="Urdu" 		value="ur" />
+												<menuitem label="Vietnamese" 	value="vi" />
+												<menuitem label="Welsh" 	value="cy" />
+												<menuitem label="Yiddish" 	value="yi" />
+											</menupopup>
+										</menulist>
+										
+										<checkbox id="trMetadataCheckbox" label="&mlyrics.prefs.enablemetadatatranslate;" preference="pref_trMetadata" />
+									</groupbox>
+									
+									<groupbox flex="1" width="100%">
+										<caption label="&mlyrics.prefs.ignoreTranslationFromLabel;"/>
+									
+										<listbox id="ignoreLangListBox" 
+												flex="1"
+												rows="5" />
+									</groupbox>
+								</vbox>
+								
+								<vbox>
+									<groupbox flex="1" width="100%">
+										<caption label="&mlyrics.prefs.savelyricslabel;"/>
+										
+										<radiogroup flex="1" id="saveLyrics" preference="pref_saveLyrics" >
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptneversave;" 	id="NEVERSAVE" 	value="NEVERSAVE" oncommand="enableSaveTranslationBox(false)"/>
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptprompt;" 	id="PROMPT" 	value="PROMPT" oncommand="enableSaveTranslationBox(true)"/>
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptalways;" 	id="ALWAYSAVE" 	value="ALWAYSAVE" oncommand="enableSaveTranslationBox(true)"/>
+										</radiogroup>
+									</groupbox>
+									
+									<groupbox flex="1" width="100%">
+										<caption label="&mlyrics.prefs.savetranslationlabel;"/>
+										
+										<radiogroup flex="1" id="saveTranslation" preference="pref_saveTranslation" >
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptneversave;" 	id="NEVERSAVE" 	value="NEVERSAVE" />
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptprompt;" 	id="PROMPT" 	value="PROMPT" />
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptalways;" 	id="ALWAYSAVE" 	value="ALWAYSAVE" />
+										</radiogroup>
+									</groupbox>
+								</vbox>
+								
+								<spacer flex="1" />
+							</hbox>
+							
+							<spacer flex="1" />
+						</vbox>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		
+			<hbox align="center" width="100%" height="50">
+				<label class="text-link" onclick="openURL('http://getsatisfaction.com/songbird/topics/suggestions_and_reports_for_mlyrics')" flex="2">&mlyrics.prefs.linkInfo1;</label>
+				<label class="text-link" style="text-align:right" onclick="openURL('http://addons.songbirdnest.com/addon/1928')" flex="1">&mlyrics.prefs.linkInfo2;</label>
+			</hbox>
+		</vbox>
+		
+	</prefpane>
+	
+</prefwindow>

@@ -1,0 +1,5 @@
+<!ENTITY meta.addon.description "Metadata Editor">
+<!ENTITY meta.addon.firstpoint "When there are lyrics to be edited or when lyrics are found through the use of the 'FETCH' button, they will appear in this box.  After all edits are complete, pressing 'SAVE' at the bottom of the window will save the information to the track.">
+<!ENTITY meta.addon.secpoint "When the 'FETCH' button is selected, LyricMaster will fetch the lyrics for the currently selected track. The 'FETCH' button is disabled if more than one track is selected.  What database is used in the fetch is set in the LyricMaster Preferences.">
+<!ENTITY meta.addon.thirdpoint "The 'CLEAR' button will clear out what ever is in the lyrics box.  This will work if both one or multiple tracks are slected.">
+<!ENTITY meta.addon.fourpoint "If multiple tracks are selected, the 'BATCH' button will be enabled.  When clicked by the user, this will launch the Batch Fetching Window.">
