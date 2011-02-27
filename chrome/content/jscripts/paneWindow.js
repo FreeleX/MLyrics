@@ -401,7 +401,7 @@ mlyrics.pane = {
 			{
 				var mediaItem = this.playlistPlaybackServiceListener.curMediaItem;
 				this.saveLyrics("", "", mediaItem, data);
-				this.showInfo(mediaItem, force, place, forceone);
+				this.showInfo(mediaItem);
 			}
 		}
 	},
@@ -556,6 +556,8 @@ mlyrics.pane = {
 			var showNotifsPref = mlyrics.pane.prefs.getBoolPref("showNotifs");
 			var saveLyricsPref = mlyrics.pane.prefs.getCharPref("saveLyrics");
 			var saveTranslPref = mlyrics.pane.prefs.getCharPref("saveTranslation");
+			
+			if (!mlyrics.pane.prefs.getBoolPref("translateMetadata")) saveTranslPref = "NEVERSAVE";
 			
 			if (!respLyr || respLyr.length < 10) {
 				var respLyr = "";

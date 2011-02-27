@@ -83,8 +83,12 @@ function onload () {
 	ignoreLangListBox.appendChild(element);
   }
   
-  enableTranslateLanguage(prefs.getCharPref("enableTranslate") == 'TRANSLATE');
-  enableSaveTranslationBox(!(prefs.getCharPref("saveLyrics") == 'NEVERSAVE'));
+  if (prefs.getCharPref("enableTranslate") != 'TRANSLATE') {
+	enableTranslateLanguage(false);
+  }
+  else {
+	enableSaveTranslationBox(!(prefs.getCharPref("saveLyrics") == 'NEVERSAVE'));
+  }
 }
 
 function onsaveaccept () {
@@ -145,7 +149,13 @@ function enableTranslateLanguage (state) {
 }
 
 function enableSaveTranslationBox (state) {
-  document.getElementById("saveTranslation").disabled = !state;
+  if (!state) {
+	  document.getElementById("pref_saveTranslation").value = "NEVERSAVE";
+	  document.getElementById("saveTranslation").disabled = true;
+  }
+  else {
+	  document.getElementById("saveTranslation").disabled = false;
+  }
 }
 
 function moveSourceUp () {
