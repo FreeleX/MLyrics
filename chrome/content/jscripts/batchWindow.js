@@ -13,6 +13,7 @@ var mediaListView = songbirdWindow.gBrowser.currentMediaListView;
 var items = "";
 var selectedItems = [];
 var selectedIndexes = [];
+var currentOffset = 0;
 
 window.addEventListener("load", onfLoad, false);
 
@@ -164,6 +165,7 @@ function onplaycommand () {
 }
 
 function createNext (nIndex) {
+	currentOffset = nIndex;
 	
 	var artist = selectedItems[nIndex].getProperty("http://songbirdnest.com/data/1.0#artistName");
 	var album = selectedItems[nIndex].getProperty("http://songbirdnest.com/data/1.0#albumName");
@@ -193,19 +195,21 @@ function createNext (nIndex) {
 		0,
 		function () {
 			
-			onhboxmouseover_(newHbox);
-			
-			if (nIndex < selectedItems.length-1) {
+			if (currentOffset == nIndex) {
+				onhboxmouseover_(newHbox);
 				
-				setTimeout(function () { onhboxmouseout_(newHbox); createNext(++nIndex); }, 1000);
-			}
-			else {
-				onhboxmouseout_(newHbox);
-				onhboxmouseover = onhboxmouseover_;
-				onhboxmouseout = onhboxmouseout_
-				document.getElementById("ML-accept-btn-batch").disabled = false;
-				document.getElementById("ML-accept-btn-checkall").disabled = false;
-				document.getElementById("ML-accept-btn-uncheckall").disabled = false;
+				if (nIndex < selectedItems.length-1) {
+					
+					setTimeout(function () { onhboxmouseout_(newHbox); createNext(++nIndex); }, 1000);
+				}
+				else {
+					onhboxmouseout_(newHbox);
+					onhboxmouseover = onhboxmouseover_;
+					onhboxmouseout = onhboxmouseout_
+					document.getElementById("ML-accept-btn-batch").disabled = false;
+					document.getElementById("ML-accept-btn-checkall").disabled = false;
+					document.getElementById("ML-accept-btn-uncheckall").disabled = false;
+				}
 			}
 		},
 		newHbox
