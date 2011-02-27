@@ -9,239 +9,198 @@
 	%lmDTD;
 ]>
   
-<prefwindow id="mlyrics-prefs"
+<window id="mlyrics-prefs"
 	    title="&mlyrics.font.confFont;"
 	    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	    onunload="onsaveunload()"
 	    ondialogaccept="onsaveaccept()"
-	    style="overflow: auto;">
+	    style="overflow: auto">
 	    
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/uniFuncs.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/fontWindow.js"/>
 	    
-	<prefpane id="ML-font-prefpane" label="&mlyrics.font.confFont;" style="overflow:auto;">
-		<preferences>
-			<preference id="pref_styleSheet" 		name="extensions.mlyrics.styleSheet" 		type="string"/>
+	<vbox id="mainVBox" flex="1">
+		<groupbox width="100%">
+			<caption label="&mlyrics.prefs.stylelabel;"/>
 			
-			<preference id="pref_applyCustomFont" 		name="extensions.mlyrics.applyCustomFont" 	type="bool"/>
-			
-			<preference id="pref_showStaticPicIf"		name="extensions.mlyrics.showStaticPicIf"	type="bool"/>
-			
-			<preference id="pref_backgroundColor"		name="extensions.mlyrics.backgroundColor"	type="string"/>
-			<preference id="pref_BGImagePos"		name="extensions.mlyrics.BGImagePos"		type="string"/>
-			
-			<preference id="pref_lyricsSize" 		name="extensions.mlyrics.lyricsSize" 		type="int" />
-			<preference id="pref_transLyricsSize"		name="extensions.mlyrics.transLyricsSize"	type="int" />
-			<preference id="pref_albumSize"			name="extensions.mlyrics.albumSize"		type="int" />
-			<preference id="pref_artistSize"		name="extensions.mlyrics.artistSize"		type="int" />
-			<preference id="pref_titleSize"			name="extensions.mlyrics.titleSize"		type="int" />
-			
-			<preference id="pref_lyricsColor" 		name="extensions.mlyrics.lyricsColor" 		type="string" />
-			<preference id="pref_transLyricsColor" 		name="extensions.mlyrics.transLyricsColor" 	type="string" />
-			<preference id="pref_albumColor" 		name="extensions.mlyrics.albumColor" 		type="string" />
-			<preference id="pref_artistColor" 		name="extensions.mlyrics.artistColor" 		type="string" />
-			<preference id="pref_titleColor" 		name="extensions.mlyrics.titleColor"	 	type="string" />
-			
-			<preference id="pref_lyricsBGColor" 		name="extensions.mlyrics.lyricsBGColor" 	type="string" />
-			<preference id="pref_transLyricsBGColor" 	name="extensions.mlyrics.transLyricsBGColor" 	type="string" />
-			<preference id="pref_albumBGColor" 		name="extensions.mlyrics.albumBGColor" 		type="string" />
-			<preference id="pref_artistBGColor" 		name="extensions.mlyrics.artistBGColor" 	type="string" />
-			<preference id="pref_titleBGColor" 		name="extensions.mlyrics.titleBGColor"	 	type="string" />
-			
-			<preference id="pref_lyricsAlign" 		name="extensions.mlyrics.lyricsAlign"		type="string"/>
-			<preference id="pref_transLyricsAlign" 		name="extensions.mlyrics.transLyricsAlign"	type="string"/>
-			<preference id="pref_albumAlign" 		name="extensions.mlyrics.albumAlign"		type="string"/>
-			<preference id="pref_artistAlign" 		name="extensions.mlyrics.artistAlign"		type="string"/>
-			<preference id="pref_titleAlign" 		name="extensions.mlyrics.titleAlign"		type="string"/>
-			
-			<preference id="pref_lyricsOpacity" 		name="extensions.mlyrics.lyricsOpacity"		type="int"/>
-			<preference id="pref_transLyricsOpacity" 	name="extensions.mlyrics.transLyricsOpacity"	type="int"/>
-			<preference id="pref_albumOpacity" 		name="extensions.mlyrics.albumOpacity"		type="int"/>
-			<preference id="pref_artistOpacity" 		name="extensions.mlyrics.artistOpacity"		type="int"/>
-			<preference id="pref_titleOpacity" 		name="extensions.mlyrics.titleOpacity"		type="int"/>
-		</preferences>
+			<menulist id="styleSheet" >
+				<menupopup>
+					<menuitem label="[&mlyrics.prefs.stloptcurfthr;]" value="chrome://songbird/skin/mlyrics.css" />
+					<menuitem label="&mlyrics.prefs.stloptbluq;" value="chrome://mlyrics/content/style/blue_quote.css" />
+					<menuitem label="&mlyrics.prefs.stloptlite;" value="chrome://mlyrics/content/style/blue_quote_lite.css" />
+					<menuitem label="&mlyrics.prefs.stlopteclp;" value="chrome://mlyrics/content/style/eclipse.css"/>
+					<menuitem label="&mlyrics.prefs.stloptglid;" value="chrome://mlyrics/content/style/glided.css" />
+					<menuitem label="&mlyrics.prefs.stlopthigh;" value="chrome://mlyrics/content/style/high_contrast.css" />
+					<menuitem label="&mlyrics.prefs.stloptolds;" value="chrome://mlyrics/content/style/old_school.css" />
+					<menuitem label="&mlyrics.prefs.stloptsong;" value="chrome://mlyrics/content/style/songbird.css" />
+					<menuitem label="&mlyrics.prefs.stloptstar;" value="chrome://mlyrics/content/style/stars.css" />
+				</menupopup>
+			</menulist>
+		</groupbox>
+								
+		<checkbox id="applyRulesCheckbox" label="&mlyrics.font.applyRules;" />
 		
-		<vbox>
-			<groupbox flex="1" width="100%">
-				<caption label="&mlyrics.prefs.stylelabel;"/>
+		<groupbox>
+			<caption label="&mlyrics.font.background;"/>
+			
+			<vbox>
+				<hbox id="backgroundHbox" align="center">
+					<radiogroup id="CIRadiogroup" orient="horizontal">
+						<radio label="&mlyrics.font.color2Label;" value="C" />
+						<radio label="&mlyrics.font.imageLabel;" value="I" />
+						<radio label="&mlyrics.font.coverImageLabel;" value="O" />
+					</radiogroup>
 				
-				<menulist id="styleSheet" preference="pref_styleSheet">
+					<deck id="CIDeck" flex="1">
+						<hbox align="center" flex="1">
+							<menulist id="picturePosMenulist">
+								<menupopup>
+									<menuitem label="&mlyrics.font.leftLabel; &mlyrics.font.topLabel;" value="left top"/>
+									<menuitem label="&mlyrics.font.leftLabel; &mlyrics.font.centerLabel;" value="left center"/>
+									<menuitem label="&mlyrics.font.leftLabel; &mlyrics.font.bottomLabel;" value="left bottom"/>
+									<menuitem label="&mlyrics.font.rightLabel; &mlyrics.font.topLabel;" value="right top"/>
+									<menuitem label="&mlyrics.font.rightLabel; &mlyrics.font.centerLabel;" value="right center"/>
+									<menuitem label="&mlyrics.font.rightLabel; &mlyrics.font.bottomLabel;" value="right bottom"/>
+									<menuitem label="&mlyrics.font.centerLabel; &mlyrics.font.topLabel;" value="center top"/>
+									<menuitem label="&mlyrics.font.centerLabel; &mlyrics.font.centerLabel;" value="center center"/>
+									<menuitem label="&mlyrics.font.centerLabel; &mlyrics.font.bottomLabel;" value="center bottom"/>
+								</menupopup>
+							</menulist>
+							<textbox id="filePathTextbox" readonly="true" flex="1"/>
+							<button label="Choose" oncommand="selectImagesFolder()"/>
+						</hbox>
+					
+						<hbox align="center">
+							<colorpicker type="button" />
+						</hbox>
+						
+						<checkbox id="showStaticPictureCheckbox" label="&mlyrics.font.showStaticPicIf;" />
+					</deck>
+				</hbox>
+			</vbox>
+		</groupbox>
+		<groupbox>
+			<caption label="&mlyrics.font.title;"/>
+			
+			<hbox id="titleHbox" align="center">
+				<label value="&mlyrics.font.sizeLabel;" />
+				<textbox id="titleSize" type="number" size="4" min="8" max="36" />
+				<button id="titleBoldButton" label="B" style="font-weight:bold" type="checkbox" />
+				<button id="titleItalicButton" label="i" style="font-style:italic" type="checkbox" />
+				<button id="titleUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" />
+				<menulist flex="1" id="titleAlign">
 					<menupopup>
-						<menuitem label="[&mlyrics.prefs.stloptcurfthr;]" value="chrome://songbird/skin/mlyrics.css" />
-						<menuitem label="&mlyrics.prefs.stloptbluq;" value="chrome://mlyrics/content/style/blue_quote.css" />
-						<menuitem label="&mlyrics.prefs.stloptlite;" value="chrome://mlyrics/content/style/blue_quote_lite.css" />
-						<menuitem label="&mlyrics.prefs.stlopteclp;" value="chrome://mlyrics/content/style/eclipse.css"/>
-						<menuitem label="&mlyrics.prefs.stloptglid;" value="chrome://mlyrics/content/style/glided.css" />
-						<menuitem label="&mlyrics.prefs.stlopthigh;" value="chrome://mlyrics/content/style/high_contrast.css" />
-						<menuitem label="&mlyrics.prefs.stloptolds;" value="chrome://mlyrics/content/style/old_school.css" />
-						<menuitem label="&mlyrics.prefs.stloptsong;" value="chrome://mlyrics/content/style/songbird.css" />
-						<menuitem label="&mlyrics.prefs.stloptstar;" value="chrome://mlyrics/content/style/stars.css" />
+						<menuitem label="&mlyrics.font.leftLabel;" value="L" />
+						<menuitem label="&mlyrics.font.centerLabel;" value="C" />
+						<menuitem label="&mlyrics.font.rightLabel;" value="R" />
 					</menupopup>
 				</menulist>
-			</groupbox>
-									
-			<checkbox id="applyRulesCheckbox" label="&mlyrics.font.applyRules;" preference="pref_applyCustomFont" oncommand="enableEdit(this.checked)"/>
+				<label value="&mlyrics.font.colorLabel;" />
+				<colorpicker id="titleColor" type="button" />
+				<label value="&mlyrics.font.bgColorLabel;" />
+				<colorpicker id="titleBGColor" type="button" />
+				<label value="&mlyrics.font.opacityLabel;" />
+				<textbox id="titleOpacity" type="number" size="4" min="1" max="10" />
+			</hbox>
+		</groupbox>
+		<groupbox>
+			<caption label="&mlyrics.font.artist;"/>
 			
-			<groupbox>
-				<caption label="&mlyrics.font.background;"/>
-				
-				<vbox>
-					<hbox id="backgroundHbox" align="center">
-						<radiogroup id="CIRadiogroup" orient="horizontal" oncommand="onCISelect(this.value)" preference="pref_BGType">
-							<radio label="&mlyrics.font.color2Label;" value="C" />
-							<radio label="&mlyrics.font.imageLabel;" value="I" />
-							<radio label="&mlyrics.font.coverImageLabel;" value="O" />
-						</radiogroup>
-					
-						<deck id="CIDeck" flex="1">
-							<hbox align="center" flex="1">
-								<menulist preference="pref_BGImagePos">
-									<menupopup>
-										<menuitem label="&mlyrics.font.leftLabel; &mlyrics.font.topLabel;" value="left top"/>
-										<menuitem label="&mlyrics.font.leftLabel; &mlyrics.font.centerLabel;" value="left center"/>
-										<menuitem label="&mlyrics.font.leftLabel; &mlyrics.font.bottomLabel;" value="left bottom"/>
-										<menuitem label="&mlyrics.font.rightLabel; &mlyrics.font.topLabel;" value="right top"/>
-										<menuitem label="&mlyrics.font.rightLabel; &mlyrics.font.centerLabel;" value="right center"/>
-										<menuitem label="&mlyrics.font.rightLabel; &mlyrics.font.bottomLabel;" value="right bottom"/>
-										<menuitem label="&mlyrics.font.centerLabel; &mlyrics.font.topLabel;" value="center top"/>
-										<menuitem label="&mlyrics.font.centerLabel; &mlyrics.font.centerLabel;" value="center center"/>
-										<menuitem label="&mlyrics.font.centerLabel; &mlyrics.font.bottomLabel;" value="center bottom"/>
-									</menupopup>
-								</menulist>
-								<textbox id="filePathTextbox" readonly="true" flex="1"/>
-								<button label="Choose" oncommand="selectImagesFolder()"/>
-							</hbox>
-						
-							<hbox align="center">
-								<colorpicker type="button" preference="pref_backgroundColor"/>
-							</hbox>
-							
-							<checkbox id="applyRulesCheckbox" label="&mlyrics.font.showStaticPicIf;" preference="pref_showStaticPicIf"/>
-						</deck>
-					</hbox>
-				</vbox>
-			</groupbox>
-			<groupbox>
-				<caption label="&mlyrics.font.title;"/>
-				
-				<hbox id="titleHbox" align="center">
-					<label value="&mlyrics.font.sizeLabel;" />
-					<textbox type="number" size="4" min="8" max="36" preference="pref_titleSize"/>
-					<button id="titleBoldButton" label="B" style="font-weight:bold" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="titleItalicButton" label="i" style="font-style:italic" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="titleUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" oncommand="onsaveBIU_()"/>
-					<menulist preference="pref_titleAlign" flex="1">
-						<menupopup>
-							<menuitem label="&mlyrics.font.leftLabel;" value="L" />
-							<menuitem label="&mlyrics.font.centerLabel;" value="C" />
-							<menuitem label="&mlyrics.font.rightLabel;" value="R" />
-						</menupopup>
-					</menulist>
-					<label value="&mlyrics.font.colorLabel;" />
-					<colorpicker type="button" preference="pref_titleColor"/>
-					<label value="&mlyrics.font.bgColorLabel;" />
-					<colorpicker type="button" preference="pref_titleBGColor"/>
-					<label value="&mlyrics.font.opacityLabel;" />
-					<textbox type="number" size="4" min="1" max="10" preference="pref_titleOpacity"/>
-				</hbox>
-			</groupbox>
-			<groupbox>
-				<caption label="&mlyrics.font.artist;"/>
-				
-				<hbox id="artistHbox" align="center">
-					<label value="&mlyrics.font.sizeLabel;" />
-					<textbox type="number" size="4" min="8" max="36" preference="pref_artistSize"/>
-					<button id="artistBoldButton" label="B" style="font-weight:bold" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="artistItalicButton" label="i" style="font-style:italic" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="artistUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" oncommand="onsaveBIU_()"/>
-					<menulist preference="pref_artistAlign" flex="1">
-						<menupopup>
-							<menuitem label="&mlyrics.font.leftLabel;" value="L" />
-							<menuitem label="&mlyrics.font.centerLabel;" value="C" />
-							<menuitem label="&mlyrics.font.rightLabel;" value="R" />
-						</menupopup>
-					</menulist>
-					<label value="&mlyrics.font.colorLabel;" />
-					<colorpicker type="button" preference="pref_artistColor"/>
-					<label value="&mlyrics.font.bgColorLabel;" />
-					<colorpicker type="button" preference="pref_artistBGColor"/>
-					<label value="&mlyrics.font.opacityLabel;" />
-					<textbox type="number" size="4" min="1" max="10" preference="pref_artistOpacity"/>
-				</hbox>
-			</groupbox>
-			<groupbox>
-				<caption label="&mlyrics.font.album;"/>
-				
-				<hbox id="albumHbox" align="center">
-					<label value="&mlyrics.font.sizeLabel;" />
-					<textbox type="number" size="4" min="8" max="36" preference="pref_albumSize"/>
-					<button id="albumBoldButton" label="B" style="font-weight:bold" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="albumItalicButton" label="i" style="font-style:italic" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="albumUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" oncommand="onsaveBIU_()"/>
-					<menulist preference="pref_albumAlign" flex="1">
-						<menupopup>
-							<menuitem label="&mlyrics.font.leftLabel;" value="L" />
-							<menuitem label="&mlyrics.font.centerLabel;" value="C" />
-							<menuitem label="&mlyrics.font.rightLabel;" value="R" />
-						</menupopup>
-					</menulist>
-					<label value="&mlyrics.font.colorLabel;" />
-					<colorpicker type="button" preference="pref_albumColor"/>
-					<label value="&mlyrics.font.bgColorLabel;" />
-					<colorpicker type="button" preference="pref_albumBGColor"/>
-					<label value="&mlyrics.font.opacityLabel;" />
-					<textbox type="number" size="4" min="1" max="10" preference="pref_albumOpacity"/>
-				</hbox>
-			</groupbox>
-			<groupbox>
-				<caption label="&mlyrics.font.lyrics;"/>
-				
-				<hbox id="lyricsHbox" align="center">
-					<label value="&mlyrics.font.sizeLabel;" />
-					<textbox type="number" size="4" min="8" max="36" preference="pref_lyricsSize"/>
-					<button id="lyricsBoldButton" label="B" style="font-weight:bold" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="lyricsItalicButton" label="i" style="font-style:italic" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="lyricsUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" oncommand="onsaveBIU_()"/>
-					<menulist preference="pref_lyricsAlign" flex="1">
-						<menupopup>
-							<menuitem label="&mlyrics.font.leftLabel;" value="L" />
-							<menuitem label="&mlyrics.font.centerLabel;" value="C" />
-							<menuitem label="&mlyrics.font.rightLabel;" value="R" />
-						</menupopup>
-					</menulist>
-					<label value="&mlyrics.font.colorLabel;" />
-					<colorpicker type="button" preference="pref_lyricsColor"/>
-					<label value="&mlyrics.font.bgColorLabel;" />
-					<colorpicker type="button" preference="pref_lyricsBGColor"/>
-					<label value="&mlyrics.font.opacityLabel;" />
-					<textbox type="number" size="4" min="1" max="10" preference="pref_lyricsOpacity"/>
-				</hbox>
-			</groupbox>
-			<groupbox>
-				<caption label="&mlyrics.font.transLyrics;"/>
-				
-				<hbox id="transLyricsHbox" align="center">
-					<label value="&mlyrics.font.sizeLabel;" />
-					<textbox type="number" size="4" min="8" max="36" preference="pref_transLyricsSize"/>
-					<button id="transLyricsBoldButton" label="B" style="font-weight:bold" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="transLyricsItalicButton" label="i" style="font-style:italic" type="checkbox" oncommand="onsaveBIU_()"/>
-					<button id="transLyricsUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" oncommand="onsaveBIU_()"/>
-					<menulist preference="pref_transLyricsAlign" flex="1">
-						<menupopup>
-							<menuitem label="&mlyrics.font.leftLabel;" value="L" />
-							<menuitem label="&mlyrics.font.centerLabel;" value="C" />
-							<menuitem label="&mlyrics.font.rightLabel;" value="R" />
-						</menupopup>
-					</menulist>
-					<label value="&mlyrics.font.colorLabel;" />
-					<colorpicker type="button" preference="pref_transLyricsColor"/>
-					<label value="&mlyrics.font.bgColorLabel;" />
-					<colorpicker type="button" preference="pref_transLyricsBGColor"/>
-					<label value="&mlyrics.font.opacityLabel;" />
-					<textbox type="number" size="4" min="1" max="10" preference="pref_transLyricsOpacity"/>
-				</hbox>
-			</groupbox>
-		</vbox>
-	</prefpane>
+			<hbox id="artistHbox" align="center">
+				<label value="&mlyrics.font.sizeLabel;" />
+				<textbox id="artistSize" type="number" size="4" min="8" max="36" />
+				<button id="artistBoldButton" label="B" style="font-weight:bold" type="checkbox" />
+				<button id="artistItalicButton" label="i" style="font-style:italic" type="checkbox" />
+				<button id="artistUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" />
+				<menulist flex="1" id="artistAlign">
+					<menupopup>
+						<menuitem label="&mlyrics.font.leftLabel;" value="L" />
+						<menuitem label="&mlyrics.font.centerLabel;" value="C" />
+						<menuitem label="&mlyrics.font.rightLabel;" value="R" />
+					</menupopup>
+				</menulist>
+				<label value="&mlyrics.font.colorLabel;" />
+				<colorpicker id="artistColor" type="button" />
+				<label value="&mlyrics.font.bgColorLabel;" />
+				<colorpicker id="artistBGColor" type="button" />
+				<label value="&mlyrics.font.opacityLabel;" />
+				<textbox id="artistOpacity" type="number" size="4" min="1" max="10" />
+			</hbox>
+		</groupbox>
+		<groupbox>
+			<caption label="&mlyrics.font.album;"/>
+			
+			<hbox id="albumHbox" align="center">
+				<label value="&mlyrics.font.sizeLabel;" />
+				<textbox id="albumSize" type="number" size="4" min="8" max="36" />
+				<button id="albumBoldButton" label="B" style="font-weight:bold" type="checkbox" />
+				<button id="albumItalicButton" label="i" style="font-style:italic" type="checkbox" />
+				<button id="albumUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" />
+				<menulist flex="1" id="albumAlign">
+					<menupopup>
+						<menuitem label="&mlyrics.font.leftLabel;" value="L" />
+						<menuitem label="&mlyrics.font.centerLabel;" value="C" />
+						<menuitem label="&mlyrics.font.rightLabel;" value="R" />
+					</menupopup>
+				</menulist>
+				<label value="&mlyrics.font.colorLabel;" />
+				<colorpicker id="albumColor" type="button" />
+				<label value="&mlyrics.font.bgColorLabel;" />
+				<colorpicker id="albumBGColor" type="button" />
+				<label value="&mlyrics.font.opacityLabel;" />
+				<textbox id="albumOpacity" type="number" size="4" min="1" max="10" />
+			</hbox>
+		</groupbox>
+		<groupbox>
+			<caption label="&mlyrics.font.lyrics;"/>
+			
+			<hbox id="lyricsHbox" align="center">
+				<label value="&mlyrics.font.sizeLabel;" />
+				<textbox id="lyricsSize" type="number" size="4" min="8" max="36" />
+				<button id="lyricsBoldButton" label="B" style="font-weight:bold" type="checkbox" />
+				<button id="lyricsItalicButton" label="i" style="font-style:italic" type="checkbox" />
+				<button id="lyricsUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" />
+				<menulist flex="1" id="lyricsAlign">
+					<menupopup>
+						<menuitem label="&mlyrics.font.leftLabel;" value="L" />
+						<menuitem label="&mlyrics.font.centerLabel;" value="C" />
+						<menuitem label="&mlyrics.font.rightLabel;" value="R" />
+					</menupopup>
+				</menulist>
+				<label value="&mlyrics.font.colorLabel;" />
+				<colorpicker id="lyricsColor" type="button" />
+				<label value="&mlyrics.font.bgColorLabel;" />
+				<colorpicker id="lyricsBGColor" type="button" />
+				<label value="&mlyrics.font.opacityLabel;" />
+				<textbox id="lyricsOpacity" type="number" size="4" min="1" max="10" />
+			</hbox>
+		</groupbox>
+		<groupbox>
+			<caption label="&mlyrics.font.transLyrics;"/>
+			
+			<hbox id="transLyricsHbox" align="center">
+				<label value="&mlyrics.font.sizeLabel;" />
+				<textbox id="transLyricsSize" type="number" size="4" min="8" max="36" />
+				<button id="transLyricsBoldButton" label="B" style="font-weight:bold" type="checkbox" />
+				<button id="transLyricsItalicButton" label="i" style="font-style:italic" type="checkbox" />
+				<button id="transLyricsUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" />
+				<menulist flex="1" id="transLyricsAlign">
+					<menupopup>
+						<menuitem label="&mlyrics.font.leftLabel;" value="L" />
+						<menuitem label="&mlyrics.font.centerLabel;" value="C" />
+						<menuitem label="&mlyrics.font.rightLabel;" value="R" />
+					</menupopup>
+				</menulist>
+				<label value="&mlyrics.font.colorLabel;" />
+				<colorpicker id="transLyricsColor" type="button" />
+				<label value="&mlyrics.font.bgColorLabel;" />
+				<colorpicker id="transLyricsBGColor" type="button" />
+				<label value="&mlyrics.font.opacityLabel;" />
+				<textbox id="transLyricsOpacity" type="number" size="4" min="1" max="10" />
+			</hbox>
+		</groupbox>
+		<spacer flex="1"/>
+		<button label="Close" oncommand="window.close()"/>
+	</vbox>
 	
-</prefwindow>
+</window>
