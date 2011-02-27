@@ -167,6 +167,12 @@ mlyrics.pane = {
 				case "artistColor":
 				case "albumColor":
 				case "titleColor":
+
+				case "lyricsBGColorEnable":
+				case "transLyricsBGColorEnable":
+				case "artistBGColorEnable":
+				case "albumBGColorEnable":
+				case "titleBGColorEnable":
 					
 				case "lyricsBGColor":
 				case "transLyricsBGColor":
@@ -246,6 +252,7 @@ mlyrics.pane = {
 	getStyleProperty: function (prefPartStr) {
 		var elemSize = mlyrics.pane.prefs.getIntPref(prefPartStr + "Size");
 		var elemColor = mlyrics.pane.prefs.getCharPref(prefPartStr + "Color");
+		var elemBGColorEnable = mlyrics.pane.prefs.getBoolPref(prefPartStr + "BGColorEnable");
 		var elemBGColor = mlyrics.pane.prefs.getCharPref(prefPartStr + "BGColor");
 		var elemBold = mlyrics.pane.prefs.getBoolPref(prefPartStr + "Bold");
 		var elemItalic = mlyrics.pane.prefs.getBoolPref(prefPartStr + "Italic");
@@ -257,8 +264,11 @@ mlyrics.pane = {
 		
 		styleStr += "font-size:" + elemSize + ";";
 		styleStr += "color:" + elemColor + ";";
-		styleStr += "background-color:" + elemBGColor + ";";
-		styleStr += "opacity:" + (elemOpacity*0.1) + ";";
+		
+		if (elemBGColorEnable) {
+			styleStr += "background-color:" + elemBGColor + ";";
+			styleStr += "opacity:" + (elemOpacity*0.1) + ";";
+		}
 		
 		if (elemBold)
 			styleStr += "font-weight: bold;";
@@ -1764,6 +1774,7 @@ mlyrics.pane = {
 			this.scrollCorrection = 0;
 			
 			ML_debugOutput("position restart: " + this.scrollCorrection + ", " + this.lyricsMaxHeight + ", " + this.duration);
+
 			
 			clearInterval(this.timer);
 			

@@ -101,6 +101,33 @@ function onload () {
 	document.getElementById("lyricsColor").setAttribute("onchange", "prefs.setCharPref('lyricsColor', this.color)");
 	document.getElementById("transLyricsColor").setAttribute("onchange", "prefs.setCharPref('transLyricsColor', this.color)");
 
+	document.getElementById("titleBGColorEnable").checked = prefs.getBoolPref("titleBGColorEnable");
+	document.getElementById("artistBGColorEnable").checked = prefs.getBoolPref("artistBGColorEnable");
+	document.getElementById("albumBGColorEnable").checked = prefs.getBoolPref("albumBGColorEnable");
+	document.getElementById("lyricsBGColorEnable").checked = prefs.getBoolPref("lyricsBGColorEnable");
+	document.getElementById("transLyricsBGColorEnable").checked = prefs.getBoolPref("transLyricsBGColorEnable");
+	document.getElementById("titleBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref('titleBGColorEnable', this.checked);" +
+										"document.getElementById('titleBGColor').disabled=!this.checked;" +
+										"document.getElementById('titleOpacity').disabled=!this.checked;");															
+	document.getElementById("artistBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref('artistBGColorEnable', this.checked);" +
+										"document.getElementById('artistBGColor').disabled=!this.checked;" +
+										"document.getElementById('artistOpacity').disabled=!this.checked;");
+	document.getElementById("albumBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref('albumBGColorEnable', this.checked);" +
+										"document.getElementById('albumBGColor').disabled=!this.checked;" +
+										"document.getElementById('albumOpacity').disabled=!this.checked;");
+	document.getElementById("lyricsBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref('lyricsBGColorEnable', this.checked);" +
+										"document.getElementById('lyricsBGColor').disabled=!this.checked;" +
+										"document.getElementById('lyricsOpacity').disabled=!this.checked;");
+	document.getElementById("transLyricsBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref('transLyricsBGColorEnable', this.checked);" +
+										"document.getElementById('transLyricsBGColor').disabled=!this.checked;" +
+										"document.getElementById('transLyricsOpacity').disabled=!this.checked;");
+
+	document.getElementById("titleBGColor").disabled = !prefs.getBoolPref("titleBGColorEnable");
+	document.getElementById("artistBGColor").disabled = !prefs.getBoolPref("artistBGColorEnable");
+	document.getElementById("albumBGColor").disabled = !prefs.getBoolPref("albumBGColorEnable");
+	document.getElementById("lyricsBGColor").disabled = !prefs.getBoolPref("lyricsBGColorEnable");
+	document.getElementById("transLyricsBGColor").disabled = !prefs.getBoolPref("transLyricsBGColorEnable");
+	
 	document.getElementById("titleBGColor").color = prefs.getCharPref("titleBGColor");
 	document.getElementById("artistBGColor").color = prefs.getCharPref("artistBGColor");
 	document.getElementById("albumBGColor").color = prefs.getCharPref("albumBGColor");
@@ -111,6 +138,12 @@ function onload () {
 	document.getElementById("albumBGColor").setAttribute("onchange", "prefs.setCharPref('albumBGColor', this.color)");
 	document.getElementById("lyricsBGColor").setAttribute("onchange", "prefs.setCharPref('lyricsBGColor', this.color)");
 	document.getElementById("transLyricsBGColor").setAttribute("onchange", "prefs.setCharPref('transLyricsBGColor', this.color)");
+
+	document.getElementById("titleOpacity").disabled = !prefs.getBoolPref("titleBGColorEnable");
+	document.getElementById("artistOpacity").disabled = !prefs.getBoolPref("artistBGColorEnable");
+	document.getElementById("albumOpacity").disabled = !prefs.getBoolPref("albumBGColorEnable");
+	document.getElementById("lyricsOpacity").disabled = !prefs.getBoolPref("lyricsBGColorEnable");
+	document.getElementById("transLyricsOpacity").disabled = !prefs.getBoolPref("transLyricsBGColorEnable");
 
 	document.getElementById("titleOpacity").value = prefs.getIntPref("titleOpacity");
 	document.getElementById("artistOpacity").value = prefs.getIntPref("artistOpacity");

@@ -49,6 +49,12 @@ pref("extensions.mlyrics.albumColor", "#FFFFFF");
 pref("extensions.mlyrics.artistColor", "#FFFFFF");
 pref("extensions.mlyrics.titleColor", "#FFFFFF");
 
+pref("extensions.mlyrics.lyricsBGColorEnable", false);
+pref("extensions.mlyrics.transLyricsBGColorEnable", false);
+pref("extensions.mlyrics.albumBGColorEnable", false);
+pref("extensions.mlyrics.artistBGColorEnable", false);
+pref("extensions.mlyrics.titleBGColorEnable", false);
+
 pref("extensions.mlyrics.lyricsBGColor", "#000000");
 pref("extensions.mlyrics.transLyricsBGColor", "#000000");
 pref("extensions.mlyrics.albumBGColor", "#000000");

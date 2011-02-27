@@ -98,6 +98,7 @@
 				<label value="&mlyrics.font.colorLabel;" />
 				<colorpicker id="titleColor" type="button" />
 				<label value="&mlyrics.font.bgColorLabel;" />
+				<checkbox id="titleBGColorEnable" />
 				<colorpicker id="titleBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="titleOpacity" type="number" size="4" min="1" max="10" />
@@ -122,6 +123,7 @@
 				<label value="&mlyrics.font.colorLabel;" />
 				<colorpicker id="artistColor" type="button" />
 				<label value="&mlyrics.font.bgColorLabel;" />
+				<checkbox id="artistBGColorEnable" />
 				<colorpicker id="artistBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="artistOpacity" type="number" size="4" min="1" max="10" />
@@ -146,6 +148,7 @@
 				<label value="&mlyrics.font.colorLabel;" />
 				<colorpicker id="albumColor" type="button" />
 				<label value="&mlyrics.font.bgColorLabel;" />
+				<checkbox id="albumBGColorEnable" />
 				<colorpicker id="albumBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="albumOpacity" type="number" size="4" min="1" max="10" />
@@ -170,6 +173,7 @@
 				<label value="&mlyrics.font.colorLabel;" />
 				<colorpicker id="lyricsColor" type="button" />
 				<label value="&mlyrics.font.bgColorLabel;" />
+				<checkbox id="lyricsBGColorEnable" />
 				<colorpicker id="lyricsBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="lyricsOpacity" type="number" size="4" min="1" max="10" />
@@ -194,6 +198,7 @@
 				<label value="&mlyrics.font.colorLabel;" />
 				<colorpicker id="transLyricsColor" type="button" />
 				<label value="&mlyrics.font.bgColorLabel;" />
+				<checkbox id="transLyricsBGColorEnable" />
 				<colorpicker id="transLyricsBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="transLyricsOpacity" type="number" size="4" min="1" max="10" />
