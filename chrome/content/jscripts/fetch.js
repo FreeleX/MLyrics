@@ -93,6 +93,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -247,6 +248,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -304,6 +306,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -402,6 +405,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -527,6 +531,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -621,6 +626,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -727,6 +733,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -862,6 +869,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -918,6 +926,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1043,6 +1052,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1114,6 +1124,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1203,6 +1214,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1315,6 +1327,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1392,6 +1405,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1449,6 +1463,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1613,6 +1628,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1678,6 +1694,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1765,6 +1782,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1840,6 +1858,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -1931,6 +1950,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -2016,6 +2036,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -2092,6 +2113,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -2194,6 +2216,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}
@@ -2273,6 +2296,7 @@ mlyrics.fetch = {
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						ML_debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
 						this.abort();
 						return;
 					}

@@ -160,7 +160,6 @@ function onload () {
 function enableEdit(enable) {
 	enableShowCustomRules(enable);
 	prefs.setBoolPref("applyCustomFont", enable);
-	alert(document.getElementById("mainVBox").getAttribute("width"));
 }
 
 function enableShowCustomRules(enable) {
