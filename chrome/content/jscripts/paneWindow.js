@@ -1906,16 +1906,16 @@ mlyrics.pane = {
 										function (translated) {
 											
 											if (translated == "") {
-												var fullLyrics = metadataLyrics;
+												mlyrics.pane.nextItemBufferedInfo.item   = null;
 											}
 											else {
 												var delimiter = "\n\n =================== \n [ Google translated ] \n =================== \n\n";
 												var fullLyrics = metadataLyrics + delimiter + translated;
+												
+												mlyrics.pane.nextItemBufferedInfo.item   = mediaItem;
+												mlyrics.pane.nextItemBufferedInfo.lyrics = fullLyrics;
+												mlyrics.pane.nextItemBufferedInfo.source = "";
 											}
-											
-											mlyrics.pane.nextItemBufferedInfo.item   = mediaItem;
-											mlyrics.pane.nextItemBufferedInfo.lyrics = fullLyrics;
-											mlyrics.pane.nextItemBufferedInfo.source = "";
 										}
 									     );
 				}
