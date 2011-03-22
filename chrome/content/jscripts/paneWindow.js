@@ -14,6 +14,7 @@ mlyrics.pane = {
 	
 	ourDisplayPane: null,
 	gMM: 		null,
+	xulRuntime:	null,
 	localFile:	null,
 	metadataService:null,
 	clipboardHelper:null,
@@ -51,7 +52,9 @@ mlyrics.pane = {
 	
 	init: function () {
 		this.gMM = Components.classes["@songbirdnest.com/Songbird/Mediacore/Manager;1"].getService(Components.interfaces.sbIMediacoreManager);
-
+		
+		this.xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULRuntime);
+		
 		this.localFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 		
 		this.metadataService = Components.classes["@songbirdnest.com/Songbird/FileMetadataService;1"].getService(Components.interfaces.sbIFileMetadataService);
@@ -426,9 +429,16 @@ mlyrics.pane = {
 		
 		if (mediaItemArray.length > 0) {
 			// Remove read only attribute
-			mlyrics.pane.localFile.initWithPath(decodeURIComponent(mediaItem.contentSrc.path));
+			if (mlyrics.pane.xulRuntime.OS == "WINNT") {
+				var filePath = decodeURIComponent(mediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
+			}
+			else {
+				var filePath = decodeURIComponent(mediaItem.contentSrc.path);
+			}
+			
+			mlyrics.pane.localFile.initWithPath(filePath);
 			var oldPermissions = mlyrics.pane.localFile.permissions;
-			mlyrics.pane.localFile.permissions = 0644;
+			mlyrics.pane.localFile.permissions = 0666;
 			
 			// This will write out the properties in propArray for each item.
 			var propArray = ArrayConverter.stringEnumerator([SBProperties.lyrics]);

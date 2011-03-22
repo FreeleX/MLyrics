@@ -6,6 +6,8 @@ prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
 var gMM = Components.classes["@songbirdnest.com/Songbird/Mediacore/Manager;1"].getService(Components.interfaces.sbIMediacoreManager);
 
+var xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULRuntime);
+
 var localFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 
 var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
@@ -356,7 +358,15 @@ function onAcceptChages (btn) {
 		
 		// Remove read only attribute
 		var sIndex = (i+1)/2-1;
-		localFile.initWithPath( decodeURIComponent(selectedItems[sIndex].contentSrc.path) );
+		
+		if (xulRuntime.OS == "WINNT") {
+			var filePath = decodeURIComponent(selectedItems[sIndex].contentSrc.path).substr(1).replace(/\//g, "\\");
+		}
+		else {
+			var filePath = decodeURIComponent(selectedItems[sIndex].contentSrc.path);
+		}
+		
+		localFile.initWithPath(filePath);
 		itemsAttributes[sIndex] = localFile.permissions;
 		localFile.permissions = 0644;
 		
@@ -424,7 +434,15 @@ function onAcceptChages (btn) {
 		
 				// Restore attributes
 				var sIndex = (i+1)/2-1;
-				localFile.initWithPath( decodeURIComponent(selectedItems[sIndex].contentSrc.path) );
+				
+				if (xulRuntime.OS == "WINNT") {
+					var filePath = decodeURIComponent(selectedItems[sIndex].contentSrc.path).substr(1).replace(/\//g, "\\");
+				}
+				else {
+					var filePath = decodeURIComponent(selectedItems[sIndex].contentSrc.path);
+				}
+				
+				localFile.initWithPath(filePath);
 				localFile.permissions = itemsAttributes[sIndex];
 			}
 			
