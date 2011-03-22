@@ -71,7 +71,7 @@
 						</hbox>
 					
 						<hbox align="center">
-							<colorpicker type="button" />
+							<colorpicker id="backgroundColor" type="button" />
 						</hbox>
 						
 						<checkbox id="showStaticPictureCheckbox" label="&mlyrics.font.showStaticPicIf;" />

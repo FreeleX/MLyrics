@@ -33,7 +33,7 @@ pref("extensions.mlyrics.applyCustomFont", false);
 pref("extensions.mlyrics.showStaticPicIf", false);
 
 pref("extensions.mlyrics.backgroundImage", "");
-pref("extensions.mlyrics.backgroundColor", "");
+pref("extensions.mlyrics.backgroundColor", "#000000");
 pref("extensions.mlyrics.backgroundType", "C");
 pref("extensions.mlyrics.BGImagePos", "center center");
 

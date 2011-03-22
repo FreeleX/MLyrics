@@ -27,6 +27,9 @@ function onload () {
 	}
 	document.getElementById("CIRadiogroup").setAttribute("oncommand", "onCISelect(this.value)");
 
+	document.getElementById("backgroundColor").color = prefs.getCharPref("backgroundColor");
+	document.getElementById("backgroundColor").setAttribute("onchange", "prefs.setCharPref('backgroundColor', this.color)");
+
 	document.getElementById("filePathTextbox").value = decodeURIComponent(prefs.getCharPref("backgroundImage"));
 	
 	document.getElementById("showStaticPictureCheckbox").checked = prefs.getBoolPref("showStaticPicIf");
