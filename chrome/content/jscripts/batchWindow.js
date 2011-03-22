@@ -6,6 +6,8 @@ prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
 
 var gMM = Components.classes["@songbirdnest.com/Songbird/Mediacore/Manager;1"].getService(Components.interfaces.sbIMediacoreManager);
 
+var localFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+
 var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
 var songbirdWindow = windowMediator.getMostRecentWindow("Songbird:Main");
 var mediaListView = songbirdWindow.gBrowser.currentMediaListView;
@@ -13,6 +15,7 @@ var mediaListView = songbirdWindow.gBrowser.currentMediaListView;
 var items = "";
 var selectedItems = [];
 var selectedIndexes = [];
+var itemsAttributes = [];
 var currentOffset = 0;
 
 window.addEventListener("load", onfLoad, false);
@@ -351,6 +354,12 @@ function onAcceptChages (btn) {
 	for (var i=0; i<bbox.childNodes.length; i++) {
 		if ( !isCheckedItem(bbox.childNodes[i]) ) continue;
 		
+		// Remove read only attribute
+		var sIndex = (i+1)/2-1;
+		localFile.initWithPath( decodeURIComponent(selectedItems[sIndex].contentSrc.path) );
+		itemsAttributes[sIndex] = localFile.permissions;
+		localFile.permissions = 0644;
+		
 		saveItem(mediaItemArray, i, bbox.childNodes[i]);
 	}
 	
@@ -408,6 +417,15 @@ function onAcceptChages (btn) {
 				if (!prefs.getBoolPref("saveInDB")) metadataService.write(mediaItemArray, propArray);
 				
 				alert(metadataWriteProgress.statusText + "\n\n" + errorFilesList);
+			}
+
+			for (var i=0; i<bbox.childNodes.length; i++) {
+				if ( !isCheckedItem(bbox.childNodes[i]) ) continue;
+		
+				// Restore attributes
+				var sIndex = (i+1)/2-1;
+				localFile.initWithPath( decodeURIComponent(selectedItems[sIndex].contentSrc.path) );
+				localFile.permissions = itemsAttributes[sIndex];
 			}
 			
 			btn.disabled = false;

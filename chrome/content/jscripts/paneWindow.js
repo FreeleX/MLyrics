@@ -14,6 +14,7 @@ mlyrics.pane = {
 	
 	ourDisplayPane: null,
 	gMM: 		null,
+	localFile:	null,
 	metadataService:null,
 	clipboardHelper:null,
 	gBrowser: 	null,
@@ -50,6 +51,8 @@ mlyrics.pane = {
 	
 	init: function () {
 		this.gMM = Components.classes["@songbirdnest.com/Songbird/Mediacore/Manager;1"].getService(Components.interfaces.sbIMediacoreManager);
+
+		this.localFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 		
 		this.metadataService = Components.classes["@songbirdnest.com/Songbird/FileMetadataService;1"].getService(Components.interfaces.sbIFileMetadataService);
 		
@@ -422,6 +425,11 @@ mlyrics.pane = {
 		mediaItemArray.appendElement(mediaItem, false);
 		
 		if (mediaItemArray.length > 0) {
+			// Remove read only attribute
+			mlyrics.pane.localFile.initWithPath(decodeURIComponent(mediaItem.contentSrc.path));
+			var oldPermissions = mlyrics.pane.localFile.permissions;
+			mlyrics.pane.localFile.permissions = 0644;
+			
 			// This will write out the properties in propArray for each item.
 			var propArray = ArrayConverter.stringEnumerator([SBProperties.lyrics]);
 			var metadataWriteProgress = this.metadataService.write(mediaItemArray, propArray);
@@ -447,6 +455,9 @@ mlyrics.pane = {
 					else {
 						mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", "chrome://mlyrics/content/images/haslyrics-white.png");
 					}
+					
+					// Restore permissions
+					mlyrics.pane.localFile.permissions = oldPermissions;
 				}
 			}, 500);
 		}
@@ -726,9 +737,9 @@ mlyrics.pane = {
 		document.getElementById("ML_sourceFetchProgress").hidden = true;
 		document.getElementById("ML_sourceFetchStopButton").hidden = true;
 		
-		document.getElementById("metadataMenuItem").disabled = true;
-		document.getElementById("makeInstrMenuItem").disabled = true;
-		document.getElementById("clearMenuItem").disabled = true;
+		document.getElementById("metadataMenuItem").disabled = false;
+		document.getElementById("makeInstrMenuItem").disabled = false;
+		document.getElementById("clearMenuItem").disabled = false;
 			
 		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("ML_contextSourcesSeparator");
 		document.getElementById("ML_sourceAddressNextButton").disabled = true;
