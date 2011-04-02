@@ -1091,7 +1091,7 @@ mlyrics.pane = {
 	showInfo: function (mediaItem, force, place, forceone) {
 		
 		// Do not show html view if we using edit view
-		if (mlyrics.pane.controller.lmDeck.selectedIndex != 2) {
+		if (mlyrics.pane.controller.lmDeck.selectedIndex < 1) {
 			mlyrics.pane.controller.lmDeck.selectedIndex = 1;
 		}
 		
@@ -1296,6 +1296,7 @@ mlyrics.pane = {
 				var mediaItem = this.playlistPlaybackServiceListener.curMediaItem;
 			}
 			
+
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", "[Instrumental]");
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
 			
@@ -1561,14 +1562,80 @@ mlyrics.pane = {
 	},
 
 	editTimeTracks: {
+		selectedItemStyle: "background-color: grey;",
+		oldItemStyle: "text-decoration:line-through; font-style: italic;",
+		currentIndex: 0,
+
 		init: function () {
+			this.restart();
+
 			document.getElementById("lm-deck").selectedIndex = 3;
 		},
-		
+
 		restart: function () {
+			this.currentIndex = 0;
+
+			document.getElementById("next-timetracks-button").disabled = false;
+			document.getElementById("cancel-timetracks-button").disabled = false;
+
+			var editTimeTracksBox = document.getElementById("edit-timetreacks");
+
+			for (var i=editTimeTracksBox.childNodes.length-1; i>0; i--) {
+				editTimeTracksBox.removeChild(editTimeTracksBox.childNodes[i]);
+			}
+
+			var translDelimPos1 = mlyrics.pane.viewMode.savedData.lyrics.indexOf("\n\n =================== \n [ ");
+			if (translDelimPos1 == -1) {
+				var tempLyrics = mlyrics.pane.viewMode.savedData.lyrics;
+			}
+			else {
+				var tempLyrics = mlyrics.pane.viewMode.savedData.lyrics.substr(0, translDelimPos1);
+			}
+
+			editTimeTracksBox.childNodes[0].removeAttribute("style");
+
+			var lyricsArray = tempLyrics.split("\n");
+			for (var i=0; i < lyricsArray.length; i++) {
+				var elementBox = editTimeTracksBox.childNodes[0].cloneNode(true);
+				elementBox.childNodes[1].setAttribute("value", lyricsArray[i]);
+
+				editTimeTracksBox.appendChild(elementBox);
+			}
+
+			editTimeTracksBox.childNodes[this.currentIndex].setAttribute("style", this.selectedItemStyle);
+			editTimeTracksBox.scrollTop = 0;
 		},
 
-		onAccept: function () {
+		nextLine: function () {
+			var editTimeTracksBox = document.getElementById("edit-timetreacks");
+			editTimeTracksBox.scrollTop = editTimeTracksBox.scrollHeight*(this.currentIndex/editTimeTracksBox.childNodes.length);
+			
+			this.currentIndex++;
+
+			var position = mlyrics.pane.gMM.playbackControl.position;
+			var minutes = position / (60*1000);
+			var absMinutes = parseInt(minutes, 10);
+			if (absMinutes < 10) absMinutes = "0" + absMinutes;
+			var seconds = (minutes - absMinutes) * 60;
+			var absSeconds = parseInt(seconds, 10);
+			if (absSeconds < 10) absSeconds = "0" + absSeconds;
+			var hmilliSeconds = (seconds - absSeconds) * 100;
+			var abshMilliSeconds = parseInt(hmilliSeconds);
+			if (abshMilliSeconds < 10) abshMilliSeconds = "0" + abshMilliSeconds;
+
+			editTimeTracksBox.childNodes[this.currentIndex].childNodes[0].value = absMinutes + ":" + absSeconds + "." + abshMilliSeconds;
+				
+			editTimeTracksBox.childNodes[this.currentIndex-1].setAttribute("style", this.oldItemStyle);
+			editTimeTracksBox.childNodes[this.currentIndex].setAttribute("style", this.selectedItemStyle);
+
+			if (this.currentIndex > editTimeTracksBox.childNodes.length-2) {
+				document.getElementById("next-timetracks-button").disabled = true;
+				document.getElementById("cancel-timetracks-button").disabled = true;
+				setTimeout(this.onSave, 1000);
+			}
+		},
+
+		onSave: function () {
 			document.getElementById("lm-deck").selectedIndex = 1;
 		},
 

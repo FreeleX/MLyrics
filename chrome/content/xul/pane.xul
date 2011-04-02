@@ -137,20 +137,21 @@
 			</hbox>
 		</vbox>
 
+		<window id="timetracks-scrollwindow">
 		<vbox flex="1">
-			<button label="&mlyrics.pane.restartSongButton;" oncommand="mlyrics.pane.editTimeTracks.restart()"/>
-			<vbox id="edit-timetreacks" style="overflow: auto">
+			<button id="next-timetracks-button" label=">>>" oncommand="mlyrics.pane.editTimeTracks.nextLine()"/>
+			<vbox id="edit-timetreacks" style="overflow: auto" flex="1">
 				<hbox>
-					<label value="00:00:00" />
+					<label value="00:00.00" />
 					<label />
 				</hbox>
 			</vbox>
 			<spacer flex="1"/>
 			<hbox>
-				<button label="&mlyrics.pane.saveButton;" flex="1" oncommand="mlyrics.pane.editTimeTracks.onAccept()"/>
-				<button label="&mlyrics.pane.cancelButton;" flex="3" oncommand="mlyrics.pane.editTimeTracks.onDiscard()"/>
+				<button id="cancel-timetracks-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.editTimeTracks.onDiscard()"/>
 			</hbox>
 		</vbox>
+		</window>
 	</deck>
 	
 </window>
