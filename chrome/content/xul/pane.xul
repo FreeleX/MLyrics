@@ -139,10 +139,14 @@
 
 		<window id="timetracks-scrollwindow">
 		<vbox flex="1">
-			<button id="next-timetracks-button" label=">>>" oncommand="mlyrics.pane.editTimeTracks.nextLine()"/>
+			<hbox>
+				<button id="prev-timetracks-button" label="&lt;&lt;&lt;" flex="3" oncommand="mlyrics.pane.editTimeTracks.nextLine(-1)"/>				
+				<button id="refr-timetracks-button" label="&lt;>" flex="1" oncommand="mlyrics.pane.editTimeTracks.nextLine(false)"/>
+				<button id="next-timetracks-button" label=">>>" flex="3" oncommand="mlyrics.pane.editTimeTracks.nextLine(true)"/>
+			</hbox>
 			<vbox id="edit-timetreacks" style="overflow: auto" flex="1">
 				<hbox>
-					<label value="00:00.00" />
+					<label value="00:00.00" style="visibility: hidden"/>
 					<label />
 				</hbox>
 			</vbox>

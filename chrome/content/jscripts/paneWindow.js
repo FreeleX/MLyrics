@@ -1597,20 +1597,30 @@ mlyrics.pane = {
 			var lyricsArray = tempLyrics.split("\n");
 			for (var i=0; i < lyricsArray.length; i++) {
 				var elementBox = editTimeTracksBox.childNodes[0].cloneNode(true);
+				elementBox.childNodes[1].removeAttribute("value");
 				elementBox.childNodes[1].setAttribute("value", lyricsArray[i]);
 
 				editTimeTracksBox.appendChild(elementBox);
 			}
 
+			editTimeTracksBox.childNodes[0].childNodes[0].removeAttribute("style");
+			editTimeTracksBox.childNodes[0].childNodes[0].setAttribute("value", "00:00.00");
+
 			editTimeTracksBox.childNodes[this.currentIndex].setAttribute("style", this.selectedItemStyle);
 			editTimeTracksBox.scrollTop = 0;
 		},
 
-		nextLine: function () {
+		nextLine: function (needNext) {
 			var editTimeTracksBox = document.getElementById("edit-timetreacks");
-			editTimeTracksBox.scrollTop = editTimeTracksBox.scrollHeight*(this.currentIndex/editTimeTracksBox.childNodes.length);
 			
-			this.currentIndex++;
+			if (needNext == -1) {
+				if (this.currentIndex) this.currentIndex--;
+				editTimeTracksBox.scrollTop = editTimeTracksBox.scrollHeight*( (this.currentIndex-1) / editTimeTracksBox.childNodes.length);
+			}
+			else if (needNext) {
+				this.currentIndex++;
+				editTimeTracksBox.scrollTop = editTimeTracksBox.scrollHeight*( (this.currentIndex-1) / editTimeTracksBox.childNodes.length);
+			}
 
 			var position = mlyrics.pane.gMM.playbackControl.position;
 			var minutes = position / (60*1000);
@@ -1623,10 +1633,23 @@ mlyrics.pane = {
 			var abshMilliSeconds = parseInt(hmilliSeconds);
 			if (abshMilliSeconds < 10) abshMilliSeconds = "0" + abshMilliSeconds;
 
-			editTimeTracksBox.childNodes[this.currentIndex].childNodes[0].value = absMinutes + ":" + absSeconds + "." + abshMilliSeconds;
+			if (this.currentIndex) {
+				editTimeTracksBox.childNodes[this.currentIndex].childNodes[0].value = absMinutes + ":" + absSeconds + "." + abshMilliSeconds;
 				
-			editTimeTracksBox.childNodes[this.currentIndex-1].setAttribute("style", this.oldItemStyle);
+				if (this.currentIndex)  {
+					editTimeTracksBox.childNodes[this.currentIndex-1].setAttribute("style", this.oldItemStyle);
+				}
+			}
+
+			editTimeTracksBox.childNodes[this.currentIndex].childNodes[0].removeAttribute("style");
 			editTimeTracksBox.childNodes[this.currentIndex].setAttribute("style", this.selectedItemStyle);
+
+			if (this.currentIndex <= editTimeTracksBox.childNodes.length-2) {
+				editTimeTracksBox.childNodes[this.currentIndex+1].removeAttribute("style");
+				
+				editTimeTracksBox.childNodes[this.currentIndex+1].childNodes[0].setAttribute("value", "00:00.00");
+				editTimeTracksBox.childNodes[this.currentIndex+1].childNodes[0].setAttribute("style", "visibility: hidden");
+			}
 
 			if (this.currentIndex > editTimeTracksBox.childNodes.length-2) {
 				document.getElementById("next-timetracks-button").disabled = true;
