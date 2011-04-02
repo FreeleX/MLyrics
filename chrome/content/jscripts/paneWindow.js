@@ -702,6 +702,7 @@ mlyrics.pane = {
 				document.getElementById("refreshMenuItem").disabled = false;
 				
 				document.getElementById("metadataMenuItem").disabled = true;
+				document.getElementById("timeTracksMenuItem").disabled = true;
 				document.getElementById("makeInstrMenuItem").disabled = true;
 				document.getElementById("clearMenuItem").disabled = true;
 				
@@ -732,6 +733,7 @@ mlyrics.pane = {
 				document.getElementById("refreshMenuItem").disabled = true;
 				
 				document.getElementById("metadataMenuItem").disabled = true;
+				document.getElementById("timeTracksMenuItem").disabled = true;
 				document.getElementById("makeInstrMenuItem").disabled = true;
 				document.getElementById("clearMenuItem").disabled = true;
 			}
@@ -748,6 +750,8 @@ mlyrics.pane = {
 		document.getElementById("ML_sourceFetchStopButton").hidden = true;
 		
 		document.getElementById("metadataMenuItem").disabled = false;
+		if (mlyrics.pane.viewMode.savedData.lyrics != "" && mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() != "[instrumental]") 
+			document.getElementById("timeTracksMenuItem").disabled = false;
 		document.getElementById("makeInstrMenuItem").disabled = false;
 		document.getElementById("clearMenuItem").disabled = false;
 			
@@ -785,6 +789,9 @@ mlyrics.pane = {
 		mlyrics.pane.viewMode.savedData.track 	= track;
 		mlyrics.pane.viewMode.savedData.lyrics 	= lyrics;
 		mlyrics.pane.viewMode.savedData.source 	= source;
+
+		if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]")
+			document.getElementById("timeTracksMenuItem").disabled = true;
 		
 		// get view mode
 		lyrics = mlyrics.pane.viewMode.getHTMLView(lyrics);
@@ -839,6 +846,7 @@ mlyrics.pane = {
 		var location = browser.contentDocument.location.toString();
 		if (location.substr(0, 25) == "chrome://shoutcast-radio/") {
 			document.getElementById("metadataMenuItem").disabled 		= true;
+			document.getElementById("timeTracksMenuItem").disabled 		= true;
 			document.getElementById("makeInstrMenuItem").disabled 		= true;
 			document.getElementById("clearMenuItem").disabled 		= true;
 			document.getElementById("contxtRefreshTagMenu").disabled 	= true;
@@ -846,6 +854,8 @@ mlyrics.pane = {
 		}
 		else {
 			document.getElementById("metadataMenuItem").disabled 		= false;
+			if (mlyrics.pane.viewMode.savedData.lyrics != "" && mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() != "[instrumental]") 
+				document.getElementById("timeTracksMenuItem").disabled = false;
 			document.getElementById("makeInstrMenuItem").disabled 		= false;
 			document.getElementById("clearMenuItem").disabled 		= false;
 			document.getElementById("contxtRefreshTagMenu").disabled 	= false;
@@ -1547,6 +1557,23 @@ mlyrics.pane = {
 			document.getElementById("edit-content").value = mlyrics.pane.viewMode.savedData.lyrics;
 			
 			document.getElementById("lm-deck").selectedIndex = 2;
+		}
+	},
+
+	editTimeTracks: {
+		init: function () {
+			document.getElementById("lm-deck").selectedIndex = 3;
+		},
+		
+		restart: function () {
+		},
+
+		onAccept: function () {
+			document.getElementById("lm-deck").selectedIndex = 1;
+		},
+
+		onDiscard: function () {
+			document.getElementById("lm-deck").selectedIndex = 1;
 		}
 	},
 	
