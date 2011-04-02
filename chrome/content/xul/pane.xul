@@ -150,7 +150,6 @@
 					<label />
 				</hbox>
 			</vbox>
-			<spacer flex="1"/>
 			<hbox>
 				<button id="cancel-timetracks-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.editTimeTracks.onDiscard()"/>
 			</hbox>

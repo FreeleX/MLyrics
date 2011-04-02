@@ -4,6 +4,7 @@ if (typeof(Cu) == "undefined") var Cu = Components.utils;
 
 Components.utils.import("resource://app/jsmodules/ArrayConverter.jsm");
 Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
+Components.utils.import("resource://gre/modules/NetUtil.jsm");
 
 // We need to have base object
 if (typeof(this.mlyrics) !== 'object') {
@@ -12,16 +13,18 @@ if (typeof(this.mlyrics) !== 'object') {
 
 mlyrics.pane = {
 	
-	ourDisplayPane: null,
-	gMM: 		null,
-	xulRuntime:	null,
-	localFile:	null,
-	metadataService:null,
-	clipboardHelper:null,
-	gBrowser: 	null,
-	songbirdWindow:	null,
-	prefs: 		null,
-	defprefs: 	null,
+	ourDisplayPane: 	null,
+	gMM: 			null,
+	xulRuntime:		null,
+	mediaCoreManager:	null,
+	localFile:		null,
+	timeTracksFile:		null,
+	metadataService:	null,
+	clipboardHelper:	null,
+	gBrowser: 		null,
+	songbirdWindow:		null,
+	prefs: 			null,
+	defprefs: 		null,
 	
 	pStrings: {
 		bigyes: "",
@@ -54,8 +57,11 @@ mlyrics.pane = {
 		this.gMM = Components.classes["@songbirdnest.com/Songbird/Mediacore/Manager;1"].getService(Components.interfaces.sbIMediacoreManager);
 		
 		this.xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULRuntime);
+
+		this.mediaCoreManager = Components.classes["@songbirdnest.com/Songbird/Mediacore/Manager;1"].getService(Components.interfaces.sbIMediacoreManager);
 		
 		this.localFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+		this.timeTracksFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 		
 		this.metadataService = Components.classes["@songbirdnest.com/Songbird/FileMetadataService;1"].getService(Components.interfaces.sbIFileMetadataService);
 		
@@ -341,6 +347,10 @@ mlyrics.pane = {
 				
 				mlyrics.pane.showInfo(aMediaItem);
 			}
+
+			if (document.getElementById("lm-deck").selectedIndex == 3) {
+				mlyrics.pane.editTimeTracks.restart();
+			}
 		},
 		
 		onStop: function() {
@@ -463,7 +473,7 @@ mlyrics.pane = {
 							throw new Error("SongBird has failed to write lyrics into '" + errorsEnum.getNext() + "'");
 					}
 					else {
-						mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", "chrome://mlyrics/content/images/haslyrics-white.png");
+						mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", "chrome://mlyrics/content/images/123.xul");
 					}
 					
 					// Restore permissions
@@ -1562,6 +1572,7 @@ mlyrics.pane = {
 	},
 
 	editTimeTracks: {
+		trackMediaItem: 0,
 		selectedItemStyle: "background-color: grey;",
 		oldItemStyle: "text-decoration:line-through; font-style: italic;",
 		currentIndex: 0,
@@ -1575,6 +1586,17 @@ mlyrics.pane = {
 		restart: function () {
 			this.currentIndex = 0;
 
+			//mlyrics.pane.gMM.sequencer.play();
+
+			if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]") {
+				this.onDiscard();
+				return;
+			}
+
+			this.trackMediaItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
+			
+			document.getElementById("prev-timetracks-button").disabled = false;
+			document.getElementById("refr-timetracks-button").disabled = false;
 			document.getElementById("next-timetracks-button").disabled = false;
 			document.getElementById("cancel-timetracks-button").disabled = false;
 
@@ -1593,11 +1615,11 @@ mlyrics.pane = {
 			}
 
 			editTimeTracksBox.childNodes[0].removeAttribute("style");
+			editTimeTracksBox.childNodes[0].childNodes[0].setAttribute("style", "visibility: hidden");
 
 			var lyricsArray = tempLyrics.split("\n");
 			for (var i=0; i < lyricsArray.length; i++) {
 				var elementBox = editTimeTracksBox.childNodes[0].cloneNode(true);
-				elementBox.childNodes[1].removeAttribute("value");
 				elementBox.childNodes[1].setAttribute("value", lyricsArray[i]);
 
 				editTimeTracksBox.appendChild(elementBox);
@@ -1611,6 +1633,16 @@ mlyrics.pane = {
 		},
 
 		nextLine: function (needNext) {
+			if (this.trackMediaItem != mlyrics.pane.playlistPlaybackServiceListener.curMediaItem) {
+				document.getElementById("prev-timetracks-button").disabled = true;
+				document.getElementById("refr-timetracks-button").disabled = true;
+				document.getElementById("next-timetracks-button").disabled = true;
+				document.getElementById("cancel-timetracks-button").disabled = true;
+				
+				setTimeout("mlyrics.pane.editTimeTracks.restart()", 2000);
+				return;
+			}
+
 			var editTimeTracksBox = document.getElementById("edit-timetreacks");
 			
 			if (needNext == -1) {
@@ -1652,18 +1684,76 @@ mlyrics.pane = {
 			}
 
 			if (this.currentIndex > editTimeTracksBox.childNodes.length-2) {
+				document.getElementById("prev-timetracks-button").disabled = true;
+				document.getElementById("refr-timetracks-button").disabled = true;
 				document.getElementById("next-timetracks-button").disabled = true;
 				document.getElementById("cancel-timetracks-button").disabled = true;
-				setTimeout(this.onSave, 1000);
+				  
+				mlyrics.pane.mediaCoreManager.playbackControl.pause();
+
+				setTimeout("mlyrics.pane.editTimeTracks.onSave()", 2000);
 			}
 		},
 
 		onSave: function () {
-			document.getElementById("lm-deck").selectedIndex = 1;
+			var lrcText = "";
+			var editTimeTracksBox = document.getElementById("edit-timetreacks");
+			for (var i=1; i<editTimeTracksBox.childNodes.length; i++) {
+				lrcText += "[" + editTimeTracksBox.childNodes[i].childNodes[0].value + "]" + editTimeTracksBox.childNodes[i].childNodes[1].value + "\n";
+			}
+
+			this.writeLRC(lrcText);
+
+			if (mlyrics.pane.mediaCoreManager.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PAUSED)
+				mlyrics.pane.gMM.sequencer.play();
+			mlyrics.pane.gMM.sequencer.next();
 		},
 
 		onDiscard: function () {
 			document.getElementById("lm-deck").selectedIndex = 1;
+		},
+
+		writeLRC: function (data) {
+			
+			if (mlyrics.pane.xulRuntime.OS == "WINNT") {
+				var mediaFilePath = decodeURIComponent(this.trackMediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
+				var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("\\"));
+			}
+			else {
+				var mediaFilePath = decodeURIComponent(this.trackMediaItem.contentSrc.path);
+				var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("/"));
+			}
+
+			var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
+			var lrcFilePath = mediaFilePathNoExt + ".lrc";
+			
+			mlyrics.pane.timeTracksFile.initWithPath(mediaDirectoryPath);
+			if (!mlyrics.pane.timeTracksFile.isWritable()) {
+				setTimeout(function () {throw new Error("SongBird has failed to write lyrics into " + lrcFilePath + ", directory is not writable");}, 100);
+				return;
+			}
+			
+			mlyrics.pane.timeTracksFile.initWithPath(lrcFilePath);
+			if (mlyrics.pane.timeTracksFile.exists() && !mlyrics.pane.timeTracksFile.isWritable()) {
+				setTimeout(function () {throw new Error("SongBird has failed to write lyrics into " + lrcFilePath + ", file is not writable");}, 100);
+				return;
+			}
+			
+			var ostream = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
+			ostream.init(mlyrics.pane.timeTracksFile, 0x02 | 0x08 | 0x20, 0666, ostream.DEFER_OPEN);
+
+			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
+			converter.charset = "UTF-8";
+
+			var istream = converter.convertToInputStream(data);
+			
+			NetUtil.asyncCopy(istream, ostream, this.onWriteComplete);
+		},
+
+		onWriteComplete: function (code) {
+			if (code) return;
+
+			
 		}
 	},
 	
