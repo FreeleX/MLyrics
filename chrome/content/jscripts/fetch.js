@@ -155,8 +155,13 @@ mlyrics.fetch = {
 						var respLyr = lyrDiv[0];
 					} else {
 						var respLyrResult = respLyr.split("<p>");
-						var lyrDiv = respLyrResult[1].split("</p>");
-						var respLyr = lyrDiv[0];
+						if (respLyrResult.length > 1) {
+							var lyrDiv = respLyrResult[1].split("</p>");
+							var respLyr = lyrDiv[0];
+						}
+						else {
+							var respLyr = "";
+						}
 					}
 					
 					respLyr = respLyr.replace(/<br\/>/g,"");
@@ -1659,6 +1664,7 @@ mlyrics.fetch = {
 							
 							sourceObj.getLyrics2(songUrl, cbFn);
 						}
+
 						else {
 							cbFn("");
 						}
@@ -2255,6 +2261,7 @@ mlyrics.fetch = {
 									songUrl = "http://www.shiron.net" + cuttedTable.substring(songUrlStartPos+9, songUrlEndPos);
 									break;
 								}
+
 							}
 						}
 						
