@@ -346,10 +346,10 @@ mlyrics.pane = {
 				}
 				
 				mlyrics.pane.showInfo(aMediaItem);
-			}
 
-			if (document.getElementById("lm-deck").selectedIndex == 3) {
-				mlyrics.pane.editTimeTracks.restart();
+				if (document.getElementById("lm-deck").selectedIndex == 3) {
+					mlyrics.pane.editTimeTracks.restart();
+				}
 			}
 		},
 		
@@ -1586,8 +1586,6 @@ mlyrics.pane = {
 		restart: function () {
 			this.currentIndex = 0;
 
-			//mlyrics.pane.gMM.sequencer.play();
-
 			if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]") {
 				this.onDiscard();
 				return;
@@ -1704,9 +1702,11 @@ mlyrics.pane = {
 
 			this.writeLRC(lrcText);
 
+			this.trackMediaItem = 0;
+
+			mlyrics.pane.gMM.sequencer.next();
 			if (mlyrics.pane.mediaCoreManager.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PAUSED)
 				mlyrics.pane.gMM.sequencer.play();
-			mlyrics.pane.gMM.sequencer.next();
 		},
 
 		onDiscard: function () {
