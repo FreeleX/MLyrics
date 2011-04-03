@@ -78,25 +78,21 @@ if (typeof(this.mlyrics) !== 'object') {
 		mlyrics.watchLib = {
 			
 			watchLibMain: "",
+			blocked: false,
 			
 			init: function() {
 				this.watchLibMain = Cc['@songbirdnest.com/Songbird/library/Manager;1'].getService(Components.interfaces.sbILibraryManager).mainLibrary;
 				
 				this.watchLibMain.addListener(this, false, this.watchLibMain.LISTENER_FLAGS_ITEMUPDATED | this.watchLibMain.LISTENER_FLAGS_ITEMADDED);
+
+				// File operations (lrc exists) are intensive if they started many times during one second
+				setInterval(function() {mlyrics.watchLib.blocked = false;}, 5000);
 			},
 			
 			onItemUpdated: function(list, item, index) {
-				var lyrics=item.getProperty("http://songbirdnest.com/data/1.0#lyrics");
-				var haslyr=item.getProperty("http://songbirdnest.com/data/1.0#hasLyrics");
-				
-				if (lyrics != null && (!haslyr || haslyr.substr(0, 42) != "chrome://mlyrics/content/images/haslyrics-"))
-				{
-					item.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", "chrome://mlyrics/content/images/haslyrics-white.png");
-				}
-				
-				else if ((lyrics == null) && (haslyr != null))
-				{
-					item.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", null);
+				if (!this.blocked) {
+					this.blocked = true;
+					ML_fixHasLyr(item);
 				}
 				
 			},

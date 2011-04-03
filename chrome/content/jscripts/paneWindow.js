@@ -341,7 +341,8 @@ mlyrics.pane = {
 			this.curMediaItem = aMediaItem;
 			
 			if (!mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
-				if ( ML_fixHasLyr(aMediaItem) ) {
+				var haslyrType = ML_fixHasLyr(aMediaItem);
+				if (haslyrType) {
 					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLostLyricsNotif, mlyrics.scanlib.scan);
 				}
 				
@@ -460,12 +461,12 @@ mlyrics.pane = {
 					if (!metadataWriteProgress.status) {
 						if (!mlyrics.pane.prefs.getBoolPref("saveInDB")) {
 							mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", null);
-							mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", null);
 							mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
+							ML_fixHasLyr(mediaItem);
 							mlyrics.pane.metadataService.write(mediaItemArray, propArray);
 						}
 						else {
-							mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", "chrome://mlyrics/content/images/haslyrics-black.png");
+							ML_fixHasLyr(mediaItem);
 						}
 						
 						var errorsEnum = metadataWriteProgress.getErrorMessages();
@@ -473,7 +474,7 @@ mlyrics.pane = {
 							throw new Error("SongBird has failed to write lyrics into '" + errorsEnum.getNext() + "'");
 					}
 					else {
-						mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", "chrome://mlyrics/content/images/123.xul");
+						ML_fixHasLyr(mediaItem);
 					}
 					
 					// Restore permissions
@@ -517,7 +518,8 @@ mlyrics.pane = {
 				{
 					accessKey: null, 
 					callback: function (notificationElement, notifcationButton) {
-						mlyrics.pane.saveLyrics(notificationElement, notifcationButton, mediaItem, lyrics, source)
+						mlyrics.pane.saveLyrics(notificationElement, notifcationButton, mediaItem, lyrics, source);
+						ML_fixHasLyr(mediaItem);
 					}, 
 					label: this.pStrings.bigyes, 
 					popup: null
@@ -1107,7 +1109,10 @@ mlyrics.pane = {
 		
 		var metadataLyrics = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
 		if (metadataLyrics != "" && 
-		    mediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics") == "chrome://mlyrics/content/images/haslyrics-black.png") {
+		    mediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics") &&
+		    mediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics").indexOf("-black") != -1 
+		   )
+		{
 			mlyrics.pane.saveLyrics("", "", mediaItem, metadataLyrics);
 		}
 		
@@ -1277,7 +1282,7 @@ mlyrics.pane = {
 			}
 			
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", null);
-			mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", null);
+			ML_fixHasLyr(mediaItem);
 			
 			var artist = mediaItem.getProperty(SBProperties.artistName);
 			var album = mediaItem.getProperty(SBProperties.albumName);
