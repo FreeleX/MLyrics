@@ -405,6 +405,23 @@ mlyrics.pane = {
 	onDrop: function (event) {
 		var data = event.dataTransfer.getData("text/plain");
 		if (data == "") return;
+
+		// If all text uppercase - normalize it
+		var newdata = data;
+		if (data.toUpperCase() == data) {
+			var dataArray = data.split("\n");
+			
+			newdata = "";
+			for (var i=0; i<dataArray.length; i++) {
+				if (dataArray[i].length > 1) {
+					newdata += dataArray[i].substr(0, 1) + dataArray[i].substr(1).toLowerCase() + "\n";
+				}
+				else {
+					newdata += dataArray[i] + "\n";
+				}
+			}
+		}
+		data = newdata;
 		
 		if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
 			this.saveLyrics("", "", this.mediaItemSelectListener.curMediaItem, data);
