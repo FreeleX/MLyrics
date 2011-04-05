@@ -78,22 +78,15 @@ if (typeof(this.mlyrics) !== 'object') {
 		mlyrics.watchLib = {
 			
 			watchLibMain: "",
-			blocked: false,
 			
 			init: function() {
 				this.watchLibMain = Cc['@songbirdnest.com/Songbird/library/Manager;1'].getService(Components.interfaces.sbILibraryManager).mainLibrary;
 				
 				this.watchLibMain.addListener(this, false, this.watchLibMain.LISTENER_FLAGS_ITEMUPDATED | this.watchLibMain.LISTENER_FLAGS_ITEMADDED);
-
-				// File operations (lrc exists) are intensive if they started many times during one second
-				setInterval(function() {mlyrics.watchLib.blocked = false;}, 5000);
 			},
 			
 			onItemUpdated: function(list, item, index) {
-				if (!this.blocked) {
-					this.blocked = true;
-					ML_fixHasLyr(item);
-				}
+				ML_fixHasLyr(item);
 				
 			},
 			
