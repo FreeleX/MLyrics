@@ -362,7 +362,7 @@ mlyrics.pane = {
 					if (wasLRC == "true") {
 						mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lostLRCNotif, mlyrics.scanlib.scan);
 					}
-					else {
+					else if (isLRC == "true") {
 						mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLRCNotif, mlyrics.scanlib.scan);
 					}
 				}
