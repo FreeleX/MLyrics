@@ -88,8 +88,8 @@
 						<toolbarbutton image="chrome://mlyrics/content/images/next-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.selectNext()"/>
 					</hbox>
 					<hbox align="right" valign="middle" flex="1">
-						<toolbarbutton id="ML_sourceFetchStopButton" image="chrome://mlyrics/content/images/delete-icon.png" oncommand="mlyrics.pane.stopFetch()" hidden="true"/>
 						<progressmeter id="ML_sourceFetchProgress" mode="undetermined" flex="1" style="height: 25px;" hidden="true" />
+						<image id="ML_sourceFetchStopButton" src="chrome://mlyrics/content/images/delete-icon.png" onclick="mlyrics.pane.stopFetch()" hidden="true"/>
 						
 						<menulist id="refreshMenuItem" label="&mlyrics.pane.contxtRefresh;" flex="1">
 							<menupopup id="ML_sourcesPopup">
@@ -101,16 +101,12 @@
 								<!-- list of lyrics sources -->
 								
 								<menuitem id="ML_contextSourcesSeparator" 
-									label="---------------------------"
+									label=""
 									disabled="true"/>
 									
 								<menuitem id="contxtTranslateMetaMenu" 
 									label="translate.google.com" 
 									oncommand="mlyrics.pane.contextRefresh(null, -2);"/>
-									
-								<menuitem  
-									label="---------------------------"
-									disabled="true"/>
 									
 								<menuitem id="contxtRefreshTagMenu" 
 									label="&mlyrics.pane.contxtRefreshTag;" 

@@ -362,6 +362,7 @@ mlyrics.pane = {
 					if (wasLRC == "true") {
 						mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lostLRCNotif, mlyrics.scanlib.scan);
 					}
+					// Because wasLRC can be undefined and isLRC can be false, false != undefined
 					else if (isLRC == "true") {
 						mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLRCNotif, mlyrics.scanlib.scan);
 					}
