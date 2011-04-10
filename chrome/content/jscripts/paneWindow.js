@@ -1458,13 +1458,38 @@ mlyrics.pane = {
 			switch (mode) {
 				
 				case 0:
-					lyrics = "<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyrics.substr(0, translDelimPos1) + "</p>";
+					var lyricsOrigArray = lyrics.substring(0, translDelimPos1).split("\n");
+					var lyricsStyleProps = "";
+					if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+						lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
+					}
+					
+					lyrics = "";
+					for (var i=0; i<lyricsOrigArray.length; i++) {
+						if (lyricsOrigArray[i] == "") lyrics += "<br>";
+						var transLyricsStyleProps = "";
+						lyrics += "<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
+					}
 					break;
 					
 				case 1:
 					var translDelimPos2 = lyrics.indexOf(" ] \n =================== \n", translDelimPos1);
 					if (translDelimPos2 != -1) {
-						lyrics = "<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyrics.substr(translDelimPos2+27) + "</p>";
+						
+						var lyricsTransArray = lyrics.substr(translDelimPos2+27).split("\n");
+						var transLyricsStyleProps = "";
+						if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+							transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
+						}
+						else {
+							transLyricsStyleProps = "text-decoration: underline";
+						}
+						
+						lyrics = "";
+						for (var i=0; i<lyricsTransArray.length; i++) {
+							if (lyricsTransArray[i] == "") lyrics += "<br>";
+							lyrics += "<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyricsTransArray[i] + "</p>";
+						}
 					}
 					break;
 					
