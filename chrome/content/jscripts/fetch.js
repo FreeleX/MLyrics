@@ -116,7 +116,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -285,7 +285,7 @@ mlyrics.fetch = {
 					}
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -337,7 +337,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -432,7 +432,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -498,6 +498,7 @@ mlyrics.fetch = {
 			filterASCIIDigitSym: function (respLyr) {
 				if (respLyr!= null && respLyr != "") {
 					respLyr = escape(respLyr)
+
 					respLyr = respLyr.replace(/%../g, "");
 					respLyr = respLyr.replace(/\./g, "");
 					respLyr = respLyr.replace(/'/g, "");
@@ -558,7 +559,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -653,7 +654,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -760,7 +761,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -905,7 +906,7 @@ mlyrics.fetch = {
 					}
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -961,7 +962,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -1101,7 +1102,7 @@ mlyrics.fetch = {
 					cbFn("");
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -1158,7 +1159,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -1240,7 +1241,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -1353,7 +1354,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -1442,7 +1443,7 @@ mlyrics.fetch = {
 					}
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -1493,7 +1494,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -1674,7 +1675,7 @@ mlyrics.fetch = {
 					}
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -1726,7 +1727,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -1838,7 +1839,7 @@ mlyrics.fetch = {
 					}
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -1889,7 +1890,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -1978,7 +1979,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -2093,7 +2094,7 @@ mlyrics.fetch = {
 					}
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -2144,7 +2145,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -2277,7 +2278,7 @@ mlyrics.fetch = {
 					}
 				}
 				
-				req.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req.send(null);
 			},
@@ -2328,7 +2329,7 @@ mlyrics.fetch = {
 					cbFn(respLyr);
 				}
 				
-				req2.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+				req2.onerror = function () {clearTimeout(abortTimeout);};
 				
 				req2.send(null);
 			},
@@ -2528,7 +2529,7 @@ mlyrics.fetch = {
 				cbFn(transLyrics, detectedLang);
 			}
 			
-			treq.onerror = function () {clearTimeout(abortTimeout);cbFn("");};
+			treq.onerror = function () {clearTimeout(abortTimeout);};
 			
 			treq.send(postData);
 		}
