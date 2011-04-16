@@ -43,6 +43,7 @@ mlyrics.fetch = {
 				respLyr = respLyr.replace(/<span>/g, "");
 				respLyr = respLyr.replace(/\r\n/g, "\n");
 				respLyr = respLyr.replace(/\r/g, "");
+				respLyr = respLyr.replace(/\n\n\n/g, "\n\n");
 				
 				return respLyr;
 			}
@@ -222,8 +223,8 @@ mlyrics.fetch = {
 		// ================
 		LYRDB: {
 			getUrl: function (artist, album, track) {
-				var _artist = encodeURIComponent( this.getCleanStr(artist).replace(/'/g, "") );
-				var _track = encodeURIComponent( this.getCleanStr(track).replace(/'/g, "") );
+				var _artist = encodeURIComponent( this.getCleanStr(artist).replace(/\'/g, "") );
+				var _track = encodeURIComponent( this.getCleanStr(track).replace(/\'/g, "") );
 				
 				var url = "http://webservices.lyrdb.com/lookup.php?q=" + _artist + "|" + _track + "&for=match&agent=Songbird";
 				return url;
@@ -677,7 +678,7 @@ mlyrics.fetch = {
 			fixCharacters: function(respLyr) {
 				if (respLyr== null || respLyr == "") return "";
 				
-				respLyr = respLyr.replace(/\n<span.*<\/span>\n/g, "");
+				respLyr = respLyr.replace(/\n<span.*<\/span>/g, "");
 				respLyr = respLyr.replace(/ <br>/g, "\n");
 				respLyr = respLyr.replace(/<br> /g, "\n");
 				respLyr = respLyr.replace(/<br>/g, "\n");
@@ -1397,6 +1398,7 @@ mlyrics.fetch = {
 				if (!req) {
 					cbFn("");
 					return;
+
 				}
 				
 				ML_debugOutput("Fetch: " + url);
@@ -1668,6 +1670,7 @@ mlyrics.fetch = {
 
 						else {
 							cbFn("");
+
 						}
 					}
 					else {
