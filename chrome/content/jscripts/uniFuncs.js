@@ -63,28 +63,5 @@ function ML_debugOutput (localOutStr) {
   ML_debug_consoleService.logStringMessage("MLyrics [" + localMinutes + ":" + localSeconds + ":" + localMilliseconds + "] " + localOutStr);
 }
 
-function hasLRCFile(aMediaItem) {
-	if (xulRuntime.OS == "WINNT") {
-		var mediaFilePath = decodeURIComponent(aMediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
-		var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("\\"));
-	}
-	else {
-		var mediaFilePath = decodeURIComponent(aMediaItem.contentSrc.path);
-		var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("/"));
-	}
-
-	var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
-	var lrcFilePath = mediaFilePathNoExt + ".lrc";
-
-	timeTracksFile.initWithPath(lrcFilePath);
-	
-	if (timeTracksFile.exists()) return true;
-
-	return false;
-}
-
-var xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULRuntime);
-var timeTracksFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-
 ML_debug_preferenceService = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.mlyrics.");
 ML_debug_consoleService = Components.classes['@mozilla.org/consoleservice;1'].getService(Components.interfaces.nsIConsoleService);

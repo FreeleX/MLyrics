@@ -19,6 +19,7 @@
 	onunload="mlyrics.pane.controller.onUnLoad()">
 	
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/uniFuncs.js"/>
+	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/lrcFile.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/scanLib.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/JSON2.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/fetch.js"/>

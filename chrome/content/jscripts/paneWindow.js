@@ -4,7 +4,6 @@ if (typeof(Cu) == "undefined") var Cu = Components.utils;
 
 Components.utils.import("resource://app/jsmodules/ArrayConverter.jsm");
 Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
-Components.utils.import("resource://gre/modules/NetUtil.jsm");
 
 // We need to have base object
 if (typeof(this.mlyrics) !== 'object') {
@@ -344,35 +343,43 @@ mlyrics.pane = {
 			
 			this.curMediaItem = aMediaItem;
 			
-			if (!mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
-				var wasLRC = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLRCfile");
-				var isLRC = "" + hasLRCFile(aMediaItem);
-				
-				if (wasLRC != isLRC) aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLRCfile", isLRC);
-				
-				var haslyrType = ML_fixHasLyr(aMediaItem);
+			// Return if we are in now selected mode
+			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) return;
 
-				// Lost tag lyrics
-				if (haslyrType == 1) {
-					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLostLyricsNotif, mlyrics.scanlib.scan);
-				}
-				
-				// Lost LRC
-				if (wasLRC != isLRC) {
-					if (wasLRC == "true") {
-						mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lostLRCNotif, mlyrics.scanlib.scan);
-					}
-					// Because wasLRC can be undefined and isLRC can be false, false != undefined
-					else if (isLRC == "true") {
-						mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLRCNotif, mlyrics.scanlib.scan);
-					}
-				}
-				
-				mlyrics.pane.showInfo(aMediaItem);
+			var wasLRC = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLRCfile");
+			var isLRC = "" + mlyrics.lrc.hasLRCFile(aMediaItem);
+			
+			if (wasLRC != isLRC) aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLRCfile", isLRC);
+			
+			var haslyrType = ML_fixHasLyr(aMediaItem);
 
-				if (document.getElementById("lm-deck").selectedIndex == 3) {
-					mlyrics.pane.editTimeTracks.restart();
+			// Lost tag lyrics
+			if (haslyrType == 1) {
+				mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLostLyricsNotif, mlyrics.scanlib.scan);
+			}
+			
+			// Lost LRC
+			if (wasLRC != isLRC) {
+				if (wasLRC == "true") {
+					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lostLRCNotif, mlyrics.scanlib.scan);
 				}
+				// Because wasLRC can be undefined and isLRC can be false, false != undefined
+				else if (isLRC == "true") {
+					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLRCNotif, mlyrics.scanlib.scan);
+				}
+			}
+
+			if (isLRC) {
+				mlyrics.pane.positionListener.timeArray = mlyrics.lrc.syncTimeTracks(aMediaItem);
+			}
+			else {
+				mlyrics.pane.positionListener.timeArray = [];
+			}
+			
+			mlyrics.pane.showInfo(aMediaItem);
+
+			if (document.getElementById("lm-deck").selectedIndex == 3) {
+				setTimeout("mlyrics.pane.editTimeTracks.restart()", 1000);
 			}
 		},
 		
@@ -1304,6 +1311,7 @@ mlyrics.pane = {
 	},
 	
 	contextClear: function () {
+
 		if ((this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PLAYING) ||
 		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PAUSED) ||
 		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_BUFFERING))
@@ -1763,7 +1771,7 @@ mlyrics.pane = {
 				lrcText += "[" + editTimeTracksBox.childNodes[i].childNodes[0].value + "]" + editTimeTracksBox.childNodes[i].childNodes[1].value + "\n";
 			}
 
-			this.writeLRC(lrcText);
+			mlyrics.lrc.writeLRC(lrcText, this.trackMediaItem);
 
 			this.trackMediaItem = 0;
 
@@ -1774,45 +1782,6 @@ mlyrics.pane = {
 
 		onDiscard: function () {
 			document.getElementById("lm-deck").selectedIndex = 1;
-		},
-
-		writeLRC: function (data) {
-			
-			if (mlyrics.pane.xulRuntime.OS == "WINNT") {
-				var mediaFilePath = decodeURIComponent(this.trackMediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
-				var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("\\"));
-			}
-			else {
-				var mediaFilePath = decodeURIComponent(this.trackMediaItem.contentSrc.path);
-				var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("/"));
-			}
-
-			var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
-			var lrcFilePath = mediaFilePathNoExt + ".lrc";
-			
-			mlyrics.pane.timeTracksFile.initWithPath(mediaDirectoryPath);
-			if (!mlyrics.pane.timeTracksFile.isWritable()) {
-				setTimeout(function () {throw new Error("SongBird has failed to write lyrics into " + lrcFilePath + ", directory is not writable");}, 100);
-				return;
-			}
-			
-			mlyrics.pane.timeTracksFile.initWithPath(lrcFilePath);
-			if (mlyrics.pane.timeTracksFile.exists() && !mlyrics.pane.timeTracksFile.isWritable()) {
-				setTimeout(function () {throw new Error("SongBird has failed to write lyrics into " + lrcFilePath + ", file is not writable");}, 100);
-				return;
-			}
-			
-			var ostream = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
-			ostream.init(mlyrics.pane.timeTracksFile, 0x02 | 0x08 | 0x20, 0666, ostream.DEFER_OPEN);
-
-			var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
-			converter.charset = "UTF-8";
-
-			var istream = converter.convertToInputStream(data);
-
-			var trackMediaItem = this.trackMediaItem;
-			
-			NetUtil.asyncCopy(istream, ostream, function (code) { trackMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLRCfile", code == 0); });
 		}
 	},
 	
@@ -1834,6 +1803,7 @@ mlyrics.pane = {
 			this.lmDeck = document.getElementById("lm-deck");
 				
 			// General initialization need
+			mlyrics.lrc.init();
 			mlyrics.pane.init();
 			mlyrics.pane.playlistPlaybackServiceListener.init();
 			mlyrics.pane.titleDataRemoteObserver.init();
@@ -2067,8 +2037,14 @@ mlyrics.pane = {
 	positionListener: {
 		timer: null,
 		duration: 0,
+		lyricsMaxHeight: 0,
+		lyricsNormalHeight: 0,
 		mouseover: false,
 		scrollCorrection: 0,
+		timeArray: [],
+		point: 0,
+
+		constShowDelayMiliSec: 2000,
 		
 		restart: function () {
 			
@@ -2078,14 +2054,23 @@ mlyrics.pane = {
 			else {
 				this.duration = mlyrics.pane.gMM.playbackControl.duration;
 			}
-			
-			this.lyricsMaxHeight = document.getElementById('lm-content').contentWindow.document.body.scrollHeight;
-			this.scrollCorrection = 0;
-			
-			ML_debugOutput("position restart: " + this.scrollCorrection + ", " + this.lyricsMaxHeight + ", " + this.duration);
 
+			var scrollHeight = document.getElementById('lm-content').contentWindow.document.body.scrollHeight;
+			var offsetHeight = document.getElementById('lm-content').contentWindow.document.body.offsetHeight;
+			var clientHeight = document.getElementById('lm-content').contentWindow.document.body.clientHeight;
+			
+			this.lyricsMaxHeight = scrollHeight;
+			this.lyricsNormalHeight = clientHeight;
+			this.scrollCorrection = 0;
+			this.point = 0;
+
+			if (this.timeArray.length>1) alert(this.timeArray[0]);
+
+			ML_debugOutput("position restart: " + this.scrollCorrection + ", " + this.lyricsMaxHeight + ", " + this.duration);
 			
 			clearInterval(this.timer);
+			
+			mlyrics.pane.viewMode.savedData.lyrics
 			
 			var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 			var location = browser.contentDocument.location.toString();
@@ -2097,11 +2082,29 @@ mlyrics.pane = {
 		scrollLyrics: function () {
 			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) return;
 			
-			var position = mlyrics.pane.gMM.playbackControl.position-this.duration*0.1;
+			var position = mlyrics.pane.gMM.playbackControl.position;
 			if (position < 0) position = 0;
 			
-			var playPart = (position)/(this.duration*0.9);
-			playPart = playPart + playPart*this.scrollCorrection/this.lyricsMaxHeight; // Force speed on correction
+			// Have time tracks
+			if (this.timeArray.length > 1 && this.point < this.timeArray.length) {
+				var playPart = 0;
+				//for (var i=0; i<this.timeArray.length-1; i++) {
+					//if (	position > this.timeArray[i]-this.constShowDelayMiliSec && 
+					//	position < this.timeArray[i+1]-this.constShowDelayMiliSec ) {
+
+						// - Scroll correction so the text will be shown on the first half of the pane
+						playPart = (position - this.timeArray[0]) / (this.duration - this.timeArray[0]);// - this.lyricsNormalHeight/this.lyricsMaxHeight/3;
+
+						//ML_debugOutput("playPart::: " + playPart);
+						//this.point = i;
+						//break;
+					//}
+				//}
+			}
+			else {
+				var playPart = position/this.duration;
+				playPart = playPart + playPart*this.scrollCorrection/this.lyricsMaxHeight; // Force speed on correction
+			}
 			
 			if (this.mouseover) {
 				this.scrollCorrection = document.getElementById('lm-content').contentWindow.document.body.scrollTop - this.lyricsMaxHeight*playPart;
@@ -2110,6 +2113,7 @@ mlyrics.pane = {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
 					var newScrollPos = this.lyricsMaxHeight*playPart + this.scrollCorrection;
 					if (newScrollPos < 0) newScrollPos = 0;
+					//ML_debugOutput("scroll to: " + newScrollPos);
 					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
 				}
 			}
@@ -2180,6 +2184,7 @@ mlyrics.pane = {
 						mlyrics.pane.nextItemBufferedInfo.source = localSource;
 					},
 					
+
 					0,
 					false,
 					
