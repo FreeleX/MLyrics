@@ -299,9 +299,11 @@ function onMainTextboxChange (sHbox, sIndex) {
 		
 		return;
 	}
+
+	var sourceIndex = document.getElementById("refreshMenuItem").selectedIndex - 2;
 	
 	sHbox.childNodes[5].value = maintextbox.value;
-	sHbox.childNodes[0].childNodes[3].value = prefs.getCharPref("laddress_" + sources[sIndex]);
+	sHbox.childNodes[0].childNodes[3].value = prefs.getCharPref("laddress_" + sources[sourceIndex]);
 }
 
 function getSelectedBoxIndex () {
