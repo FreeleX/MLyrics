@@ -370,12 +370,13 @@ mlyrics.pane = {
 			}
 
 			if (isLRC) {
-				mlyrics.pane.positionListener.timeArray = mlyrics.lrc.syncTimeTracks(aMediaItem);
+				var result = mlyrics.lrc.readLRC(aMediaItem);
+				mlyrics.pane.positionListener.timeArray = result.timeArray;
 			}
 			else {
 				mlyrics.pane.positionListener.timeArray = [];
 			}
-			
+
 			mlyrics.pane.showInfo(aMediaItem);
 
 			if (document.getElementById("lm-deck").selectedIndex == 3) {
@@ -1731,7 +1732,7 @@ mlyrics.pane = {
 			var absSeconds = parseInt(seconds, 10);
 			if (absSeconds < 10) absSeconds = "0" + absSeconds;
 			var hmilliSeconds = (seconds - absSeconds) * 100;
-			var abshMilliSeconds = parseInt(hmilliSeconds);
+			var abshMilliSeconds = parseInt(hmilliSeconds, 10);
 			if (abshMilliSeconds < 10) abshMilliSeconds = "0" + abshMilliSeconds;
 
 			if (this.currentIndex) {
@@ -2042,9 +2043,9 @@ mlyrics.pane = {
 		mouseover: false,
 		scrollCorrection: 0,
 		timeArray: [],
-		point: 0,
+		playPart: 0,
 
-		constShowDelayMiliSec: 2000,
+		constShowDelayMiliSec: 500,
 		
 		restart: function () {
 			
@@ -2061,16 +2062,16 @@ mlyrics.pane = {
 			
 			this.lyricsMaxHeight = scrollHeight;
 			this.lyricsNormalHeight = clientHeight;
+
 			this.scrollCorrection = 0;
-			this.point = 0;
-
-			if (this.timeArray.length>1) alert(this.timeArray[0]);
-
-			ML_debugOutput("position restart: " + this.scrollCorrection + ", " + this.lyricsMaxHeight + ", " + this.duration);
+			this.playPart = 0;
+			
+			// We need to start show lines beforehand
+			for (var i=0; i<this.timeArray.length; i++) {
+				this.timeArray[i] -= this.constShowDelayMiliSec;
+			}
 			
 			clearInterval(this.timer);
-			
-			mlyrics.pane.viewMode.savedData.lyrics
 			
 			var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 			var location = browser.contentDocument.location.toString();
@@ -2085,35 +2086,48 @@ mlyrics.pane = {
 			var position = mlyrics.pane.gMM.playbackControl.position;
 			if (position < 0) position = 0;
 			
-			// Have time tracks
-			if (this.timeArray.length > 1 && this.point < this.timeArray.length) {
-				var playPart = 0;
-				//for (var i=0; i<this.timeArray.length-1; i++) {
-					//if (	position > this.timeArray[i]-this.constShowDelayMiliSec && 
-					//	position < this.timeArray[i+1]-this.constShowDelayMiliSec ) {
+			// Time tracks scrolling
+			if (this.timeArray.length > 1) {
+				
+				var normalLineTimeLen = this.duration / this.timeArray.length;
+				var speedIndexSum = 0;
+				for (var i=0; i<this.timeArray.length-1; i++) {
 
-						// - Scroll correction so the text will be shown on the first half of the pane
-						playPart = (position - this.timeArray[0]) / (this.duration - this.timeArray[0]);// - this.lyricsNormalHeight/this.lyricsMaxHeight/3;
+					var currLineTimeLen = this.timeArray[i+1] - this.timeArray[i];
+					speedIndexSum += currLineTimeLen/normalLineTimeLen;
 
-						//ML_debugOutput("playPart::: " + playPart);
-						//this.point = i;
-						//break;
-					//}
-				//}
+					if (	position > this.timeArray[i]  && 
+						position < this.timeArray[i+1] ) {
+						
+						var currLineTimeLen = position - this.timeArray[i];
+						var lrcLineTimeLen = this.timeArray[i+1] - this.timeArray[i];
+
+						var speedIndex = speedIndexSum / (i+1);
+
+						// Show 2 lines at the top of the current line
+						var playPart = (i-2 + currLineTimeLen/lrcLineTimeLen) / this.timeArray.length;
+						/*if (playPart > this.playPart)*/ this.playPart = playPart;
+
+						break;
+					}
+				}
 			}
+
+			// Normal scrolling
 			else {
-				var playPart = position/this.duration;
-				playPart = playPart + playPart*this.scrollCorrection/this.lyricsMaxHeight; // Force speed on correction
+				// 30 sec start delay
+				var playPart = (position - 30000) / (this.duration - 30000);
+				this.playPart = playPart + playPart*this.scrollCorrection/this.lyricsMaxHeight; // Force speed on correction
 			}
 			
 			if (this.mouseover) {
-				this.scrollCorrection = document.getElementById('lm-content').contentWindow.document.body.scrollTop - this.lyricsMaxHeight*playPart;
+				this.scrollCorrection = document.getElementById('lm-content').contentWindow.document.body.scrollTop - this.lyricsMaxHeight*this.playPart;
 			}
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
-					var newScrollPos = this.lyricsMaxHeight*playPart + this.scrollCorrection;
+					var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
+
 					if (newScrollPos < 0) newScrollPos = 0;
-					//ML_debugOutput("scroll to: " + newScrollPos);
 					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
 				}
 			}
