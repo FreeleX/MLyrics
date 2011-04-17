@@ -18,7 +18,7 @@ mlyrics.fetch = {
 		for (var i=0; i<sources.length; i++) {
 			
 			if (typeof(this.source[sources[i]]) !== 'object') {
-				ML_debugOutput("Does not have object for " + sources[i] + " source");
+				mlyrics.lib.debugOutput("Does not have object for " + sources[i] + " source");
 				continue;
 			}
 			
@@ -80,7 +80,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				var sourceObj = this;
 				
@@ -93,7 +93,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -101,7 +101,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -132,7 +132,7 @@ mlyrics.fetch = {
 					var respArtistEnd = respLyr.indexOf('</a></h2>', respArtistStart);
 					var respArtist = respLyr.substring(respArtistStart, respArtistEnd);
 					if (respArtist.toLowerCase() != artist.toLowerCase()) {
-						ML_debugOutput("Artist " + artist + " doesn't match " + respArtist + " the one we're looking for");
+						mlyrics.lib.debugOutput("Artist " + artist + " doesn't match " + respArtist + " the one we're looking for");
 						return "";
 					}
 				}
@@ -144,7 +144,7 @@ mlyrics.fetch = {
 					var respTitleEnd = respLyr.indexOf('</a></h1>', respTitleStart);
 					var respTitle = respLyr.substring(respTitleStart, respTitleEnd);
 					if (respTitle.toLowerCase() != track.toLowerCase()) {
-						ML_debugOutput("Track " + track + " doesn't match " + respTitle + " the one we're looking for");
+						mlyrics.lib.debugOutput("Track " + track + " doesn't match " + respTitle + " the one we're looking for");
 						return "";
 					}
 				}
@@ -242,7 +242,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -253,7 +253,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -261,7 +261,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -292,7 +292,7 @@ mlyrics.fetch = {
 			},
 			
 			getLyrics2: function (songUrl, cbFn) {
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -311,7 +311,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -319,7 +319,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -399,7 +399,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -410,7 +410,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -418,7 +418,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -460,7 +460,7 @@ mlyrics.fetch = {
 				  respLyr = respLyr.substring(songPosStart+1, songPosEnd);
 				}
 				else {
-				  ML_debugOutput("position 1 not found")
+				  mlyrics.lib.debugOutput("position 1 not found")
 				  respLyr = "";
 				}
 				
@@ -526,7 +526,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -537,7 +537,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -545,7 +545,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -621,7 +621,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -632,7 +632,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -640,7 +640,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -728,7 +728,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -739,7 +739,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -747,7 +747,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -777,12 +777,12 @@ mlyrics.fetch = {
 					var respTitle = respLyr.substring(titleStartPos+7, titleEndPos);
 					var titleCheck = artist.toLowerCase() + " - " + track.toLowerCase() + " lyrics";
 					if (titleCheck != respTitle.toLowerCase()) {
-						ML_debugOutput("Redirected and track " + titleCheck + " doesn't match " + respTitle.toLowerCase() + " the one we're looking for");
+						mlyrics.lib.debugOutput("Redirected and track " + titleCheck + " doesn't match " + respTitle.toLowerCase() + " the one we're looking for");
 						return "";
 					}
 				}
 				else {
-					ML_debugOutput("No title found, broken page?");
+					mlyrics.lib.debugOutput("No title found, broken page?");
 					return "";
 				}
 				
@@ -830,7 +830,7 @@ mlyrics.fetch = {
 								break;
 								
 							default:
-								ML_debugOutput("Unexpected lyrics symbol '" + inArray[i] + "', filtered");
+								mlyrics.lib.debugOutput("Unexpected lyrics symbol '" + inArray[i] + "', filtered");
 								break;
 						}
 					}
@@ -864,7 +864,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -875,7 +875,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -883,7 +883,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -913,7 +913,7 @@ mlyrics.fetch = {
 			},
 			
 			getLyrics2: function (songUrl, cbFn) {
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -932,7 +932,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -940,7 +940,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1008,7 +1008,7 @@ mlyrics.fetch = {
 								break;
 								
 							default:
-								ML_debugOutput("Unexpected lyrics symbol '" + inArray[i] + "', filtered");
+								mlyrics.lib.debugOutput("Unexpected lyrics symbol '" + inArray[i] + "', filtered");
 								break;
 						}
 					}
@@ -1047,7 +1047,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -1058,7 +1058,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1066,7 +1066,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1111,7 +1111,7 @@ mlyrics.fetch = {
 			getLyrics2: function (lyricId, lyricChecksum, cbFn) {
 				
 				var songUrl = "http://api.chartlyrics.com/apiv1.asmx/GetLyric?lyricId=" + lyricId + "&lyricCheckSum=" + lyricChecksum;
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -1130,7 +1130,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1138,7 +1138,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1209,7 +1209,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -1220,7 +1220,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1228,7 +1228,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1322,7 +1322,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -1333,7 +1333,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1341,7 +1341,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1401,7 +1401,7 @@ mlyrics.fetch = {
 
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -1412,7 +1412,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1420,7 +1420,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1451,7 +1451,7 @@ mlyrics.fetch = {
 			},
 			
 			getLyrics2: function (songUrl, cbFn) {
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -1470,7 +1470,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1478,7 +1478,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1624,7 +1624,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -1635,7 +1635,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1643,7 +1643,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1684,7 +1684,7 @@ mlyrics.fetch = {
 			},
 			
 			getLyrics2: function (songUrl, cbFn) {
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -1703,7 +1703,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1711,7 +1711,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1780,7 +1780,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -1791,7 +1791,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1799,7 +1799,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1848,7 +1848,7 @@ mlyrics.fetch = {
 			},
 			
 			getLyrics2: function (songUrl, cbFn) {
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -1867,7 +1867,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1875,7 +1875,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -1948,7 +1948,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -1959,7 +1959,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -1967,7 +1967,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -2034,7 +2034,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -2045,7 +2045,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -2053,7 +2053,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -2103,7 +2103,7 @@ mlyrics.fetch = {
 			},
 			
 			getLyrics2: function (songUrl, cbFn) {
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -2122,7 +2122,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -2130,7 +2130,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -2214,7 +2214,7 @@ mlyrics.fetch = {
 					return;
 				}
 				
-				ML_debugOutput("Fetch: " + url);
+				mlyrics.lib.debugOutput("Fetch: " + url);
 				
 				req.open("GET", url, true);
 				
@@ -2225,7 +2225,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch1 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -2233,7 +2233,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got lyrics data");
+					mlyrics.lib.debugOutput("Got lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -2287,7 +2287,7 @@ mlyrics.fetch = {
 			},
 			
 			getLyrics2: function (songUrl, cbFn) {
-				ML_debugOutput("Fetch2: " + songUrl);
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
 				
 				var req2 = new XMLHttpRequest();
 				if (!req2) {
@@ -2306,7 +2306,7 @@ mlyrics.fetch = {
 					if (typeof(mlyrics.pane) != "undefined" && 
 					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
-						ML_debugOutput("Fetch2 abort - track changed");
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
 						this.abort();
 						return;
@@ -2314,7 +2314,7 @@ mlyrics.fetch = {
 					
 					if (this.readyState != 4) return;
 					
-					ML_debugOutput("Got2 lyrics data");
+					mlyrics.lib.debugOutput("Got2 lyrics data");
 					
 					clearTimeout(abortTimeout);
 					
@@ -2446,7 +2446,7 @@ mlyrics.fetch = {
 		
 		var langIgnoreList = this.prefs.getCharPref("ignoreLanguages").split("|");
 		
-		ML_debugOutput("Lyrics len: " + lyrics.length)
+		mlyrics.lib.debugOutput("Lyrics len: " + lyrics.length)
 		
 		var getURL = "http://translate.google.com/translate_a/t";
 		var postData = "client=songbird&multires=1&text=" + encodeURIComponent(lyrics) + "&hl=en&sl=auto&ie=UTF-8&tl=" + transLang;
@@ -2458,7 +2458,7 @@ mlyrics.fetch = {
 				this.cbSProgress("translate.google.com", true);
 			}
 			
-			ML_debugOutput("Translate request");
+			mlyrics.lib.debugOutput("Translate request");
 			
 			treq.open("POST", getURL, true);
 			treq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -2471,7 +2471,7 @@ mlyrics.fetch = {
 					( mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem && !ignoreTrack )
 				)
 				{
-					ML_debugOutput("Translate abort - track changed");
+					mlyrics.lib.debugOutput("Translate abort - track changed");
 					clearTimeout(abortTimeout);
 					treq.abort();
 					return;
@@ -2479,7 +2479,7 @@ mlyrics.fetch = {
 				
 				if (this.readyState != 4) return;
 				
-				ML_debugOutput("Translate request part finished");
+				mlyrics.lib.debugOutput("Translate request part finished");
 				
 				clearTimeout(abortTimeout);
 				
@@ -2487,7 +2487,7 @@ mlyrics.fetch = {
 					
 					var getlLyr = this.responseText;
 					
-					ML_debugOutput("Translated length: " + getlLyr.length);
+					mlyrics.lib.debugOutput("Translated length: " + getlLyr.length);
 					
 					if (typeof(JSON) != "undefined") {
 					
@@ -2515,7 +2515,7 @@ mlyrics.fetch = {
 								}
 							}
 							else {
-								ML_debugOutput("Translation from " + detectedLang + " to " + transLang + " cannot be done");
+								mlyrics.lib.debugOutput("Translation from " + detectedLang + " to " + transLang + " cannot be done");
 							}
 						}
 					}
@@ -2524,7 +2524,7 @@ mlyrics.fetch = {
 					}
 				}
 				else {
-					ML_debugOutput("Google translate responsed: " + this.status);
+					mlyrics.lib.debugOutput("Google translate responsed: " + this.status);
 				}
 				
 				transLyrics = transLyrics.replace(/\r\n/g, "\n");
@@ -2561,7 +2561,7 @@ mlyrics.fetch = {
 							// all translations done
 							if (lyrics == "") {
 								
-								ML_debugOutput("Translation finished");
+								mlyrics.lib.debugOutput("Translation finished");
 								
 								if (translated != "") {
 									var delimiter = "\n\n =================== \n [ Google translated ] \n =================== \n\n";

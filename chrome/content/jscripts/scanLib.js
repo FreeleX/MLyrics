@@ -38,7 +38,7 @@ if (typeof(this.mlyrics) !== 'object') {
 					},
 					
 					onEnumeratedItem: function(aMediaList, aMediaItem) {
-						ML_fixHasLyr(aMediaItem); 
+						mlyrics.lib.fixHasLyr(aMediaItem); 
 					},
 					
 					onEnumerationEnd: function(aMediaList, aStatusCode) {

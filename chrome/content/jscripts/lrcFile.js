@@ -36,7 +36,7 @@ mlyrics.lrc = {
 
 	readLRC: function (trackMediaItem) {
 
-		var result = {timeArray: "", lyrics: ""};
+		var result = {timeArray: "", lyrics: "", origContent: ""};
 
 		if (this.xulRuntime.OS == "WINNT") {
 			var mediaFilePath = decodeURIComponent(trackMediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
@@ -72,7 +72,8 @@ mlyrics.lrc = {
 
 		var istream = converter.ConvertToUnicode(data);
 
-		result.timeArray = this.getTimeTracks(istream);
+		result.origContent = istream;
+		result.timeStruct = this.getTimeTracks(istream);
 		result.lyrics    = this.getClearLyrics(istream);
 
 		return result;
@@ -135,8 +136,7 @@ mlyrics.lrc = {
 	},
 
 	getTimeTracks: function (lrcLyrics) {
-		var timeArray = [];
-		timeArray[0] = 0;
+		var timeStruct = {timeArray: [], origTimeTracks: []};
 		
 		if (lrcLyrics) {
 			var lrcLyricsArray = lrcLyrics.split("\n");
@@ -147,21 +147,86 @@ mlyrics.lrc = {
 					lrcLyricsArray[i].substr(6, 1) == "." &&
 					lrcLyricsArray[i].substr(9, 1) == "]"
 				) {
-					timeArray[i] = 	parseInt(lrcLyricsArray[i].substr(1, 2), 10)*60*1000 + 
-							parseInt(lrcLyricsArray[i].substr(4, 2), 10)*1000 + 
-							parseInt(lrcLyricsArray[i].substr(7, 2), 10)*10;
+					timeStruct.origTimeTracks[i] = lrcLyricsArray[i].substr(1, 8);
+					timeStruct.timeArray[i] = 	parseInt(lrcLyricsArray[i].substr(1, 2), 10)*60*1000 + 
+									parseInt(lrcLyricsArray[i].substr(4, 2), 10)*1000 + 
+									parseInt(lrcLyricsArray[i].substr(7, 2), 10)*10;
 				}
 			}
 		}
 
-		return timeArray;
+		return timeStruct;
 	},
 
 	getClearLyrics: function (lrcLyrics) {
-		return lrcLyrics.replace(/\[.*\:.*\..*\]/g, "");
+		return lrcLyrics.replace(/\r/g, "").replace(/\[.*\:.*\..*\]/g, "").replace(/\[.*\].*\n/g, "");
 	},
 
 	syncTimeTracks: function (aMediaItem) {
 		
+		var haslyrStrFullOrig = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics");
+		var hasLyrics = (haslyrStrFullOrig.indexOf("-tag") != -1);
+		var hasLRC = (haslyrStrFullOrig.indexOf("-clock") != -1);
+
+		// We have no .lrc to syn with
+		if (!hasLRC) 
+			return true;
+
+		var lrcData = this.readLRC(aMediaItem);
+		lrcData.lyrics = lrcData.lyrics.replace(/\r/g, "").replace(/\n\n/g, "\n");
+
+		// If has no lyrics - sync from .lrc file
+		if (!hasLyrics) {
+			aMediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", lrcData.lyrics);
+
+			mlyrics.lib.writeID3Tag(aMediaItem);
+			return true;
+		}
+
+		var lyricsOrig = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+
+		var translDelimPos1 = lyricsOrig.indexOf("\n\n =================== \n [ ");
+		if (translDelimPos1 == -1) {
+			var lyrics = lyricsOrig.replace(/\r/g, "");
+		}
+		else {
+			var lyrics = lyricsOrig.substr(0, translDelimPos1).replace(/\r/g, "");
+		}
+
+		var lyricsArray = lyrics.split("\n");
+		var lrcLyricsArray = lrcData.lyrics.split("\n");
+
+		if (lyricsArray[lyricsArray.length-1] == "") lyricsArray.length --;
+		if (lrcLyricsArray[lrcLyricsArray.length-1] == "") lrcLyricsArray.length --;
+
+		if (lyricsArray.length != lrcLyricsArray.length) {
+			// Sync cannot be done - number of lines is not equal
+			mlyrics.lib.debugOutput("LRC sync fail: " + lyricsArray.length + " <> " + lrcLyricsArray.length);
+			return false;
+		}
+
+		// Compare line-by-line
+		var needSync = false;
+		for (var i=0; i<lyricsArray.length; i++) {
+			if (lyricsArray[i].length != lrcLyricsArray[i].length)  {
+				needSync = true;
+				break;
+			}
+		}
+
+		// No need to sync
+		if (!needSync) return true;
+
+		var lrcLyrics = "";
+		for (var i=0; i<lyricsArray.length; i++) {
+			lrcLyrics += "[" + lrcData.timeStruct.origTimeTracks[i] + "]" + lyricsArray[i] + "\n";
+		}
+
+		mlyrics.lrc.writeLRC(lrcLyrics, aMediaItem);
+
+		var mediaFilePath = decodeURIComponent(aMediaItem.contentSrc.path);
+		mlyrics.lib.debugOutput("LRC synced for: " + mediaFilePath);
+
+		return true;
 	}
 }

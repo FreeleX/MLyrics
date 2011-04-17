@@ -86,7 +86,7 @@ if (typeof(this.mlyrics) !== 'object') {
 			},
 			
 			onItemUpdated: function(list, item, index) {
-				ML_fixHasLyr(item);
+				mlyrics.lib.fixHasLyr(item);
 				
 			},
 			

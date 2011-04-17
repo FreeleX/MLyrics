@@ -37,7 +37,8 @@ mlyrics.pane = {
 		clktoEnab: "",
 		foundLostLyricsNotif: "",
 		foundLRCNotif: "",
-		lostLRCNotif: ""
+		lostLRCNotif: "",
+		lrcSyncFail: ""
 	},
 	
 	enableNotifications: function (enable) {
@@ -93,6 +94,7 @@ mlyrics.pane = {
 		this.pStrings.foundLostLyricsNotif 	= strings.GetStringFromName("foundLostLyricsNotif");
 		this.pStrings.foundLRCNotif 		= strings.GetStringFromName("foundLRCNotif");
 		this.pStrings.lostLRCNotif 		= strings.GetStringFromName("lostLRCNotif");
+		this.pStrings.lrcSyncFail		= strings.GetStringFromName("lrcSyncFail");
 		
 		var displayPaneManager = Components.classes["@songbirdnest.com/Songbird/DisplayPane/Manager;1"].getService(Components.interfaces.sbIDisplayPaneManager);
 		var dpInstantiator = displayPaneManager.getInstantiatorForWindow(window);
@@ -100,7 +102,7 @@ mlyrics.pane = {
 			this.ourDisplayPane = dpInstantiator.displayPane;
 		}
 		
-		ML_debugOutput("Pane intitialization finished");
+		mlyrics.lib.debugOutput("Pane intitialization finished");
 	},
 	
 	openAndReuseOneTabPerAttribute: function (attrName, url) {
@@ -351,7 +353,7 @@ mlyrics.pane = {
 			
 			if (wasLRC != isLRC) aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLRCfile", isLRC);
 			
-			var haslyrType = ML_fixHasLyr(aMediaItem);
+			var haslyrType = mlyrics.lib.fixHasLyr(aMediaItem);
 
 			// Lost tag lyrics
 			if (haslyrType == 1) {
@@ -371,13 +373,19 @@ mlyrics.pane = {
 
 			if (isLRC == "true") {
 				var result = mlyrics.lrc.readLRC(aMediaItem);
-				mlyrics.pane.positionListener.timeArray = result.timeArray;
+				mlyrics.pane.positionListener.timeArray = result.timeStruct.timeArray;
 			}
 			else {
 				mlyrics.pane.positionListener.timeArray = [];
 			}
 
+			var syncResult = mlyrics.lrc.syncTimeTracks(aMediaItem);
+
 			mlyrics.pane.showInfo(aMediaItem);
+
+			if (!syncResult) {
+				mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lrcSyncFail, mlyrics.scanlib.scan);
+			}
 
 			if (document.getElementById("lm-deck").selectedIndex == 3) {
 				setTimeout("mlyrics.pane.editTimeTracks.restart()", 1000);
@@ -387,7 +395,7 @@ mlyrics.pane = {
 		onStop: function() {
 			if (!mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
 				mlyrics.pane.controller.lmDeck.selectedIndex = 0;
-				ML_debugOutput("Pane collapsed on song stop");
+				mlyrics.lib.debugOutput("Pane collapsed on song stop");
 				
 				if (!mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
 					mlyrics.pane.controller.showPane(false);
@@ -540,7 +548,7 @@ mlyrics.pane = {
 		}
 		
 		mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", lyrics);
-		this.writeID3Tag(mediaItem);
+		mlyrics.lib.writeID3Tag(mediaItem);
 			
 		document.getElementById("ML_sourceAddressNextButton").hidden = true;
 	},
@@ -795,7 +803,7 @@ mlyrics.pane = {
 	},
 	
 	stopFetch: function () {
-		ML_debugOutput("Abort action, emulating track change");
+		mlyrics.lib.debugOutput("Abort action, emulating track change");
 		mlyrics.fetch.fetchMediaItem = 0;
 		
 		document.getElementById("ML_sourceAddressNextButton").hidden = false;
@@ -891,7 +899,7 @@ mlyrics.pane = {
 			}
 		}
 		else {
-			ML_debugOutput("Pane collapsed on build page: " + this.controller.haveLyr + ", " + noLyrFoundPref + ", " + tabActive);
+			mlyrics.lib.debugOutput("Pane collapsed on build page: " + this.controller.haveLyr + ", " + noLyrFoundPref + ", " + tabActive);
 			this.controller.showPane(false);
 		}
 		
@@ -1332,7 +1340,7 @@ mlyrics.pane = {
 			
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
 			
-			this.writeID3Tag(mediaItem);
+			mlyrics.lib.writeID3Tag(mediaItem);
 			this.buildPage(artist, album, track, "");
 			
 			// Remove notifications
@@ -1361,7 +1369,7 @@ mlyrics.pane = {
 			var album = mediaItem.getProperty(SBProperties.albumName);
 			var track = mediaItem.getProperty(SBProperties.trackName);
 			
-			this.writeID3Tag(mediaItem);
+			mlyrics.lib.writeID3Tag(mediaItem);
 			this.buildPage(artist, album, track, "[Instrumental]");
 			
 			// Remove notifications
@@ -1650,6 +1658,9 @@ mlyrics.pane = {
 		currentIndex: 0,
 
 		init: function () {
+			mlyrics.pane.mediaCoreManager.playbackControl.pause();
+			setTimeout(function () {mlyrics.pane.mediaCoreManager.playbackControl.play();}, 3000);
+
 			this.restart();
 
 			document.getElementById("lm-deck").selectedIndex = 3;
@@ -1678,16 +1689,20 @@ mlyrics.pane = {
 
 			var translDelimPos1 = mlyrics.pane.viewMode.savedData.lyrics.indexOf("\n\n =================== \n [ ");
 			if (translDelimPos1 == -1) {
-				var tempLyrics = mlyrics.pane.viewMode.savedData.lyrics;
+				var tempLyrics = mlyrics.pane.viewMode.savedData.lyrics.replace(/\r/g, "");
 			}
 			else {
-				var tempLyrics = mlyrics.pane.viewMode.savedData.lyrics.substr(0, translDelimPos1);
+				var tempLyrics = mlyrics.pane.viewMode.savedData.lyrics.substr(0, translDelimPos1).replace(/\r/g, "");
 			}
+
+			if (tempLyrics.substr(tempLyrics.length-1, 2) == "\n\n") tempLyrics = tempLyrics.substr(0, tempLyrics.length-1);
 
 			editTimeTracksBox.childNodes[0].removeAttribute("style");
 			editTimeTracksBox.childNodes[0].childNodes[0].setAttribute("style", "visibility: hidden");
 
 			var lyricsArray = tempLyrics.split("\n");
+			if (lyricsArray[lyricsArray.length-1] == "") lyricsArray.length --;
+
 			for (var i=0; i < lyricsArray.length; i++) {
 				var elementBox = editTimeTracksBox.childNodes[0].cloneNode(true);
 				elementBox.childNodes[1].setAttribute("value", lyricsArray[i]);
@@ -1718,6 +1733,17 @@ mlyrics.pane = {
 			if (needNext == -1) {
 				if (this.currentIndex) this.currentIndex--;
 				editTimeTracksBox.scrollTop = editTimeTracksBox.scrollHeight*( (this.currentIndex-1) / editTimeTracksBox.childNodes.length);
+
+				var timeTracks = editTimeTracksBox.childNodes[this.currentIndex].childNodes[0].value;
+				var absValue = 	parseInt(timeTracks.substr(0, 2), 10)*60*1000 + 
+						parseInt(timeTracks.substr(3, 2), 10)*1000 + 
+						parseInt(timeTracks.substr(6, 2), 10)*10 -
+						3000;
+				if (absValue < 0) absValue = 0;
+				
+				mlyrics.pane.mediaCoreManager.playbackControl.pause();
+				mlyrics.pane.gMM.playbackControl.position = absValue;
+				mlyrics.pane.mediaCoreManager.playbackControl.play();
 			}
 			else if (needNext) {
 				this.currentIndex++;
@@ -1886,7 +1912,7 @@ mlyrics.pane = {
 					mlyrics.pane.showInfo(i);
 				}
 			} else {
-				ML_debugOutput("Pane collapsed on load");
+				mlyrics.lib.debugOutput("Pane collapsed on load");
 				mlyrics.pane.ourDisplayPane.collapsed = true;
 			}
 			
@@ -1895,7 +1921,7 @@ mlyrics.pane = {
 		
 		showPane: function (needShow) {
 			
-			ML_debugOutput("Collapse action: " + this.usercollapsed + ", " + mlyrics.pane.ourDisplayPane.collapsed + ", " + needShow);
+			mlyrics.lib.debugOutput("Collapse action: " + this.usercollapsed + ", " + mlyrics.pane.ourDisplayPane.collapsed + ", " + needShow);
 			
 			if (mlyrics.pane.ourDisplayPane.collapsed != this.usercollapsed) return;
 			
@@ -2017,7 +2043,7 @@ mlyrics.pane = {
 			var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 			var location = browser.contentDocument.location.toString();
 			
-			ML_debugOutput("TAB event: " + location);
+			mlyrics.lib.debugOutput("TAB event: " + location);
 			
 			if (location.substr(0, 9) == "chrome://") {
 				
@@ -2042,7 +2068,7 @@ mlyrics.pane = {
 					}
 				}
 			} else {
-				ML_debugOutput("Pane collapsed on tab switch");
+				mlyrics.lib.debugOutput("Pane collapsed on tab switch");
 				mlyrics.pane.controller.showPane(false);
 			}
 		}
@@ -2081,7 +2107,7 @@ mlyrics.pane = {
 			
 			// We need to start show lines beforehand
 			for (var i=0; i<this.timeArray.length; i++) {
-				this.timeArray[i] -= this.constShowDelayMiliSec;
+				//this.timeArray[i] -= this.constShowDelayMiliSec;
 			}
 			
 			clearInterval(this.timer);
