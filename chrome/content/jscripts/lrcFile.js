@@ -173,7 +173,7 @@ mlyrics.lrc = {
 			return true;
 
 		var lrcData = this.readLRC(aMediaItem);
-		lrcData.lyrics = lrcData.lyrics.replace(/\r/g, "").replace(/\n\n/g, "\n");
+		lrcData.lyrics = lrcData.lyrics.replace(/\r/g, "");
 
 		// If has no lyrics - sync from .lrc file
 		if (!hasLyrics) {
@@ -202,6 +202,9 @@ mlyrics.lrc = {
 		if (lyricsArray.length != lrcLyricsArray.length) {
 			// Sync cannot be done - number of lines is not equal
 			mlyrics.lib.debugOutput("LRC sync fail: " + lyricsArray.length + " <> " + lrcLyricsArray.length);
+			for (var i=0; i<lyricsArray.length; i++) {
+				alert("===" + lyricsArray[i] + "=== \n<>\n===" +  lrcLyricsArray[i] + "====");
+			}
 			return false;
 		}
 
