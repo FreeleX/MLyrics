@@ -56,9 +56,11 @@
 			<menuitem label="&mlyrics.pane.contxWebSrch;" oncommand="mlyrics.pane.contextRefresh(true, -1);"/>
 			<menuseparator />
 			<menuitem id="metadataMenuItem" 	label="&mlyrics.pane.showEditDialog;" 		oncommand="mlyrics.pane.editMode.init()"/>
-			<menuitem id="timeTracksMenuItem" 	label="&mlyrics.pane.showTimeTracksDialog;" 	oncommand="mlyrics.pane.editTimeTracks.init()"/>
 			<menuitem id="makeInstrMenuItem" 	label="&mlyrics.pane.contxtMakeInstr;" 		oncommand="mlyrics.pane.contextMakeInstrumental();"/>
 			<menuitem id="clearMenuItem" 		label="&mlyrics.pane.contxtClear;" 		oncommand="mlyrics.pane.contextClear();"/>
+			<menuseparator />
+			<menuitem id="timeTracksMenuItem" 	label="&mlyrics.pane.showTimeTracksDialog;" 	oncommand="mlyrics.pane.editTimeTracks.init()"/>
+			<menuitem id="removeTimeTracksMenuItem" label="&mlyrics.pane.removeTimeTracks;" 	oncommand="mlyrics.pane.editTimeTracks.remove()"/>
 		</menupopup>
 	</popupset>
 	

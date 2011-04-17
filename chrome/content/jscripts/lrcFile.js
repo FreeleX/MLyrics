@@ -38,7 +38,7 @@ mlyrics.lrc = {
 
 		var result = {timeArray: "", lyrics: ""};
 
-		if (mlyrics.pane.xulRuntime.OS == "WINNT") {
+		if (this.xulRuntime.OS == "WINNT") {
 			var mediaFilePath = decodeURIComponent(trackMediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
 			var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("\\"));
 		}
@@ -52,7 +52,7 @@ mlyrics.lrc = {
 
 		this.timeTracksFile.initWithPath(lrcFilePath);
 
-		if (this.timeTracksFile.exists() && !this.timeTracksFile.isWritable()) {
+		if (!this.timeTracksFile.exists() || !this.timeTracksFile.isReadable()) {
 			setTimeout(function () {throw new Error("SongBird has failed to read lyrics from " + lrcFilePath);}, 100);
 			return result;
 		}
@@ -80,7 +80,7 @@ mlyrics.lrc = {
 
 	writeLRC: function (data, trackMediaItem) {
 		
-		if (mlyrics.pane.xulRuntime.OS == "WINNT") {
+		if (this.xulRuntime.OS == "WINNT") {
 			var mediaFilePath = decodeURIComponent(trackMediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
 			var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("\\"));
 		}
@@ -92,20 +92,20 @@ mlyrics.lrc = {
 		var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
 		var lrcFilePath = mediaFilePathNoExt + ".lrc";
 		
-		mlyrics.pane.timeTracksFile.initWithPath(mediaDirectoryPath);
-		if (!mlyrics.pane.timeTracksFile.isWritable()) {
+		this.timeTracksFile.initWithPath(mediaDirectoryPath);
+		if (!this.timeTracksFile.isWritable()) {
 			setTimeout(function () {throw new Error("SongBird has failed to write lyrics into " + lrcFilePath + ", directory is not writable");}, 100);
 			return;
 		}
 		
-		mlyrics.pane.timeTracksFile.initWithPath(lrcFilePath);
-		if (mlyrics.pane.timeTracksFile.exists() && !mlyrics.pane.timeTracksFile.isWritable()) {
+		this.timeTracksFile.initWithPath(lrcFilePath);
+		if (this.timeTracksFile.exists() && !this.timeTracksFile.isWritable()) {
 			setTimeout(function () {throw new Error("SongBird has failed to write lyrics into " + lrcFilePath + ", file is not writable");}, 100);
 			return;
 		}
 		
 		var ostream = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
-		ostream.init(mlyrics.pane.timeTracksFile, 0x02 | 0x08 | 0x20, 0666, ostream.DEFER_OPEN);
+		ostream.init(this.timeTracksFile, 0x02 | 0x08 | 0x20, 0666, ostream.DEFER_OPEN);
 
 		var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
 		converter.charset = "UTF-8";
@@ -113,6 +113,25 @@ mlyrics.lrc = {
 		var istream = converter.convertToInputStream(data);
 		
 		NetUtil.asyncCopy(istream, ostream, function (code) { trackMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLRCfile", code == 0); });
+	},
+
+	removeLRC: function (trackMediaItem) {
+		if (this.xulRuntime.OS == "WINNT") {
+			var mediaFilePath = decodeURIComponent(trackMediaItem.contentSrc.path).substr(1).replace(/\//g, "\\");
+			var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("\\"));
+		}
+		else {
+			var mediaFilePath = decodeURIComponent(trackMediaItem.contentSrc.path);
+			var mediaDirectoryPath = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("/"));
+		}
+
+		var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
+		var lrcFilePath = mediaFilePathNoExt + ".lrc";
+
+		this.timeTracksFile.initWithPath(lrcFilePath);
+
+		if (this.timeTracksFile.exists())
+			this.timeTracksFile.remove(false);
 	},
 
 	getTimeTracks: function (lrcLyrics) {

@@ -369,7 +369,7 @@ mlyrics.pane = {
 				}
 			}
 
-			if (isLRC) {
+			if (isLRC == "true") {
 				var result = mlyrics.lrc.readLRC(aMediaItem);
 				mlyrics.pane.positionListener.timeArray = result.timeArray;
 			}
@@ -1783,6 +1783,19 @@ mlyrics.pane = {
 
 		onDiscard: function () {
 			document.getElementById("lm-deck").selectedIndex = 1;
+		},
+
+		remove: function () {
+			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
+				var mediaItem = mlyrics.pane.mediaItemSelectListener.curMediaItem;
+			}
+			else {
+				var mediaItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
+			}
+
+			mlyrics.lrc.removeLRC(mediaItem);
+
+			mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLRCfile", null);
 		}
 	},
 	
