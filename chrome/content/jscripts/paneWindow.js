@@ -2107,7 +2107,7 @@ mlyrics.pane = {
 			
 			// We need to start show lines beforehand
 			for (var i=0; i<this.timeArray.length; i++) {
-				//this.timeArray[i] -= this.constShowDelayMiliSec;
+				this.timeArray[i] -= this.constShowDelayMiliSec;
 			}
 			
 			clearInterval(this.timer);

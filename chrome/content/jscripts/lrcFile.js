@@ -159,7 +159,7 @@ mlyrics.lrc = {
 	},
 
 	getClearLyrics: function (lrcLyrics) {
-		return lrcLyrics.replace(/\r/g, "").replace(/\[.*\:.*\..*\]/g, "").replace(/\[.*\].*\n/g, "");
+		return lrcLyrics.replace(/\r/g, "").replace(/\[\d{2}\:\d{2}\.\d{2}\]/g, "").replace(/\[.{2}\:{1}.*\].*\n/g, "");
 	},
 
 	syncTimeTracks: function (aMediaItem) {
@@ -202,9 +202,6 @@ mlyrics.lrc = {
 		if (lyricsArray.length != lrcLyricsArray.length) {
 			// Sync cannot be done - number of lines is not equal
 			mlyrics.lib.debugOutput("LRC sync fail: " + lyricsArray.length + " <> " + lrcLyricsArray.length);
-			for (var i=0; i<lyricsArray.length; i++) {
-				alert("===" + lyricsArray[i] + "=== \n<>\n===" +  lrcLyricsArray[i] + "====");
-			}
 			return false;
 		}
 
