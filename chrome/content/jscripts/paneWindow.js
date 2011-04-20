@@ -363,29 +363,31 @@ mlyrics.pane = {
 			// Lost LRC
 			if (wasLRC != isLRC) {
 				if (wasLRC == "true") {
-					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lostLRCNotif, mlyrics.scanlib.scan);
+					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lostLRCNotif, mlyrics.scanlib.hasLrcScan);
 				}
 				// Because wasLRC can be undefined and isLRC can be false, false != undefined
 				else if (isLRC == "true") {
-					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLRCNotif, mlyrics.scanlib.scan);
+					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.foundLRCNotif, mlyrics.scanlib.hasLrcScan);
+				}
+			}
+			else {
+				if (isLRC == "true") {
+					var result = mlyrics.lrc.readLRC(aMediaItem);
+					mlyrics.pane.positionListener.timeArray = result.timeStruct.timeArray;
+				}
+				else {
+					mlyrics.pane.positionListener.timeArray = [];
+				}
+
+				var syncResult = mlyrics.lrc.syncTimeTracks(aMediaItem);
+
+				if (!syncResult) {
+					mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lrcSyncFail, mlyrics.scanlib.lrcSyncScan);
 				}
 			}
 
-			if (isLRC == "true") {
-				var result = mlyrics.lrc.readLRC(aMediaItem);
-				mlyrics.pane.positionListener.timeArray = result.timeStruct.timeArray;
-			}
-			else {
-				mlyrics.pane.positionListener.timeArray = [];
-			}
-
-			var syncResult = mlyrics.lrc.syncTimeTracks(aMediaItem);
-
 			mlyrics.pane.showInfo(aMediaItem);
 
-			if (!syncResult) {
-				mlyrics.pane.addSpecWarning(mlyrics.pane.pStrings.lrcSyncFail, mlyrics.scanlib.scan);
-			}
 
 			if (document.getElementById("lm-deck").selectedIndex == 3) {
 				setTimeout("mlyrics.pane.editTimeTracks.restart()", 1000);
@@ -2156,7 +2158,7 @@ mlyrics.pane = {
 			else {
 				// 30 sec start delay
 				var playPart = (position - 30000) / (this.duration - 30000);
-				this.playPart = playPart + playPart*this.scrollCorrection/this.lyricsMaxHeight; // Force speed on correction
+				this.playPart = playPart;
 			}
 			
 			if (this.mouseover) {

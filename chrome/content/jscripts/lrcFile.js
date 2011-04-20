@@ -25,11 +25,12 @@ mlyrics.lrc = {
 		}
 
 		var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
-		var lrcFilePath = mediaFilePathNoExt + ".lrc";
+		if (mediaFilePathNoExt == "") return false;
 
-		this.timeTracksFile.initWithPath(lrcFilePath);
+		var lrcFilePath = mediaFilePathNoExt + ".lrc";
+		mlyrics.lrc.timeTracksFile.initWithPath(lrcFilePath);
 	
-		if (this.timeTracksFile.exists()) return true;
+		if (mlyrics.lrc.timeTracksFile.exists()) return true;
 
 		return false;
 	},
@@ -48,11 +49,17 @@ mlyrics.lrc = {
 		}
 
 		var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
-		var lrcFilePath = mediaFilePathNoExt + ".lrc";
+		if (mediaFilePathNoExt == "") return result;
 
+		var lrcFilePath = mediaFilePathNoExt + ".lrc";
 		this.timeTracksFile.initWithPath(lrcFilePath);
 
-		if (!this.timeTracksFile.exists() || !this.timeTracksFile.isReadable()) {
+		if (!this.timeTracksFile.exists()) {
+			mlyrics.lib.debugOutput("Cannot read, LRC file does not exist: " + lrcFilePath);
+			return result;
+		}
+		else if (!this.timeTracksFile.isReadable())
+		{
 			setTimeout(function () {throw new Error("SongBird has failed to read lyrics from " + lrcFilePath);}, 100);
 			return result;
 		}
@@ -91,9 +98,11 @@ mlyrics.lrc = {
 		}
 
 		var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
+		if (mediaFilePathNoExt == "") return;
+
 		var lrcFilePath = mediaFilePathNoExt + ".lrc";
-		
 		this.timeTracksFile.initWithPath(mediaDirectoryPath);
+
 		if (!this.timeTracksFile.isWritable()) {
 			setTimeout(function () {throw new Error("SongBird has failed to write lyrics into " + lrcFilePath + ", directory is not writable");}, 100);
 			return;
@@ -127,8 +136,9 @@ mlyrics.lrc = {
 		}
 
 		var mediaFilePathNoExt = mediaFilePath.substr(0, mediaFilePath.lastIndexOf("."));
-		var lrcFilePath = mediaFilePathNoExt + ".lrc";
+		if (mediaFilePathNoExt == "") return;
 
+		var lrcFilePath = mediaFilePathNoExt + ".lrc";
 		this.timeTracksFile.initWithPath(lrcFilePath);
 
 		if (this.timeTracksFile.exists())
@@ -165,6 +175,11 @@ mlyrics.lrc = {
 	syncTimeTracks: function (aMediaItem) {
 		
 		var haslyrStrFullOrig = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics");
+
+		// We have nothing
+		if (!haslyrStrFullOrig)
+			return true;
+
 		var hasLyrics = (haslyrStrFullOrig.indexOf("-tag") != -1);
 		var hasLRC = (haslyrStrFullOrig.indexOf("-clock") != -1);
 
