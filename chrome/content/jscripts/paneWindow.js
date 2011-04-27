@@ -498,14 +498,14 @@ mlyrics.pane = {
 				if (metadataWriteProgress.status != 32){
 					clearInterval(metadataWriteCheck);
 					if (!metadataWriteProgress.status) {
-						if (!mlyrics.pane.prefs.getBoolPref("saveInDB")) {
-							mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", null);
-							mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
-							mlyrics.pane.metadataService.write(mediaItemArray, propArray);
-						}
-						else {
+						//if (!mlyrics.pane.prefs.getBoolPref("saveInDB")) {
+						//	mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", null);
+						//	mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
+						//	mlyrics.pane.metadataService.write(mediaItemArray, propArray);
+						//}
+						//else {
 							mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", "chrome://mlyrics/content/images/haslyrics-tagblack.png");
-						}
+						//}
 						
 						var errorsEnum = metadataWriteProgress.getErrorMessages();
 						while (errorsEnum.hasMore())

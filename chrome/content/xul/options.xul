@@ -82,7 +82,7 @@
 										<checkbox flex="1" id="noLyrFound" label="&mlyrics.prefs.notiflabel;" preference="pref_noLyrFound" />
 										<checkbox flex="1" id="autoSearchLyr" label="&mlyrics.prefs.autoSearchLyr;" preference="pref_autoSearchLyr" />
 										<checkbox flex="1" id="hideOnInstrLabel" label="&mlyrics.prefs.notifInstrlabel;" preference="pref_foundInstr" />
-										<checkbox flex="1" id="saveInDBCheckbox" label="&mlyrics.prefs.saveInDBLabel;" preference="pref_saveInDB" />
+										<!-- <checkbox flex="1" id="saveInDBCheckbox" label="&mlyrics.prefs.saveInDBLabel;" preference="pref_saveInDB" /> -->
 									</groupbox>
 								</vbox>
 								
