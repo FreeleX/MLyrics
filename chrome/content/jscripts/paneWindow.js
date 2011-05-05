@@ -948,6 +948,8 @@ mlyrics.pane = {
 		} ) ();
 		
 		var dispTrackPref = this.prefs.getBoolPref('dispTrack');
+
+
 		var dispArtistPref = this.prefs.getBoolPref('dispArtist');
 		var dispAlbumPref = this.prefs.getBoolPref('dispAlbum');
 		
@@ -2084,6 +2086,8 @@ mlyrics.pane = {
 		mouseover: false,
 		scrollCorrection: 0,
 		timeArray: [],
+		corrArray: [],
+		constCorrArrayDimen: 20, 
 		playPart: 0,
 
 		constShowDelayMiliSec: 500,
@@ -2113,6 +2117,17 @@ mlyrics.pane = {
 			}
 			
 			clearInterval(this.timer);
+
+			//this.corrArray = [];
+			//this.corrArray = [3043,29496,32721,37177,39615,47858,52328,55802,62033,65536,67121,69404,79952,122067,128594,132040,132040,132040,132040,132040];
+
+			var str = "";
+			for (var i=0; i<this.corrArray.length; i++) {
+				str += (this.lyricsMaxHeight*i/this.corrArray.length + this.corrArray[i]) + "\n";
+				//var newScrollPos = this.lyricsMaxHeight*i/this.corrArray.length + this.corrArray[i];
+				//document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
+			}
+			//alert(str);
 			
 			var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 			var location = browser.contentDocument.location.toString();
@@ -2126,9 +2141,29 @@ mlyrics.pane = {
 			
 			var position = mlyrics.pane.gMM.playbackControl.position;
 			if (position < 0) position = 0;
+
+			// Correction scrolling
+			if (this.corrArray.length > 1) {
+
+				for (var i=0; i<this.corrArray.length-1; i++) {
+
+					if (	position > this.corrArray[i]  && 
+						position < this.corrArray[i+1] ) {
+						
+						var currLineTimeLen = position - this.corrArray[i];
+						var corrLineTimeLen = this.corrArray[i+1] - this.corrArray[i];
+
+						var speedIndex = currLineTimeLen/corrLineTimeLen;
+
+						this.playPart = (i + speedIndex) / this.constCorrArrayDimen;
+
+						break;
+					}
+				}
+			}
 			
 			// Time tracks scrolling
-			if (this.timeArray.length > 1) {
+			else if (this.timeArray.length > 1) {
 				
 				var normalLineTimeLen = this.duration / this.timeArray.length;
 				var speedIndexSum = 0;
@@ -2156,17 +2191,22 @@ mlyrics.pane = {
 
 			// Normal scrolling
 			else {
-				// 30 sec start delay
-				var playPart = (position - 30000) / (this.duration - 30000);
+				var playPart = position / this.duration;
 				this.playPart = playPart;
 			}
 			
 			if (this.mouseover) {
-				this.scrollCorrection = document.getElementById('lm-content').contentWindow.document.body.scrollTop - this.lyricsMaxHeight*this.playPart;
+				var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
+				this.scrollCorrection = scrollTop - this.lyricsMaxHeight*this.playPart;
+
+				var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.constCorrArrayDimen);
+				if ( !this.corrArray[intPart] ) this.corrArray[intPart] = position;
+				mlyrics.lib.debugOutput("this.corrArray: " + this.corrArray);
 			}
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
-					var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
+					//var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
+					var newScrollPos = this.lyricsMaxHeight * this.playPart;
 
 					if (newScrollPos < 0) newScrollPos = 0;
 					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
