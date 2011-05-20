@@ -63,6 +63,10 @@
 			<menuitem id="removeTimeTracksMenuItem" label="&mlyrics.pane.removeTimeTracks;" 	oncommand="mlyrics.pane.editTimeTracks.remove()"/>
 		</menupopup>
 	</popupset>
+
+	<keyset>
+		<key modifiers="control" key="s" oncommand="if (document.getElementById('lm-deck').selectedIndex == 2) mlyrics.pane.editMode.onAccept()"/>
+	</keyset>
 	
 	<deck id="lm-deck" flex="1">
 		<vbox class="empty" flex="1">
