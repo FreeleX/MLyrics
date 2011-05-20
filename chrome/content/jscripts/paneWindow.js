@@ -950,6 +950,9 @@ mlyrics.pane = {
 		var dispTrackPref = this.prefs.getBoolPref('dispTrack');
 
 
+
+
+
 		var dispArtistPref = this.prefs.getBoolPref('dispArtist');
 		var dispAlbumPref = this.prefs.getBoolPref('dispAlbum');
 		
@@ -2086,11 +2089,16 @@ mlyrics.pane = {
 		mouseover: false,
 		scrollCorrection: 0,
 		timeArray: [],
-		corrArray: [],
-		constCorrArrayDimen: 20, 
+		constCorrArrayDimen: 10, 
 		playPart: 0,
 
 		constShowDelayMiliSec: 500,
+
+		postSave: {
+			corrArray: [],
+			corrOffset: [],
+			mediaItem: null
+		},
 		
 		restart: function () {
 			
@@ -2118,22 +2126,54 @@ mlyrics.pane = {
 			
 			clearInterval(this.timer);
 
-			//this.corrArray = [];
-			//this.corrArray = [3043,29496,32721,37177,39615,47858,52328,55802,62033,65536,67121,69404,79952,122067,128594,132040,132040,132040,132040,132040];
+			//this.postSave.corrArray = [];
+			//this.postSave.corrArray = [3043,29496,32721,37177,39615,47858,52328,55802,62033,65536,67121,69404,79952,122067,128594,132040,132040,132040,132040,132040];
+			//this.postSave.corrArray = [2608,50401,56730,69418,74277,77399,90457,107291,114411,126655,145763,150408,153741,169890,177681,268439,279841,286415];
 
-			var str = "";
-			for (var i=0; i<this.corrArray.length; i++) {
-				str += (this.lyricsMaxHeight*i/this.corrArray.length + this.corrArray[i]) + "\n";
-				//var newScrollPos = this.lyricsMaxHeight*i/this.corrArray.length + this.corrArray[i];
-				//document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
+			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) return;
+
+			// Save corrections
+			this.saveCorrections();
+			
+			// Load corrections
+			// ----------------
+			this.postSave.corrArray = [];
+			this.postSave.mediaItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
+			var corrArrayStr = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray");
+			if (corrArrayStr) {
+				this.postSave.corrArray = corrArrayStr.split(",");
+				for (var i=0; i<this.postSave.corrArray.length; i++) {
+					this.postSave.corrArray[i] = parseInt(this.postSave.corrArray[i]);
+				}
 			}
-			//alert(str);
+			for (var i=0; i<this.postSave.corrArray.length; i++) {
+				this.postSave.corrOffset[i] = 0;
+			}
+			// ----------------
 			
 			var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 			var location = browser.contentDocument.location.toString();
 			if (location.substr(0, 25) != "chrome://shoutcast-radio/") {
 				this.timer = setInterval("mlyrics.pane.positionListener.scrollLyrics()", 2);
 			}
+		},
+
+		saveCorrections: function () {
+			if (!this.postSave.mediaItem) return;
+
+			var lineOffset = this.postSave.corrArray[0];
+			//if (!lineOffset || isNaN(lineOffset)) return;
+
+			var localArray = [];
+			//localArray[0] = this.postSave.corrArray[0] = 0;
+			for (var i=0; i<this.postSave.corrArray.length; i++) {
+				localArray[i] = this.postSave.corrArray[i] + this.postSave.corrOffset[i];// - lineOffset;
+			}
+
+			mlyrics.lib.debugOutput("localArray: " + localArray.toString());
+			mlyrics.lib.debugOutput("corrArray: " + this.postSave.corrArray.toString());
+			
+			this.postSave.mediaItem.setProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray", localArray.toString());
 		},
 		
 		scrollLyrics: function () {
@@ -2143,19 +2183,22 @@ mlyrics.pane = {
 			if (position < 0) position = 0;
 
 			// Correction scrolling
-			if (this.corrArray.length > 1) {
+			if (this.postSave.corrArray.length > 1) {
 
-				for (var i=0; i<this.corrArray.length-1; i++) {
+				for (var i=0; i<this.postSave.corrArray.length-1; i++) {
 
-					if (	position > this.corrArray[i]  && 
-						position < this.corrArray[i+1] ) {
+					if (	position >= this.postSave.corrArray[i]  && 
+						position < this.postSave.corrArray[i+1] ) {
 						
-						var currLineTimeLen = position - this.corrArray[i];
-						var corrLineTimeLen = this.corrArray[i+1] - this.corrArray[i];
+						var currLineTimeLen = position - (this.postSave.corrArray[i]);
+						var corrLineTimeLen = (this.postSave.corrArray[i+1]) - 
+									(this.postSave.corrArray[i]);
 
 						var speedIndex = currLineTimeLen/corrLineTimeLen;
 
 						this.playPart = (i + speedIndex) / this.constCorrArrayDimen;
+
+						//mlyrics.lib.debugOutput("this.playPart: " + this.playPart);
 
 						break;
 					}
@@ -2195,18 +2238,21 @@ mlyrics.pane = {
 				this.playPart = playPart;
 			}
 			
+			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
+			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.constCorrArrayDimen);
+
 			if (this.mouseover) {
-				var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
 				this.scrollCorrection = scrollTop - this.lyricsMaxHeight*this.playPart;
 
-				var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.constCorrArrayDimen);
-				if ( !this.corrArray[intPart] ) this.corrArray[intPart] = position;
-				mlyrics.lib.debugOutput("this.corrArray: " + this.corrArray);
+				if ( !this.postSave.corrArray[intPart] ) {
+					this.postSave.corrArray[intPart] = position;
+				}
+				//mlyrics.lib.debugOutput("this.postSave.corrArray: " + this.postSave.corrArray);
 			}
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
 					//var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
-					var newScrollPos = this.lyricsMaxHeight * this.playPart;
+					var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
 
 					if (newScrollPos < 0) newScrollPos = 0;
 					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
@@ -2237,6 +2283,17 @@ mlyrics.pane = {
 					document.getElementById("scrollDisabledMenuItem").setAttribute("checked", "true");
 				}
 			}
+		},
+
+		onMouseScroll: function () {
+			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
+			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.constCorrArrayDimen);
+
+			var position = mlyrics.pane.gMM.playbackControl.position;
+			if (position < 0) position = 0;
+
+			this.postSave.corrArray[intPart] = position;
+			this.postSave.corrOffset[intPart] = 0;
 		}
 	},
 	
