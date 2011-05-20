@@ -49,7 +49,7 @@ function onfLoad () {
 				var sitem = document.createElement("menuitem");
 				sitem.setAttribute("id", "menu_" + sources[i]);
 				sitem.setAttribute("label", prefs.getCharPref("laddress_" + sources[i]));
-				sitem.setAttribute("oncommand", "onFetch(" + i + ");");
+				sitem.setAttribute("oncommand", "onFetch(" + i + ", true);");
 				sourcesPopup.insertBefore(sitem, contextSourcesSeparator);
 				
 				if (sitem.label == sourceSaved)
@@ -132,7 +132,7 @@ function batchFetch () {
 	window.close();
 }
 
-function onFetch (startAt) {
+function onFetch (startAt, forceOne) {
   var artist=TrackEditor.state.getPropertyValue('http://songbirdnest.com/data/1.0#artistName');
   var album=TrackEditor.state.getPropertyValue('http://songbirdnest.com/data/1.0#albumName');
   var track=TrackEditor.state.getPropertyValue('http://songbirdnest.com/data/1.0#trackName');
@@ -153,7 +153,7 @@ function onFetch (startAt) {
 						document.getElementById("ML_sourceAddressNextButton").nextSourceIndex = 0;
 					    }
 					    else {
-						document.getElementById("refreshMenuItem").selectedIndex = localIndex+1;
+						document.getElementById("refreshMenuItem").selectedIndex = localIndex+3;
 						document.getElementById("ML_sourceAddressNextButton").disabled = false;
 						document.getElementById("ML_sourceAddressNextButton").nextSourceIndex = localIndex;
 					    }
@@ -178,12 +178,12 @@ function onFetch (startAt) {
 					  },
 					  
 					  startAt,
-					  false,
+					  forceOne,
 					  
 					  function (lsource, lprogress, localIndex) {
 					      if (typeof(localIndex) == "undefined") return;
 					      
-					      document.getElementById("refreshMenuItem").selectedIndex = localIndex+2;
+					      document.getElementById("refreshMenuItem").selectedIndex = localIndex+4;
 					      document.getElementById("ML_sourceAddressNextButton").hidden = true;
 					      document.getElementById("refreshMenuItem").disabled = true;
 					      document.getElementById("clear_btn").disabled = true;

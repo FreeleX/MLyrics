@@ -48,6 +48,11 @@
 								<menuitem label="&mlyrics.trackeditor.fbtnlabel;" image="chrome://mlyrics/content/images/fetch.png" oncommand="multiFetch();"/>
 								
 								<menuseparator />
+
+								<menuitem label="&mlyrics.pane.contxtRefreshObO;" 
+									  oncommand="onFetch(0, false)"/>
+
+								<menuseparator />
 								
 								<!-- list of lyrics sources -->
 									
@@ -72,7 +77,7 @@
 							</menupopup>
 						</menulist>
 						
-						<button id="ML_sourceAddressNextButton" label=">" hidden="false" disabled="false" oncommand="onFetch(this.nextSourceIndex)"/>
+						<button id="ML_sourceAddressNextButton" label=">" hidden="false" disabled="false" oncommand="onFetch(this.nextSourceIndex, false)"/>
 					</hbox>
 					
 					<button image="chrome://mlyrics/content/images/batch.png" 
