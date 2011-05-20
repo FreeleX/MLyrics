@@ -953,6 +953,7 @@ mlyrics.pane = {
 
 
 
+
 		var dispArtistPref = this.prefs.getBoolPref('dispArtist');
 		var dispAlbumPref = this.prefs.getBoolPref('dispAlbum');
 		
@@ -1666,7 +1667,7 @@ mlyrics.pane = {
 
 		init: function () {
 			mlyrics.pane.mediaCoreManager.playbackControl.pause();
-			setTimeout(function () {mlyrics.pane.mediaCoreManager.playbackControl.play();}, 3000);
+			setTimeout(function () {mlyrics.pane.mediaCoreManager.playbackControl.play();}, 2000);
 
 			this.restart();
 
@@ -2087,56 +2088,60 @@ mlyrics.pane = {
 		lyricsMaxHeight: 0,
 		lyricsNormalHeight: 0,
 		mouseover: false,
+		correctionMode: false,
 		scrollCorrection: 0,
 		timeArray: [],
-		constCorrArrayDimen: 10, 
+		corrArrayDimen: 20, 
 		playPart: 0,
 
 		constShowDelayMiliSec: 500,
 
 		postSave: {
 			corrArray: [],
-			corrOffset: [],
+			corrArray2: [], // this copy should not be modificated
 			mediaItem: null
 		},
 		
 		restart: function () {
 			
-			if (!mlyrics.pane.gMM.playbackControl) {
+			if (!mlyrics.pane.gMM.playbackControl)
 				this.duration = 0;
-			}
-			else {
+			else
 				this.duration = mlyrics.pane.gMM.playbackControl.duration;
-			}
 
 			var scrollHeight = document.getElementById('lm-content').contentWindow.document.body.scrollHeight;
 			var offsetHeight = document.getElementById('lm-content').contentWindow.document.body.offsetHeight;
 			var clientHeight = document.getElementById('lm-content').contentWindow.document.body.clientHeight;
 			
-			this.lyricsMaxHeight = scrollHeight;
+			this.lyricsMaxHeight = scrollHeight - clientHeight;
 			this.lyricsNormalHeight = clientHeight;
-
+			this.correctionMode = false;
 			this.scrollCorrection = 0;
 			this.playPart = 0;
-			
-			// We need to start show lines beforehand
-			for (var i=0; i<this.timeArray.length; i++) {
-				this.timeArray[i] -= this.constShowDelayMiliSec;
-			}
-			
-			clearInterval(this.timer);
 
-			//this.postSave.corrArray = [];
-			//this.postSave.corrArray = [3043,29496,32721,37177,39615,47858,52328,55802,62033,65536,67121,69404,79952,122067,128594,132040,132040,132040,132040,132040];
-			//this.postSave.corrArray = [2608,50401,56730,69418,74277,77399,90457,107291,114411,126655,145763,150408,153741,169890,177681,268439,279841,286415];
+			document.getElementById("lm-content").contentWindow.setCursor("auto");
+
+			clearInterval(this.timer);
+			
+			// LRC: we need to start show lines beforehand
+			if (this.timeArray.length > 1) 
+				for (var i=0; i<this.timeArray.length; i++) {
+					this.timeArray[i] -= this.constShowDelayMiliSec;
+				}
+
+			// Save autocorrections
+			this.saveCorrections();
 
 			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) return;
-
-			// Save corrections
-			this.saveCorrections();
 			
-			// Load corrections
-			// ----------------
+			// Load autocorrections
+			// -----------------
+			var lyrics = mlyrics.pane.viewMode.savedData.lyrics
+			var translDelimPos1 = lyrics.indexOf("\n\n =================== \n [ ");
+			if (translDelimPos1 != -1) lyrics = lyrics.substr(0, translDelimPos1);
+			this.corrArrayDimen = parseInt(lyrics.match(/\n/g).length/2);
+
+
 			this.postSave.corrArray = [];
 			this.postSave.mediaItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
 			var corrArrayStr = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray");
@@ -2146,10 +2151,8 @@ mlyrics.pane = {
 					this.postSave.corrArray[i] = parseInt(this.postSave.corrArray[i]);
 				}
 			}
-			for (var i=0; i<this.postSave.corrArray.length; i++) {
-				this.postSave.corrOffset[i] = 0;
-			}
-			// ----------------
+			this.postSave.corrArray2 = this.postSave.corrArray;
+			// -----------------
 			
 			var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 			var location = browser.contentDocument.location.toString();
@@ -2161,17 +2164,12 @@ mlyrics.pane = {
 		saveCorrections: function () {
 			if (!this.postSave.mediaItem) return;
 
-			var lineOffset = this.postSave.corrArray[0];
-			//if (!lineOffset || isNaN(lineOffset)) return;
-
 			var localArray = [];
-			//localArray[0] = this.postSave.corrArray[0] = 0;
 			for (var i=0; i<this.postSave.corrArray.length; i++) {
-				localArray[i] = this.postSave.corrArray[i] + this.postSave.corrOffset[i];// - lineOffset;
+				localArray[i] = this.postSave.corrArray[i];
 			}
 
 			mlyrics.lib.debugOutput("localArray: " + localArray.toString());
-			mlyrics.lib.debugOutput("corrArray: " + this.postSave.corrArray.toString());
 			
 			this.postSave.mediaItem.setProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray", localArray.toString());
 		},
@@ -2182,31 +2180,8 @@ mlyrics.pane = {
 			var position = mlyrics.pane.gMM.playbackControl.position;
 			if (position < 0) position = 0;
 
-			// Correction scrolling
-			if (this.postSave.corrArray.length > 1) {
-
-				for (var i=0; i<this.postSave.corrArray.length-1; i++) {
-
-					if (	position >= this.postSave.corrArray[i]  && 
-						position < this.postSave.corrArray[i+1] ) {
-						
-						var currLineTimeLen = position - (this.postSave.corrArray[i]);
-						var corrLineTimeLen = (this.postSave.corrArray[i+1]) - 
-									(this.postSave.corrArray[i]);
-
-						var speedIndex = currLineTimeLen/corrLineTimeLen;
-
-						this.playPart = (i + speedIndex) / this.constCorrArrayDimen;
-
-						//mlyrics.lib.debugOutput("this.playPart: " + this.playPart);
-
-						break;
-					}
-				}
-			}
-			
 			// Time tracks scrolling
-			else if (this.timeArray.length > 1) {
+			if (this.timeArray.length > 1) {
 				
 				var normalLineTimeLen = this.duration / this.timeArray.length;
 				var speedIndexSum = 0;
@@ -2232,6 +2207,29 @@ mlyrics.pane = {
 				}
 			}
 
+			// Correction scrolling
+			else if (this.postSave.corrArray.length > 1) {
+
+				for (var i=0; i<this.postSave.corrArray.length-1; i++) {
+
+					if (	position >= this.postSave.corrArray[i]  && 
+						position < this.postSave.corrArray[i+1] ) {
+						
+						var currLineTimeLen = position - (this.postSave.corrArray[i]);
+						var corrLineTimeLen = (this.postSave.corrArray[i+1]) - 
+									(this.postSave.corrArray[i]);
+
+						var speedIndex = currLineTimeLen/corrLineTimeLen;
+
+						this.playPart = (i + speedIndex) / this.corrArrayDimen;
+
+						//mlyrics.lib.debugOutput("this.playPart: " + this.playPart);
+
+						break;
+					}
+				}
+			}
+
 			// Normal scrolling
 			else {
 				var playPart = position / this.duration;
@@ -2239,24 +2237,22 @@ mlyrics.pane = {
 			}
 			
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
-			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.constCorrArrayDimen);
+			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.corrArrayDimen);
 
 			if (this.mouseover) {
 				this.scrollCorrection = scrollTop - this.lyricsMaxHeight*this.playPart;
-
-				if ( !this.postSave.corrArray[intPart] ) {
-					this.postSave.corrArray[intPart] = position;
-				}
-				//mlyrics.lib.debugOutput("this.postSave.corrArray: " + this.postSave.corrArray);
 			}
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
-					//var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
 					var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
 
 					if (newScrollPos < 0) newScrollPos = 0;
 					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
 				}
+			}
+
+			if ( this.correctionMode && !this.postSave.corrArray[intPart] ) {
+				this.postSave.corrArray[intPart] = position;
 			}
 		},
 		
@@ -2285,15 +2281,33 @@ mlyrics.pane = {
 			}
 		},
 
-		onMouseScroll: function () {
+		onMouseScroll: function (event) {
+			if (this.timeArray.length > 1) return; // Have lrc array
+
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
-			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.constCorrArrayDimen);
+			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.corrArrayDimen);
 
 			var position = mlyrics.pane.gMM.playbackControl.position;
 			if (position < 0) position = 0;
 
-			this.postSave.corrArray[intPart] = position;
-			this.postSave.corrOffset[intPart] = 0;
+			// Activate correction mode and clear corrArray
+			if (!scrollTop && event.detail<0) {
+				this.correctionMode = true;
+				document.getElementById("lm-content").contentWindow.setCursor("move");
+
+				this.postSave.corrArray.length = 0;
+				this.postSave.corrArray.length = this.corrArrayDimen;
+			}
+
+			if (!this.correctionMode) return;
+
+			if (!this.postSave.corrArray[intPart]) this.postSave.corrArray[intPart] = position;
+			for (var i=intPart+1; i<this.postSave.corrArray.length; i++) {
+				this.postSave.corrArray[i] = this.postSave.corrArray2[i] + parseInt(this.scrollCorrection);
+			}
+
+			this.scrollCorrection = 0;
+			this.saveCorrections();
 		}
 	},
 	

@@ -79,7 +79,7 @@
 					ondblclick="if (!document.getElementById('metadataMenuItem').disabled) mlyrics.pane.editMode.init()"
 					onmouseover="mlyrics.pane.positionListener.mouseover=true;"
 					onmouseout="mlyrics.pane.positionListener.mouseover=false;"
-					onDOMMouseScroll="mlyrics.pane.positionListener.onMouseScroll()"/>
+					onDOMMouseScroll="mlyrics.pane.positionListener.onMouseScroll(event)"/>
 			</notificationbox>
 			
 			<vbox>
