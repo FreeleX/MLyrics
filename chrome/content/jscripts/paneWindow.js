@@ -1347,6 +1347,7 @@ mlyrics.pane = {
 			var track = mediaItem.getProperty(SBProperties.trackName);
 			
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
+			mediaItem.setProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray", null);
 			
 			mlyrics.lib.writeID3Tag(mediaItem);
 			this.buildPage(artist, album, track, "");
@@ -1372,6 +1373,7 @@ mlyrics.pane = {
 
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", "[Instrumental]");
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
+			mediaItem.setProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray", null);
 			
 			var artist = mediaItem.getProperty(SBProperties.artistName);
 			var album = mediaItem.getProperty(SBProperties.albumName);
@@ -2112,8 +2114,12 @@ mlyrics.pane = {
 			var scrollHeight = document.getElementById('lm-content').contentWindow.document.body.scrollHeight;
 			var offsetHeight = document.getElementById('lm-content').contentWindow.document.body.offsetHeight;
 			var clientHeight = document.getElementById('lm-content').contentWindow.document.body.clientHeight;
+
+			mlyrics.lib.debugOutput("scrollHeight: " + scrollHeight);
+			mlyrics.lib.debugOutput("offsetHeight: " + offsetHeight);
+			mlyrics.lib.debugOutput("clientHeight: " + clientHeight);
 			
-			this.lyricsMaxHeight = scrollHeight - clientHeight;
+			this.lyricsMaxHeight = scrollHeight;// - clientHeight;
 			this.lyricsNormalHeight = clientHeight;
 			this.correctionMode = false;
 			this.scrollCorrection = 0;
@@ -2129,28 +2135,33 @@ mlyrics.pane = {
 					this.timeArray[i] -= this.constShowDelayMiliSec;
 				}
 
-			// Save autocorrections
-			this.saveCorrections();
-
 			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) return;
 			
 			// Load autocorrections
 			// -----------------
-			var lyrics = mlyrics.pane.viewMode.savedData.lyrics
-			var translDelimPos1 = lyrics.indexOf("\n\n =================== \n [ ");
-			if (translDelimPos1 != -1) lyrics = lyrics.substr(0, translDelimPos1);
-			this.corrArrayDimen = parseInt(lyrics.match(/\n/g).length/2);
+			var lyrics = mlyrics.pane.viewMode.savedData.lyrics;
+
+			if (lyrics && lyrics != "" && lyrics.toLowerCase().substr(0, 14) != "[instrumental]") {
+				var translDelimPos1 = lyrics.indexOf("\n\n =================== \n [ ");
+				if (translDelimPos1 != -1) lyrics = lyrics.substr(0, translDelimPos1);
+				this.corrArrayDimen = parseInt(lyrics.match(/\n/g).length/2);
 
 
-			this.postSave.corrArray = [];
-			this.postSave.mediaItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
-			var corrArrayStr = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray");
-			if (corrArrayStr) {
-				this.postSave.corrArray = corrArrayStr.split(",");
-				for (var i=0; i<this.postSave.corrArray.length; i++) {
-					this.postSave.corrArray[i] = parseInt(this.postSave.corrArray[i]);
+				this.postSave.corrArray = [];
+				this.postSave.mediaItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
+				var corrArrayStr = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray");
+				if (corrArrayStr) {
+					this.postSave.corrArray = corrArrayStr.split(",");
+					for (var i=0; i<this.postSave.corrArray.length; i++) {
+						this.postSave.corrArray[i] = parseInt(this.postSave.corrArray[i]);
+					}
 				}
 			}
+			else {
+				this.postSave.corrArray.length = 0;
+				this.postSave.corrArray.length = this.corrArrayDimen;
+			}
+
 			this.postSave.corrArray2 = this.postSave.corrArray;
 			// -----------------
 			
@@ -2163,6 +2174,7 @@ mlyrics.pane = {
 
 		saveCorrections: function () {
 			if (!this.postSave.mediaItem) return;
+			if (!this.postSave.corrArray || !this.postSave.corrArray.length) return;
 
 			var localArray = [];
 			for (var i=0; i<this.postSave.corrArray.length; i++) {
@@ -2284,6 +2296,9 @@ mlyrics.pane = {
 		onMouseScroll: function (event) {
 			if (this.timeArray.length > 1) return; // Have lrc array
 
+			var metadataLyrics = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+			if (!metadataLyrics || metadataLyrics == "") return;
+
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
 			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.corrArrayDimen);
 
@@ -2307,7 +2322,12 @@ mlyrics.pane = {
 			}
 
 			this.scrollCorrection = 0;
-			this.saveCorrections();
+			
+			if (scrollTop >= (this.lyricsMaxHeight-this.lyricsNormalHeight)) {
+				this.correctionMode = false;
+				this.saveCorrections();
+				document.getElementById("lm-content").contentWindow.setCursor("auto");
+			}
 		}
 	},
 	
