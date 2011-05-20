@@ -810,9 +810,9 @@ mlyrics.fetch = {
 				}
 				
 				respLyr = this.specCharsDecode(respLyr);
-				respLyr = respLyr.replace(/\r\n/g, "\n");
+				respLyr = respLyr.replace(/\r/g, "");
 				
-				respLyr = respLyr.substr(0, respLyr.length-1);
+				//respLyr = respLyr.substr(0, respLyr.length-1);
 				
 				return respLyr;
 			},
