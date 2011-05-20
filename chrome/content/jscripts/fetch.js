@@ -2361,6 +2361,116 @@ mlyrics.fetch = {
 				  
 				return respLyr;
 			}
+		},
+
+		// http://lyricshall.com
+		// =====================
+		LYRICSHALL: {
+			getUrl: function (artist, album, track) {
+				
+				var _artist = encodeURIComponent( this.filterASCIIDigitSym( this.getCleanStr(artist).toLowerCase() ) );
+				var _track = encodeURIComponent( this.filterASCIIDigitSym( this.getCleanStr(track).toLowerCase() ) );
+				
+				var url= "http://lyricshall.com/lyrics/" + _artist + "/" + _track;
+				return url;
+			},
+			
+			filterASCIIDigitSym: function (respLyr) {
+				if (respLyr!= null && respLyr != "") {
+					respLyr = escape(respLyr)
+					respLyr = respLyr.replace(/%20/g, "\+");
+					respLyr = respLyr.replace(/%../g, "");
+					respLyr = respLyr.replace(/\./g, "");
+					respLyr = respLyr.replace(/'/g, "");
+					respLyr = unescape(respLyr);
+				}
+				
+				return respLyr;
+			},
+			
+			getLyrics: function (artist, album, track, cbFn) {
+				
+				if (album == "") {
+					cbFn("");
+					return;
+				}
+				
+				var sourceObj = this;
+				
+				var url = this.getUrl(artist, album, track);
+				
+				var req = new XMLHttpRequest();
+				if (!req) {
+					cbFn("");
+					return;
+				}
+				
+				mlyrics.lib.debugOutput("Fetch: " + url);
+				
+				req.open("GET", url, true);
+				
+				var abortTimeout = setTimeout(function () {req.abort(); cbFn("");}, mlyrics.fetch.abortTimeout);
+				
+				req.onreadystatechange = function() {
+					
+					if (typeof(mlyrics.pane) != "undefined" && 
+					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					{
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
+						this.abort();
+						return;
+					}
+					
+					if (this.readyState != 4) return;
+					
+					mlyrics.lib.debugOutput("Got lyrics data");
+					
+					clearTimeout(abortTimeout);
+					
+					var respLyr = "";
+					if (this.status == 200) {
+						
+						respLyr = sourceObj.filterText(this.responseText, sourceObj.getCleanStr(track));
+						respLyr = sourceObj.fixCharacters(respLyr);
+						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					}
+					
+					cbFn(respLyr);
+				}
+				
+				req.onerror = function () {clearTimeout(abortTimeout);};
+				
+				req.send(null);
+			},
+			
+			filterText: function (respLyr) {
+				if (respLyr == null || respLyr == "") return "";
+				
+				var songStartPos = respLyr.indexOf("<blockquote class='lyrics'>");
+				if (songStartPos != -1) {
+			  		var songEndPos = respLyr.indexOf("</blockquote>");
+			  		respLyr = respLyr.substring(songStartPos+27, songEndPos);
+				}
+				else {
+			  		respLyr = "";
+				}
+				
+				return respLyr;
+			},
+			
+			fixCharacters: function(respLyr) {
+
+				if (respLyr== null || respLyr == "") return "";
+				
+				respLyr = respLyr.replace(/<p>/g, "");
+				respLyr = respLyr.replace(/<\/p>/g, "");
+				respLyr = respLyr.replace(/\&\#039\;/g, "'");
+				respLyr = respLyr.replace(/<br \/>/g, "");
+				respLyr = respLyr.replace(/\r\n/g, "\n");
+				  
+				return respLyr;
+			}
 		}
 	},
 	

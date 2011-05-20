@@ -93,7 +93,7 @@ pref("extensions.mlyrics.titleOpacity", 5);
 // --------------------
 // Font style block end
 
-pref("extensions.mlyrics.fetchSourcesList", "LWIKI|TERRA|METROLYRICS|LYRICSVIP|CHARTLYRICS|AZLYRICS|BATLYRICS|LYRDB|DARKLYRICS|LOLOLYRICS|GOODSONGS|JPOPASIA|SONGTEKSTEN|HINDILYRICS|ANIMELYRICS|SHIRONET");
+pref("extensions.mlyrics.fetchSourcesList", "LWIKI|TERRA|METROLYRICS|LYRICSVIP|CHARTLYRICS|AZLYRICS|BATLYRICS|LYRDB|DARKLYRICS|LOLOLYRICS|GOODSONGS|JPOPASIA|SONGTEKSTEN|HINDILYRICS|ANIMELYRICS|SHIRONET|LYRICSHALL");
 
 // Sources block begin
 // -------------------
@@ -113,6 +113,7 @@ pref("extensions.mlyrics.fetch_SONGTEKSTEN",	true);
 pref("extensions.mlyrics.fetch_HINDILYRICS",	false);
 pref("extensions.mlyrics.fetch_ANIMELYRICS",	false);
 pref("extensions.mlyrics.fetch_SHIRONET",	false);
+pref("extensions.mlyrics.fetch_LYRICSHALL",	false);
 
 pref("extensions.mlyrics.laddress_TERRA", 	"letras.terra.com.br");
 pref("extensions.mlyrics.laddress_LYRDB", 	"lyrdb.com");
@@ -130,6 +131,7 @@ pref("extensions.mlyrics.laddress_SONGTEKSTEN",	"songteksten.net");
 pref("extensions.mlyrics.laddress_HINDILYRICS", "hindilyrix.com");
 pref("extensions.mlyrics.laddress_ANIMELYRICS",	"animelyrics.com");
 pref("extensions.mlyrics.laddress_SHIRONET",	"shiron.net");
+pref("extensions.mlyrics.laddress_LYRICSHALL",	"lyricshall.com");
 
 pref("extensions.mlyrics.descr_TERRA", 		"Huge collection of lyrics of different songs");
 pref("extensions.mlyrics.descr_LYRDB", 		"Lyrics database");
@@ -147,6 +149,7 @@ pref("extensions.mlyrics.descr_SONGTEKSTEN", 	"Collection of many genres of dutc
 pref("extensions.mlyrics.descr_HINDILYRICS",	"Hindi lyrics");
 pref("extensions.mlyrics.descr_ANIMELYRICS",	"Anime, Game and J-pop lyrics");
 pref("extensions.mlyrics.descr_SHIRONET",	"The lagest site of lyrics of Hebrew songs");
+pref("extensions.mlyrics.descr_LYRICSHALL",	"Share our passion for lyrics");
 
 pref("extensions.mlyrics.popularity_TERRA", 		0);
 pref("extensions.mlyrics.popularity_LYRDB", 		0);
@@ -164,6 +167,7 @@ pref("extensions.mlyrics.popularity_SONGTEKSTEN",	0);
 pref("extensions.mlyrics.popularity_HINDILYRICS",	0);
 pref("extensions.mlyrics.popularity_ANIMELYRICS",	0);
 pref("extensions.mlyrics.popularity_SHIRONET",		0);
+pref("extensions.mlyrics.popularity_LYRICSHALL",	0);
 // Sources block end
 // -----------------
 
