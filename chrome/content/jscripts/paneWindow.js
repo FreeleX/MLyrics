@@ -954,6 +954,7 @@ mlyrics.pane = {
 
 
 
+
 		var dispArtistPref = this.prefs.getBoolPref('dispArtist');
 		var dispAlbumPref = this.prefs.getBoolPref('dispAlbum');
 		
@@ -2119,7 +2120,7 @@ mlyrics.pane = {
 			mlyrics.lib.debugOutput("offsetHeight: " + offsetHeight);
 			mlyrics.lib.debugOutput("clientHeight: " + clientHeight);
 			
-			this.lyricsMaxHeight = scrollHeight;// - clientHeight;
+			this.lyricsMaxHeight = scrollHeight - clientHeight;
 			this.lyricsNormalHeight = clientHeight;
 			this.correctionMode = false;
 			this.scrollCorrection = 0;
@@ -2155,6 +2156,7 @@ mlyrics.pane = {
 					for (var i=0; i<this.postSave.corrArray.length; i++) {
 						this.postSave.corrArray[i] = parseInt(this.postSave.corrArray[i]);
 					}
+					mlyrics.lib.debugOutput(this.postSave.corrArray);
 				}
 			}
 			else {
@@ -2180,6 +2182,7 @@ mlyrics.pane = {
 			for (var i=0; i<this.postSave.corrArray.length; i++) {
 				localArray[i] = this.postSave.corrArray[i];
 			}
+			localArray.push(this.duration);
 
 			mlyrics.lib.debugOutput("localArray: " + localArray.toString());
 			
@@ -2306,7 +2309,7 @@ mlyrics.pane = {
 			if (position < 0) position = 0;
 
 			// Activate correction mode and clear corrArray
-			if (!scrollTop && event.detail<0) {
+			if (!scrollTop && event.detail < 0) {
 				this.correctionMode = true;
 				document.getElementById("lm-content").contentWindow.setCursor("move");
 
@@ -2323,7 +2326,7 @@ mlyrics.pane = {
 
 			this.scrollCorrection = 0;
 			
-			if (scrollTop >= (this.lyricsMaxHeight-this.lyricsNormalHeight)) {
+			if (scrollTop >= this.lyricsMaxHeight) {
 				this.correctionMode = false;
 				this.saveCorrections();
 				document.getElementById("lm-content").contentWindow.setCursor("auto");
