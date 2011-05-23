@@ -86,6 +86,9 @@
 <!ENTITY mlyrics.pane.cancelButton "Annuler">
 <!ENTITY mlyrics.pane.showSelected "Montrer actuellement sélectionné">
 <!ENTITY mlyrics.pane.showNowPlaying "Montrer en cours de lecture">
+<!ENTITY mlyrics.pane.restartSongButton "Redémarrer">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "Créez des pistes de temps">
+<!ENTITY mlyrics.pane.removeTimeTracks "Supprimer des pistes temps">
 <!ENTITY mlyrics.font.confFont "Configurer le style">
 <!ENTITY mlyrics.font.sizeLabel "Taille :">
 <!ENTITY mlyrics.font.leftLabel "Gauche">

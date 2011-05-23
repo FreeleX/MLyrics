@@ -86,6 +86,9 @@
 <!ENTITY mlyrics.pane.cancelButton "Скасувати">
 <!ENTITY mlyrics.pane.showSelected "Показувати для обраних">
 <!ENTITY mlyrics.pane.showNowPlaying "Показувати для тих, що програються">
+<!ENTITY mlyrics.pane.restartSongButton "Перезапустити">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "Створити мітки часу">
+<!ENTITY mlyrics.pane.removeTimeTracks "Видалити мітки часу">
 <!ENTITY mlyrics.font.confFont "Налаштувати стиль">
 <!ENTITY mlyrics.font.sizeLabel "Розмір:">
 <!ENTITY mlyrics.font.leftLabel "Ліворуч">

@@ -86,6 +86,9 @@
 <!ENTITY mlyrics.pane.cancelButton "Отменить">
 <!ENTITY mlyrics.pane.showSelected "Показывать для выбранных">
 <!ENTITY mlyrics.pane.showNowPlaying "Показывать для проигрываемых">
+<!ENTITY mlyrics.pane.restartSongButton "Перезапустить">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "Создать метки времени">
+<!ENTITY mlyrics.pane.removeTimeTracks "Удалить метки времени">
 <!ENTITY mlyrics.font.confFont "Настроить стиль">
 <!ENTITY mlyrics.font.sizeLabel "Размер:">
 <!ENTITY mlyrics.font.leftLabel "Слева">

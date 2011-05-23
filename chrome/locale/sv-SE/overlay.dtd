@@ -86,6 +86,9 @@
 <!ENTITY mlyrics.pane.cancelButton "Avbryt">
 <!ENTITY mlyrics.pane.showSelected "Visa markerade objekt">
 <!ENTITY mlyrics.pane.showNowPlaying "Visa &quot;Nu spelas&quot;">
+<!ENTITY mlyrics.pane.restartSongButton "Starta om">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "Skapa tidsspår">
+<!ENTITY mlyrics.pane.removeTimeTracks "Ta bort tidsspår">
 <!ENTITY mlyrics.font.confFont "Konfigurera format">
 <!ENTITY mlyrics.font.sizeLabel "Storlek:">
 <!ENTITY mlyrics.font.leftLabel "Vänster">

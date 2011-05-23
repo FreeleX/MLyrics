@@ -86,6 +86,9 @@
 <!ENTITY mlyrics.pane.cancelButton "Abbrechen">
 <!ENTITY mlyrics.pane.showSelected "Jetzt ausgewählt anzeigen">
 <!ENTITY mlyrics.pane.showNowPlaying "Aktuellen Titel anzeigen">
+<!ENTITY mlyrics.pane.restartSongButton "Neustart">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "Zeitspur erzeugen">
+<!ENTITY mlyrics.pane.removeTimeTracks "Zeitspur entfernen">
 <!ENTITY mlyrics.font.confFont "Stil konfigurieren">
 <!ENTITY mlyrics.font.sizeLabel "Größe:">
 <!ENTITY mlyrics.font.leftLabel "Links">
