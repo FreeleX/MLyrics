@@ -86,7 +86,6 @@
 									</groupbox>
 								</vbox>
 								
-								<!--
 								<vbox flex="1">
 									<groupbox flex="1" width="100%">
 										<caption label="&mlyrics.prefs.displabel;"/>
@@ -97,7 +96,6 @@
 										<checkbox flex="1" label="&trackeditor.tab.lyrics.title;" disabled="true" checked="true"  />
 									</groupbox>
 								</vbox>
-								-->
 							</hbox>
 						</vbox>
 					</tabpanel>

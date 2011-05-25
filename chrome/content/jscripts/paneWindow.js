@@ -1001,7 +1001,7 @@ mlyrics.pane = {
 		
 		//  The following HTML and its CSS companion files are written by Gege from the MediaMonkey forums,  His addon for MediaMonkey (http://www.mediamonkey.com/forum/viewtopic.php?t=22624) is the inspiration for Lyricmaster.  Thanks Gege!!!
 		content_lyric_html = content_lyric_html + "  <table id='ml-table' border=0 width=100% cellspacing=0 cellpadding=0>";
-		/*if (dispTrackPref){
+		if (dispTrackPref){
 			content_lyric_html = content_lyric_html + "      <tr>";
 			content_lyric_html = content_lyric_html + "       <td valign=top>";
 			content_lyric_html = content_lyric_html + "        <p class=\"header\"> &nbsp; </p>";
@@ -1024,23 +1024,23 @@ mlyrics.pane = {
 			content_lyric_html = content_lyric_html + "        <p class=\"separator1\"> &nbsp; </p>";
 			content_lyric_html = content_lyric_html + "       </td>";
 			content_lyric_html = content_lyric_html + "      </tr>";
-		}*/
+		}
 		
-		/*if (dispArtistPref){
+		if (dispArtistPref){
 			content_lyric_html = content_lyric_html + "      <tr>";
 			content_lyric_html = content_lyric_html + "       <td valign=top>";
 			content_lyric_html = content_lyric_html + "        <h2 id='mlyrics_artist' style='" + artistStyleProps + "'>" + artist + "</h2>";
 			content_lyric_html = content_lyric_html + "       </td>";
 			content_lyric_html = content_lyric_html + "      </tr>";
-		}*/
+		}
 		
-		/*if (dispAlbumPref){  
+		if (dispAlbumPref){  
 			content_lyric_html = content_lyric_html + "      <tr>";
 			content_lyric_html = content_lyric_html + "       <td valign=top>";
 			content_lyric_html = content_lyric_html + "        <h3 id='mlyrics_album' style='" + albumStyleProps + "'>" + album + "</h3>";
 			content_lyric_html = content_lyric_html + "       </td>";
 			content_lyric_html = content_lyric_html + "      </tr>";
-		}*/
+		}
 		
 		//If showYear = True Then
 		// songYear = GetYear(Sng.OriginalYear,Sng.Year)
