@@ -103,7 +103,7 @@ mlyrics.lib = {
 
 			// Picture already shown
 			if (haslyrStrFull != haslyrStrFullOrig) {
-				aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", haslyrStrFull);
+				setTimeout(function () {aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", haslyrStrFull);}, 100);
 			
 				mlyrics.lib.debugOutput("[" + trackName + "] haslyrStr: " + haslyrStrFull + " <> " + haslyrStrFullOrig);
 
