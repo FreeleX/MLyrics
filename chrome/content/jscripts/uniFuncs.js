@@ -70,48 +70,51 @@ mlyrics.lib = {
 
 	fixHasLyr: function (aMediaItem) {
   
-		var lyrics = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
-		var haslyrStrFullOrig = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics");
-		var isLRC = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLRCfile");
-		var trackName = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#trackName");
+		var lyrics 		= aMediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+		var haslyrStrFullOrig 	= aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics");
+		var isLRC 		= aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLRCfile");
+		
+		if (typeof(lyrics) == 'undefined') lyrics = null;
+		if (typeof(haslyrStrFullOrig) == 'undefined') haslyrStrFullOrig = null;
+		if (typeof(isLRC) == 'undefined') isLRC = "false";
 
 		// Do not have lyrics stored in Database or tag and do not have lrc file
 		if (!lyrics && !isLRC) {
-			aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", null);
+			if (haslyrStrFullOrig)
+				aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", null);
+			return 0;
 		}
-		else {
-			var haslyrStr = "";
-
-			// Make haslyrics string
-			if (lyrics) {
-				if (haslyrStrFullOrig) {
-					if (haslyrStrFullOrig.indexOf("-tagblack") != -1)
-						haslyrStr += "-tagblack";
-					else 
-						haslyrStr += "-tagwhite";
-				}
-				else {
+		
+		// Make haslyrics string
+		var haslyrStr = "";
+		if (lyrics) {
+			if (haslyrStrFullOrig && haslyrStrFullOrig.length) {
+				if (haslyrStrFullOrig.indexOf("-tagblack") != -1)
+					haslyrStr += "-tagblack";
+				else 
 					haslyrStr += "-tagwhite";
-				}
 			}
-
-			if (isLRC == "true") {
-				haslyrStr += "-clock";
+			else {
+				haslyrStr += "-tagwhite";
 			}
+		}
 
-			var haslyrStrFull = "chrome://mlyrics/content/images/haslyrics" + haslyrStr + ".png";
+		if (isLRC == "true") {
+			haslyrStr += "-clock";
+		}
 
-			// Picture already shown
-			if (haslyrStrFull != haslyrStrFullOrig) {
-				setTimeout(function () {aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", haslyrStrFull);}, 100);
-			
-				mlyrics.lib.debugOutput("[" + trackName + "] haslyrStr: " + haslyrStrFull + " <> " + haslyrStrFullOrig);
+		// Picture already shown
+		var haslyrStrFull = "chrome://mlyrics/content/images/haslyrics" + haslyrStr + ".png";
+		if (!haslyrStrFullOrig || haslyrStrFull.length != haslyrStrFullOrig.length || haslyrStrFull != haslyrStrFullOrig) {
+			setTimeout(function () {aMediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLyrics", haslyrStrFull);}, 100);
+		
+			var trackName = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#trackName");
+			mlyrics.lib.debugOutput("[" + trackName + "] haslyrStr: " + haslyrStrFull + " <> " + haslyrStrFullOrig);
 
-				if (haslyrStr.indexOf("-tag") != -1)
-					return 1;
-				else
-					return 2;
-			}
+			if (haslyrStr.indexOf("-tag") != -1)
+				return 1;
+			else
+				return 2;
 		}
 
 		return 0;
