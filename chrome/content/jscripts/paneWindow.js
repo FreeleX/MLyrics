@@ -983,11 +983,18 @@ mlyrics.pane = {
 				iframe.contentDocument.body.style.background = mlyrics.pane.prefs.getCharPref('backgroundColor')
 			}
 			else if (mlyrics.pane.prefs.getCharPref("backgroundType") == "I") {
-				iframe.contentDocument.body.style.background = 'url("file:///' + 
-					decodeURIComponent(mlyrics.pane.prefs.getCharPref('backgroundImage')).replace(/\\/g, "/") + 
-					'") ' + 
-					mlyrics.pane.prefs.getCharPref('BGImagePos') + 
-					' fixed';
+				var backgroundImageUrl = mlyrics.pane.prefs.getCharPref('backgroundImage');
+				if (backgroundImageUrl.substr(0, 9) == "chrome://") {
+					iframe.contentDocument.body.style.background = 'url("' + backgroundImageUrl + '") ' + 
+						mlyrics.pane.prefs.getCharPref('BGImagePos') +
+						' fixed';
+				}
+				else {
+					iframe.contentDocument.body.style.background = 'url("file:///' + 
+						decodeURIComponent(mlyrics.pane.prefs.getCharPref('backgroundImage')).replace(/\\/g, "/") + '") ' + 
+						mlyrics.pane.prefs.getCharPref('BGImagePos') + 
+						' fixed';
+				}
 			}
 			else {
 				var imageURL = mlyrics.pane.gMM.sequencer.currentItem.getProperty("http://songbirdnest.com/data/1.0#primaryImageURL");

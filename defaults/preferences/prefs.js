@@ -29,24 +29,24 @@ pref("extensions.mlyrics.lyricsViewMode", 2);
 
 // Font style block begin
 // ----------------------
-pref("extensions.mlyrics.applyCustomFont", false);
+pref("extensions.mlyrics.applyCustomFont", true);
 pref("extensions.mlyrics.showStaticPicIf", false);
 
-pref("extensions.mlyrics.backgroundImage", "");
+pref("extensions.mlyrics.backgroundImage", "chrome://mlyrics/skin/background-sample.jpg");
 pref("extensions.mlyrics.backgroundColor", "#000000");
-pref("extensions.mlyrics.backgroundType", "C");
+pref("extensions.mlyrics.backgroundType", "I");
 pref("extensions.mlyrics.BGImagePos", "center center");
 
-pref("extensions.mlyrics.lyricsSize", 10);
-pref("extensions.mlyrics.transLyricsSize", 10);
+pref("extensions.mlyrics.lyricsSize", 16);
+pref("extensions.mlyrics.transLyricsSize", 12);
 pref("extensions.mlyrics.albumSize", 10);
-pref("extensions.mlyrics.artistSize", 10);
-pref("extensions.mlyrics.titleSize", 10);
+pref("extensions.mlyrics.artistSize", 12);
+pref("extensions.mlyrics.titleSize", 16);
 
-pref("extensions.mlyrics.lyricsColor", "#FFFFFF");
-pref("extensions.mlyrics.transLyricsColor", "#FFFFFF");
-pref("extensions.mlyrics.albumColor", "#FFFFFF");
-pref("extensions.mlyrics.artistColor", "#FFFFFF");
+pref("extensions.mlyrics.lyricsColor", "#CCCCCC");
+pref("extensions.mlyrics.transLyricsColor", "#CCCCCC");
+pref("extensions.mlyrics.albumColor", "#FF6666");
+pref("extensions.mlyrics.artistColor", "#FF6666");
 pref("extensions.mlyrics.titleColor", "#FFFFFF");
 
 pref("extensions.mlyrics.lyricsBGColorEnable", false);
@@ -67,8 +67,8 @@ pref("extensions.mlyrics.albumBold", false);
 pref("extensions.mlyrics.artistBold", false);
 pref("extensions.mlyrics.titleBold", true);
 
-pref("extensions.mlyrics.lyricsItalic", false);
-pref("extensions.mlyrics.transLyricsItalic", false);
+pref("extensions.mlyrics.lyricsItalic", true);
+pref("extensions.mlyrics.transLyricsItalic", true);
 pref("extensions.mlyrics.albumItalic", false);
 pref("extensions.mlyrics.artistItalic", false);
 pref("extensions.mlyrics.titleItalic", true);
@@ -98,8 +98,8 @@ pref("extensions.mlyrics.artistMarginTop", 0);
 pref("extensions.mlyrics.titleMarginTop", 0);
 
 pref("extensions.mlyrics.lyricsMarginBottom", 0);
-pref("extensions.mlyrics.transLyricsMarginBottom", 0);
-pref("extensions.mlyrics.albumMarginBottom", 0);
+pref("extensions.mlyrics.transLyricsMarginBottom", 20);
+pref("extensions.mlyrics.albumMarginBottom", 30);
 pref("extensions.mlyrics.artistMarginBottom", 0);
 pref("extensions.mlyrics.titleMarginBottom", 0);
 // --------------------
