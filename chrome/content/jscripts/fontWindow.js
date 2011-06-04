@@ -158,6 +158,28 @@ function onload () {
 	document.getElementById("albumOpacity").setAttribute("onchange", "prefs.setIntPref('albumOpacity', this.value)");
 	document.getElementById("lyricsOpacity").setAttribute("onchange", "prefs.setIntPref('lyricsOpacity', this.value)");
 	document.getElementById("transLyricsOpacity").setAttribute("onchange", "prefs.setIntPref('transLyricsOpacity', this.value)");
+	
+	document.getElementById("titleMarginTop").value = prefs.getIntPref("titleMarginTop");
+	document.getElementById("artistMarginTop").value = prefs.getIntPref("artistMarginTop");
+	document.getElementById("albumMarginTop").value = prefs.getIntPref("albumMarginTop");
+	document.getElementById("lyricsMarginTop").value = prefs.getIntPref("lyricsMarginTop");
+	document.getElementById("transLyricsMarginTop").value = prefs.getIntPref("transLyricsMarginTop");
+	document.getElementById("titleMarginTop").setAttribute("onchange", "prefs.setIntPref('titleMarginTop', this.value)");
+	document.getElementById("artistMarginTop").setAttribute("onchange", "prefs.setIntPref('artistMarginTop', this.value)");
+	document.getElementById("albumMarginTop").setAttribute("onchange", "prefs.setIntPref('albumMarginTop', this.value)");
+	document.getElementById("lyricsMarginTop").setAttribute("onchange", "prefs.setIntPref('lyricsMarginTop', this.value)");
+	document.getElementById("transLyricsMarginTop").setAttribute("onchange", "prefs.setIntPref('transLyricsMarginTop', this.value)");
+	
+	document.getElementById("titleMarginBottom").value = prefs.getIntPref("titleMarginBottom");
+	document.getElementById("artistMarginBottom").value = prefs.getIntPref("artistMarginBottom");
+	document.getElementById("albumMarginBottom").value = prefs.getIntPref("albumMarginBottom");
+	document.getElementById("lyricsMarginBottom").value = prefs.getIntPref("lyricsMarginBottom");
+	document.getElementById("transLyricsMarginBottom").value = prefs.getIntPref("transLyricsMarginBottom");
+	document.getElementById("titleMarginBottom").setAttribute("onchange", "prefs.setIntPref('titleMarginBottom', this.value)");
+	document.getElementById("artistMarginBottom").setAttribute("onchange", "prefs.setIntPref('artistMarginBottom', this.value)");
+	document.getElementById("albumMarginBottom").setAttribute("onchange", "prefs.setIntPref('albumMarginBottom', this.value)");
+	document.getElementById("lyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref('lyricsMarginBottom', this.value)");
+	document.getElementById("transLyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref('transLyricsMarginBottom', this.value)");
 }
 
 function enableEdit(enable) {

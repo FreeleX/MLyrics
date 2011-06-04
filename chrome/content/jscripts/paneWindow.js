@@ -227,6 +227,18 @@ mlyrics.pane = {
 				case "albumUnderlined":
 				case "titleUnderlined":
 					
+				case "lyricsMarginTop":
+				case "transLyricsMarginTop":
+				case "artistMarginTop":
+				case "albumMarginTop":
+				case "titleMarginTop":
+					
+				case "lyricsMarginBottom":
+				case "transLyricsMarginBottom":
+				case "artistMarginBottom":
+				case "albumMarginBottom":
+				case "titleMarginBottom":
+					
 					mlyrics.pane.viewMode.change(mlyrics.pane.prefs.getIntPref("lyricsViewMode"));
 					break;
 				
@@ -276,6 +288,8 @@ mlyrics.pane = {
 		var elemUnderlined = mlyrics.pane.prefs.getBoolPref(prefPartStr + "Underlined");
 		var elemAlign = mlyrics.pane.prefs.getCharPref(prefPartStr + "Align");
 		var elemOpacity = mlyrics.pane.prefs.getIntPref(prefPartStr + "Opacity");
+		var elemMarginTop = mlyrics.pane.prefs.getIntPref(prefPartStr + "MarginTop");
+		var elemMarginBottom = mlyrics.pane.prefs.getIntPref(prefPartStr + "MarginBottom");
 		
 		var styleStr = "";
 		
@@ -303,11 +317,14 @@ mlyrics.pane = {
 			styleStr += "text-decoration: none;";
 		
 		if (elemAlign == "C")
-			styleStr += "text-align: center";
+			styleStr += "text-align: center;";
 		else if (elemAlign == "R")
-			styleStr += "text-align: right";
+			styleStr += "text-align: right;";
 		else
-			styleStr += "text-align: left";
+			styleStr += "text-align: left;";
+		
+		styleStr += "margin-top: " + elemMarginTop + ";";
+		styleStr += "margin-bottom: " + elemMarginBottom + ";";
 		
 		return styleStr;
 	},
@@ -948,13 +965,6 @@ mlyrics.pane = {
 		} ) ();
 		
 		var dispTrackPref = this.prefs.getBoolPref('dispTrack');
-
-
-
-
-
-
-
 		var dispArtistPref = this.prefs.getBoolPref('dispArtist');
 		var dispAlbumPref = this.prefs.getBoolPref('dispAlbum');
 		
@@ -1572,7 +1582,7 @@ mlyrics.pane = {
 				for (var i=0; i<lyricsOrigArray.length; i++) {
 					if (lyricsOrigArray[i] == "") lyrics += "<br>";
 					lyrics += "<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
-					lyrics += "<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyricsTransArray[i] + "</p><br>";
+					lyrics += "<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyricsTransArray[i] + "</p>";
 				}
 			}
 			

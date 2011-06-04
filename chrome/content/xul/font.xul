@@ -103,6 +103,10 @@
 				<colorpicker id="titleBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="titleOpacity" type="number" size="4" min="1" max="10" />
+				<label value="&mlyrics.font.topSpace;" />
+				<textbox id="titleMarginTop" type="number" size="4" min="0" max="100" />
+				<label value="&mlyrics.font.bottomSpace;" />
+				<textbox id="titleMarginBottom" type="number" size="4" min="0" max="100" />
 			</hbox>
 		</groupbox>
 		<groupbox>
@@ -128,6 +132,10 @@
 				<colorpicker id="artistBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="artistOpacity" type="number" size="4" min="1" max="10" />
+				<label value="&mlyrics.font.topSpace;" />
+				<textbox id="artistMarginTop" type="number" size="4" min="0" max="100" />
+				<label value="&mlyrics.font.bottomSpace;" />
+				<textbox id="artistMarginBottom" type="number" size="4" min="0" max="100" />
 			</hbox>
 		</groupbox>
 		<groupbox>
@@ -153,6 +161,10 @@
 				<colorpicker id="albumBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="albumOpacity" type="number" size="4" min="1" max="10" />
+				<label value="&mlyrics.font.topSpace;" />
+				<textbox id="albumMarginTop" type="number" size="4" min="0" max="100" />
+				<label value="&mlyrics.font.bottomSpace;" />
+				<textbox id="albumMarginBottom" type="number" size="4" min="0" max="100" />
 			</hbox>
 		</groupbox>
 
@@ -179,6 +191,10 @@
 				<colorpicker id="lyricsBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="lyricsOpacity" type="number" size="4" min="1" max="10" />
+				<label value="&mlyrics.font.topSpace;" />
+				<textbox id="lyricsMarginTop" type="number" size="4" min="0" max="100" />
+				<label value="&mlyrics.font.bottomSpace;" />
+				<textbox id="lyricsMarginBottom" type="number" size="4" min="0" max="100" />
 			</hbox>
 		</groupbox>
 		<groupbox>
@@ -204,6 +220,10 @@
 				<colorpicker id="transLyricsBGColor" type="button" />
 				<label value="&mlyrics.font.opacityLabel;" />
 				<textbox id="transLyricsOpacity" type="number" size="4" min="1" max="10" />
+				<label value="&mlyrics.font.topSpace;" />
+				<textbox id="transLyricsMarginTop" type="number" size="4" min="0" max="100" />
+				<label value="&mlyrics.font.bottomSpace;" />
+				<textbox id="transLyricsMarginBottom" type="number" size="4" min="0" max="100" />
 			</hbox>
 		</groupbox>
 		<spacer flex="1"/>

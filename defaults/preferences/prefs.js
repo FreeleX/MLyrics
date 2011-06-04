@@ -90,6 +90,18 @@ pref("extensions.mlyrics.transLyricsOpacity", 5);
 pref("extensions.mlyrics.albumOpacity", 5);
 pref("extensions.mlyrics.artistOpacity", 5);
 pref("extensions.mlyrics.titleOpacity", 5);
+
+pref("extensions.mlyrics.lyricsMarginTop", 0);
+pref("extensions.mlyrics.transLyricsMarginTop", 0);
+pref("extensions.mlyrics.albumMarginTop", 0);
+pref("extensions.mlyrics.artistMarginTop", 0);
+pref("extensions.mlyrics.titleMarginTop", 0);
+
+pref("extensions.mlyrics.lyricsMarginBottom", 0);
+pref("extensions.mlyrics.transLyricsMarginBottom", 0);
+pref("extensions.mlyrics.albumMarginBottom", 0);
+pref("extensions.mlyrics.artistMarginBottom", 0);
+pref("extensions.mlyrics.titleMarginBottom", 0);
 // --------------------
 // Font style block end
 
