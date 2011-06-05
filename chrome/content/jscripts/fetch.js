@@ -2471,7 +2471,173 @@ mlyrics.fetch = {
 				  
 				return respLyr;
 			}
-		}
+		},
+		
+		// http://sing365.com/
+		// ======================
+		SING365: {
+			getUrl: function (artist, album, track) {
+				var url= "http://seek.sing365.com/cgi-bin/s.cgi?q=" + encodeURIComponent(artist) + "+" + encodeURIComponent(track) + "&submit=go";
+				return url;
+			},
+			
+			getLyrics: function (artist, album, track, cbFn) {
+				
+				var url = this.getUrl(artist, album, track);
+				
+				var sourceObj = this;
+				
+				var req = new XMLHttpRequest();
+				if (!req) {
+					cbFn("");
+					return;
+				}
+				
+				mlyrics.lib.debugOutput("Fetch: " + url);
+				
+				req.open("GET", url, true);
+				
+				var abortTimeout = setTimeout(function () {req.abort(); cbFn("");}, mlyrics.fetch.abortTimeout);
+				
+				req.onreadystatechange = function() {
+					
+					if (typeof(mlyrics.pane) != "undefined" && 
+					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					{
+						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
+						clearTimeout(abortTimeout);
+						this.abort();
+						return;
+					}
+					
+					if (this.readyState != 4) return;
+					
+					mlyrics.lib.debugOutput("Got lyrics data");
+					
+					clearTimeout(abortTimeout);
+					
+					var respLyr = "";
+					if (this.status == 200) {
+						respLyr = this.responseText.toLowerCase();
+						
+						var _track = track.toLowerCase();
+						var _artist = artist.toLowerCase();
+						
+						var songUrl = "";
+						var tableRowStart = 0;
+						while (true) {
+							tableRowStart = respLyr.indexOf("<td>\n", tableRowStart+1);
+							if (tableRowStart == -1) break;
+							
+							var tableRowEnd = respLyr.indexOf("</td>", tableRowStart);
+							var cuttedTable = respLyr.substring(tableRowStart, tableRowEnd);
+							
+							cuttedTable = cuttedTable.replace(/<b>/g, "")
+							cuttedTable = cuttedTable.replace(/<\/b>/g, "")
+							
+							cuttedTable = cuttedTable.toLowerCase();
+							var trackPosStart = cuttedTable.indexOf(">" + _artist + " - " + _track + " lyrics<");
+							if (trackPosStart != -1) {
+								var songUrlStartPos = cuttedTable.indexOf("<a href=\"");
+								var songUrlEndPos = cuttedTable.indexOf("\"", songUrlStartPos+9);
+								songUrl = cuttedTable.substring(songUrlStartPos+9, songUrlEndPos);
+								break;
+							}
+						}
+						
+						if (songUrl != "") {
+							sourceObj.getLyrics2(songUrl, cbFn);
+						}
+						else {
+							cbFn("");
+						}
+					}
+					else {
+						cbFn("");
+					}
+				}
+				
+				req.onerror = function () {clearTimeout(abortTimeout);};
+				
+				req.send(null);
+			},
+			
+			getLyrics2: function (songUrl, cbFn) {
+				mlyrics.lib.debugOutput("Fetch2: " + songUrl);
+				
+				var req2 = new XMLHttpRequest();
+				if (!req2) {
+					cbFn("");
+					return;
+				}
+				
+				var sourceObj = this;
+				
+				req2.open("GET", songUrl, true);
+				
+				var abortTimeout = setTimeout(function () {req2.abort(); cbFn("");}, mlyrics.fetch.abortTimeout);
+				
+				req2.onreadystatechange = function () {
+					
+					if (typeof(mlyrics.pane) != "undefined" && 
+					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					{
+						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
+						clearTimeout(abortTimeout);
+						this.abort();
+						return;
+					}
+					
+					if (this.readyState != 4) return;
+					
+					mlyrics.lib.debugOutput("Got2 lyrics data");
+					
+					clearTimeout(abortTimeout);
+					
+					if (this.status == 200) {
+						var respLyr = this.responseText;
+					}
+					else {
+						var respLyr = "";
+					}
+					
+					respLyr = sourceObj.filterText(respLyr);
+					respLyr = sourceObj.fixCharacters(respLyr);
+					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					
+					cbFn(respLyr);
+				}
+				
+				req2.onerror = function () {clearTimeout(abortTimeout);};
+				
+				req2.send(null);
+			},
+			
+			filterText: function (respLyr, search_track) {
+				if (respLyr == null || respLyr == "") return "";
+				
+				var lyricsStartPos = respLyr.indexOf("border=0><br><br>\n");
+				if (lyricsStartPos != -1) {
+					var lyricsEndPos = respLyr.indexOf("\n<br><img", lyricsStartPos);
+					respLyr = respLyr.substring(lyricsStartPos+18, lyricsEndPos);
+				}
+				else {
+					respLyr = "";
+				}
+				
+				return respLyr;
+			},
+			
+			fixCharacters: function(respLyr) {
+				if (respLyr== null || respLyr == "") return "";
+				
+				respLyr = respLyr.replace(/<br>/g, "");
+				respLyr = respLyr.replace(/<BR>/g, "\n");
+				respLyr = respLyr.replace(/\r\n/g, "\n");
+				  
+				return respLyr;
+			}
+		},
 	},
 	
 	fetchNext: function (artist, album, track, cbFn, counter, forceone, cbSProgress) {
