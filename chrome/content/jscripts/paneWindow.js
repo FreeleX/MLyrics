@@ -881,7 +881,7 @@ mlyrics.pane = {
 
 		document.getElementById("ML_sourceAddressNextButton").hidden = false;
 		document.getElementById("refreshMenuItem").disabled = false;
-		document.getElementById("metadataMenuItem").disabled = true;
+		document.getElementById("metadataMenuItem").disabled = false;
 		document.getElementById("timeTracksMenuItem").disabled = true;
 		document.getElementById("makeInstrMenuItem").disabled = false;
 		document.getElementById("clearMenuItem").disabled = false;
