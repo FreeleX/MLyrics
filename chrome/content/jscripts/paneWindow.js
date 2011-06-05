@@ -678,8 +678,8 @@ mlyrics.pane = {
 					mlyrics.pane.addNotification("infobar", 3,"","");
 					
 					if (!forceone && mlyrics.pane.prefs.getBoolPref("autoSearchLyr")) {
-						var goUri = "http://www.google.com/search?btnI=i&q=lyrics%20" + encodeURIComponent(artist) + "%20" + encodeURIComponent(track);
-						mlyrics.pane.openAndReuseOneTabPerAttribute("mlyrics-luckysearch", goUri);
+						mlyrics.pane.autoLuckySearch(artist, track);
+						return;
 					}
 				}
 			}
@@ -856,6 +856,49 @@ mlyrics.pane = {
 		
 		mlyrics.fetch.googleTranslate(lyrics, cbFn, true);
 	},
+
+	autoLuckySearch: function (artist, track) {
+		if (!artist || !track) {
+			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
+				var mediaItem = this.mediaItemSelectListener.curMediaItem;
+			}
+			else {
+				var mediaItem = this.playlistPlaybackServiceListener.curMediaItem;
+			}
+			
+			var artist = mediaItem.getProperty(SBProperties.artistName);
+			var track = mediaItem.getProperty(SBProperties.trackName);
+		}
+
+		var goUri = "http://www.google.com/search?btnI=i&q=lyrics%20" + encodeURIComponent(artist) + "%20" + encodeURIComponent(track);
+
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+		var nsIURI = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService).newURI("http://www.google.com", null, null);
+
+		document.getElementById('lm-content').hidden =  true;
+		document.getElementById('web-content').hidden = false;
+		document.getElementById('web-dropbtn').hidden = false;
+
+		document.getElementById("ML_sourceAddressNextButton").hidden = false;
+		document.getElementById("refreshMenuItem").disabled = false;
+		document.getElementById("metadataMenuItem").disabled = true;
+		document.getElementById("timeTracksMenuItem").disabled = true;
+		document.getElementById("makeInstrMenuItem").disabled = false;
+		document.getElementById("clearMenuItem").disabled = false;
+		document.getElementById("ML_sourceAddressNextButton").nextSourceIndex = 0;
+		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("contxtLuckySearchMenu");
+		document.getElementById("ML_sourceFetchProgress").hidden = true;
+		document.getElementById("ML_sourceFetchStopButton").hidden = true;
+
+		// Remove notifications
+		var mTop = document.getElementById("infobar");
+		mTop.removeAllNotifications(true);
+
+		mlyrics.lib.debugOutput("Lucky search for artist: " + artist + ", track: " + track);
+
+		document.getElementById('web-content').loadURI("about:blank");
+		setTimeout(function () {document.getElementById('web-content').loadURI(goUri, nsIURI);}, 100);
+	},
 	
 	buildPage: function (artist, album, track, lyrics, source) {
 		
@@ -971,6 +1014,11 @@ mlyrics.pane = {
 		var titleStyleProps = "";
 		var artistStyleProps = "";
 		var albumStyleProps = "";
+
+		document.getElementById('lm-content').hidden = false;
+		document.getElementById('web-content').hidden = true;
+		document.getElementById('web-dropbtn').hidden = true;
+		document.getElementById('web-content').loadURI("about:blank");
 		
 		var iframe = document.getElementById('lm-content');
 		

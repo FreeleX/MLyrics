@@ -84,6 +84,19 @@
 					onmouseover="mlyrics.pane.positionListener.mouseover=true;"
 					onmouseout="mlyrics.pane.positionListener.mouseover=false;"
 					onDOMMouseScroll="mlyrics.pane.positionListener.onMouseScroll(event)"/>
+
+				<browser id="web-content"
+					src="about:blank" 
+					type="content"
+					hidden="true"
+					flex="1" />
+
+				<button id="web-dropbtn"
+					label="&mlyrics.pane.dropherebtn;" 
+					height="40"
+					ondrop="mlyrics.pane.onDrop(event)"
+					disabled="true" 
+					hidden="true" /> 
 			</notificationbox>
 			
 			<vbox>
@@ -115,6 +128,10 @@
 								<menuitem id="contxtTranslateMetaMenu" 
 									label="translate.google.com" 
 									oncommand="mlyrics.pane.contextRefresh(null, -2);"/>
+
+								<menuitem id="contxtLuckySearchMenu" 
+									label="I'm Feeling Lucky" 
+									oncommand="mlyrics.pane.autoLuckySearch();"/>
 									
 								<menuitem id="contxtRefreshTagMenu" 
 									label="&mlyrics.pane.contxtRefreshTag;" 
