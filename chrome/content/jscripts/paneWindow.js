@@ -914,8 +914,13 @@ mlyrics.pane = {
 		mlyrics.pane.viewMode.savedData.lyrics 	= lyrics;
 		mlyrics.pane.viewMode.savedData.source 	= source;
 
-		if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]")
+		if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]") {
 			document.getElementById("timeTracksMenuItem").disabled = true;
+			document.getElementById("contxtTranslateMetaMenu").disabled = true;
+		}
+		
+		if (mlyrics.pane.viewMode.savedData.lyrics.indexOf("[ Google translated ]") != -1)
+			document.getElementById("contxtTranslateMetaMenu").disabled = true;
 		
 		// get view mode
 		lyrics = mlyrics.pane.viewMode.getHTMLView(lyrics);
