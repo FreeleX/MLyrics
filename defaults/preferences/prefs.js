@@ -105,7 +105,7 @@ pref("extensions.mlyrics.titleMarginBottom", 0);
 // --------------------
 // Font style block end
 
-pref("extensions.mlyrics.fetchSourcesList", "LWIKI|TERRA|METROLYRICS|LYRICSVIP|CHARTLYRICS|AZLYRICS|BATLYRICS|LYRDB|DARKLYRICS|LOLOLYRICS|GOODSONGS|JPOPASIA|SONGTEKSTEN|HINDILYRICS|ANIMELYRICS|SHIRONET|LYRICSHALL|SING365");
+pref("extensions.mlyrics.fetchSourcesList", "LWIKI|TERRA|METROLYRICS|LYRICSVIP|SING365|CHARTLYRICS|AZLYRICS|BATLYRICS|LYRDB|DARKLYRICS|LOLOLYRICS|GOODSONGS|JPOPASIA|SONGTEKSTEN|HINDILYRICS|ANIMELYRICS|SHIRONET|LYRICSHALL");
 
 // Sources block begin
 // -------------------
@@ -124,9 +124,9 @@ pref("extensions.mlyrics.fetch_LYRICSVIP", 	true);
 pref("extensions.mlyrics.fetch_SONGTEKSTEN",	true);
 pref("extensions.mlyrics.fetch_HINDILYRICS",	false);
 pref("extensions.mlyrics.fetch_ANIMELYRICS",	false);
-pref("extensions.mlyrics.fetch_SHIRONET",	false);
-pref("extensions.mlyrics.fetch_LYRICSHALL",	false);
-pref("extensions.mlyrics.fetch_SING365",	false);
+pref("extensions.mlyrics.fetch_SHIRONET",	true);
+pref("extensions.mlyrics.fetch_LYRICSHALL",	true);
+pref("extensions.mlyrics.fetch_SING365",	true);
 
 pref("extensions.mlyrics.laddress_TERRA", 	"letras.terra.com.br");
 pref("extensions.mlyrics.laddress_LYRDB", 	"lyrdb.com");
