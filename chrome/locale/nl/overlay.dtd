@@ -49,8 +49,8 @@
 <!ENTITY mlyrics.prefs.stloptsong "SongBird - RubberDucky">
 <!ENTITY mlyrics.prefs.stloptstar "Sterren">
 <!ENTITY mlyrics.prefs.scanlib "Zoek in complete collectie naar opgeslagen songteksten.">
-<!ENTITY mlyrics.prefs.linkInfo1 "Wil je meer functionaliteit, heb je een idee? Misschien een fout gevonden?">
-<!ENTITY mlyrics.prefs.linkInfo2 "Vergeet ook niet naar de commentaar te kijken :)">
+<!ENTITY mlyrics.prefs.linkInfo1 "Heb je een idee? Heb je een fout gevonden?">
+<!ENTITY mlyrics.prefs.linkInfo2 "Bekijk de commentaar op deze uitbreiding">
 <!ENTITY mlyrics.helloworld.label "Doe hallo wereld">
 <!ENTITY mlyrics.helloworld.accesskey "H">
 <!ENTITY mlyrics.pane.label "Dit is een weergave paneel">
@@ -89,6 +89,7 @@
 <!ENTITY mlyrics.pane.restartSongButton "Herstart">
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Maak tijdslijn">
 <!ENTITY mlyrics.pane.removeTimeTracks "Verwijder tijdslijn">
+<!ENTITY mlyrics.pane.dropherebtn "Sleep songteksten hier naartoe">
 <!ENTITY mlyrics.font.confFont "Configureer stijl">
 <!ENTITY mlyrics.font.sizeLabel "Grootte:">
 <!ENTITY mlyrics.font.leftLabel "Links">
@@ -110,3 +111,5 @@
 <!ENTITY mlyrics.font.color2Label "Kleur">
 <!ENTITY mlyrics.font.imageLabel "Afbeelding">
 <!ENTITY mlyrics.font.coverImageLabel "Afbeelding van cover">
+<!ENTITY mlyrics.font.topSpace "Ruimte bovenaan">
+<!ENTITY mlyrics.font.bottomSpace "Ruimte onderaan">

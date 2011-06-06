@@ -89,6 +89,7 @@
 <!ENTITY mlyrics.pane.restartSongButton "Перезапустить">
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Создать метки времени">
 <!ENTITY mlyrics.pane.removeTimeTracks "Удалить метки времени">
+<!ENTITY mlyrics.pane.dropherebtn "Бросьте текст сюда">
 <!ENTITY mlyrics.font.confFont "Настроить стиль">
 <!ENTITY mlyrics.font.sizeLabel "Размер:">
 <!ENTITY mlyrics.font.leftLabel "Слева">
@@ -110,3 +111,5 @@
 <!ENTITY mlyrics.font.color2Label "Цвет">
 <!ENTITY mlyrics.font.imageLabel "Изображение">
 <!ENTITY mlyrics.font.coverImageLabel "Изображение обложки">
+<!ENTITY mlyrics.font.topSpace "Отступ сверху">
+<!ENTITY mlyrics.font.bottomSpace "Отступ снизу">

@@ -89,6 +89,7 @@
 <!ENTITY mlyrics.pane.restartSongButton "Reiniciar">
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Crear seguimiento de pistas">
 <!ENTITY mlyrics.pane.removeTimeTracks "Eliminar seguimiento de pistas">
+<!ENTITY mlyrics.pane.dropherebtn "Soltar letra aquí">
 <!ENTITY mlyrics.font.confFont "Configurar estilo">
 <!ENTITY mlyrics.font.sizeLabel "Tamaño:">
 <!ENTITY mlyrics.font.leftLabel "Izquierda">
@@ -110,3 +111,5 @@
 <!ENTITY mlyrics.font.color2Label "Color">
 <!ENTITY mlyrics.font.imageLabel "Imagen">
 <!ENTITY mlyrics.font.coverImageLabel "Carátula">
+<!ENTITY mlyrics.font.topSpace "Espacio superior">
+<!ENTITY mlyrics.font.bottomSpace "Espacio inferior">

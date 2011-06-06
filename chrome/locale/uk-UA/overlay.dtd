@@ -89,6 +89,7 @@
 <!ENTITY mlyrics.pane.restartSongButton "Перезапустити">
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Створити мітки часу">
 <!ENTITY mlyrics.pane.removeTimeTracks "Видалити мітки часу">
+<!ENTITY mlyrics.pane.dropherebtn "Киньте текст сюди">
 <!ENTITY mlyrics.font.confFont "Налаштувати стиль">
 <!ENTITY mlyrics.font.sizeLabel "Розмір:">
 <!ENTITY mlyrics.font.leftLabel "Ліворуч">
@@ -110,3 +111,5 @@
 <!ENTITY mlyrics.font.color2Label "Колір">
 <!ENTITY mlyrics.font.imageLabel "Зображення">
 <!ENTITY mlyrics.font.coverImageLabel "Зображення обкладинки">
+<!ENTITY mlyrics.font.topSpace "Відступ згори">
+<!ENTITY mlyrics.font.bottomSpace "Відступ знизу">

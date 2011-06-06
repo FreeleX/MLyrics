@@ -89,6 +89,7 @@
 <!ENTITY mlyrics.pane.restartSongButton "Neustart">
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Zeitspur erzeugen">
 <!ENTITY mlyrics.pane.removeTimeTracks "Zeitspur entfernen">
+<!ENTITY mlyrics.pane.dropherebtn "Lyrics hier ablegen">
 <!ENTITY mlyrics.font.confFont "Stil konfigurieren">
 <!ENTITY mlyrics.font.sizeLabel "Größe:">
 <!ENTITY mlyrics.font.leftLabel "Links">
@@ -110,3 +111,5 @@
 <!ENTITY mlyrics.font.color2Label "Farbe">
 <!ENTITY mlyrics.font.imageLabel "Bild">
 <!ENTITY mlyrics.font.coverImageLabel "Cover-Bild">
+<!ENTITY mlyrics.font.topSpace "Oberer Bereich">
+<!ENTITY mlyrics.font.bottomSpace "Unterer Bereich">

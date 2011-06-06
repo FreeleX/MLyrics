@@ -89,6 +89,7 @@
 <!ENTITY mlyrics.pane.restartSongButton "Starta om">
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Skapa tidsspår">
 <!ENTITY mlyrics.pane.removeTimeTracks "Ta bort tidsspår">
+<!ENTITY mlyrics.pane.dropherebtn "Släpp sångtexter här">
 <!ENTITY mlyrics.font.confFont "Konfigurera format">
 <!ENTITY mlyrics.font.sizeLabel "Storlek:">
 <!ENTITY mlyrics.font.leftLabel "Vänster">
@@ -110,3 +111,5 @@
 <!ENTITY mlyrics.font.color2Label "Färg">
 <!ENTITY mlyrics.font.imageLabel "Bild">
 <!ENTITY mlyrics.font.coverImageLabel "Omslagsbild">
+<!ENTITY mlyrics.font.topSpace "Utrymme ovanför">
+<!ENTITY mlyrics.font.bottomSpace "Utrymme nedanför">
