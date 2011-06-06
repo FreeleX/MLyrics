@@ -29,7 +29,7 @@ pref("extensions.mlyrics.lyricsViewMode", 2);
 
 // Font style block begin
 // ----------------------
-pref("extensions.mlyrics.applyCustomFont", true);
+pref("extensions.mlyrics.applyCustomFont", false);
 pref("extensions.mlyrics.showStaticPicIf", false);
 
 pref("extensions.mlyrics.backgroundImage", "chrome://mlyrics/skin/background-sample.jpg");
