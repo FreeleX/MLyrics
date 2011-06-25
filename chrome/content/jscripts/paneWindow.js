@@ -123,6 +123,10 @@ mlyrics.pane = {
 	onBtnsboxMouseout: function (event) {
 		mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {document.getElementById("mlyrics-btnsbox").hidden = true;}, 3000);
 	},
+
+	onBtnsboxMouseScroll: function (event) {
+		document.getElementById("accelerateScale").value += event.detail*5;
+	},
 	
 	openAndReuseOneTabPerAttribute: function (attrName, url) {
 		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -2342,10 +2346,11 @@ mlyrics.pane = {
 			}
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
+					var accelerator = document.getElementById("accelerateScale");
 					var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
 
 					if (newScrollPos < 0) newScrollPos = 0;
-					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
+					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos*(1+accelerator.value/100));
 				}
 			}
 

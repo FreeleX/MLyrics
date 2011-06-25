@@ -140,9 +140,9 @@
 			</window>
 		</deck>
 
-		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)">
+		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)" onDOMMouseScroll="mlyrics.pane.onBtnsboxMouseScroll(event)">
 			<spacer flex="1"/>
-			<scale orient="vertical" minwidth="34" maxwidth="34" flex="3" style="margin:0" min="-100" max="1000" />
+			<scale id="accelerateScale" orient="vertical" minwidth="34" maxwidth="34" flex="3" style="margin:0" min="-100" max="100" value="1"/>
 			<spacer flex="1"/>
 			<toolbarbutton 	id="notifEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/notes.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtNotifEnabled;" 
 					oncommand="mlyrics.pane.enableNotifications(this.checked);" />
@@ -176,7 +176,7 @@
 					oncommand="mlyrics.pane.editMode.init()" />
 			<toolbarbutton 	id="makeInstrBtn" image="chrome://mlyrics/content/images/instrumental.png"  style="margin:0" tooltiptext="&mlyrics.pane.contxtMakeInstr;" 
 					oncommand="mlyrics.pane.contextMakeInstrumental();" />
-			<toolbarbutton 	id="clearBtn" image="chrome://mlyrics/content/images/delete-icon.png"  style="margin:0" tooltiptext="&mlyrics.pane.contxtClear;" 
+			<toolbarbutton 	id="clearBtn" image="chrome://mlyrics/content/images/clear2-icon.png"  style="margin:0" tooltiptext="&mlyrics.pane.contxtClear;" 
 					oncommand="mlyrics.pane.contextClear();" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="timeTracksBtn" image="chrome://mlyrics/content/images/haslyrics-clock.png"  style="margin:0" tooltiptext="&mlyrics.pane.showTimeTracksDialog;" 
