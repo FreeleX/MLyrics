@@ -24,6 +24,7 @@ mlyrics.pane = {
 	songbirdWindow:		null,
 	prefs: 			null,
 	defprefs: 		null,
+	btnsBoxViewTimeout:	null,
 	
 	pStrings: {
 		bigyes: "",
@@ -45,13 +46,11 @@ mlyrics.pane = {
 		
 		if (enable) {
 			this.prefs.setBoolPref("showNotifs", true);
-			document.getElementById("notifEnabledMenuItem").setAttribute("checked", "true");
-			document.getElementById("notifDisabledMenuItem").setAttribute("checked", "false");
+			document.getElementById("notifEnabledBtn").checked = true;
 		}
 		else {
 			this.prefs.setBoolPref("showNotifs", false);
-			document.getElementById("notifEnabledMenuItem").setAttribute("checked", "false");
-			document.getElementById("notifDisabledMenuItem").setAttribute("checked", "true");
+			document.getElementById("notifEnabledBtn").checked = false;
 		}
 	},
 	
@@ -103,6 +102,26 @@ mlyrics.pane = {
 		}
 		
 		mlyrics.lib.debugOutput("Pane intitialization finished");
+	},
+
+	onViewPaneClick: function (event) {
+		if (event.button == 2) {	// Right click
+			var btnsbox = document.getElementById("mlyrics-btnsbox")
+			btnsbox.hidden = false;
+			mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {btnsbox.hidden = true;}, 3000);
+		}
+	},
+
+	onBtnsboxMouseover: function (event) {
+		if (mlyrics.pane.btnsBoxViewTimeout) {
+			clearTimeout(mlyrics.pane.btnsBoxViewTimeout);
+			mlyrics.pane.btnsBoxViewTimeout = null;
+		}
+		document.getElementById("mlyrics-btnsbox").hidden = false;
+	},
+
+	onBtnsboxMouseout: function (event) {
+		mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {document.getElementById("mlyrics-btnsbox").hidden = true;}, 3000);
 	},
 	
 	openAndReuseOneTabPerAttribute: function (attrName, url) {
@@ -782,10 +801,10 @@ mlyrics.pane = {
 				document.getElementById("ML_sourceAddressNextButton").hidden = false;
 				document.getElementById("refreshMenuItem").disabled = false;
 				
-				document.getElementById("metadataMenuItem").disabled = true;
-				document.getElementById("timeTracksMenuItem").disabled = true;
-				document.getElementById("makeInstrMenuItem").disabled = true;
-				document.getElementById("clearMenuItem").disabled = true;
+				document.getElementById("editBtn").disabled = true;
+				document.getElementById("timeTracksBtn").disabled = true;
+				document.getElementById("makeInstrBtn").disabled = true;
+				document.getElementById("clearBtn").disabled = true;
 				
 				if (!localIndex) {
 					document.getElementById("refreshMenuItem").selectedItem = document.getElementById("ML_contextSourcesSeparator");
@@ -813,10 +832,10 @@ mlyrics.pane = {
 				document.getElementById("ML_sourceAddressNextButton").hidden = true;
 				document.getElementById("refreshMenuItem").disabled = true;
 				
-				document.getElementById("metadataMenuItem").disabled = true;
-				document.getElementById("timeTracksMenuItem").disabled = true;
-				document.getElementById("makeInstrMenuItem").disabled = true;
-				document.getElementById("clearMenuItem").disabled = true;
+				document.getElementById("editBtn").disabled = true;
+				document.getElementById("timeTracksBtn").disabled = true;
+				document.getElementById("makeInstrBtn").disabled = true;
+				document.getElementById("clearBtn").disabled = true;
 			}
 		);
 	},
@@ -830,11 +849,11 @@ mlyrics.pane = {
 		document.getElementById("ML_sourceFetchProgress").hidden = true;
 		document.getElementById("ML_sourceFetchStopButton").hidden = true;
 		
-		document.getElementById("metadataMenuItem").disabled = false;
+		document.getElementById("editBtn").disabled = false;
 		if (mlyrics.pane.viewMode.savedData.lyrics != "" && mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() != "[instrumental]") 
-			document.getElementById("timeTracksMenuItem").disabled = false;
-		document.getElementById("makeInstrMenuItem").disabled = false;
-		document.getElementById("clearMenuItem").disabled = false;
+			document.getElementById("timeTracksBtn").disabled = false;
+		document.getElementById("makeInstrBtn").disabled = false;
+		document.getElementById("clearBtn").disabled = false;
 			
 		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("ML_contextSourcesSeparator");
 		document.getElementById("ML_sourceAddressNextButton").disabled = true;
@@ -881,10 +900,10 @@ mlyrics.pane = {
 
 		document.getElementById("ML_sourceAddressNextButton").hidden = false;
 		document.getElementById("refreshMenuItem").disabled = false;
-		document.getElementById("metadataMenuItem").disabled = false;
-		document.getElementById("timeTracksMenuItem").disabled = true;
-		document.getElementById("makeInstrMenuItem").disabled = false;
-		document.getElementById("clearMenuItem").disabled = false;
+		document.getElementById("editBtn").disabled = false;
+		document.getElementById("timeTracksBtn").disabled = true;
+		document.getElementById("makeInstrBtn").disabled = false;
+		document.getElementById("clearBtn").disabled = false;
 		document.getElementById("ML_sourceAddressNextButton").nextSourceIndex = 0;
 		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("contxtLuckySearchMenu");
 		document.getElementById("ML_sourceFetchProgress").hidden = true;
@@ -915,7 +934,7 @@ mlyrics.pane = {
 		mlyrics.pane.viewMode.savedData.source 	= source;
 
 		if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]") {
-			document.getElementById("timeTracksMenuItem").disabled = true;
+			document.getElementById("timeTracksBtn").disabled = true;
 			document.getElementById("contxtTranslateMetaMenu").disabled = true;
 		}
 		
@@ -974,19 +993,19 @@ mlyrics.pane = {
 		var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 		var location = browser.contentDocument.location.toString();
 		if (location.substr(0, 25) == "chrome://shoutcast-radio/") {
-			document.getElementById("metadataMenuItem").disabled 		= true;
-			document.getElementById("timeTracksMenuItem").disabled 		= true;
-			document.getElementById("makeInstrMenuItem").disabled 		= true;
-			document.getElementById("clearMenuItem").disabled 		= true;
+			document.getElementById("editBtn").disabled 		= true;
+			document.getElementById("timeTracksBtn").disabled 		= true;
+			document.getElementById("makeInstrBtn").disabled 		= true;
+			document.getElementById("clearBtn").disabled 		= true;
 			document.getElementById("contxtRefreshTagMenu").disabled 	= true;
 			document.getElementById("contxtTranslateMetaMenu").disabled 	= true;
 		}
 		else {
-			document.getElementById("metadataMenuItem").disabled 		= false;
+			document.getElementById("editBtn").disabled 		= false;
 			if (mlyrics.pane.viewMode.savedData.lyrics != "" && mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() != "[instrumental]") 
-				document.getElementById("timeTracksMenuItem").disabled = false;
-			document.getElementById("makeInstrMenuItem").disabled 		= false;
-			document.getElementById("clearMenuItem").disabled 		= false;
+				document.getElementById("timeTracksBtn").disabled = false;
+			document.getElementById("makeInstrBtn").disabled 		= false;
+			document.getElementById("clearBtn").disabled 		= false;
 			document.getElementById("contxtRefreshTagMenu").disabled 	= false;
 		}
 		
@@ -1345,7 +1364,7 @@ mlyrics.pane = {
 	
 	checkContext: function () {
 		
-		var selected = document.getElementById('lm-content').contentWindow.getSelection();
+		/*var selected = document.getElementById('lm-content').contentWindow.getSelection();
 		selected = String(selected);
 		
 		if (selected.length > 0) {
@@ -1354,17 +1373,17 @@ mlyrics.pane = {
 		
 		if (selected.length < 1) {
 			document.getElementById("copyMenuItem").disabled = true;
-		}
+		}*/
 		
 		if (this.gMM.status.state != Components.interfaces.sbIMediacoreStatus.STATUS_PLAYING) {
-			//document.getElementById("metadataMenuItem").disabled = true;
+			//document.getElementById("editBtn").disabled = true;
 			//document.getElementById("refreshMenuItem").disabled = true;
-			//document.getElementById("clearMenuItem").disabled = true;
+			//document.getElementById("clearBtn").disabled = true;
 		}
 		else if (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PLAYING) {
-			//document.getElementById("metadataMenuItem").disabled = false;
+			//document.getElementById("editBtn").disabled = false;
 			//document.getElementById("refreshMenuItem").disabled = false;
-			//document.getElementById("clearMenuItem").disabled = false;
+			//document.getElementById("clearBtn").disabled = false;
 		}
 	},
 	
@@ -1515,12 +1534,12 @@ mlyrics.pane = {
 				var mode = mlyrics.pane.prefs.getIntPref("lyricsViewMode");
 			}
 			
-			document.getElementById("viewModeMenuItem0").setAttribute("checked", "false");
-			document.getElementById("viewModeMenuItem1").setAttribute("checked", "false");
-			document.getElementById("viewModeMenuItem2").setAttribute("checked", "false");
-			document.getElementById("viewModeMenuItem3").setAttribute("checked", "false");
-			document.getElementById("viewModeMenuItem4").setAttribute("checked", "false");
-			document.getElementById("viewModeMenuItem" + mode).setAttribute("checked", true);
+			document.getElementById("viewModeMenuBtnItem0").setAttribute("checked", "false");
+			document.getElementById("viewModeMenuBtnItem1").setAttribute("checked", "false");
+			document.getElementById("viewModeMenuBtnItem2").setAttribute("checked", "false");
+			document.getElementById("viewModeMenuBtnItem3").setAttribute("checked", "false");
+			document.getElementById("viewModeMenuBtnItem4").setAttribute("checked", "false");
+			document.getElementById("viewModeMenuBtnItem" + mode).setAttribute("checked", true);
 		},
 		
 		getHTMLView: function (lyrics, mode) {
@@ -1950,11 +1969,9 @@ mlyrics.pane = {
 			
 			// Check show notifications context menu
 			if (mlyrics.pane.prefs.getBoolPref("showNotifs")) {
-				document.getElementById("notifEnabledMenuItem").setAttribute("checked", "true");
-				document.getElementById("notifDisabledMenuItem").setAttribute("checked", "false");
+				document.getElementById("notifEnabledBtn").checked = true;
 			} else {
-				document.getElementById("notifEnabledMenuItem").setAttribute("checked", "false");
-				document.getElementById("notifDisabledMenuItem").setAttribute("checked", "true");
+				document.getElementById("notifEnabledBtn").checked = false;
 			}
 			
 			// Build source menu
@@ -2071,27 +2088,23 @@ mlyrics.pane = {
 		enableOnSelect: function (enable) {
 			if (enable == -1) {
 				if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
-					document.getElementById("showSelectedMenuItem").setAttribute("checked", "true");
-					document.getElementById("showNowPlayingMenuItem").setAttribute("checked", "false");
+					document.getElementById("showSelectedBtn").checked = true;
 					document.getElementById("nextPrevBtnsHbox").hidden = false;
 				}
 				else {
-					document.getElementById("showSelectedMenuItem").setAttribute("checked", "false");
-					document.getElementById("showNowPlayingMenuItem").setAttribute("checked", "true");
+					document.getElementById("showSelectedBtn").checked = false;
 					document.getElementById("nextPrevBtnsHbox").hidden = true;
 				}
 			}
 			else {
 				if (enable) {
 					mlyrics.pane.prefs.setBoolPref("showNowSelected", true);
-					document.getElementById("showSelectedMenuItem").setAttribute("checked", "true");
-					document.getElementById("showNowPlayingMenuItem").setAttribute("checked", "false");
+					document.getElementById("showSelectedBtn").checked = true;
 					document.getElementById("nextPrevBtnsHbox").hidden = false;
 				}
 				else {
 					mlyrics.pane.prefs.setBoolPref("showNowSelected", false);
-					document.getElementById("showSelectedMenuItem").setAttribute("checked", "false");
-					document.getElementById("showNowPlayingMenuItem").setAttribute("checked", "true");
+					document.getElementById("showSelectedBtn").checked = false;
 					document.getElementById("nextPrevBtnsHbox").hidden = true;
 					
 					mlyrics.pane.showInfo(mlyrics.pane.playlistPlaybackServiceListener.curMediaItem);
@@ -2344,24 +2357,20 @@ mlyrics.pane = {
 		enableScroll: function (enable) {
 			if (enable == -1) {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
-					document.getElementById("scrollEnabledMenuItem").setAttribute("checked", "true");
-					document.getElementById("scrollDisabledMenuItem").setAttribute("checked", "false");
+					document.getElementById("scrollEnabledBtn").checked = true;
 				}
 				else {
-					document.getElementById("scrollEnabledMenuItem").setAttribute("checked", "false");
-					document.getElementById("scrollDisabledMenuItem").setAttribute("checked", "true");
+					document.getElementById("scrollEnabledBtn").checked = false;
 				}
 			}
 			else {
 				if (enable) {
 					mlyrics.pane.prefs.setBoolPref("scrollEnable", true);
-					document.getElementById("scrollEnabledMenuItem").setAttribute("checked", "true");
-					document.getElementById("scrollDisabledMenuItem").setAttribute("checked", "false");
+					document.getElementById("scrollEnabledBtn").checked = true;
 				}
 				else {
 					mlyrics.pane.prefs.setBoolPref("scrollEnable", false);
-					document.getElementById("scrollEnabledMenuItem").setAttribute("checked", "false");
-					document.getElementById("scrollDisabledMenuItem").setAttribute("checked", "true");
+					document.getElementById("scrollEnabledBtn").checked = false;
 				}
 			}
 		},

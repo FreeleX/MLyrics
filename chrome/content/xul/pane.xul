@@ -24,158 +24,167 @@
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/JSON2.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/fetch.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/paneWindow.js"/>
-	
-	<popupset id="LM_PopupSet">
-		<menupopup id="LM_context" onpopupshowing="mlyrics.pane.checkContext()">
-			<menuitem id="copyMenuItem" label="&copySelectionCmd.label;" oncommand="mlyrics.pane.copyToClipboard();"/>
-			<menuseparator />
-			<menuitem id="notifEnabledMenuItem" 	label="&mlyrics.pane.contxtNotifEnabled;" 	oncommand="mlyrics.pane.enableNotifications(true);" />
-			<menuitem id="notifDisabledMenuItem" 	label="&mlyrics.pane.contxtNotifDisabled;" 	oncommand="mlyrics.pane.enableNotifications(false);" />
-			<menuseparator />
-			<menuitem id="scrollEnabledMenuItem" 	label="&mlyrics.pane.contxtScrollEnabled;" 	oncommand="mlyrics.pane.positionListener.enableScroll(true);" />
-			<menuitem id="scrollDisabledMenuItem" 	label="&mlyrics.pane.contxtScrollDisabled;" 	oncommand="mlyrics.pane.positionListener.enableScroll(false);" />
-			<menuseparator />
-			<menuitem id="showSelectedMenuItem" 	label="&mlyrics.pane.showSelected;" 		oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(true);" />
-			<menuitem id="showNowPlayingMenuItem" 	label="&mlyrics.pane.showNowPlaying;" 		oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(false);" />
-			<menuseparator />
-			<menuitem id="viewModeMenuItem0" label="&mlyrics.pane.viewModeMenu0;" oncommand="mlyrics.pane.viewMode.change(0);" />
-			<menuitem id="viewModeMenuItem1" label="&mlyrics.pane.viewModeMenu1;" oncommand="mlyrics.pane.viewMode.change(1);" />
-			<menuitem id="viewModeMenuItem2" label="&mlyrics.pane.viewModeMenu2;" oncommand="mlyrics.pane.viewMode.change(2);" />
-			<menuitem id="viewModeMenuItem4" label="&mlyrics.pane.viewModeMenu4;" oncommand="mlyrics.pane.viewMode.change(4);" />
-			<menuitem id="viewModeMenuItem3" label="&mlyrics.pane.viewModeMenu3;" oncommand="mlyrics.pane.viewMode.change(3);" />
-			<menuseparator />
-			<menuitem id="configFontMenuItem" 
-				  label="&mlyrics.font.confFont;" 
-				  oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes');" />
-			<menuseparator />
-			<menuitem id="paneShowSettings" 
-				  label="&mlyrics.pane.showSettings;" 
-				  style="font-weight:bold" 
-				  oncommand="window.openDialog('chrome://mlyrics/content/xul/options.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes');" />
-			<menuseparator />
-			<menuitem label="&mlyrics.pane.contxWebSrch;" oncommand="mlyrics.pane.contextRefresh(true, -1);"/>
-			<menuseparator />
-			<menuitem id="metadataMenuItem" 	label="&mlyrics.pane.showEditDialog;" 		oncommand="mlyrics.pane.editMode.init()"/>
-			<menuitem id="makeInstrMenuItem" 	label="&mlyrics.pane.contxtMakeInstr;" 		oncommand="mlyrics.pane.contextMakeInstrumental();"/>
-			<menuitem id="clearMenuItem" 		label="&mlyrics.pane.contxtClear;" 		oncommand="mlyrics.pane.contextClear();"/>
-			<menuseparator />
-			<menuitem id="timeTracksMenuItem" 	label="&mlyrics.pane.showTimeTracksDialog;" 	oncommand="mlyrics.pane.editTimeTracks.init()"/>
-			<menuitem id="removeTimeTracksMenuItem" label="&mlyrics.pane.removeTimeTracks;" 	oncommand="mlyrics.pane.editTimeTracks.remove()"/>
-		</menupopup>
-	</popupset>
 
 	<keyset>
 		<key modifiers="control" key="s" oncommand="if (document.getElementById('lm-deck').selectedIndex == 2) mlyrics.pane.editMode.onAccept()"/>
 	</keyset>
 	
-	<deck id="lm-deck" flex="1">
-		<vbox class="empty" flex="1">
-			<label class="empty-message"
-			value="&albumart.displaypane.not_playing_message;" />
-		</vbox>
+	<hbox flex="1">
+		<deck id="lm-deck" flex="1">
+			<vbox class="empty" flex="1">
+				<label class="empty-message"
+				value="&albumart.displaypane.not_playing_message;" />
+			</vbox>
 		
-		<vbox flex="1" style="overflow: auto" contextmenu="LM_context">
-			<notificationbox id="infobar" flex="1">
-				<iframe id="lm-content"
-					src="chrome://mlyrics/content/style/blank.html" 
-					flex="1"
-					ondrop="mlyrics.pane.onDrop(event)"
-					ondblclick="if (!document.getElementById('metadataMenuItem').disabled) mlyrics.pane.editMode.init()"
-					onmouseover="mlyrics.pane.positionListener.mouseover=true;"
-					onmouseout="mlyrics.pane.positionListener.mouseover=false;"
-					onDOMMouseScroll="mlyrics.pane.positionListener.onMouseScroll(event)"/>
+			<vbox flex="1" style="overflow: auto" onclick="mlyrics.pane.onViewPaneClick(event)">
+				<notificationbox id="infobar" flex="1">
+					<iframe id="lm-content"
+						src="chrome://mlyrics/content/style/blank.html" 
+						flex="1"
+						ondrop="mlyrics.pane.onDrop(event)"
+						ondblclick="if (!document.getElementById('editBtn').disabled) mlyrics.pane.editMode.init()"
+						onmouseover="mlyrics.pane.positionListener.mouseover=true;"
+						onmouseout="mlyrics.pane.positionListener.mouseover=false;"
+						onDOMMouseScroll="mlyrics.pane.positionListener.onMouseScroll(event)"/>
 
-				<browser id="web-content"
-					src="about:blank" 
-					type="content"
-					hidden="true"
-					flex="1" />
+					<browser id="web-content"
+						src="about:blank" 
+						type="content"
+						hidden="true"
+						flex="1" />
 
-				<button id="web-dropbtn"
-					label="&mlyrics.pane.dropherebtn;" 
-					height="40"
-					ondrop="mlyrics.pane.onDrop(event)"
-					disabled="true" 
-					hidden="true" /> 
-			</notificationbox>
-			
-			<vbox>
-				<notificationbox id="specwarningbar">
-				</notificationbox>
-				
-				<hbox align="center">
-					<hbox id="nextPrevBtnsHbox" hidden="false">
-						<toolbarbutton image="chrome://mlyrics/content/images/back-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.selectPrev()"/>
-						<toolbarbutton image="chrome://mlyrics/content/images/next-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.selectNext()"/>
-					</hbox>
-					<hbox align="right" valign="middle" flex="1">
-						<progressmeter id="ML_sourceFetchProgress" mode="undetermined" flex="1" style="height: 25px;" hidden="true" />
-						<image id="ML_sourceFetchStopButton" src="chrome://mlyrics/content/images/delete-icon.png" onclick="mlyrics.pane.stopFetch()" hidden="true"/>
-						
-						<menulist id="refreshMenuItem" label="&mlyrics.pane.contxtRefresh;" flex="1">
-							<menupopup id="ML_sourcesPopup">
-								<menuitem label="&mlyrics.pane.contxtRefreshObO;" 
-									oncommand="mlyrics.pane.contextRefresh(true);"/>
-									
-								<menuseparator />
-								
-								<!-- list of lyrics sources -->
-								
-								<menuitem id="ML_contextSourcesSeparator" 
-									label=""
-									disabled="true"/>
-									
-								<menuitem id="contxtTranslateMetaMenu" 
-									label="translate.google.com" 
-									oncommand="mlyrics.pane.contextRefresh(null, -2);"/>
-
-								<menuitem id="contxtLuckySearchMenu" 
-									label="I'm Feeling Lucky" 
-									oncommand="mlyrics.pane.autoLuckySearch();"/>
-									
-								<menuitem id="contxtRefreshTagMenu" 
-									label="&mlyrics.pane.contxtRefreshTag;" 
-									style="font-style: italic" 
-									oncommand="mlyrics.pane.contextRefresh();"/>
-							</menupopup>
-						</menulist>
-					</hbox>
-					
-					<button id="ML_sourceAddressNextButton" 
-						label=">" 
-						hidden="true" 
+					<button id="web-dropbtn"
+						label="&mlyrics.pane.dropherebtn;" 
+						height="40"
+						ondrop="mlyrics.pane.onDrop(event)"
 						disabled="true" 
-						oncommand="mlyrics.pane.contextRefresh(true, this.nextSourceIndex)"/>
-				</hbox>
-			</vbox>
-		</vbox>
-		
-		<vbox flex="1">
-			<textbox id="edit-content" multiline="true" flex="1" />
-			<hbox>
-				<button label="&mlyrics.pane.saveButton;" flex="1" oncommand="mlyrics.pane.editMode.onAccept()"/>
-				<button label="&mlyrics.pane.cancelButton;" flex="3" oncommand="mlyrics.pane.editMode.onDiscard()"/>
-			</hbox>
-		</vbox>
+						hidden="true" /> 
+				</notificationbox>
+			
+				<vbox>
+					<notificationbox id="specwarningbar">
+					</notificationbox>
+				
+					<hbox align="center">
+						<hbox id="nextPrevBtnsHbox" hidden="false">
+							<toolbarbutton image="chrome://mlyrics/content/images/back-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.selectPrev()"/>
+							<toolbarbutton image="chrome://mlyrics/content/images/next-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.selectNext()"/>
+						</hbox>
+						<hbox align="right" valign="middle" flex="1">
+							<progressmeter id="ML_sourceFetchProgress" mode="undetermined" flex="1" style="height: 25px;" hidden="true" />
+							<image id="ML_sourceFetchStopButton" src="chrome://mlyrics/content/images/delete-icon.png" onclick="mlyrics.pane.stopFetch()" hidden="true"/>
+						
+							<menulist id="refreshMenuItem" label="&mlyrics.pane.contxtRefresh;" flex="1">
+								<menupopup id="ML_sourcesPopup">
+									<menuitem label="&mlyrics.pane.contxtRefreshObO;" 
+										oncommand="mlyrics.pane.contextRefresh(true);"/>
+									
+									<menuseparator />
+								
+									<!-- list of lyrics sources -->
+								
+									<menuitem id="ML_contextSourcesSeparator" 
+										label=""
+										disabled="true"/>
+									
+									<menuitem id="contxtTranslateMetaMenu" 
+										label="translate.google.com" 
+										oncommand="mlyrics.pane.contextRefresh(null, -2);"/>
 
-		<window id="timetracks-scrollwindow">
-		<vbox flex="1">
-			<hbox>
-				<button id="prev-timetracks-button" label="&lt;&lt;&lt;" flex="3" oncommand="mlyrics.pane.editTimeTracks.nextLine(-1)"/>				
-				<button id="refr-timetracks-button" label="&lt;>" flex="1" oncommand="mlyrics.pane.editTimeTracks.nextLine(false)"/>
-				<button id="next-timetracks-button" label=">>>" flex="3" oncommand="mlyrics.pane.editTimeTracks.nextLine(true)"/>
-			</hbox>
-			<vbox id="edit-timetreacks" style="overflow: auto" flex="1">
+									<menuitem id="contxtLuckySearchMenu" 
+										label="I'm Feeling Lucky" 
+										oncommand="mlyrics.pane.autoLuckySearch();"/>
+									
+									<menuitem id="contxtRefreshTagMenu" 
+										label="&mlyrics.pane.contxtRefreshTag;" 
+										style="font-style: italic" 
+										oncommand="mlyrics.pane.contextRefresh();"/>
+								</menupopup>
+							</menulist>
+						</hbox>
+					
+						<button id="ML_sourceAddressNextButton" 
+							label=">" 
+							hidden="true" 
+							disabled="true" 
+							oncommand="mlyrics.pane.contextRefresh(true, this.nextSourceIndex)"/>
+					</hbox>
+				</vbox>
+			</vbox>
+		
+			<vbox flex="1">
+				<textbox id="edit-content" multiline="true" flex="1" />
 				<hbox>
-					<label value="00:00.00" style="visibility: hidden"/>
-					<label />
+					<button label="&mlyrics.pane.saveButton;" flex="1" oncommand="mlyrics.pane.editMode.onAccept()"/>
+					<button label="&mlyrics.pane.cancelButton;" flex="3" oncommand="mlyrics.pane.editMode.onDiscard()"/>
 				</hbox>
 			</vbox>
-			<hbox>
-				<button id="cancel-timetracks-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.editTimeTracks.onDiscard()"/>
-			</hbox>
+
+			<window id="timetracks-scrollwindow">
+			<vbox flex="1">
+				<hbox>
+					<button id="prev-timetracks-button" label="&lt;&lt;&lt;" flex="3" oncommand="mlyrics.pane.editTimeTracks.nextLine(-1)"/>				
+					<button id="refr-timetracks-button" label="&lt;>" flex="1" oncommand="mlyrics.pane.editTimeTracks.nextLine(false)"/>
+					<button id="next-timetracks-button" label=">>>" flex="3" oncommand="mlyrics.pane.editTimeTracks.nextLine(true)"/>
+				</hbox>
+				<vbox id="edit-timetreacks" style="overflow: auto" flex="1">
+					<hbox>
+						<label value="00:00.00" style="visibility: hidden"/>
+						<label />
+					</hbox>
+				</vbox>
+				<hbox>
+					<button id="cancel-timetracks-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.editTimeTracks.onDiscard()"/>
+				</hbox>
+			</vbox>
+			</window>
+		</deck>
+
+		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)">
+			<spacer flex="1"/>
+			<scale orient="vertical" minwidth="34" maxwidth="34" flex="3" style="margin:0" min="-100" max="1000" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="notifEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/notes.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtNotifEnabled;" 
+					oncommand="mlyrics.pane.enableNotifications(this.checked);" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="scrollEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/scroll-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtScrollEnabled;" 
+					oncommand="mlyrics.pane.positionListener.enableScroll(this.checked);" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="showSelectedBtn" type="checkbox" image="chrome://mlyrics/content/images/now-selected-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.showSelected;" 
+					oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.checked);" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="showSelectedBtn" type="menu" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" style="margin:0" tooltiptext="&mlyrics.pane.showSelected;">
+				<menupopup>
+					<menuitem id="viewModeMenuBtnItem0" label="&mlyrics.pane.viewModeMenu0;" oncommand="mlyrics.pane.viewMode.change(0);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem1" label="&mlyrics.pane.viewModeMenu1;" oncommand="mlyrics.pane.viewMode.change(1);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem2" label="&mlyrics.pane.viewModeMenu2;" oncommand="mlyrics.pane.viewMode.change(2);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem4" label="&mlyrics.pane.viewModeMenu4;" oncommand="mlyrics.pane.viewMode.change(4);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem3" label="&mlyrics.pane.viewModeMenu3;" oncommand="mlyrics.pane.viewMode.change(3);" checked="false"/>
+				</menupopup>
+			</toolbarbutton>
+			<spacer flex="1"/>
+			<toolbarbutton 	id="configFontBtn" image="chrome://mlyrics/content/images/skins-icon.png" style="margin:0" tooltiptext="&mlyrics.font.confFont;" 
+					oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes');" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="settingsBtn" image="chrome://mlyrics/content/images/settings-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.showSettings;" 
+					oncommand="window.openDialog('chrome://mlyrics/content/xul/options.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes');" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="webSearchBtn" image="chrome://mlyrics/content/images/google-favicon.ico"  style="margin:0" tooltiptext="&mlyrics.pane.contxWebSrch;" 
+					oncommand="mlyrics.pane.contextRefresh(true, -1);" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="editBtn" image="chrome://mlyrics/content/images/edit-icon.png"  style="margin:0" tooltiptext="&mlyrics.pane.showEditDialog;" 
+					oncommand="mlyrics.pane.editMode.init()" />
+			<toolbarbutton 	id="makeInstrBtn" image="chrome://mlyrics/content/images/instrumental.png"  style="margin:0" tooltiptext="&mlyrics.pane.contxtMakeInstr;" 
+					oncommand="mlyrics.pane.contextMakeInstrumental();" />
+			<toolbarbutton 	id="clearBtn" image="chrome://mlyrics/content/images/delete-icon.png"  style="margin:0" tooltiptext="&mlyrics.pane.contxtClear;" 
+					oncommand="mlyrics.pane.contextClear();" />
+			<spacer flex="1"/>
+			<toolbarbutton 	id="timeTracksBtn" image="chrome://mlyrics/content/images/haslyrics-clock.png"  style="margin:0" tooltiptext="&mlyrics.pane.showTimeTracksDialog;" 
+					oncommand="mlyrics.pane.editTimeTracks.init()" />
+			<toolbarbutton 	id="removeTimeTracksBtn" image="chrome://mlyrics/content/images/noclock.png"  style="margin:0" tooltiptext="&mlyrics.pane.removeTimeTracks;" 
+					oncommand="mlyrics.pane.editTimeTracks.remove()" />
+			<spacer flex="1"/>
 		</vbox>
-		</window>
-	</deck>
+	</hbox>
 	
 </window>
