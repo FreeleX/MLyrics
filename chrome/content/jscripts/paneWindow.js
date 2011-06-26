@@ -802,6 +802,10 @@ mlyrics.pane = {
 			checkInfo(artist, album, track, mlyrics.pane.nextItemBufferedInfo.lyrics, mlyrics.pane.nextItemBufferedInfo.source, mlyrics.pane.nextItemBufferedInfo.item);
 			return;
 		}
+
+		document.getElementById('lm-content').hidden =  false;
+		document.getElementById('web-content').hidden = true;
+		document.getElementById('web-dropbtn').hidden = true;
 		
 		// No need to write same code twice
 		var localLyrics = mlyrics.fetch.fetchNext(
@@ -1297,6 +1301,10 @@ mlyrics.pane = {
 			mlyrics.pane.openAndReuseOneTabPerAttribute("mlyrics-luckysearch", goUri);
 			return;
 		}
+
+		document.getElementById('lm-content').hidden =  false;
+		document.getElementById('web-content').hidden = true;
+		document.getElementById('web-dropbtn').hidden = true;
 		
 		document.getElementById('lm-content').contentWindow.document.body.innerHTML = "";
 		
