@@ -953,6 +953,7 @@ mlyrics.pane = {
 		mlyrics.pane.viewMode.savedData.source 	= source;
 
 		document.getElementById("accelerateScale").value = 0;
+		document.getElementById("accelerateScaleValueLabel").value = 0;
 
 		if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]") {
 			document.getElementById("timeTracksBtn").disabled = true;
