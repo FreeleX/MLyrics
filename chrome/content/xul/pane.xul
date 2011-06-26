@@ -45,7 +45,7 @@
 						ondblclick="if (!document.getElementById('editBtn').disabled) mlyrics.pane.editMode.init()"
 						onmouseover="mlyrics.pane.positionListener.mouseover=true;"
 						onmouseout="mlyrics.pane.positionListener.mouseover=false;"
-						onDOMMouseScroll="mlyrics.pane.positionListener.onMouseScroll(event)"/>
+						onDOMMouseScroll="mlyrics.pane.positionListener.onMouseScroll(event); return false;"/>
 
 					<browser id="web-content"
 						src="about:blank" 

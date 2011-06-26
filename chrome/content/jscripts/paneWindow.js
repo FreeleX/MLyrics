@@ -2426,6 +2426,12 @@ mlyrics.pane = {
 		},
 
 		onMouseScroll: function (event) {
+			mlyrics.pane.positionListener.onMouseScrollReal(event);
+			document.getElementById('lm-content').contentWindow.document.body.scrollTop += event.detail/3 * 10;
+			
+		},
+
+		onMouseScrollReal: function (event) {
 			if (this.timeArray.length > 1) return; // Have lrc array
 
 			var metadataLyrics = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
