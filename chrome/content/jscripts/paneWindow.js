@@ -104,11 +104,18 @@ mlyrics.pane = {
 		mlyrics.lib.debugOutput("Pane intitialization finished");
 	},
 
-	onViewPaneClick: function (event) {
+	onBtnsboxSeparatorMouseover: function () {
+		if (document.getElementById("mlyrics-btnsbox").hidden) {
+			var event = {button:2};
+			this.onViewPaneClick(event);
+		}
+	},
+
+	onViewPaneClick: function (event, force) {
 		if (event.button == 2) {	// Right click
 			var btnsbox = document.getElementById("mlyrics-btnsbox")
 			btnsbox.hidden = false;
-			mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {btnsbox.hidden = true;}, 3000);
+			mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {btnsbox.hidden = true;}, 1000);
 		}
 	},
 
@@ -121,11 +128,13 @@ mlyrics.pane = {
 	},
 
 	onBtnsboxMouseout: function (event) {
-		mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {document.getElementById("mlyrics-btnsbox").hidden = true;}, 3000);
+		mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {document.getElementById("mlyrics-btnsbox").hidden = true;}, 1000);
 	},
 
 	onBtnsboxMouseScroll: function (event) {
-		document.getElementById("accelerateScale").value += event.detail*5;
+		if (!mlyrics.pane.prefs.getBoolPref("scrollEnable")) return;
+
+		document.getElementById("accelerateScale").value += event.detail/3*2;
 	},
 	
 	openAndReuseOneTabPerAttribute: function (attrName, url) {
@@ -936,6 +945,8 @@ mlyrics.pane = {
 		mlyrics.pane.viewMode.savedData.track 	= track;
 		mlyrics.pane.viewMode.savedData.lyrics 	= lyrics;
 		mlyrics.pane.viewMode.savedData.source 	= source;
+
+		document.getElementById("accelerateScale").value = 0;
 
 		if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]") {
 			document.getElementById("timeTracksBtn").disabled = true;
@@ -2347,10 +2358,19 @@ mlyrics.pane = {
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
 					var accelerator = document.getElementById("accelerateScale");
+					this.scrollCorrection += accelerator.value/100;
+
 					var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
 
-					if (newScrollPos < 0) newScrollPos = 0;
-					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos*(1+accelerator.value/100));
+					if (accelerator.value < 0) {
+						this.scrollCorrection = scrollTop - this.lyricsMaxHeight*this.playPart;
+						return;
+					}
+
+					if (newScrollPos < 0) 
+						newScrollPos = 0
+					else
+						document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
 				}
 			}
 
@@ -2363,19 +2383,23 @@ mlyrics.pane = {
 			if (enable == -1) {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
 					document.getElementById("scrollEnabledBtn").checked = true;
+					document.getElementById("accelerateScale").disabled = false;
 				}
 				else {
 					document.getElementById("scrollEnabledBtn").checked = false;
+					document.getElementById("accelerateScale").disabled = true;
 				}
 			}
 			else {
 				if (enable) {
 					mlyrics.pane.prefs.setBoolPref("scrollEnable", true);
 					document.getElementById("scrollEnabledBtn").checked = true;
+					document.getElementById("accelerateScale").disabled = false;
 				}
 				else {
 					mlyrics.pane.prefs.setBoolPref("scrollEnable", false);
 					document.getElementById("scrollEnabledBtn").checked = false;
+					document.getElementById("accelerateScale").disabled = true;
 				}
 			}
 		},
