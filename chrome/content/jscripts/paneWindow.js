@@ -1328,6 +1328,8 @@ mlyrics.pane = {
 				( place == -2 || metadataLyrics.indexOf("\n [ Google translated ] ") == -1 )
 				)
 			{
+				this.buildPage(metadataArtist, metadataAlbum, metadataTrack, metadataLyrics);
+
 				document.getElementById("ML_sourceFetchProgress").hidden = false;
 				document.getElementById("ML_sourceFetchStopButton").hidden = false;
 				document.getElementById("ML_sourceAddressNextButton").hidden = true;
