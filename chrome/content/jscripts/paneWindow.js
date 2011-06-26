@@ -2198,6 +2198,7 @@ mlyrics.pane = {
 	positionListener: {
 		timer: null,
 		duration: 0,
+		lyricsScrollHeight: 0,
 		lyricsMaxHeight: 0,
 		lyricsNormalHeight: 0,
 		mouseover: false,
@@ -2230,6 +2231,7 @@ mlyrics.pane = {
 			mlyrics.lib.debugOutput("offsetHeight: " + offsetHeight);
 			mlyrics.lib.debugOutput("clientHeight: " + clientHeight);
 			
+			this.lyricsScrollHeight = scrollHeight;
 			this.lyricsMaxHeight = scrollHeight - clientHeight;
 			this.lyricsNormalHeight = clientHeight;
 			this.correctionMode = false;
@@ -2324,7 +2326,7 @@ mlyrics.pane = {
 						var speedIndex = speedIndexSum / (i+1);
 
 						// Show 2 lines at the top of the current line
-						var playPart = (i-2 + currLineTimeLen/lrcLineTimeLen) / this.timeArray.length;
+						var playPart = (i + currLineTimeLen/lrcLineTimeLen) / this.timeArray.length;
 						/*if (playPart > this.playPart)*/ this.playPart = playPart;
 
 						break;
@@ -2360,22 +2362,29 @@ mlyrics.pane = {
 				var playPart = position / this.duration;
 				this.playPart = playPart;
 			}
+
+			if (this.timeArray.length > 1) {
+				var maxHeight = this.lyricsScrollHeight;
+			}
+			else {
+				var maxHeight = this.lyricsMaxHeight;
+			}
 			
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
-			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.corrArrayDimen);
+			var intPart = parseInt(scrollTop/maxHeight * this.corrArrayDimen);
 
 			if (this.mouseover) {
-				this.scrollCorrection = scrollTop - this.lyricsMaxHeight*this.playPart;
+				this.scrollCorrection = scrollTop - maxHeight*this.playPart;
 			}
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
 					var accelerator = document.getElementById("accelerateScale");
 					this.scrollCorrection += accelerator.value/100;
 
-					var newScrollPos = this.lyricsMaxHeight*this.playPart + this.scrollCorrection;
+					var newScrollPos = maxHeight*this.playPart + this.scrollCorrection;
 
 					if (accelerator.value < 0) {
-						this.scrollCorrection = scrollTop - this.lyricsMaxHeight*this.playPart;
+						this.scrollCorrection = scrollTop - maxHeight*this.playPart;
 						return;
 					}
 
