@@ -902,6 +902,8 @@ mlyrics.pane = {
 			var track = mediaItem.getProperty(SBProperties.trackName);
 		}
 
+		if (!artist || !track) return;
+
 		var goUri = "http://www.google.com/search?btnI=i&q=lyrics%20" + encodeURIComponent(artist) + "%20" + encodeURIComponent(track);
 
 		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
