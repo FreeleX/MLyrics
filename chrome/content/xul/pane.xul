@@ -142,8 +142,6 @@
 
 		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)" onDOMMouseScroll="mlyrics.pane.onBtnsboxMouseScroll(event)">
 			<spacer flex="1"/>
-			<scale id="accelerateScale" orient="vertical" minwidth="34" maxwidth="34" flex="3" style="margin:0" min="-100" max="100" value="1"/>
-			<spacer flex="1"/>
 			<toolbarbutton 	id="notifEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/notes.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtNotifEnabled;" 
 					oncommand="mlyrics.pane.enableNotifications(this.checked);" />
 			<spacer flex="1"/>
@@ -153,7 +151,9 @@
 			<toolbarbutton 	id="showSelectedBtn" type="checkbox" image="chrome://mlyrics/content/images/now-selected-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.showSelected;" 
 					oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.checked);" />
 			<spacer flex="1"/>
-			<toolbarbutton 	id="showSelectedBtn" type="menu" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" style="margin:0" tooltiptext="&mlyrics.pane.showSelected;">
+			<scale id="accelerateScale" orient="vertical" minwidth="35" maxwidth="35" flex="3" style="margin:0" min="-100" max="100" value="1"/>
+			<spacer flex="1"/>
+			<toolbarbutton 	id="viewModeBtn" type="menu" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" style="margin:0" tooltiptext="">
 				<menupopup>
 					<menuitem id="viewModeMenuBtnItem0" label="&mlyrics.pane.viewModeMenu0;" oncommand="mlyrics.pane.viewMode.change(0);" checked="false"/>
 					<menuitem id="viewModeMenuBtnItem1" label="&mlyrics.pane.viewModeMenu1;" oncommand="mlyrics.pane.viewMode.change(1);" checked="false"/>
