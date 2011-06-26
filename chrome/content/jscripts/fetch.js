@@ -36,9 +36,11 @@ mlyrics.fetch = {
 			}
 			
 			// Add this function to all source objects
-			this.source[sources[i]].fixGeneralCharacters = function (respLyr) {
+			this.source[sources[i]].generalFixAndFilter = function (respLyr) {
 				
 				if (respLyr == null || respLyr == "") return "";
+
+				if (respLyr.indexOf("�") != -1) return "";	// Bad symbols filtering
 				
 				respLyr = respLyr.replace(/<span>/g, "");
 				respLyr = respLyr.replace(/\r\n/g, "\n");
@@ -111,7 +113,7 @@ mlyrics.fetch = {
 						this.overrideMimeType('text/xml; charset=iso-8859-1');
 						respLyr = sourceObj.filterText(this.responseText, sourceObj.getCleanStr(artist), sourceObj.getCleanStr(track));
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -333,7 +335,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(respLyr);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -427,7 +429,7 @@ mlyrics.fetch = {
 						
 						respLyr = sourceObj.filterText(this.responseText, sourceObj.getCleanStr(track));
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -554,7 +556,7 @@ mlyrics.fetch = {
 						
 						respLyr = sourceObj.filterText(this.responseText);
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -649,7 +651,7 @@ mlyrics.fetch = {
 						
 						respLyr = sourceObj.filterText(this.responseText);
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -756,7 +758,7 @@ mlyrics.fetch = {
 						
 						respLyr = sourceObj.filterText(this.responseText, sourceObj.getCleanStr(artist), sourceObj.getCleanStr(track));
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -958,7 +960,7 @@ mlyrics.fetch = {
 					// If text not full skip it.
 					if (respLyr.indexOf("[...]") != -1) respLyr = "";
 					
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -1155,7 +1157,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(this.responseText);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -1236,7 +1238,7 @@ mlyrics.fetch = {
 					if (this.status == 200) {
 						respLyr = sourceObj.filterText(this.responseText);
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -1349,7 +1351,7 @@ mlyrics.fetch = {
 					if (this.status == 200) {
 						respLyr = sourceObj.filterText(this.responseText);
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -1491,7 +1493,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(respLyr);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -1725,7 +1727,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(respLyr);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -1888,7 +1890,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(respLyr);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -1976,7 +1978,7 @@ mlyrics.fetch = {
 						
 						respLyr = sourceObj.filterText(this.responseText, sourceObj.getCleanStr(track));
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -2143,7 +2145,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(respLyr);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -2327,7 +2329,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(respLyr);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
@@ -2433,7 +2435,7 @@ mlyrics.fetch = {
 						
 						respLyr = sourceObj.filterText(this.responseText, sourceObj.getCleanStr(track));
 						respLyr = sourceObj.fixCharacters(respLyr);
-						respLyr = sourceObj.fixGeneralCharacters(respLyr);
+						respLyr = sourceObj.generalFixAndFilter(respLyr);
 					}
 					
 					cbFn(respLyr);
@@ -2603,7 +2605,7 @@ mlyrics.fetch = {
 					
 					respLyr = sourceObj.filterText(respLyr);
 					respLyr = sourceObj.fixCharacters(respLyr);
-					respLyr = sourceObj.fixGeneralCharacters(respLyr);
+					respLyr = sourceObj.generalFixAndFilter(respLyr);
 					
 					cbFn(respLyr);
 				}
