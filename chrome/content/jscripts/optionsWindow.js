@@ -172,7 +172,7 @@ function moveSourceUp () {
       fetchListBox.clearSelection();
       fetchListBox.selectItem(cloneItem);
       
-      fetchListBox.scrollToIndex(selectedIndex-1);
+      fetchListBox.scrollToIndex(selectedIndex-1-3);
       
       if (!fetchListBox.selectedIndex) {
 	document.getElementById("upSourceButton").disabled = true;
@@ -203,7 +203,7 @@ function moveSourceDown () {
       fetchListBox.clearSelection();
       fetchListBox.selectItem(cloneItem);
       
-      fetchListBox.scrollToIndex(selectedIndex+1);
+      fetchListBox.scrollToIndex(selectedIndex+1-3);
       
       if (fetchListBox.selectedIndex >= fetchListBox.getRowCount()-1) {
 	document.getElementById("downSourceButton").disabled = true;
