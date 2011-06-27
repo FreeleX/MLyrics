@@ -2239,7 +2239,7 @@ mlyrics.pane = {
 			this.scrollCorrection = 0;
 			this.playPart = 0;
 
-			document.getElementById("lm-content").contentWindow.setCursor("auto");
+			document.getElementById("lm-content").contentDocument.body.style.cursor = "auto";
 
 			clearInterval(this.timer);
 			
@@ -2447,7 +2447,7 @@ mlyrics.pane = {
 			// Activate correction mode and clear corrArray
 			if (!scrollTop && event.detail < 0) {
 				this.correctionMode = true;
-				document.getElementById("lm-content").contentWindow.setCursor("move");
+				document.getElementById("lm-content").contentDocument.body.style.cursor = "url(chrome://mlyrics/content/images/sing-ico.png), move";
 
 				this.postSave.corrArray.length = 0;
 				this.postSave.corrArray.length = this.corrArrayDimen;
@@ -2465,7 +2465,7 @@ mlyrics.pane = {
 			if (scrollTop >= this.lyricsMaxHeight) {
 				this.correctionMode = false;
 				this.saveCorrections();
-				document.getElementById("lm-content").contentWindow.setCursor("auto");
+				document.getElementById("lm-content").contentDocument.body.style.cursor = "auto";
 			}
 		}
 	},
