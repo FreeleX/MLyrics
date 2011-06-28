@@ -4,8 +4,8 @@
 <!DOCTYPE window [
 	<!ENTITY % sbDTD SYSTEM "chrome://songbird/locale/songbird.dtd">
 	%sbDTD;
-	<!ENTITY % lmDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
-	%lmDTD;
+	<!ENTITY % mlyricsDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
+	%mlyricsDTD;
 ]>
 
 <window title="&mlyrics.helpwin.winlabel;"
@@ -53,26 +53,18 @@ function setFrame()
 ]]>
 </script>
 
- <hbox flex="1">
-    <listbox id="working-list" style="width:10em" 
-             onselect="setFrame();">
-      <listitem value="start.xhtm"          label="&mlyrics.helpwin.startlabel;" />
-      <listitem value="display.xhtm"        label="&mlyrics.helpwin.displabel;" />
-      <listitem value="pref.xhtm"           label="&mlyrics.helpwin.preflabel;" />
-      <listitem value="meta.xhtm"           label="&mlyrics.helpwin.metalabel;" />
-      <listitem value="batch.xhtm"          label="&mlyrics.helpwin.batchlabel;" />
-      <listitem value="haslyrics.xhtm"      label="&mlyrics.helpwin.haslyrlabel;" />
-      <listitem value="lisc.xhtm"           label="&mlyrics.helpwin.lisclabel;" />
-      <listitem value="about.xhtm"          label="&mlyrics.helpwin.aboutlabel;" />
-      <listitem value="style.xhtm"          label="&mlyrics.helpwin.stylelabel;" />
-    </listbox>
+	<hbox flex="1">
+		<listbox id="working-list" style="width:10em" onselect="setFrame();">
+			<listitem value="start.xhtm"          label="&mlyrics.helpwin.startlabel;" />
+			<listitem value="lisc.xhtm"           label="&mlyrics.helpwin.lisclabel;" />
+			<listitem value="style.xhtm"          label="&mlyrics.helpwin.stylelabel;" />
+		</listbox>
 
-    <splitter collapse="before" resizebefore="closest" resizeafter="grow">
-     <grippy />
-    </splitter>
+		<splitter collapse="before" resizebefore="closest" resizeafter="grow">
+			<grippy />
+		</splitter>
 
-    <iframe id="content-body" src="chrome://mlyrics/content/help/start.xhtm" flex="1"/>
-
-  </hbox>
+		<iframe id="content-body" src="chrome://mlyrics/content/help/start.xhtm" flex="1"/>
+	</hbox>
 
 </window>

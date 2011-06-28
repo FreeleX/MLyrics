@@ -2,8 +2,8 @@
 <!DOCTYPE overlay [
   <!ENTITY % sbDTD SYSTEM "chrome://songbird/locale/songbird.dtd">
 	%sbDTD;
-	<!ENTITY % lmDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
-	%lmDTD;
+	<!ENTITY % mlyricsDTD SYSTEM "chrome://mlyrics/locale/overlay.dtd">
+	%mlyricsDTD;
 ]>
 
 

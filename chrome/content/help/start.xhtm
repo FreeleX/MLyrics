@@ -3,19 +3,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"  >
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
-  <link href="chrome://songbird/skin/html.css" rel="stylesheet" type="text/css" />
-
-
+<head>
+	<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+	<link href="chrome://songbird/skin/html.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body leftmargin="0px" topmargin="0px" rightmargin="0px" bottommargin="0px" style="padding: 0px">
-<table valign="middle" height="100%" width="100%" >
-<tr width="100%" align="center" ><td width="100%">
-<img src="chrome://mlyrics/content/help/mlyricslogo.png" border="0" />
-</td></tr>
-</table>
-
-
+	<table valign="middle">
+		<tr align="center" >
+			<td>
+				<img src="chrome://mlyrics/content/help/mlyricslogo.png" border="0" />
+			</td>
+		</tr>
+		<tr align="center" >
+			Hello
+		</tr>
+	</table>
 </body>
+
 </html>
