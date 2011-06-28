@@ -1,5 +1,0 @@
-<!ENTITY batch.addon.description "Partihämtningsfönstret">
-<!ENTITY batch.addon.firstpoint "Partihämtningsfönstret nås via Metadataredigeraren när multipla spår är markerade.  Det går igenom hela markeringen och hämtar sångtexterna för de spåren.  När det har hittat sångtexterna, uppdateras grafiken för att ge användaren positiv feedback.  Dessutom kommer kryssrutorna att vara markerade så att sångtexterna flaggas för att sparas.">
-<!ENTITY batch.addon.secpoint "Om inga sångtexter hittas ersätts processgrafiken av grafik som ger negativ feedback till användaren.  När inga sångtexter hittas, markeras inte kryssrutorna.">
-<!ENTITY batch.addon.thirdpoint "Efter att sångtexterna har samlats in klickar du på &quot;Spara&quot;-knappen för att spara alla spår som är flaggade att sparas.  Det är synnerligen viktigt att inte klicka på &quot;Spara&quot; om inte de flaggade sångtexterna verkligen är de som användaren vill spara.">
-<!ENTITY batch.addon.note "Obs: Partihämtningsfunktionen är begränsad till högst 1000 markerade spår.  Också 1000 spår kan orsaka en kraftig belastning på ett system. Var vänlig ta detta i beaktande innan du använder den här funktionen.">

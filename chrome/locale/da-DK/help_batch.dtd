@@ -1,5 +1,0 @@
-<!ENTITY batch.addon.description "Batch hentningvindue">
-<!ENTITY batch.addon.firstpoint "Batch hentningsvinduet tilgås gennem Metadata-redaktøren når flere spor er valgt. Den vil gennemgå samtlige markerede spor og hente sangtekster til disse spor. Når den finder sangteksterne, bliver grafikken opdateret for at give brugeren besked. Brugeren kan markere checkboksene for, at gemme sangteksterne.">
-<!ENTITY batch.addon.secpoint "Hvis der ikke bliver fundet sangtekster viser grafikken det og checkboksen bliver ikke markeret.">
-<!ENTITY batch.addon.thirdpoint "Efter sangteksterne er samlet tryk på knappen &apos;Gem&apos; for at gemme alle de spor der er markeret. Det er yderst vigtigt ikke at trykke på &apos;Gem&apos;, hvis ikke de markerede sangtekster er dem brugeren ønsker at gemme.">
-<!ENTITY batch.addon.note "Bemærk: Batch-funktionen er begrænset til max 1000 valgte spor. Selv 1000 spor kan lægge en stor byrde på systemet. Tænk venligst over det inden du bruger denne egenskab.">

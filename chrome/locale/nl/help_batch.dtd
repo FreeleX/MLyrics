@@ -1,5 +1,0 @@
-<!ENTITY batch.addon.description "Batch-ophaling venster">
-<!ENTITY batch.addon.firstpoint "Het batch-ophaling venster kan worden opgeroepen via de metadata bewerker als er meerdere nummers geselecteerd zijn. De teksten worden dan opgehaald voor de volledige selectie. Als een tekst gevonden wordt verschijnt er een afbeelding die dit aantoont. Tevens wordt het selectievak aangevinkt, wat erop duid dat de tekst zal worden bewaard.">
-<!ENTITY batch.addon.secpoint "Bij een nummer waar geen songtekst gevonden is zal er een afbeelding verschijnen die dit aantoont. Tevens is het selectievak niet aangevinkt.">
-<!ENTITY batch.addon.thirdpoint "Nadat alle songteksten verzameld zijn klikt u op de 'Opslaan' knop om alle geselecteerde nummers op te slaan. Het is uiterst belangrijk niet op 'Opslaan' te drukken voordat de juiste selectie gemaakt is.">
-<!ENTITY batch.addon.note "Opmerking: de batch functionaliteit is gelimiteerd tot 1000 nummers. Zelfs aantallen kleiner dan 1000 kunnen al grote rekenkracht van de computer vragen, hou hier rekening mee bij het gebruik van de functionaliteit.">

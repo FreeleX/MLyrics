@@ -1,5 +1,0 @@
-<!ENTITY batch.addon.description "Batch Fetching Window">
-<!ENTITY batch.addon.firstpoint "The Batch Fetching Window is accessed through the Metadata Editor when multiple tracks are selected.  It will go through the entire selection and fetch the lyrics for those tracks.  When it successfully finds the lyrics, The graphic will be updated to give possitive feedback to the user.  Also the box will be checkbox will be checked to flag the lyrics for saving.">
-<!ENTITY batch.addon.secpoint "If no lyrics are found, the processing graphic will be replaced by a graphic to provide negative feedback to the user.  When no lyrics are found the checkbox is not checked.">
-<!ENTITY batch.addon.thirdpoint "After the lyrics are collected, Select the 'SAVE' button to save all tracks that are flagged to be saved.  It is extremely important not to hit 'SAVE' unless the flagged lyrics are truly what the user wants to save.">
-<!ENTITY batch.addon.note "Note: The batch functionality is limited to a max of 1000 selected tracks.  Even 1000 tracks can put a major load on a system, Please be aware of this before using this feature.">

@@ -1,5 +1,0 @@
-<!ENTITY meta.addon.description "Metadata-redaktør">
-<!ENTITY meta.addon.firstpoint "Når der er sangtekster der skal redigeres eller hvis der er fundet sangtekster ved hjælp af knappen &apos;Hent&apos;, vil de blive vist i denne boks. Efter redigeringen er afsluttet, vil et tryk på knappen &apos;Gem&apos; i bunden af vinduet gemme informationerne til sporet.">
-<!ENTITY meta.addon.secpoint "Når knappen &apos;Hent&apos; vælges, henter LyricMaster sangteksterne for det nuværende valgte spor. Knappen &apos;Hent&apos; er deaktiveret hvis mere end et spor er valgt. Hvilken database der anvendes til hentning vælges under LyricMaster indstillinger.">
-<!ENTITY meta.addon.thirdpoint "Knappen &apos;Ryd&apos; rydder hvad der er i boksen Sangtekster. Dette gælder både når der er valgt et eller flere spor.">
-<!ENTITY meta.addon.fourpoint "Hvis flere spor er markeret, vil knappen &apos;Batch&apos; være aktiveret. Når der trykkes på den bliver vinduet Batch-hentning åbnet.">
