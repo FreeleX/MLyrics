@@ -65,6 +65,8 @@
 <!ENTITY mlyrics.helpwin.lisclabel "MLyrics License">
 <!ENTITY mlyrics.helpwin.aboutlabel "About MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Defining Style">
+<!ENTITY mlyrics.helpwin.medialistlabel "Media List Icons">
+<!ENTITY mlyrics.helpwin.tipslabel "Tips">
 <!ENTITY mlyrics.pane.contxtRefresh "Refresh Lyrics">
 <!ENTITY mlyrics.pane.contxtRefreshObO "In turn">
 <!ENTITY mlyrics.pane.contxtRefreshTag "From the tag">

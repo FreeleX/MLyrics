@@ -8,15 +8,22 @@
 	<link href="chrome://songbird/skin/html.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body leftmargin="0px" topmargin="0px" rightmargin="0px" bottommargin="0px" style="padding: 0px">
-	<table valign="middle">
-		<tr align="center" >
-			<td>
+<body>
+	<table align="center">
+		<tr>
+			<td align="center">
 				<img src="chrome://mlyrics/content/help/mlyricslogo.png" border="0" />
 			</td>
 		</tr>
-		<tr align="center" >
-			Hello
+		<tr>
+			<td align="center">
+				<b>On Songbird:</b> http://addons.songbirdnest.com/addons/1928
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<b>On Getsatisfaction:</b> http://getsatisfaction.com/songbird/topics/suggestions_and_reports_for_mlyrics
+			</td>
 		</tr>
 	</table>
 </body>

@@ -11,60 +11,23 @@
 <window title="&mlyrics.helpwin.winlabel;"
         xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        width="750"
-        height="522"
-        onload="doInit()">
+        width="800"
+        height="600">
 
-<script>
-<![CDATA[
-
-function doInit()
-{
-  var item, label, value;
-  var listBox = document.getElementById("working-list");
-  var itemCount = listBox.itemCount;
-  for (var i = 0; i < itemCount; i++)
-  {
-    item = listBox.getItemAtIndex(itemCount - 1);
-    label = item.getAttribute("label");
-    value = item.getAttribute("value");
-    if (value.indexOf("songbird/") != 0)
-      break;
-    listBox.insertItemAt(0, label, value);
-    listBox.removeItemAt(itemCount);
-  }
-  listBox.selectItem(listBox.getItemAtIndex(0));
-  setFrame();
-}
-
-function setFrame()
-{
-  var originUrl = "chrome://mlyrics/content/help/";
-
-  var listBox = document.getElementById("working-list");
-  var selectedItem = listBox.getSelectedItem(0);
-  var newPage = selectedItem.getAttribute("value");
-  
-  var contentUrl = originUrl + newPage;
-  document.getElementById("content-body").setAttribute("src", contentUrl);
-
-}
-
-]]>
-</script>
-
-	<hbox flex="1">
-		<listbox id="working-list" style="width:10em" onselect="setFrame();">
-			<listitem value="start.xhtm"          label="&mlyrics.helpwin.startlabel;" />
-			<listitem value="lisc.xhtm"           label="&mlyrics.helpwin.lisclabel;" />
-			<listitem value="style.xhtm"          label="&mlyrics.helpwin.stylelabel;" />
-		</listbox>
-
-		<splitter collapse="before" resizebefore="closest" resizeafter="grow">
-			<grippy />
-		</splitter>
-
-		<iframe id="content-body" src="chrome://mlyrics/content/help/start.xhtm" flex="1"/>
-	</hbox>
-
+	<tabbox flex="1">
+		<tabs>
+			<tab label="&mlyrics.helpwin.startlabel;" />
+			<tab label="&mlyrics.helpwin.lisclabel;" />
+			<tab label="&mlyrics.helpwin.stylelabel;" />
+			<tab label="&mlyrics.helpwin.medialistlabel;" />
+			<tab label="&mlyrics.helpwin.tipslabel;" />
+		</tabs>
+		<tabpanels flex="1" >
+			<iframe src="chrome://mlyrics/content/help/start.xhtm" 		flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/lisc.xhtm" 		flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/style.xhtm" 		flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/medialist.xhtm" 	flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/tips.xhtm" 		flex="1"/>
+		</tabpanels>
+	</tabbox>
 </window>

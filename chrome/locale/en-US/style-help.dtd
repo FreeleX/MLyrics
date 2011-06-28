@@ -1,0 +1,6 @@
+<!ENTITY mlyrics.style-help.annotation "Some of the definitions are currently not being used, but may be in the future">
+<!ENTITY mlyrics.style-help.pclassesinfo "The following are 'p' spare classes, which you can use as additional formating elements. If you don't want to use them, just use display:none to hide them. Otherwise use display:block with additional parameters to give them the appearence you want them to have. Their position in the page are as folows:">
+<!ENTITY mlyrics.style-help.pclassesinfoheader "above the song title">
+<!ENTITY mlyrics.style-help.pclassesinfosong "between song title and additional information">
+<!ENTITY mlyrics.style-help.pclassesinfoadditional "between additional information and lyrics">
+<!ENTITY mlyrics.style-help.pclassesinfolyrics "below lyrics">

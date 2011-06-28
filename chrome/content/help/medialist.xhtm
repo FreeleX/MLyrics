@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" [
+
+<!ENTITY % mlyricsDTD SYSTEM "chrome://mlyrics/locale/medialist-help.dtd" >
+%mlyricsDTD;
+
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+	<link href="chrome://songbird/skin/html.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<table align="center">
+		<tr>
+			<td align="center">
+				<img src="chrome://mlyrics/content/help/medialist-snapshot.png" border="0" />
+			</td>
+		</tr>
+		<tr>
+			<td align="left">
+				<b>1.</b>&mlyrics.medialist-help.lighticon;<br />
+				<b>2.</b>&mlyrics.medialist-help.darkicon;<br />
+				<b>3.</b>&mlyrics.medialist-help.timetracksicon;<br />
+				<b>4.</b>&mlyrics.medialist-help.smartscrollicon;<br />
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

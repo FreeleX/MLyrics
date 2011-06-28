@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "This track has lyrics stored in tag">
+<!ENTITY mlyrics.medialist-help.darkicon "This track has lyrics stored only in Songbird database due to tag write problems">
+<!ENTITY mlyrics.medialist-help.timetracksicon "This track has .lrc file in the same folder with time tracks inside. MLyrics will scroll lyrics according to this information.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "It means MLyrics was teached to wisely scroll this lyrics (sing with you :) )">
