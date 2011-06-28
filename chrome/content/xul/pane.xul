@@ -156,8 +156,9 @@
 			<toolbarbutton 	id="showSelectedBtn" type="checkbox" image="chrome://mlyrics/content/images/now-selected-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.showSelected;" 
 					oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.checked);mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
-			<label id="accelerateScaleValueLabel" style="margin:0; text-align:center" value="0" />
-			<scale id="accelerateScale" orient="vertical" minwidth="35" maxwidth="35" flex="5" style="margin:0" min="-4" max="100" value="0" onchange="document.getElementById('accelerateScaleValueLabel').value=this.value"/>
+			<label id="accelerateScaleValueLabel" style="margin:0; text-align:center" value="0" tooltiptext="&mlyrics.pane.accelerator;" />
+			<scale id="accelerateScale" orient="vertical" minwidth="35" maxwidth="35" flex="5" style="margin:0" min="-4" max="100" value="0" tooltiptext="&mlyrics.pane.accelerator;"
+				onchange="document.getElementById('accelerateScaleValueLabel').value=this.value"/>
 			<spacer flex="1"/>
 			<toolbarbutton 	id="viewModeBtn" type="menu" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" style="margin:0" tooltiptext="">
 				<menupopup>
