@@ -111,24 +111,19 @@ mlyrics.pane = {
 		}
 	},
 
-	onViewPaneClick: function (event, force) {
+	onViewPaneClick: function (event) {
 		if (event.button == 2) {	// Right click
-			var btnsbox = document.getElementById("mlyrics-btnsbox")
-			btnsbox.hidden = false;
-			mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {btnsbox.hidden = true;}, 1000);
+			mlyrics.pane.hideBtnsbox(false);
+			if (!mlyrics.pane.btnsBoxViewTimeout) mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {mlyrics.pane.hideBtnsbox(true, -1);}, 1000);
 		}
 	},
 
 	onBtnsboxMouseover: function (event) {
-		if (mlyrics.pane.btnsBoxViewTimeout) {
-			clearTimeout(mlyrics.pane.btnsBoxViewTimeout);
-			mlyrics.pane.btnsBoxViewTimeout = null;
-		}
-		document.getElementById("mlyrics-btnsbox").hidden = false;
+		mlyrics.pane.hideBtnsbox(false, true);
 	},
 
 	onBtnsboxMouseout: function (event) {
-		mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {document.getElementById("mlyrics-btnsbox").hidden = true;}, 1000);
+		if (!mlyrics.pane.btnsBoxViewTimeout) mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {mlyrics.pane.hideBtnsbox(true, -1);}, 1000);
 	},
 
 	onBtnsboxMouseScroll: function (event) {
@@ -136,7 +131,26 @@ mlyrics.pane = {
 
 		document.getElementById("accelerateScale").value += event.detail/3*2;
 	},
-	
+
+	hideBtnsbox: function (needHide, force) {
+		if (needHide == -1) {
+			if (mlyrics.pane.btnsBoxViewTimeout) document.getElementById("mlyrics-btnsbox").hidden = true;
+		}
+		else if (needHide) {
+			document.getElementById("mlyrics-btnsbox").hidden = true;
+		}
+		else {
+			document.getElementById("mlyrics-btnsbox").hidden = false;
+		}
+		
+		if (force) {
+			if (mlyrics.pane.btnsBoxViewTimeout) {
+				clearTimeout(mlyrics.pane.btnsBoxViewTimeout);
+				mlyrics.pane.btnsBoxViewTimeout = null;
+			}
+		}
+	},
+
 	openAndReuseOneTabPerAttribute: function (attrName, url) {
 		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 				.getService(Components.interfaces.nsIWindowMediator);

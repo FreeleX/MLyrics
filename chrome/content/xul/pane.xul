@@ -145,50 +145,50 @@
 		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)" onDOMMouseScroll="mlyrics.pane.onBtnsboxMouseScroll(event)">
 			<spacer flex="1"/>
 			<toolbarbutton 	id="createSmartScrollBtn" image="chrome://mlyrics/content/images/microphone-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.teachScroll;"
-					oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);" />
+					oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="notifEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/notes.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtNotifEnabled;" 
-					oncommand="mlyrics.pane.enableNotifications(this.checked);" />
+					oncommand="mlyrics.pane.enableNotifications(this.checked);mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="scrollEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/scroll-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtScrollEnabled;" 
-					oncommand="mlyrics.pane.positionListener.enableScroll(this.checked);" />
+					oncommand="mlyrics.pane.positionListener.enableScroll(this.checked);mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="showSelectedBtn" type="checkbox" image="chrome://mlyrics/content/images/now-selected-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.showSelected;" 
-					oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.checked);" />
+					oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.checked);mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<label id="accelerateScaleValueLabel" style="margin:0; text-align:center" value="0" />
 			<scale id="accelerateScale" orient="vertical" minwidth="35" maxwidth="35" flex="5" style="margin:0" min="-4" max="100" value="0" onchange="document.getElementById('accelerateScaleValueLabel').value=this.value"/>
 			<spacer flex="1"/>
 			<toolbarbutton 	id="viewModeBtn" type="menu" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" style="margin:0" tooltiptext="">
 				<menupopup>
-					<menuitem id="viewModeMenuBtnItem0" label="&mlyrics.pane.viewModeMenu0;" oncommand="mlyrics.pane.viewMode.change(0);" checked="false"/>
-					<menuitem id="viewModeMenuBtnItem1" label="&mlyrics.pane.viewModeMenu1;" oncommand="mlyrics.pane.viewMode.change(1);" checked="false"/>
-					<menuitem id="viewModeMenuBtnItem2" label="&mlyrics.pane.viewModeMenu2;" oncommand="mlyrics.pane.viewMode.change(2);" checked="false"/>
-					<menuitem id="viewModeMenuBtnItem4" label="&mlyrics.pane.viewModeMenu4;" oncommand="mlyrics.pane.viewMode.change(4);" checked="false"/>
-					<menuitem id="viewModeMenuBtnItem3" label="&mlyrics.pane.viewModeMenu3;" oncommand="mlyrics.pane.viewMode.change(3);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem0" label="&mlyrics.pane.viewModeMenu0;" oncommand="mlyrics.pane.viewMode.change(0);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem1" label="&mlyrics.pane.viewModeMenu1;" oncommand="mlyrics.pane.viewMode.change(1);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem2" label="&mlyrics.pane.viewModeMenu2;" oncommand="mlyrics.pane.viewMode.change(2);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem4" label="&mlyrics.pane.viewModeMenu4;" oncommand="mlyrics.pane.viewMode.change(4);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem3" label="&mlyrics.pane.viewModeMenu3;" oncommand="mlyrics.pane.viewMode.change(3);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
 				</menupopup>
 			</toolbarbutton>
 			<spacer flex="1"/>
 			<toolbarbutton 	id="configFontBtn" image="chrome://mlyrics/content/images/skins-icon.png" style="margin:0" tooltiptext="&mlyrics.font.confFont;" 
-					oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes');" />
+					oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes');mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="settingsBtn" image="chrome://mlyrics/content/images/settings-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.showSettings;" 
-					oncommand="window.openDialog('chrome://mlyrics/content/xul/options.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes');" />
+					oncommand="window.openDialog('chrome://mlyrics/content/xul/options.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes');mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="webSearchBtn" image="chrome://mlyrics/content/images/google-favicon.ico"  style="margin:0" tooltiptext="&mlyrics.pane.contxWebSrch;" 
-					oncommand="mlyrics.pane.contextRefresh(true, -1);" />
+					oncommand="mlyrics.pane.contextRefresh(true, -1);mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="editBtn" image="chrome://mlyrics/content/images/edit-icon.png"  style="margin:0" tooltiptext="&mlyrics.pane.showEditDialog;" 
-					oncommand="mlyrics.pane.editMode.init()" />
+					oncommand="mlyrics.pane.editMode.init();mlyrics.pane.hideBtnsbox(true, true);" />
 			<toolbarbutton 	id="makeInstrBtn" image="chrome://mlyrics/content/images/instrumental.png"  style="margin:0" tooltiptext="&mlyrics.pane.contxtMakeInstr;" 
-					oncommand="mlyrics.pane.contextMakeInstrumental();" />
+					oncommand="mlyrics.pane.contextMakeInstrumental();mlyrics.pane.hideBtnsbox(true, true);" />
 			<toolbarbutton 	id="clearBtn" image="chrome://mlyrics/content/images/clear2-icon.png"  style="margin:0" tooltiptext="&mlyrics.pane.contxtClear;" 
-					oncommand="mlyrics.pane.contextClear();" />
+					oncommand="mlyrics.pane.contextClear();mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="timeTracksBtn" image="chrome://mlyrics/content/images/haslyrics-clock.png"  style="margin:0" tooltiptext="&mlyrics.pane.showTimeTracksDialog;" 
-					oncommand="mlyrics.pane.editTimeTracks.init()" />
+					oncommand="mlyrics.pane.editTimeTracks.init();mlyrics.pane.hideBtnsbox(true, true);" />
 			<toolbarbutton 	id="removeTimeTracksBtn" image="chrome://mlyrics/content/images/noclock.png"  style="margin:0" tooltiptext="&mlyrics.pane.removeTimeTracks;" 
-					oncommand="mlyrics.pane.editTimeTracks.remove()" />
+					oncommand="mlyrics.pane.editTimeTracks.remove();mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 		</vbox>
 	</hbox>
