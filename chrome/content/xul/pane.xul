@@ -144,6 +144,9 @@
 
 		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)" onDOMMouseScroll="mlyrics.pane.onBtnsboxMouseScroll(event)">
 			<spacer flex="1"/>
+			<toolbarbutton 	id="createSmartScrollBtn" image="chrome://mlyrics/content/images/microphone-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.teachScroll;"
+					oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);" />
+			<spacer flex="1"/>
 			<toolbarbutton 	id="notifEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/notes.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtNotifEnabled;" 
 					oncommand="mlyrics.pane.enableNotifications(this.checked);" />
 			<spacer flex="1"/>

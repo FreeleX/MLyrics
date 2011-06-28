@@ -2204,6 +2204,8 @@ mlyrics.pane = {
 		lyricsNormalHeight: 0,
 		mouseover: false,
 		correctionMode: false,
+		scrollsBeforeCorrectionMode: 10,
+		scrollsCounterResetTimer: null,
 		scrollCorrection: 0,
 		timeArray: [],
 		corrArrayDimen: 20, 
@@ -2432,8 +2434,10 @@ mlyrics.pane = {
 			
 		},
 
-		onMouseScrollReal: function (event) {
+		onMouseScrollReal: function (event, force) {
 			if (this.timeArray.length > 1) return; // Have lrc array
+
+			if (typeof(force) == 'undefined') force = false;
 
 			var metadataLyrics = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
 			if (!metadataLyrics || metadataLyrics == "") return;
@@ -2445,12 +2449,27 @@ mlyrics.pane = {
 			if (position < 0) position = 0;
 
 			// Activate correction mode and clear corrArray
-			if (!scrollTop && event.detail < 0) {
-				this.correctionMode = true;
-				document.getElementById("lm-content").contentDocument.body.style.cursor = "url(chrome://mlyrics/content/images/sing-ico.png), move";
+			if (force || (!scrollTop && event.detail < 0)) {
+				if (!force && this.scrollsBeforeCorrectionMode > 0) {
+					if (!this.scrollsCounterResetTimer) {
+						mlyrics.pane.positionListener.scrollsBeforeCorrectionMode = 10;
+						this.scrollsCounterResetTimer = setTimeout(function() {
+							mlyrics.pane.positionListener.scrollsCounterResetTimer = null;}, 2000);
+					}
+						
+					this.scrollsBeforeCorrectionMode--;
+					return;
+				}
+				else {
+					this.correctionMode = true;
+					document.getElementById("lm-content").contentDocument.body.style.cursor = "url(chrome://mlyrics/content/images/sing-ico.png), move";
 
-				this.postSave.corrArray.length = 0;
-				this.postSave.corrArray.length = this.corrArrayDimen;
+					this.postSave.corrArray.length = 0;
+					this.postSave.corrArray.length = this.corrArrayDimen;
+
+					clearInterval(this.timer);
+					document.getElementById('lm-content').contentWindow.scrollTo(0, 0);
+				}
 			}
 
 			if (!this.correctionMode) return;

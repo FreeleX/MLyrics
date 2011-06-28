@@ -73,10 +73,12 @@ mlyrics.lib = {
 		var lyrics 		= aMediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
 		var haslyrStrFullOrig 	= aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics");
 		var isLRC 		= aMediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLRCfile");
+		var isSmartScroll 	= aMediaItem.getProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray");
 		
 		if (typeof(lyrics) == 'undefined') lyrics = null;
 		if (typeof(haslyrStrFullOrig) == 'undefined') haslyrStrFullOrig = null;
 		if (typeof(isLRC) == 'undefined') isLRC = "false";
+		if (typeof(isSmartScroll) == 'undefined') isLRC = false;
 
 		// Do not have lyrics stored in Database or tag and do not have lrc file
 		if (!lyrics && !isLRC) {
@@ -102,6 +104,9 @@ mlyrics.lib = {
 		if (isLRC == "true") {
 			haslyrStr += "-clock";
 		}
+		else if (isSmartScroll) {
+			haslyrStr += "-microphone";
+		}
 
 		// Picture already shown
 		var haslyrStrFull = "chrome://mlyrics/content/images/haslyrics" + haslyrStr + ".png";
@@ -111,10 +116,12 @@ mlyrics.lib = {
 			var trackName = aMediaItem.getProperty("http://songbirdnest.com/data/1.0#trackName");
 			mlyrics.lib.debugOutput("[" + trackName + "] haslyrStr: " + haslyrStrFull + " <> " + haslyrStrFullOrig);
 
-			if (haslyrStr.indexOf("-tag") != -1)
-				return 1;
-			else
+			if (haslyrStr.indexOf("-tag") != -1) {
+				if (haslyrStr.indexOf("-microphone") == -1) return 1;
+			}
+			else {
 				return 2;
+			}
 		}
 
 		return 0;
