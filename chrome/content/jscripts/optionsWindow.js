@@ -3,7 +3,7 @@ var xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"].getService(Co
 var ignoreListChanged = false;
 
 function onload () {
-  if (xulRuntime.OS == "Linux") onsaveunload = onsaveaccept;
+  if (xulRuntime.OS == "Linux" || xulRuntime.OS == "Darwin") onsaveunload = onsaveaccept;
 
   if (typeof(gBrowser) == "undefined")
     gBrowser = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("Songbird:Main").window.gBrowser;
