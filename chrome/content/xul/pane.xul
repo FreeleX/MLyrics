@@ -25,6 +25,41 @@
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/fetch.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/paneWindow.js"/>
 
+	<popupset id="LM_PopupSet">
+		<menupopup id="LM_context" onpopupshowing="mlyrics.pane.checkContext()">
+			<menuitem id="copyMenuItem" label="&copySelectionCmd.label;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/copy-icon.png" oncommand="mlyrics.pane.copyToClipboard();" />
+			<menuseparator />
+			<menuitem id="createSmartScrollMenuItem" label="&mlyrics.pane.teachScroll;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/microphone-icon.png" oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);" />
+			<menuseparator />
+			<menuitem id="notifEnabledMenuItem" label="&mlyrics.pane.contxtNotifEnabled;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/notes.png" oncommand="mlyrics.pane.enableNotifications(this.getAttribute('checked') == 'true');" />
+			<menuseparator />
+			<menuitem id="scrollEnabledMenuItem" label="&mlyrics.pane.contxtScrollEnabled;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/scroll-icon.png" oncommand="mlyrics.pane.positionListener.enableScroll(this.getAttribute('checked') == 'true');" />
+			<menuseparator />
+			<menuitem id="showSelectedMenuItem" label="&mlyrics.pane.showSelected;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/now-selected-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.getAttribute('checked') == 'true');" />
+			<menuseparator />
+			<menuitem id="viewModeMenuItem0" label="&mlyrics.pane.viewModeMenu0;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(0);" />
+			<menuitem id="viewModeMenuItem1" label="&mlyrics.pane.viewModeMenu1;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(1);" />
+			<menuitem id="viewModeMenuItem2" label="&mlyrics.pane.viewModeMenu2;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(2);" />
+			<menuitem id="viewModeMenuItem4" label="&mlyrics.pane.viewModeMenu4;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(4);" />
+			<menuitem id="viewModeMenuItem3" label="&mlyrics.pane.viewModeMenu3;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(3);" />
+			<menuseparator />
+			<menuitem id="configFontMenuItem" label="&mlyrics.font.confFont;" class="menuitem-iconic" image="chrome://mlyrics/content/images/skins-icon.png"
+				oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes');" />
+			<menuseparator />
+			<menuitem id="paneShowSettings" label="&mlyrics.pane.showSettings;" style="font-weight:bold" class="menuitem-iconic" image="chrome://mlyrics/content/images/settings-icon.png"
+				oncommand="window.openDialog('chrome://mlyrics/content/xul/options.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes');" />
+			<menuseparator />
+			<menuitem label="&mlyrics.pane.contxWebSrch;" class="menuitem-iconic" image="chrome://mlyrics/content/images/google-favicon.ico" oncommand="mlyrics.pane.contextRefresh(true, -1);"/>
+			<menuseparator />
+			<menuitem id="metadataMenuItem" label="&mlyrics.pane.showEditDialog;" class="menuitem-iconic" image="chrome://mlyrics/content/images/edit-icon.png" oncommand="mlyrics.pane.editMode.init()"/>
+			<menuitem id="makeInstrMenuItem" label="&mlyrics.pane.contxtMakeInstr;" class="menuitem-iconic" image="chrome://mlyrics/content/images/instrumental.png" oncommand="mlyrics.pane.contextMakeInstrumental();"/>
+			<menuitem id="clearMenuItem" label="&mlyrics.pane.contxtClear;" class="menuitem-iconic" image="chrome://mlyrics/content/images/clear2-icon.png" oncommand="mlyrics.pane.contextClear();"/>
+			<menuseparator />
+			<menuitem id="timeTracksMenuItem" label="&mlyrics.pane.showTimeTracksDialog;" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-clock.png" oncommand="mlyrics.pane.editTimeTracks.init()"/>
+			<menuitem id="removeTimeTracksMenuItem" label="&mlyrics.pane.removeTimeTracks;" class="menuitem-iconic" image="chrome://mlyrics/content/images/noclock.png" oncommand="mlyrics.pane.editTimeTracks.remove()"/>
+		</menupopup>
+	</popupset>
+
 	<keyset>
 		<key modifiers="control" key="s" oncommand="if (document.getElementById('lm-deck').selectedIndex == 2) mlyrics.pane.editMode.onAccept()"/>
 	</keyset>
@@ -36,7 +71,7 @@
 				value="&albumart.displaypane.not_playing_message;" />
 			</vbox>
 		
-			<vbox flex="1" style="overflow: auto" onclick="mlyrics.pane.onViewPaneClick(event)">
+			<vbox flex="1" style="overflow: auto" contextmenu="LM_context">
 				<notificationbox id="infobar" flex="1">
 					<iframe id="lm-content"
 						src="chrome://mlyrics/content/style/blank.html" 
