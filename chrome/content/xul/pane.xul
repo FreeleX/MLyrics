@@ -27,9 +27,9 @@
 
 	<popupset id="LM_PopupSet">
 		<menupopup id="LM_context" onpopupshowing="mlyrics.pane.checkContext()">
-			<menuitem id="copyMenuItem" label="&copySelectionCmd.label;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/copy-icon.png" oncommand="mlyrics.pane.copyToClipboard();" />
+			<menuitem id="copyMenuItem" label="&copySelectionCmd.label;" class="menuitem-iconic" image="chrome://mlyrics/content/images/copy-icon.png" oncommand="mlyrics.pane.copyToClipboard();" />
 			<menuseparator />
-			<menuitem id="createSmartScrollMenuItem" label="&mlyrics.pane.teachScroll;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/microphone-icon.png" oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);" />
+			<menuitem id="createSmartScrollMenuItem" label="&mlyrics.pane.teachScroll;" class="menuitem-iconic" image="chrome://mlyrics/content/images/microphone-icon.png" oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);" />
 			<menuseparator />
 			<menuitem id="notifEnabledMenuItem" label="&mlyrics.pane.contxtNotifEnabled;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/notes.png" oncommand="mlyrics.pane.enableNotifications(this.getAttribute('checked') == 'true');" />
 			<menuseparator />
