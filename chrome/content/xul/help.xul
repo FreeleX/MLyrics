@@ -23,11 +23,11 @@
 			<tab label="&mlyrics.helpwin.tipslabel;" />
 		</tabs>
 		<tabpanels flex="1" >
-			<iframe src="chrome://mlyrics/content/help/start.xhtm" 		flex="1"/>
-			<iframe src="chrome://mlyrics/content/help/lisc.xhtm" 		flex="1"/>
-			<iframe src="chrome://mlyrics/content/help/style.xhtm" 		flex="1"/>
-			<iframe src="chrome://mlyrics/content/help/medialist.xhtm" 	flex="1"/>
-			<iframe src="chrome://mlyrics/content/help/tips.xhtm" 		flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/start.xhtm" 				flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/lisc.xhtm" 				flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/style.xhtm" 				flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/medialist.xhtm" 			flex="1"/>
+			<iframe src="chrome://mlyrics/content/help/tips.xhtm" 				flex="1"/>
 		</tabpanels>
 	</tabbox>
 </window>

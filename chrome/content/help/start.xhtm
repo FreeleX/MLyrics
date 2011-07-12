@@ -12,17 +12,25 @@
 	<table align="center">
 		<tr>
 			<td align="center">
-				<img src="chrome://mlyrics/content/help/mlyricslogo.png" border="0" />
+				<img src="chrome://mlyrics/content/help/mlyricslogo.png" border="0" width="430" height="430"/>
 			</td>
 		</tr>
 		<tr>
 			<td align="center">
-				<b>On Songbird:</b> http://addons.songbirdnest.com/addons/1928
+				<b>On Songbird:</b> <a><label onclick="window.prompt ('Copy to clipboard: Ctrl+C, Enter', this.innerHTML.replace(/amp;/g, ''));">http://addons.songbirdnest.com/addons/1928</label></a>
 			</td>
 		</tr>
 		<tr>
 			<td align="center">
-				<b>On Getsatisfaction:</b> http://getsatisfaction.com/songbird/topics/suggestions_and_reports_for_mlyrics
+				<b>On Getsatisfaction:</b> <a><label onclick="window.prompt ('Copy to clipboard: Ctrl+C, Enter', this.innerHTML.replace(/amp;/g, ''));">http://getsatisfaction.com/songbird/topics/suggestions_and_reports_for_mlyrics</label></a>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<hr/>
+				<b>Do you like MLyrics?</b>
+				<img src="chrome://mlyrics/content/help/btn_donateCC_LG.gif" onclick="window.prompt ('Copy to clipboard: Ctrl+C, Enter', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=AMUFYG5GTDCEE'.replace(/amp;/g, ''));"/>
+				<b>Help me to make it better</b>
 			</td>
 		</tr>
 	</table>
