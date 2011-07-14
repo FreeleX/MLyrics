@@ -28,8 +28,13 @@ mlyrics.lrc = {
 		if (mediaFilePathNoExt == "") return false;
 
 		var lrcFilePath = mediaFilePathNoExt + ".lrc";
+		mlyrics.lib.debugOutput("haslrcfile: " + lrcFilePath);
+		
+		try {
 		mlyrics.lrc.timeTracksFile.initWithPath(lrcFilePath);
-	
+		}
+		catch (e) {return false;};
+		
 		if (mlyrics.lrc.timeTracksFile.exists()) return true;
 
 		return false;
