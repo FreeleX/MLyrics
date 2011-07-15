@@ -20,11 +20,15 @@ mlyrics.pane = {
 	timeTracksFile:		null,
 	metadataService:	null,
 	clipboardHelper:	null,
+	displayPaneManager:	null,
+	displayPane:		null,
 	gBrowser: 		null,
 	songbirdWindow:		null,
 	prefs: 			null,
 	defprefs: 		null,
 	btnsBoxViewTimeout:	null,
+
+	savedWidth:		250,
 	
 	pStrings: {
 		bigyes: "",
@@ -74,6 +78,11 @@ mlyrics.pane = {
 													.getMostRecentWindow("Songbird:Main").
 													window;
 		this.gBrowser = this.songbirdWindow.gBrowser;
+		
+		// Get our displayPane
+		this.displayPaneManager = Components.classes["@songbirdnest.com/Songbird/DisplayPane/Manager;1"].getService(Components.interfaces.sbIDisplayPaneManager);
+		var dpInstantiator = this.displayPaneManager.getInstantiatorForWindow(window);
+		this.displayPane = dpInstantiator.displayPane;
 													
 		this.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.mlyrics.");
 		this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
@@ -132,10 +141,16 @@ mlyrics.pane = {
 			if (mlyrics.pane.btnsBoxViewTimeout) document.getElementById("mlyrics-btnsbox").hidden = true;
 		}
 		else if (needHide) {
-			document.getElementById("mlyrics-btnsbox").hidden = true;
+			if (!document.getElementById("mlyrics-btnsbox").hidden) {
+				document.getElementById("mlyrics-btnsbox").hidden = true;
+				mlyrics.pane.displayPane.width = parseInt(mlyrics.pane.displayPane.width, 10) - 35;
+			}
 		}
 		else {
-			document.getElementById("mlyrics-btnsbox").hidden = false;
+			if (document.getElementById("mlyrics-btnsbox").hidden) {
+				document.getElementById("mlyrics-btnsbox").hidden = false;
+				mlyrics.pane.displayPane.width = parseInt(mlyrics.pane.displayPane.width, 10) + 35;
+			}
 		}
 		
 		if (force) {
@@ -983,6 +998,8 @@ mlyrics.pane = {
 		mlyrics.pane.viewMode.savedData.track 	= track;
 		mlyrics.pane.viewMode.savedData.lyrics 	= lyrics;
 		mlyrics.pane.viewMode.savedData.source 	= source;
+
+		mlyrics.pane.savedWidth = mlyrics.pane.displayPane.width;
 
 		document.getElementById("accelerateScale").value = 0;
 		document.getElementById("accelerateScaleValueLabel").value = 0;
