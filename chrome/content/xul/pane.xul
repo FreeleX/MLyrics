@@ -29,6 +29,8 @@
 		<menupopup id="LM_context" onpopupshowing="mlyrics.pane.checkContext()">
 			<menuitem id="copyMenuItem" label="&copySelectionCmd.label;" class="menuitem-iconic" image="chrome://mlyrics/content/images/copy-icon.png" oncommand="mlyrics.pane.copyToClipboard();" />
 			<menuseparator />
+			<menuitem id="fullScreenMenuItem" label="&menu.fullscreen;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/full-screen.png" oncommand="mlyrics.pane.fullScreenMode.switch();" />
+			<menuseparator />
 			<menuitem id="createSmartScrollMenuItem" label="&mlyrics.pane.teachScroll;" class="menuitem-iconic" image="chrome://mlyrics/content/images/microphone-icon.png" oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);" />
 			<menuseparator />
 			<menuitem id="notifEnabledMenuItem" label="&mlyrics.pane.contxtNotifEnabled;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/notes.png" oncommand="mlyrics.pane.enableNotifications(this.getAttribute('checked') == 'true');" />
@@ -44,12 +46,12 @@
 			<menuitem id="viewModeMenuItem3" label="&mlyrics.pane.viewModeMenu3;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(3);" />
 			<menuseparator />
 			<menuitem id="configFontMenuItem" label="&mlyrics.font.confFont;" class="menuitem-iconic" image="chrome://mlyrics/content/images/skins-icon.png"
-				oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes');" />
+				oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes', mlyrics.pane.fullScreenMode.fullScreen);" />
 			<menuseparator />
 			<menuitem id="paneShowSettings" label="&mlyrics.pane.showSettings;" style="font-weight:bold" class="menuitem-iconic" image="chrome://mlyrics/content/images/settings-icon.png"
 				oncommand="window.openDialog('chrome://mlyrics/content/xul/options.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes');" />
 			<menuseparator />
-			<menuitem label="&mlyrics.pane.contxWebSrch;" class="menuitem-iconic" image="chrome://mlyrics/content/images/google-favicon.ico" oncommand="mlyrics.pane.contextRefresh(true, -1);"/>
+			<menuitem id="webSrchMenuItem" label="&mlyrics.pane.contxWebSrch;" class="menuitem-iconic" image="chrome://mlyrics/content/images/google-favicon.ico" oncommand="mlyrics.pane.contextRefresh(true, -1);"/>
 			<menuseparator />
 			<menuitem id="metadataMenuItem" label="&mlyrics.pane.showEditDialog;" class="menuitem-iconic" image="chrome://mlyrics/content/images/edit-icon.png" oncommand="mlyrics.pane.editMode.init()"/>
 			<menuitem id="makeInstrMenuItem" label="&mlyrics.pane.contxtMakeInstr;" class="menuitem-iconic" image="chrome://mlyrics/content/images/instrumental.png" oncommand="mlyrics.pane.contextMakeInstrumental();"/>
@@ -150,7 +152,7 @@
 			<vbox flex="1">
 				<textbox id="edit-content" multiline="true" flex="1" />
 				<hbox>
-					<button label="&mlyrics.pane.saveButton;" flex="1" oncommand="mlyrics.pane.editMode.onAccept()"/>
+					<button label="&mlyrics.pane.saveButton;" flex="1" tooltiptext="Ctrl+S" oncommand="mlyrics.pane.editMode.onAccept()"/>
 					<button label="&mlyrics.pane.cancelButton;" flex="3" oncommand="mlyrics.pane.editMode.onDiscard()"/>
 				</hbox>
 			</vbox>
@@ -175,7 +177,7 @@
 			</window>
 		</deck>
 
-		<splitter onmouseover="mlyrics.pane.onBtnsboxSeparatorMouseover();" />
+		<splitter id="mlyrics-btnsbox-splitter" onmouseover="mlyrics.pane.onBtnsboxSeparatorMouseover();" />
 
 		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)" onDOMMouseScroll="mlyrics.pane.onBtnsboxMouseScroll(event)">
 			<spacer flex="1"/>
@@ -226,6 +228,8 @@
 			<toolbarbutton 	id="removeTimeTracksBtn" image="chrome://mlyrics/content/images/noclock.png"  style="margin:0" tooltiptext="&mlyrics.pane.removeTimeTracks;" 
 					hidden="true" oncommand="mlyrics.pane.editTimeTracks.remove();mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
+			<toolbarbutton 	id="fullScreenBtn" image="chrome://mlyrics/content/images/full-screen.png" tooltiptext="&menu.fullscreen;"
+				hidden="false" oncommand="mlyrics.pane.fullScreenMode.switch();mlyrics.pane.hideBtnsbox(true, true);" />
 		</vbox>
 	</hbox>
 	

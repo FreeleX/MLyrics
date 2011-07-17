@@ -47,7 +47,6 @@ mlyrics.pane = {
 	},
 	
 	enableNotifications: function (enable) {
-		alert(enable);
 		if (enable) {
 			this.prefs.setBoolPref("showNotifs", true);
 			document.getElementById("notifEnabledBtn").checked = true;
@@ -143,13 +142,15 @@ mlyrics.pane = {
 		else if (needHide) {
 			if (!document.getElementById("mlyrics-btnsbox").hidden) {
 				document.getElementById("mlyrics-btnsbox").hidden = true;
-				mlyrics.pane.displayPane.width = parseInt(mlyrics.pane.displayPane.width, 10) - 35;
+				if (!mlyrics.pane.fullScreenMode.fullScreen)
+					mlyrics.pane.displayPane.width = parseInt(mlyrics.pane.displayPane.width, 10) - 35;
 			}
 		}
 		else {
 			if (document.getElementById("mlyrics-btnsbox").hidden) {
 				document.getElementById("mlyrics-btnsbox").hidden = false;
-				mlyrics.pane.displayPane.width = parseInt(mlyrics.pane.displayPane.width, 10) + 35;
+				if (!mlyrics.pane.fullScreenMode.fullScreen)
+					mlyrics.pane.displayPane.width = parseInt(mlyrics.pane.displayPane.width, 10) + 35;
 			}
 		}
 		
@@ -215,85 +216,90 @@ mlyrics.pane = {
 		observe: function (aSubject, aTopic, aData) {
 			
 			if(aTopic != "nsPref:changed") return;
+
+			if (!mlyrics.pane.fullScreenMode.fullScreen)
+				var fullScreenStr = "";
+			else
+				var fullScreenStr = "fullScreen_";
 			
 			switch (aData) {
-				case "styleSheet":
+				case fullScreenStr + "styleSheet":
 					this.updateStyle();
 					break;
 					
-				case "applyCustomFont":
-				case "showStaticPicIf":
-				case "BGImagePos":
+				case fullScreenStr + "applyCustomFont":
+				case fullScreenStr + "showStaticPicIf":
+				case fullScreenStr + "BGImagePos":
 					
-				case "backgroundType":
-				case "backgroundImage":
-				case "backgroundColor":
+				case fullScreenStr + "backgroundType":
+				case fullScreenStr + "backgroundImage":
+				case fullScreenStr + "backgroundColor":
 				
-				case "lyricsSize":
-				case "transLyricsSize":
-				case "artistSize":
-				case "albumSize":
-				case "titleSize":
+				case fullScreenStr + "lyricsSize":
+				case fullScreenStr + "transLyricsSize":
+				case fullScreenStr + "artistSize":
+				case fullScreenStr + "albumSize":
+				case fullScreenStr + "titleSize":
 				
-				case "lyricsColor":
-				case "transLyricsColor":
-				case "artistColor":
-				case "albumColor":
-				case "titleColor":
+				case fullScreenStr + "lyricsColor":
+				case fullScreenStr + "transLyricsColor":
+				case fullScreenStr + "artistColor":
+				case fullScreenStr + "albumColor":
+				case fullScreenStr + "titleColor":
 
-				case "lyricsBGColorEnable":
-				case "transLyricsBGColorEnable":
-				case "artistBGColorEnable":
-				case "albumBGColorEnable":
-				case "titleBGColorEnable":
+				case fullScreenStr + "lyricsBGColorEnable":
+				case fullScreenStr + "transLyricsBGColorEnable":
+				case fullScreenStr + "artistBGColorEnable":
+				case fullScreenStr + "albumBGColorEnable":
+				case fullScreenStr + "titleBGColorEnable":
 					
-				case "lyricsBGColor":
-				case "transLyricsBGColor":
-				case "artistBGColor":
-				case "albumBGColor":
-				case "titleBGColor":
+				case fullScreenStr + "lyricsBGColor":
+				case fullScreenStr + "transLyricsBGColor":
+				case fullScreenStr + "artistBGColor":
+				case fullScreenStr + "albumBGColor":
+				case fullScreenStr + "titleBGColor":
 					
-				case "lyricsAlign":
-				case "transLyricsAlign":
-				case "artistAlign":
-				case "albumAlign":
-				case "titleAlign":
+				case fullScreenStr + "lyricsAlign":
+				case fullScreenStr + "transLyricsAlign":
+				case fullScreenStr + "artistAlign":
+				case fullScreenStr + "albumAlign":
+				case fullScreenStr + "titleAlign":
 					
-				case "lyricsOpacity":
-				case "transLyricsOpacity":
-				case "artistOpacity":
-				case "albumOpacity":
-				case "titleOpacity":
+				case fullScreenStr + "lyricsOpacity":
+				case fullScreenStr + "transLyricsOpacity":
+				case fullScreenStr + "artistOpacity":
+				case fullScreenStr + "albumOpacity":
+				case fullScreenStr + "titleOpacity":
 					
-				case "lyricsBold":
-				case "transLyricsBold":
-				case "artistBold":
-				case "albumBold":
-				case "titleBold":
+				case fullScreenStr + "lyricsBold":
+				case fullScreenStr + "transLyricsBold":
+				case fullScreenStr + "artistBold":
+				case fullScreenStr + "albumBold":
+				case fullScreenStr + "titleBold":
 					
-				case "lyricsItalic":
-				case "transLyricsItalic":
-				case "artistItalic":
-				case "albumItalic":
-				case "titleItalic":
+				case fullScreenStr + "lyricsItalic":
+				case fullScreenStr + "transLyricsItalic":
+				case fullScreenStr + "artistItalic":
+				case fullScreenStr + "albumItalic":
+				case fullScreenStr + "titleItalic":
 					
-				case "lyricsUnderlined":
-				case "transLyricsUnderlined":
-				case "artistUnderlined":
-				case "albumUnderlined":
-				case "titleUnderlined":
+				case fullScreenStr + "lyricsUnderlined":
+				case fullScreenStr + "transLyricsUnderlined":
+				case fullScreenStr + "artistUnderlined":
+				case fullScreenStr + "albumUnderlined":
+				case fullScreenStr + "titleUnderlined":
 					
-				case "lyricsMarginTop":
-				case "transLyricsMarginTop":
-				case "artistMarginTop":
-				case "albumMarginTop":
-				case "titleMarginTop":
+				case fullScreenStr + "lyricsMarginTop":
+				case fullScreenStr + "transLyricsMarginTop":
+				case fullScreenStr + "artistMarginTop":
+				case fullScreenStr + "albumMarginTop":
+				case fullScreenStr + "titleMarginTop":
 					
-				case "lyricsMarginBottom":
-				case "transLyricsMarginBottom":
-				case "artistMarginBottom":
-				case "albumMarginBottom":
-				case "titleMarginBottom":
+				case fullScreenStr + "lyricsMarginBottom":
+				case fullScreenStr + "transLyricsMarginBottom":
+				case fullScreenStr + "artistMarginBottom":
+				case fullScreenStr + "albumMarginBottom":
+				case fullScreenStr + "titleMarginBottom":
 					
 					mlyrics.pane.viewMode.change(mlyrics.pane.prefs.getIntPref("lyricsViewMode"));
 					break;
@@ -315,7 +321,13 @@ mlyrics.pane = {
 			var feathersMgr = Components.classes['@songbirdnest.com/songbird/feathersmanager;1'].getService(Ci.sbIFeathersManager);
 			var currentSkin = feathersMgr.currentSkinName;
 			var customStyleFile = "chrome://songbird/skin/mlyrics.css";
-			var prefStyleFile = mlyrics.pane.prefs.getCharPref("styleSheet");
+
+			if (!mlyrics.pane.fullScreenMode.fullScreen)
+				var fullScreenStr = "";
+			else
+				var fullScreenStr = "fullScreen_";
+			
+			var prefStyleFile = mlyrics.pane.prefs.getCharPref(fullScreenStr + "styleSheet");
 			
 			if ( currentSkin == "purplerain" && (!prefStyleFile || prefStyleFile == customStyleFile) ) {
 				CSS_defined.setAttribute("href", "purplerain.css");
@@ -335,17 +347,22 @@ mlyrics.pane = {
 	},
 	
 	getStyleProperty: function (prefPartStr) {
-		var elemSize = mlyrics.pane.prefs.getIntPref(prefPartStr + "Size");
-		var elemColor = mlyrics.pane.prefs.getCharPref(prefPartStr + "Color");
-		var elemBGColorEnable = mlyrics.pane.prefs.getBoolPref(prefPartStr + "BGColorEnable");
-		var elemBGColor = mlyrics.pane.prefs.getCharPref(prefPartStr + "BGColor");
-		var elemBold = mlyrics.pane.prefs.getBoolPref(prefPartStr + "Bold");
-		var elemItalic = mlyrics.pane.prefs.getBoolPref(prefPartStr + "Italic");
-		var elemUnderlined = mlyrics.pane.prefs.getBoolPref(prefPartStr + "Underlined");
-		var elemAlign = mlyrics.pane.prefs.getCharPref(prefPartStr + "Align");
-		var elemOpacity = mlyrics.pane.prefs.getIntPref(prefPartStr + "Opacity");
-		var elemMarginTop = mlyrics.pane.prefs.getIntPref(prefPartStr + "MarginTop");
-		var elemMarginBottom = mlyrics.pane.prefs.getIntPref(prefPartStr + "MarginBottom");
+		if (!mlyrics.pane.fullScreenMode.fullScreen)
+			var fullScreenStr = "";
+		else
+			var fullScreenStr = "fullScreen_";
+			
+		var elemSize = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Size");
+		var elemColor = mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Color");
+		var elemBGColorEnable = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "BGColorEnable");
+		var elemBGColor = mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "BGColor");
+		var elemBold = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Bold");
+		var elemItalic = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Italic");
+		var elemUnderlined = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Underlined");
+		var elemAlign = mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Align");
+		var elemOpacity = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Opacity");
+		var elemMarginTop = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginTop");
+		var elemMarginBottom = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginBottom");
 		
 		var styleStr = "";
 		
@@ -1129,36 +1146,41 @@ mlyrics.pane = {
 		document.getElementById('web-content').loadURI("about:blank");
 		
 		var iframe = document.getElementById('lm-content');
+
+		if (!mlyrics.pane.fullScreenMode.fullScreen)
+			var fullScreenStr = "";
+		else
+			var fullScreenStr = "fullScreen_";
 		
-		if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+		if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 			titleStyleProps = mlyrics.pane.getStyleProperty("title");
 			artistStyleProps = mlyrics.pane.getStyleProperty("artist");
 			albumStyleProps = mlyrics.pane.getStyleProperty("album");
 			
-			if (mlyrics.pane.prefs.getCharPref("backgroundType") == "C") {
-				iframe.contentDocument.body.style.background = mlyrics.pane.prefs.getCharPref('backgroundColor')
+			if (mlyrics.pane.prefs.getCharPref(fullScreenStr + "backgroundType") == "C") {
+				iframe.contentDocument.body.style.background = mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundColor')
 			}
-			else if (mlyrics.pane.prefs.getCharPref("backgroundType") == "I") {
-				var backgroundImageUrl = mlyrics.pane.prefs.getCharPref('backgroundImage');
+			else if (mlyrics.pane.prefs.getCharPref(fullScreenStr + "backgroundType") == "I") {
+				var backgroundImageUrl = mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage');
 				if (backgroundImageUrl.substr(0, 9) == "chrome://") {
 					iframe.contentDocument.body.style.background = 'url("' + backgroundImageUrl + '") ' + 
-						mlyrics.pane.prefs.getCharPref('BGImagePos') +
+						mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
 						' fixed';
 				}
 				else {
 					iframe.contentDocument.body.style.background = 'url("file:///' + 
-						decodeURIComponent(mlyrics.pane.prefs.getCharPref('backgroundImage')).replace(/\\/g, "/") + '") ' + 
-						mlyrics.pane.prefs.getCharPref('BGImagePos') + 
+						decodeURIComponent(mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage')).replace(/\\/g, "/") + '") ' +
+						mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
 						' fixed';
 				}
 			}
 			else {
 				var imageURL = mlyrics.pane.gMM.sequencer.currentItem.getProperty("http://songbirdnest.com/data/1.0#primaryImageURL");
-				if (!imageURL && mlyrics.pane.prefs.getBoolPref("showStaticPicIf")) {
+				if (!imageURL && mlyrics.pane.prefs.getBoolPref(fullScreenStr + "showStaticPicIf")) {
 					iframe.contentDocument.body.style.background = 'url("file:///' + 
-						decodeURIComponent(mlyrics.pane.prefs.getCharPref('backgroundImage')).replace(/\\/g, "/") + 
+						decodeURIComponent(mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage')).replace(/\\/g, "/") +
 						'") ' + 
-						mlyrics.pane.prefs.getCharPref('BGImagePos') + 
+						mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
 						' fixed';
 				}
 				else {
@@ -1245,7 +1267,7 @@ mlyrics.pane = {
 		if ((dispAlbumPref) || (dispArtistPref) || (dispTrackPref)) {
 			content_lyric_html = content_lyric_html + "      <tr>";
 			content_lyric_html = content_lyric_html + "       <td valign=top>";
-			content_lyric_html = content_lyric_html + "        <p class=\"separator2\"> &nbsp; </p>";
+			content_lyric_html = content_lyric_html + "        <p id=\"lyrics-separator2\" class=\"separator2\"> &nbsp; </p>";
 			content_lyric_html = content_lyric_html + "       </td>";
 			content_lyric_html = content_lyric_html + "      </tr>";
 		}
@@ -1569,7 +1591,8 @@ mlyrics.pane = {
 	},
 	
 	copyToClipboard: function () {
-		
+		var iframe = document.getElementById('lm-content');
+		alert(iframe.contentDocument.getElementById("mlyrics_lyrics_row13").innerHTML);
 		var selected = document.getElementById('lm-content').contentWindow.getSelection();
 		this.clipboardHelper.copyString(selected); 
 	},
@@ -1653,12 +1676,17 @@ mlyrics.pane = {
 			
 			var lyricsStyleProps = "";
 			var transLyricsStyleProps = "";
+
+			if (!mlyrics.pane.fullScreenMode.fullScreen)
+				var fullScreenStr = "";
+			else
+				var fullScreenStr = "fullScreen_";
 			
-			if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 				lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
 			}
 			
-			if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 				transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 			}
 			else {
@@ -1674,7 +1702,7 @@ mlyrics.pane = {
 				case 0:
 					var lyricsOrigArray = lyrics.substring(0, translDelimPos1).split("\n");
 					var lyricsStyleProps = "";
-					if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+					if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 						lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
 					}
 					
@@ -1682,7 +1710,7 @@ mlyrics.pane = {
 					for (var i=0; i<lyricsOrigArray.length; i++) {
 						if (lyricsOrigArray[i] == "") lyrics += "<br>";
 						var transLyricsStyleProps = "";
-						lyrics += "<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
+						lyrics += "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
 					}
 					break;
 					
@@ -1692,7 +1720,7 @@ mlyrics.pane = {
 						
 						var lyricsTransArray = lyrics.substr(translDelimPos2+27).split("\n");
 						var transLyricsStyleProps = "";
-						if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+						if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 							transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 						}
 						else {
@@ -1702,7 +1730,7 @@ mlyrics.pane = {
 						lyrics = "";
 						for (var i=0; i<lyricsTransArray.length; i++) {
 							if (lyricsTransArray[i] == "") lyrics += "<br>";
-							lyrics += "<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyricsTransArray[i] + "</p>";
+							lyrics += "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyricsTransArray[i] + "</p>";
 						}
 					}
 					break;
@@ -1741,12 +1769,17 @@ mlyrics.pane = {
 			
 			var lyricsStyleProps = "";
 			var transLyricsStyleProps = "";
+
+			if (!mlyrics.pane.fullScreenMode.fullScreen)
+				var fullScreenStr = "";
+			else
+				var fullScreenStr = "fullScreen_";
 			
-			if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 				lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
 			}
 			
-			if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 				transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 			}
 			else {
@@ -1757,7 +1790,7 @@ mlyrics.pane = {
 				lyrics = "";
 				for (var i=0; i<lyricsOrigArray.length; i++) {
 					if (lyricsOrigArray[i] == "") lyrics += "<br>";
-					lyrics += "<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
+					lyrics += "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
 					lyrics += "<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyricsTransArray[i] + "</p>";
 				}
 			}
@@ -1777,12 +1810,17 @@ mlyrics.pane = {
 			
 			var lyricsStyleProps = "";
 			var transLyricsStyleProps = "";
+
+			if (!mlyrics.pane.fullScreenMode.fullScreen)
+				var fullScreenStr = "";
+			else
+				var fullScreenStr = "fullScreen_";
 			
-			if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 				lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
 			}
 			
-			if (mlyrics.pane.prefs.getBoolPref("applyCustomFont")) {
+			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
 				transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 			}
 			else {
@@ -1795,7 +1833,7 @@ mlyrics.pane = {
 				var translatedLyrics = "";
 				for (var i=0; i<lyricsOrigArray.length; i++) {
 						if (lyricsOrigArray[i].replace(/^\s+|\s+$/g, '') == '') { //That's a trim
-								lyrics = lyrics + "<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p><br><p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p><br><br><br>";
+								lyrics = lyrics + "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p><br><p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p><br><br><br>";
 								originalLyrics = "";
 								translatedLyrics = "";
 						} else {
@@ -1804,7 +1842,7 @@ mlyrics.pane = {
 						}
 				}
 				if (originalLyrics != "") {
-					lyrics = lyrics + "<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p><br><p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p><br><br>";
+					lyrics = lyrics + "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p><br><p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p><br><br>";
 				}
 			}                       
 			return lyrics;                  
@@ -1855,6 +1893,11 @@ mlyrics.pane = {
 		currentIndex: 0,
 
 		init: function () {
+			if (mlyrics.pane.fullScreenMode.fullScreen) {
+				document.getElementById("timeTracksMenuItem").disabled = true;
+				return;
+			}
+			
 			mlyrics.pane.mediaCoreManager.playbackControl.pause();
 			setTimeout(function () {mlyrics.pane.mediaCoreManager.playbackControl.play();}, 2000);
 
@@ -2510,6 +2553,11 @@ mlyrics.pane = {
 		},
 
 		onMouseScrollReal: function (event, force) {
+			//if (mlyrics.pane.fullScreenMode.fullScreen) {
+			//	document.getElementById("createSmartScrollMenuItem").disabled = true;
+			//	return;
+			//}
+			
 			if (this.timeArray.length > 1) return; // Have lrc array
 
 			if (typeof(force) == 'undefined') force = false;
@@ -2634,6 +2682,81 @@ mlyrics.pane = {
 					this.item = null;
 				}
 			}
+		}
+	},
+
+	fullScreenMode: {
+		savedWidth: 250,
+		fullScreen: false,
+
+		switch: function () {
+			if (!this.fullScreen) {
+				document.getElementById("fullScreenMenuItem").setAttribute("checked", "true");
+				this.enterFullScreen();
+			}
+			else {
+				document.getElementById("fullScreenMenuItem").setAttribute("checked", "false");
+				this.leaveFullScreen();
+			}
+		},
+
+		enterFullScreen: function () {
+			this.fullScreen = true;
+			
+			var mainwindow = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIWebNavigation)
+					.QueryInterface(Components.interfaces.nsIDocShellTreeItem).rootTreeItem
+					.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindow);
+			
+			this.savedWidth = mlyrics.pane.displayPane.width;
+			mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width;
+
+			mainwindow.document.getElementById("content_wrapper").hidden 			= true;
+			mainwindow.document.getElementById("displaypane_right_sidebar_splitter").hidden = true;
+			mainwindow.document.getElementById("servicepane_box").hidden 			= true;
+			mainwindow.document.getElementById("servicepane_splitter").hidden 		= true;
+			mainwindow.document.getElementById("status-bar-box").hidden 			= true;
+			mainwindow.document.getElementById("titlebar_box").hidden 			= true;
+			mainwindow.document.getElementById("player_wrapper").hidden 			= true;
+			
+			//document.getElementById("mlyrics-btnsbox-splitter").hidden 			= true;
+
+			document.getElementById("webSrchMenuItem").disabled 				= true;
+			document.getElementById("removeTimeTracksMenuItem").disabled 			= true;
+			document.getElementById("timeTracksMenuItem").disabled 				= true;
+			document.getElementById("createSmartScrollMenuItem").disabled 			= true;
+
+			window.fullScreen = true;
+
+			mlyrics.pane.viewMode.change(mlyrics.pane.prefs.getIntPref("lyricsViewMode"));
+		},
+
+		leaveFullScreen: function () {
+			this.fullScreen = false;
+			
+			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+			var mainwindow = wm.getMostRecentWindow("Songbird:Main");
+
+			mlyrics.pane.savedWidth = this.savedWidth;
+			mlyrics.pane.displayPane.width = this.savedWidth;
+
+			mainwindow.document.getElementById("content_wrapper").hidden 			= false;
+			mainwindow.document.getElementById("displaypane_right_sidebar_splitter").hidden = false;
+			mainwindow.document.getElementById("servicepane_box").hidden 			= false;
+			mainwindow.document.getElementById("servicepane_splitter").hidden 		= false;
+			mainwindow.document.getElementById("status-bar-box").hidden 			= false;
+			mainwindow.document.getElementById("titlebar_box").hidden 			= false;
+			mainwindow.document.getElementById("player_wrapper").hidden 			= false;
+			
+			//document.getElementById("mlyrics-btnsbox-splitter").hidden 			= false;
+
+			document.getElementById("webSrchMenuItem").disabled 				= false;
+			document.getElementById("removeTimeTracksMenuItem").disabled 			= false;
+			document.getElementById("timeTracksMenuItem").disabled 				= false;
+			document.getElementById("createSmartScrollMenuItem").disabled 			= false;
+
+			window.fullScreen = false;
+
+			mlyrics.pane.viewMode.change(mlyrics.pane.prefs.getIntPref("lyricsViewMode"));
 		}
 	}
 }
