@@ -1592,7 +1592,7 @@ mlyrics.pane = {
 	
 	copyToClipboard: function () {
 		var iframe = document.getElementById('lm-content');
-		alert(iframe.contentDocument.getElementById("mlyrics_lyrics_row13").innerHTML);
+		alert(iframe.contentDocument.getElementById("mlyrics_lyrics_row1").offsetTop);
 		var selected = document.getElementById('lm-content').contentWindow.getSelection();
 		this.clipboardHelper.copyString(selected); 
 	},
@@ -2324,6 +2324,7 @@ mlyrics.pane = {
 		timeArray: [],
 		corrArrayDimen: 20, 
 		playPart: 0,
+		iframe: null,
 
 		constShowDelayMiliSec: 500,
 
@@ -2354,6 +2355,8 @@ mlyrics.pane = {
 			this.correctionMode = false;
 			this.scrollCorrection = 0;
 			this.playPart = 0;
+
+			this.iframe = document.getElementById('lm-content');
 
 			document.getElementById("lm-content").contentDocument.body.style.cursor = "auto";
 
@@ -2424,27 +2427,32 @@ mlyrics.pane = {
 			var position = mlyrics.pane.gMM.playbackControl.position;
 			if (position < 0) position = 0;
 
+			if (this.timeArray.length > 1) {
+				var maxHeight = this.lyricsScrollHeight;
+			}
+			else {
+				var maxHeight = this.lyricsMaxHeight;
+			}
+
+			var nowScrollTo = 0;
+
 			// Time tracks scrolling
 			if (this.timeArray.length > 1) {
+				var normalLineTimeLen = this.duration / this.timeArray.length;			// Normal line scroll duration
 				
-				var normalLineTimeLen = this.duration / this.timeArray.length;
-				var speedIndexSum = 0;
 				for (var i=0; i<this.timeArray.length-1; i++) {
-
-					var currLineTimeLen = this.timeArray[i+1] - this.timeArray[i];
-					speedIndexSum += currLineTimeLen/normalLineTimeLen;
-
-					if (	position > this.timeArray[i]  && 
+					if (	position >= this.timeArray[i]  && 
 						position < this.timeArray[i+1] ) {
+
+						var currLineTimeLen = this.timeArray[i+1] - this.timeArray[i];	// Real current line scroll duration
+						var currLineTimeElapsed = position - this.timeArray[i];		// How much we scrolled already
+
+						var speedIndex = currLineTimeElapsed/currLineTimeLen;		// How much in percents we need to scroll between lines
 						
-						var currLineTimeLen = position - this.timeArray[i];
-						var lrcLineTimeLen = this.timeArray[i+1] - this.timeArray[i];
+						var firstOffset  = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + i).offsetTop;
+						var secondOffset = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (i+1)).offsetTop;
 
-						var speedIndex = speedIndexSum / (i+1);
-
-						// Show 2 lines at the top of the current line
-						var playPart = (i + currLineTimeLen/lrcLineTimeLen) / this.timeArray.length;
-						/*if (playPart > this.playPart)*/ this.playPart = playPart;
+						nowScrollTo = firstOffset + (secondOffset - firstOffset) * speedIndex;
 
 						break;
 					}
@@ -2453,21 +2461,23 @@ mlyrics.pane = {
 
 			// Correction scrolling
 			else if (this.postSave.corrArray.length > 1) {
-
 				for (var i=0; i<this.postSave.corrArray.length-1; i++) {
-
 					if (	position >= this.postSave.corrArray[i]  && 
 						position < this.postSave.corrArray[i+1] ) {
-						
-						var currLineTimeLen = position - (this.postSave.corrArray[i]);
-						var corrLineTimeLen = (this.postSave.corrArray[i+1]) - 
-									(this.postSave.corrArray[i]);
 
-						var speedIndex = currLineTimeLen/corrLineTimeLen;
+						var corrLineTimeLen = this.postSave.corrArray[i+1] - this.postSave.corrArray[i];
+						var currLineTimeElapsed = position - this.postSave.corrArray[i];
 
-						this.playPart = (i + speedIndex) / this.corrArrayDimen;
+						var speedIndex = currLineTimeElapsed/corrLineTimeLen;
+						//mlyrics.lib.debugOutput("speedIndex: " + speedIndex);
 
-						//mlyrics.lib.debugOutput("this.playPart: " + this.playPart);
+						var lineNumber = i;//Math.round(this.corrArrayDimen/this.postSave.corrArray.length * i);
+						//mlyrics.lib.debugOutput("lineNumber: " + lineNumber);
+
+						var firstOffset  = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + lineNumber*2).offsetTop;
+						var secondOffset = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (lineNumber+1)*2).offsetTop;
+
+						nowScrollTo = firstOffset + (secondOffset - firstOffset) * speedIndex;
 
 						break;
 					}
@@ -2478,37 +2488,28 @@ mlyrics.pane = {
 			else {
 				var playPart = position / this.duration;
 				this.playPart = playPart;
-			}
-
-			if (this.timeArray.length > 1) {
-				var maxHeight = this.lyricsScrollHeight;
-			}
-			else {
-				var maxHeight = this.lyricsMaxHeight;
+				nowScrollTo = this.playPart * maxHeight;
 			}
 			
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
 			var intPart = parseInt(scrollTop/maxHeight * this.corrArrayDimen);
 
 			if (this.mouseover) {
-				this.scrollCorrection = scrollTop - maxHeight*this.playPart;
+				this.scrollCorrection = scrollTop - nowScrollTo;
 			}
 			else {
 				if (mlyrics.pane.prefs.getBoolPref("scrollEnable")) {
 					var accelerator = document.getElementById("accelerateScale");
 					this.scrollCorrection += accelerator.value/100;
 
-					var newScrollPos = maxHeight*this.playPart + this.scrollCorrection;
+					var newScrollPos = nowScrollTo + this.scrollCorrection;
 
 					if (accelerator.value < 0) {
-						this.scrollCorrection = scrollTop - maxHeight*this.playPart;
+						this.scrollCorrection = scrollTop - nowScrollTo;
 						return;
 					}
-
-					if (newScrollPos < 0) 
-						newScrollPos = 0
-					else
-						document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
+					
+					document.getElementById('lm-content').contentWindow.scrollTo(0, newScrollPos);
 				}
 			}
 
