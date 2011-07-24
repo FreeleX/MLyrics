@@ -2465,14 +2465,12 @@ mlyrics.pane = {
 					if (	position >= this.postSave.corrArray[i]  && 
 						position < this.postSave.corrArray[i+1] ) {
 
-						var corrLineTimeLen = this.postSave.corrArray[i+1] - this.postSave.corrArray[i];
+						var currLineTimeLen = this.postSave.corrArray[i+1] - this.postSave.corrArray[i];
 						var currLineTimeElapsed = position - this.postSave.corrArray[i];
 
-						var speedIndex = currLineTimeElapsed/corrLineTimeLen;
-						//mlyrics.lib.debugOutput("speedIndex: " + speedIndex);
+						var speedIndex = currLineTimeElapsed/currLineTimeLen;
 
-						var lineNumber = i;//Math.round(this.corrArrayDimen/this.postSave.corrArray.length * i);
-						//mlyrics.lib.debugOutput("lineNumber: " + lineNumber);
+						var lineNumber = i;
 
 						var firstOffset  = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + lineNumber*2).offsetTop;
 						var secondOffset = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (lineNumber+1)*2).offsetTop;
@@ -2548,9 +2546,8 @@ mlyrics.pane = {
 		},
 
 		onMouseScroll: function (event) {
-			mlyrics.pane.positionListener.onMouseScrollReal(event);
 			document.getElementById('lm-content').contentWindow.document.body.scrollTop += event.detail/3 * 10;
-			
+			mlyrics.pane.positionListener.onMouseScrollReal(event);
 		},
 
 		onMouseScrollReal: function (event, force) {
