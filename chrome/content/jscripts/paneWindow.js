@@ -1303,6 +1303,12 @@ mlyrics.pane = {
 		content_lyric_html = content_lyric_html + "        <p class=\"footer\"> &nbsp; </p>";
 		content_lyric_html = content_lyric_html + "       </td>";
 		content_lyric_html = content_lyric_html + "      </tr>";
+
+		content_lyric_html = content_lyric_html + "      <tr>";
+		content_lyric_html = content_lyric_html + "       <td id='bottomspace' height='0'>";
+		content_lyric_html = content_lyric_html + "       </td>";
+		content_lyric_html = content_lyric_html + "      </tr>";
+		
 		content_lyric_html = content_lyric_html + "  </table>";
 		
 		document.getElementById('lm-content').contentWindow.document.body.innerHTML = content_lyric_html;
@@ -2470,10 +2476,10 @@ mlyrics.pane = {
 
 						var speedIndex = currLineTimeElapsed/currLineTimeLen;
 
-						var lineNumber = i;
+						var linePairsNumber = i; // Indicates line pairs nimber (not line number)
 
-						var firstOffset  = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + lineNumber*2).offsetTop;
-						var secondOffset = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (lineNumber+1)*2).offsetTop;
+						var firstOffset  = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + linePairsNumber*2).offsetTop;
+						var secondOffset = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (linePairsNumber+1)*2).offsetTop;
 
 						nowScrollTo = firstOffset + (secondOffset - firstOffset) * speedIndex;
 
@@ -2561,17 +2567,25 @@ mlyrics.pane = {
 			if (typeof(force) == 'undefined') force = false;
 
 			var metadataLyrics = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
-			if (!metadataLyrics || metadataLyrics == "") return;
+			if (!metadataLyrics || metadataLyrics == "") return;	// In case we don't have stored lyrics - do not event try to init
 
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
-			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.corrArrayDimen);
+
+			var intPart = parseInt(scrollTop/this.lyricsMaxHeight * this.corrArrayDimen); // Indicates line pairs nimber (not line number)
+			for (var i=this.corrArrayDimen; i>=0; i--) {
+				var firstElement = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + i*2);
+				if (firstElement && firstElement.offsetTop < scrollTop) {
+					intPart = i;
+					break;
+				}
+			}
 
 			var position = mlyrics.pane.gMM.playbackControl.position;
 			if (position < 0) position = 0;
 
 			// Activate correction mode and clear corrArray
 			if (force || (!scrollTop && event.detail < 0)) {
-				if (!force && this.scrollsBeforeCorrectionMode > 0) {
+				if (!force && this.scrollsBeforeCorrectionMode > 0) {		// Delay of entering smart scroll mode after mouse wheel up scroll
 					if (!this.scrollsCounterResetTimer) {
 						mlyrics.pane.positionListener.scrollsBeforeCorrectionMode = 10;
 						this.scrollsCounterResetTimer = setTimeout(function() {
@@ -2581,10 +2595,11 @@ mlyrics.pane = {
 					this.scrollsBeforeCorrectionMode--;
 					return;
 				}
-				else {
+				else {								// Init smart scroll mode
 					this.correctionMode = true;
 					document.getElementById("lm-content").contentDocument.body.style.cursor = "url(chrome://mlyrics/content/images/sing-ico.png), move";
-
+					this.iframe.contentDocument.getElementById("bottomspace").height = this.lyricsNormalHeight;
+					
 					this.postSave.corrArray.length = 0;
 					this.postSave.corrArray.length = this.corrArrayDimen;
 
@@ -2593,7 +2608,7 @@ mlyrics.pane = {
 				}
 			}
 
-			if (!this.correctionMode) return;
+			if (!this.correctionMode) return;	// Proceed only if we are int correction (smart scroll teach) mode
 
 			if (!this.postSave.corrArray[intPart]) this.postSave.corrArray[intPart] = position;
 			for (var i=intPart+1; i<this.postSave.corrArray.length; i++) {
@@ -2601,8 +2616,10 @@ mlyrics.pane = {
 			}
 
 			this.scrollCorrection = 0;
+
+			var bottomspaceOffset = this.iframe.contentDocument.getElementById("bottomspace").offsetTop;
 			
-			if (scrollTop >= this.lyricsMaxHeight) {
+			if (scrollTop >= bottomspaceOffset) {	// Scroll finish - save and exit correction mode
 				this.correctionMode = false;
 				this.saveCorrections();
 				document.getElementById("lm-content").contentDocument.body.style.cursor = "auto";
