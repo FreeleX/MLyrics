@@ -177,7 +177,7 @@
 			</window>
 		</deck>
 
-		<splitter id="mlyrics-btnsbox-splitter" onmouseover="mlyrics.pane.onBtnsboxSeparatorMouseover();" />
+		<splitter id="mlyrics-btnsbox-splitter" onmouseover="mlyrics.pane.onBtnsboxSeparatorMouseover();" onmouseout="mlyrics.pane.onBtnsboxSeparatorMouseout();"/>
 
 		<vbox id="mlyrics-btnsbox" hidden="true" onmouseover="mlyrics.pane.onBtnsboxMouseover(event)" onmouseout="mlyrics.pane.onBtnsboxMouseout(event)" onDOMMouseScroll="mlyrics.pane.onBtnsboxMouseScroll(event)">
 			<spacer flex="1"/>

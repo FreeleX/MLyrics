@@ -27,6 +27,7 @@ mlyrics.pane = {
 	prefs: 			null,
 	defprefs: 		null,
 	btnsBoxViewTimeout:	null,
+	btnsBoxStartShowTimeout:null,
 
 	savedWidth:		250,
 	
@@ -116,9 +117,14 @@ mlyrics.pane = {
 
 	onBtnsboxSeparatorMouseover: function () {
 		if (document.getElementById("mlyrics-btnsbox").hidden) {
-			mlyrics.pane.hideBtnsbox(false);
-			if (!mlyrics.pane.btnsBoxViewTimeout) mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {mlyrics.pane.hideBtnsbox(true, -1);}, 1000);
+			if (!mlyrics.pane.btnsBoxViewTimeout) {
+				mlyrics.pane.btnsBoxStartShowTimeout = setTimeout(function () {mlyrics.pane.hideBtnsbox(false);}, 500);
+			}
 		}
+	},
+
+	onBtnsboxSeparatorMouseout: function () {
+		clearTimeout(mlyrics.pane.btnsBoxStartShowTimeout);
 	},
 
 	onBtnsboxMouseover: function (event) {
@@ -126,7 +132,7 @@ mlyrics.pane = {
 	},
 
 	onBtnsboxMouseout: function (event) {
-		if (!mlyrics.pane.btnsBoxViewTimeout) mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {mlyrics.pane.hideBtnsbox(true, -1);}, 1000);
+		if (!mlyrics.pane.btnsBoxViewTimeout) mlyrics.pane.btnsBoxViewTimeout = setTimeout(function () {mlyrics.pane.hideBtnsbox(true, -1);}, 500);
 	},
 
 	onBtnsboxMouseScroll: function (event) {
