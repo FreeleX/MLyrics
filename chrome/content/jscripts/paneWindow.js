@@ -2408,7 +2408,7 @@ mlyrics.pane = {
 			var browser = window.top.gBrowser.selectedTab.linkedBrowser;
 			var location = browser.contentDocument.location.toString();
 			if (location.substr(0, 25) != "chrome://shoutcast-radio/") {
-				this.timer = setInterval("mlyrics.pane.positionListener.scrollLyrics()", 2);
+				this.timer = setInterval("mlyrics.pane.positionListener.scrollLyrics()", 0);
 			}
 		},
 
