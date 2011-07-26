@@ -5,7 +5,7 @@
 <!ENTITY mlyrics.trackeditor.btninstr "Instrumental">
 <!ENTITY mlyrics.trackeditor.btninstrtip "Fazer estas lyrics instrumentais">
 <!ENTITY mlyrics.trackeditor.bbtnlabel "Lote">
-<!ENTITY mlyrics.trackeditor.bbtntooltextdef "A selecção deve conter entre 2 - 1000 itens para activar o Botão Lote.">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "A selecção deve conter entre 2 - 1000 itens para activar o botão Lote.">
 <!ENTITY mlyrics.trackeditor.btnremtransl "Remover tradução">
 <!ENTITY mlyrics.manuoverlay.batchmenulabel "Recolher Lyrics">
 <!ENTITY mlyrics.menuoverlay.addonhelplabel "Ajuda do Add-On">
@@ -18,7 +18,7 @@
 <!ENTITY mlyrics.prefs.weblocupbtn "CIMA">
 <!ENTITY mlyrics.prefs.weblocdownbtn "BAIXO">
 <!ENTITY mlyrics.prefs.webloclabel "De onde quer ver as lyrics?">
-<!ENTITY mlyrics.prefs.enabletranslatelabel "Quer adicionar a tradução do Google ás lyrics?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "Quer adicionar a tradução do Google às lyrics?">
 <!ENTITY mlyrics.prefs.enablemetadatatranslate "Verificar traduções para lyrics gravadas">
 <!ENTITY mlyrics.prefs.libstylelabel "Qual é o tipo de nome que deseja ver dos seus artistas?">
 <!ENTITY mlyrics.prefs.savelyricslabel "Como quer que as suas lyrics sejam gravadas?">
@@ -60,11 +60,13 @@
 <!ENTITY mlyrics.helpwin.displabel "Painel de Exposição">
 <!ENTITY mlyrics.helpwin.preflabel "Painel de Preferências">
 <!ENTITY mlyrics.helpwin.metalabel "Editor de Metadata">
-<!ENTITY mlyrics.helpwin.batchlabel "Janela de procura de Batch">
+<!ENTITY mlyrics.helpwin.batchlabel "Janela de procura de Lote">
 <!ENTITY mlyrics.helpwin.haslyrlabel "Tem ícone das lyrics">
 <!ENTITY mlyrics.helpwin.lisclabel "Licença do MLyrics">
 <!ENTITY mlyrics.helpwin.aboutlabel "Acerca do MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Estilo Definido">
+<!ENTITY mlyrics.helpwin.medialistlabel "Media List Icons Icones da Lista de Media">
+<!ENTITY mlyrics.helpwin.tipslabel "Dicas">
 <!ENTITY mlyrics.pane.contxtRefresh "Actualizar lyrics">
 <!ENTITY mlyrics.pane.contxtRefreshObO "Em torno">
 <!ENTITY mlyrics.pane.contxtRefreshTag "Da tag">
@@ -90,6 +92,8 @@
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Criar marcas do tempo">
 <!ENTITY mlyrics.pane.removeTimeTracks "Remover marcas do tempo">
 <!ENTITY mlyrics.pane.dropherebtn "Largar as lyrics aqui">
+<!ENTITY mlyrics.pane.teachScroll "Ensinar o MLyrics como mover as lyrics">
+<!ENTITY mlyrics.pane.accelerator "Acelerador do movimento">
 <!ENTITY mlyrics.font.confFont "Configurar estilo">
 <!ENTITY mlyrics.font.sizeLabel "Tamanho:">
 <!ENTITY mlyrics.font.leftLabel "Esquerda">
@@ -103,10 +107,10 @@
 <!ENTITY mlyrics.font.artist "Artista">
 <!ENTITY mlyrics.font.album "Álbum">
 <!ENTITY mlyrics.font.lyrics "Lyrics">
-<!ENTITY mlyrics.font.transLyrics "Lurics traduzidas">
+<!ENTITY mlyrics.font.transLyrics "Lyrics traduzidas">
 <!ENTITY mlyrics.font.opacityLabel "Opacidade:">
 <!ENTITY mlyrics.font.colorLabel "Cor:">
-<!ENTITY mlyrics.font.bgColorLabel "Cor do Fundo do ecra:">
+<!ENTITY mlyrics.font.bgColorLabel "Cor do Fundo do ecrã:">
 <!ENTITY mlyrics.font.showStaticPicIf "Mostrar imagem estática se não houver arte de álbum">
 <!ENTITY mlyrics.font.color2Label "Cor">
 <!ENTITY mlyrics.font.imageLabel "Imagem">

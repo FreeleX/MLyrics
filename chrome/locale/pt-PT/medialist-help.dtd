@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "Esta faixa tem lyrics guardadas na tag">
+<!ENTITY mlyrics.medialist-help.darkicon "Esta faixa tem lyrics guardadas apenas na base de dados do Songbird devido a problemas de gravação na tag">
+<!ENTITY mlyrics.medialist-help.timetracksicon "Esta faixa tem um ficheiro .lrc na mesma pasta com as marcas temporais. O Mlyrics vai mover as lyrics de acordo com esta informação.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "Isto significa que o MLyrics foi ensinado a mover as lyrics correctamente (canta contigo :) )">

@@ -65,6 +65,8 @@
 <!ENTITY mlyrics.helpwin.lisclabel "Лицензия MLyrics">
 <!ENTITY mlyrics.helpwin.aboutlabel "О MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Определения стиля">
+<!ENTITY mlyrics.helpwin.medialistlabel "Иконки в медиа списке">
+<!ENTITY mlyrics.helpwin.tipslabel "Подсказки">
 <!ENTITY mlyrics.pane.contxtRefresh "Обновить текст песни">
 <!ENTITY mlyrics.pane.contxtRefreshObO "По очереди">
 <!ENTITY mlyrics.pane.contxtRefreshTag "Из тега">
@@ -90,6 +92,8 @@
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Создать метки времени">
 <!ENTITY mlyrics.pane.removeTimeTracks "Удалить метки времени">
 <!ENTITY mlyrics.pane.dropherebtn "Бросьте текст сюда">
+<!ENTITY mlyrics.pane.teachScroll "Научить MLyrics как прокручивать текст">
+<!ENTITY mlyrics.pane.accelerator "Ускоритель прокрутки">
 <!ENTITY mlyrics.font.confFont "Настроить стиль">
 <!ENTITY mlyrics.font.sizeLabel "Размер:">
 <!ENTITY mlyrics.font.leftLabel "Слева">

@@ -65,6 +65,8 @@
 <!ENTITY mlyrics.helpwin.lisclabel "Licens för MLyrics">
 <!ENTITY mlyrics.helpwin.aboutlabel "Om MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Definiera stil">
+<!ENTITY mlyrics.helpwin.medialistlabel "Medielistikoner">
+<!ENTITY mlyrics.helpwin.tipslabel "Tips">
 <!ENTITY mlyrics.pane.contxtRefresh "Uppdatera sångtexten">
 <!ENTITY mlyrics.pane.contxtRefreshObO "I tur och ordning">
 <!ENTITY mlyrics.pane.contxtRefreshTag "Efter tagg">
@@ -90,6 +92,8 @@
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Skapa tidsspår">
 <!ENTITY mlyrics.pane.removeTimeTracks "Ta bort tidsspår">
 <!ENTITY mlyrics.pane.dropherebtn "Släpp sångtexter här">
+<!ENTITY mlyrics.pane.teachScroll "Lär MLyrics hur texten skall rullas">
+<!ENTITY mlyrics.pane.accelerator "Rullningsaccelerator">
 <!ENTITY mlyrics.font.confFont "Konfigurera format">
 <!ENTITY mlyrics.font.sizeLabel "Storlek:">
 <!ENTITY mlyrics.font.leftLabel "Vänster">

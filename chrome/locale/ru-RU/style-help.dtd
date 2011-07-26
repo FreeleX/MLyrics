@@ -1,0 +1,6 @@
+<!ENTITY mlyrics.style-help.annotation "Некоторые из обьявлений не были использованы, но могут быть использованы в будущем">
+<!ENTITY mlyrics.style-help.pclassesinfo "Следующие 'p' классы запасные, вы можете использовать их как дополонительные элементы форматирования. Если вы не хотите их использовать, просто используйте display:none чтобы скрыть их. Иначе используйте display:block с дополнительными параметрами чтобы придать им вид который вам нужно. Их позиции на странице следующие:">
+<!ENTITY mlyrics.style-help.pclassesinfoheader "над заглавием песни">
+<!ENTITY mlyrics.style-help.pclassesinfosong "между заглавием песни и дополнительной информацией">
+<!ENTITY mlyrics.style-help.pclassesinfoadditional "между дополнительной информацией и текстом">
+<!ENTITY mlyrics.style-help.pclassesinfolyrics "под текстом">

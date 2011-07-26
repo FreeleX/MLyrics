@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "Die Lyrics dieses Titels sind in den Metadaten gespeichert">
+<!ENTITY mlyrics.medialist-help.darkicon "Die Lyrics dieses Titels sind aufgrund von Schreibproblemen nur in der Songbird-Bibilothek gespeichert">
+<!ENTITY mlyrics.medialist-help.timetracksicon "Eine .lrc Datei wurde im Verzeichnis des Titels gefunden. MLyrics wird unter berücksichtigung dieser Information scrollen.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "MLyrics wurde beigebracht, bei diesem Titel zu scrollen">

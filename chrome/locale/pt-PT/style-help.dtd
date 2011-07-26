@@ -1,0 +1,6 @@
+<!ENTITY mlyrics.style-help.annotation "Algumas definições não estão a ser usadas actualmente, mas poderão no futuro">
+<!ENTITY mlyrics.style-help.pclassesinfo "As classes seguintes são extras 'p', que podes usar como elementos de formatação adicional. Se não as quiseres utilizar, então usa display:none para as esconderes. Caso contrário usa display:block com parâmetros adicionais para lhes dares a aparência que queres que tenham. A sua posição na pagina é a seguinte:">
+<!ENTITY mlyrics.style-help.pclassesinfoheader "acima do titulo da musica">
+<!ENTITY mlyrics.style-help.pclassesinfosong "entre o titulo da musica e a informação adicional">
+<!ENTITY mlyrics.style-help.pclassesinfoadditional "entre a informação adicional e as lyrics">
+<!ENTITY mlyrics.style-help.pclassesinfolyrics "em baixo da lyrics">

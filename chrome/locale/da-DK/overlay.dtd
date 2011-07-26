@@ -65,6 +65,8 @@
 <!ENTITY mlyrics.helpwin.lisclabel "MLyrics licens">
 <!ENTITY mlyrics.helpwin.aboutlabel "Om MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Definer stil">
+<!ENTITY mlyrics.helpwin.medialistlabel "Media List Icons">
+<!ENTITY mlyrics.helpwin.tipslabel "Tips">
 <!ENTITY mlyrics.pane.contxtRefresh "Opdater sangtekster">
 <!ENTITY mlyrics.pane.contxtRefreshObO "In turn">
 <!ENTITY mlyrics.pane.contxtRefreshTag "From the tag">
@@ -90,6 +92,8 @@
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Create time tracks">
 <!ENTITY mlyrics.pane.removeTimeTracks "Remove time tracks">
 <!ENTITY mlyrics.pane.dropherebtn "Drop lyrics here">
+<!ENTITY mlyrics.pane.teachScroll "Teach MLyrics how to scroll">
+<!ENTITY mlyrics.pane.accelerator "Scroll Accelerator">
 <!ENTITY mlyrics.font.confFont "Configure style">
 <!ENTITY mlyrics.font.sizeLabel "Size:">
 <!ENTITY mlyrics.font.leftLabel "Left">

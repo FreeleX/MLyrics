@@ -65,6 +65,8 @@
 <!ENTITY mlyrics.helpwin.lisclabel "Lizenz">
 <!ENTITY mlyrics.helpwin.aboutlabel "Über MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Stil definieren">
+<!ENTITY mlyrics.helpwin.medialistlabel "Medienlisten-Symbole">
+<!ENTITY mlyrics.helpwin.tipslabel "Tips">
 <!ENTITY mlyrics.pane.contxtRefresh "Lyrics aktualisieren">
 <!ENTITY mlyrics.pane.contxtRefreshObO "Der Reihe nach">
 <!ENTITY mlyrics.pane.contxtRefreshTag "Aus den Metadaten">
@@ -90,6 +92,8 @@
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Zeitspur erzeugen">
 <!ENTITY mlyrics.pane.removeTimeTracks "Zeitspur entfernen">
 <!ENTITY mlyrics.pane.dropherebtn "Lyrics hier ablegen">
+<!ENTITY mlyrics.pane.teachScroll "Bringe MLyrics bei, wie gescrollt werden soll">
+<!ENTITY mlyrics.pane.accelerator "Scroll-Beschleuniger">
 <!ENTITY mlyrics.font.confFont "Stil konfigurieren">
 <!ENTITY mlyrics.font.sizeLabel "Größe:">
 <!ENTITY mlyrics.font.leftLabel "Links">

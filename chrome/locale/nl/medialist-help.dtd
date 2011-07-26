@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "Dit lied heeft een songtekst in zijn tags staan">
+<!ENTITY mlyrics.medialist-help.darkicon "Dit lied heeft enkel een songtekst in de Songbird databank omdat er niet in de tags kon geschreven worden">
+<!ENTITY mlyrics.medialist-help.timetracksicon "Dit lied heeft een .lrc bestand met tijdsaanduiding in dezelfde map als het lied. MLyrics zal de songtekst scrollen met deze informatie.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "Dit betekend dat MLyrics heeft geleerd hoe de songtekst moet scrollen voor dit lied (met jou meezingen :) )">

@@ -65,6 +65,8 @@
 <!ENTITY mlyrics.helpwin.lisclabel "Licencia de MLyrics">
 <!ENTITY mlyrics.helpwin.aboutlabel "Acerca de MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Definir un estilo">
+<!ENTITY mlyrics.helpwin.medialistlabel "Media List Icons">
+<!ENTITY mlyrics.helpwin.tipslabel "Tips">
 <!ENTITY mlyrics.pane.contxtRefresh "Actualizar letras">
 <!ENTITY mlyrics.pane.contxtRefreshObO "In turn">
 <!ENTITY mlyrics.pane.contxtRefreshTag "From the tag">
@@ -90,6 +92,8 @@
 <!ENTITY mlyrics.pane.showTimeTracksDialog "Crear seguimiento de pistas">
 <!ENTITY mlyrics.pane.removeTimeTracks "Eliminar seguimiento de pistas">
 <!ENTITY mlyrics.pane.dropherebtn "Soltar letra aquí">
+<!ENTITY mlyrics.pane.teachScroll "Teach MLyrics how to scroll">
+<!ENTITY mlyrics.pane.accelerator "Scroll Accelerator">
 <!ENTITY mlyrics.font.confFont "Configurar estilo">
 <!ENTITY mlyrics.font.sizeLabel "Tamaño:">
 <!ENTITY mlyrics.font.leftLabel "Izquierda">

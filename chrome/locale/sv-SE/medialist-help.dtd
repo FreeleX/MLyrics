@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "Detta spår har sångtexter som lagras i en tagg">
+<!ENTITY mlyrics.medialist-help.darkicon "Detta spår har sångtexter som p.g.a. taggskrivningsproblem endast lagras i Songbirds databas">
+<!ENTITY mlyrics.medialist-help.timetracksicon "Detta spår har en LRC-fil med tidsangivelser i sin mapp. MLyrics kommer att rulla sångtexterna i enlighet med denna information.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "Det här betyder att Mlyrics på ett klokt sätt har lärt sig att rulla denna sångtext (sjunger med dig)">

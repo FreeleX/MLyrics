@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "Цей трек містить текст в своєму тезі">
+<!ENTITY mlyrics.medialist-help.darkicon "Цей трек містить текст збережений лише в базі Songbird через проблеми з записом в тег">
+<!ENTITY mlyrics.medialist-help.timetracksicon "Цей трек має .lrc файл в тій самій папці з мітками часу всередині. MLyrics буде прокручувати текст відповідно до цієї інформації.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "Це значить що MLyrics був навчений розумній прокрутці (може співати разом з вами :))">

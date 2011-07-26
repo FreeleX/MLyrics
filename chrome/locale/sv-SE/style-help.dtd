@@ -1,0 +1,6 @@
+<!ENTITY mlyrics.style-help.annotation "Vissa av definitionerna används inte för tillfället, men kan komma att användas i framtiden">
+<!ENTITY mlyrics.style-help.pclassesinfo "Följande är &quot;p&quot;-klasser, som du kan använda som ytterligare formateringselement. Om du inte vill använda dem, använd då display:none för att dölja dem. Använd annars display:block med ytterligare parametrar för att ge dem det utseende som du önskar. Deras position på sidan är som följer:">
+<!ENTITY mlyrics.style-help.pclassesinfoheader "ovanför spårtiteln">
+<!ENTITY mlyrics.style-help.pclassesinfosong "mellan spårtiteln och ytterligare information">
+<!ENTITY mlyrics.style-help.pclassesinfoadditional "mellan ytterligare information och sångtexterna">
+<!ENTITY mlyrics.style-help.pclassesinfolyrics "nedanför sångtexterna">
