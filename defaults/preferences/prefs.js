@@ -224,11 +224,47 @@ pref("extensions.mlyrics.fullScreen_albumMarginBottom", 150);
 pref("extensions.mlyrics.fullScreen_artistMarginBottom", 0);
 pref("extensions.mlyrics.fullScreen_titleMarginBottom", 0);
 
-pref("extensions.mlyrics.fullScreen_titleStyleEnable", false);
-pref("extensions.mlyrics.fullScreen_albumStyleEnable", false);
-pref("extensions.mlyrics.fullScreen_artistStyleEnable", false);
-pref("extensions.mlyrics.fullScreen_lyricsStyleEnable", false);
-pref("extensions.mlyrics.fullScreen_transLyricsStyleEnable", false);
+pref("extensions.mlyrics.fullScreen_titleStyleEnable", true);
+pref("extensions.mlyrics.fullScreen_albumStyleEnable", true);
+pref("extensions.mlyrics.fullScreen_artistStyleEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsStyleEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsStyleEnable", true);
+
+pref("extensions.mlyrics.fullScreen_titleAlignEnable", true);
+pref("extensions.mlyrics.fullScreen_albumAlignEnable", true);
+pref("extensions.mlyrics.fullScreen_artistAlignEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsAlignEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsAlignEnable", true);
+
+pref("extensions.mlyrics.fullScreen_titleColorEnable", true);
+pref("extensions.mlyrics.fullScreen_albumColorEnable", true);
+pref("extensions.mlyrics.fullScreen_artistColorEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsColorEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsColorEnable", true);
+
+pref("extensions.mlyrics.fullScreen_titleBGColorEnable", true);
+pref("extensions.mlyrics.fullScreen_albumBGColorEnable", true);
+pref("extensions.mlyrics.fullScreen_artistBGColorEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsBGColorEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsBGColorEnable", true);
+
+pref("extensions.mlyrics.fullScreen_titleSizeEnable", true);
+pref("extensions.mlyrics.fullScreen_albumSizeEnable", true);
+pref("extensions.mlyrics.fullScreen_artistSizeEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsSizeEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsSizeEnable", true);
+
+pref("extensions.mlyrics.fullScreen_titleMarginTopEnable", true);
+pref("extensions.mlyrics.fullScreen_albumMarginTopEnable", true);
+pref("extensions.mlyrics.fullScreen_artistMarginTopEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsMarginTopEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsMarginTopEnable", true);
+
+pref("extensions.mlyrics.fullScreen_titleMarginBottomEnable", true);
+pref("extensions.mlyrics.fullScreen_albumMarginBottomEnable", true);
+pref("extensions.mlyrics.fullScreen_artistMarginBottomEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsMarginBottomEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsMarginBottomEnable", true);
 // ----------------------------------
 // Font style block end (full screen)
 
