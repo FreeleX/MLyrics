@@ -141,7 +141,7 @@
 							<row align="left" valign="middle">
 								<checkbox id="titleSizeEnable" />
 								<label value="&mlyrics.font.sizeLabel;" />
-								<textbox id="titleSize" type="number" size="4" min="8" max="100" disabled="true" />
+								<textbox id="titleSize" type="number" size="4" min="8" max="75" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="titleMarginTopEnable" />
@@ -208,7 +208,7 @@
 							<row align="left" valign="middle">
 								<checkbox id="artistSizeEnable" />
 								<label value="&mlyrics.font.sizeLabel;" />
-								<textbox id="artistSize" type="number" size="4" min="8" max="100" disabled="true" />
+								<textbox id="artistSize" type="number" size="4" min="8" max="75" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="artistMarginTopEnable" />
@@ -275,7 +275,7 @@
 							<row align="left" valign="middle">
 								<checkbox id="albumSizeEnable" />
 								<label value="&mlyrics.font.sizeLabel;" />
-								<textbox id="albumSize" type="number" size="4" min="8" max="100" disabled="true" />
+								<textbox id="albumSize" type="number" size="4" min="8" max="75" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="albumMarginTopEnable" />
@@ -342,7 +342,7 @@
 							<row align="left" valign="middle">
 								<checkbox id="lyricsSizeEnable" />
 								<label value="&mlyrics.font.sizeLabel;" />
-								<textbox id="lyricsSize" type="number" size="4" min="8" max="100" disabled="true" />
+								<textbox id="lyricsSize" type="number" size="4" min="8" max="75" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lyricsMarginTopEnable" />
@@ -409,7 +409,7 @@
 							<row align="left" valign="middle">
 								<checkbox id="transLyricsSizeEnable" />
 								<label value="&mlyrics.font.sizeLabel;" />
-								<textbox id="transLyricsSize" type="number" size="4" min="8" max="100" disabled="true" />
+								<textbox id="transLyricsSize" type="number" size="4" min="8" max="75" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="transLyricsMarginTopEnable" />
