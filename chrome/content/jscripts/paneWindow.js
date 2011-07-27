@@ -2560,10 +2560,10 @@ mlyrics.pane = {
 		},
 
 		onMouseScrollReal: function (event, force) {
-			//if (mlyrics.pane.fullScreenMode.fullScreen) {
-			//	document.getElementById("createSmartScrollMenuItem").disabled = true;
-			//	return;
-			//}
+			if (mlyrics.pane.fullScreenMode.fullScreen) {
+				document.getElementById("createSmartScrollMenuItem").disabled = true;
+				return;
+			}
 			
 			if (this.timeArray.length > 1) return; // Have lrc array
 
