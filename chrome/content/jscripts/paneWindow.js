@@ -233,7 +233,6 @@ mlyrics.pane = {
 					this.updateStyle();
 					break;
 					
-				case fullScreenStr + "applyCustomFont":
 				case fullScreenStr + "showStaticPicIf":
 				case fullScreenStr + "BGImagePos":
 					
@@ -306,6 +305,48 @@ mlyrics.pane = {
 				case fullScreenStr + "artistMarginBottom":
 				case fullScreenStr + "albumMarginBottom":
 				case fullScreenStr + "titleMarginBottom":
+
+				case fullScreenStr + "lyricsStyleEnable":
+				case fullScreenStr + "transLyricsStyleEnable":
+				case fullScreenStr + "artistStyleEnable":
+				case fullScreenStr + "albumStyleEnable":
+				case fullScreenStr + "titleStyleEnable":
+
+				case fullScreenStr + "lyricsAlignEnable":
+				case fullScreenStr + "transLyricsAlignEnable":
+				case fullScreenStr + "artistAlignEnable":
+				case fullScreenStr + "albumAlignEnable":
+				case fullScreenStr + "titleAlignEnable":
+
+				case fullScreenStr + "lyricsColorEnable":
+				case fullScreenStr + "transLyricsColorEnable":
+				case fullScreenStr + "artistColorEnable":
+				case fullScreenStr + "albumColorEnable":
+				case fullScreenStr + "titleColorEnable":
+
+				case fullScreenStr + "lyricsBGColorEnable":
+				case fullScreenStr + "transLyricsBGColorEnable":
+				case fullScreenStr + "artistBGColorEnable":
+				case fullScreenStr + "albumBGColorEnable":
+				case fullScreenStr + "titleBGColorEnable":
+
+				case fullScreenStr + "lyricsSizeEnable":
+				case fullScreenStr + "transLyricsSizeEnable":
+				case fullScreenStr + "artistSizeEnable":
+				case fullScreenStr + "albumSizeEnable":
+				case fullScreenStr + "titleSizeEnable":
+
+				case fullScreenStr + "lyricsMarginTopEnable":
+				case fullScreenStr + "transLyricsMarginTopEnable":
+				case fullScreenStr + "artistMarginTopEnable":
+				case fullScreenStr + "albumMarginTopEnable":
+				case fullScreenStr + "titleMarginTopEnable":
+
+				case fullScreenStr + "lyricsMarginBottomEnable":
+				case fullScreenStr + "transLyricsMarginBottomEnable":
+				case fullScreenStr + "artistMarginBottomEnable":
+				case fullScreenStr + "albumMarginBottomEnable":
+				case fullScreenStr + "titleMarginBottomEnable":
 					
 					mlyrics.pane.viewMode.change(mlyrics.pane.prefs.getIntPref("lyricsViewMode"));
 					break;
@@ -358,52 +399,67 @@ mlyrics.pane = {
 		else
 			var fullScreenStr = "fullScreen_";
 			
-		var elemSize = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Size");
-		var elemColor = mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Color");
-		var elemBGColorEnable = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "BGColorEnable");
-		var elemBGColor = mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "BGColor");
-		var elemBold = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Bold");
-		var elemItalic = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Italic");
-		var elemUnderlined = mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Underlined");
-		var elemAlign = mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Align");
-		var elemOpacity = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Opacity");
-		var elemMarginTop = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginTop");
-		var elemMarginBottom = mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginBottom");
+		var elemSize 			= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Size");
+		var elemColor 			= mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Color");
+		var elemBGColor 		= mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "BGColor");
+		var elemBold 			= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Bold");
+		var elemItalic 			= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Italic");
+		var elemUnderlined 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "Underlined");
+		var elemAlign 			= mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Align");
+		var elemOpacity 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Opacity");
+		var elemMarginTop 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginTop");
+		var elemMarginBottom 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginBottom");
+
+		var elemStyleEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "StyleEnable");
+		var elemAlignEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "AlignEnable");
+		var elemColorEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "ColorEnable");
+		var elemBGColorEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "BGColorEnable");
+		var elemSizeEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "SizeEnable");
+		var elemMarginTopEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginTopEnable");
+		var elemMarginBottomEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginBottomEnable");
 		
 		var styleStr = "";
-		
-		styleStr += "font-size:" + elemSize + ";";
-		styleStr += "color:" + elemColor + ";";
-		
+
+		if (elemStyleEnable) {
+			if (elemBold)
+				styleStr += "font-weight: bold;";
+			else
+				styleStr += "font-weight: normal;";
+
+			if (elemItalic)
+				styleStr += "font-style: italic;";
+			else
+				styleStr += "font-style: normal;";
+
+			if (elemUnderlined)
+				styleStr += "text-decoration: underline;";
+			else
+				styleStr += "text-decoration: none;";
+		}
+		else if (prefPartStr == "transLyrics") {
+			styleStr += "text-decoration: underline;";
+		}
+
+		if (elemAlignEnable) {
+			if (elemAlign == "C")
+				styleStr += "text-align: center;";
+			else if (elemAlign == "R")
+				styleStr += "text-align: right;";
+			else
+				styleStr += "text-align: left;";
+		}
+
+		if (elemColorEnable) styleStr += "color:" + elemColor + ";";
+
 		if (elemBGColorEnable) {
 			styleStr += "background-color:" + elemBGColor + ";";
 			styleStr += "opacity:" + (elemOpacity*0.1) + ";";
 		}
 		
-		if (elemBold)
-			styleStr += "font-weight: bold;";
-		else
-			styleStr += "font-weight: normal;";
+		if (elemSizeEnable) styleStr += "font-size:" + elemSize + ";";
 		
-		if (elemItalic) 
-			styleStr += "font-style: italic;";
-		else
-			styleStr += "font-style: normal;";
-		
-		if (elemUnderlined) 
-			styleStr += "text-decoration: underline;";
-		else
-			styleStr += "text-decoration: none;";
-		
-		if (elemAlign == "C")
-			styleStr += "text-align: center;";
-		else if (elemAlign == "R")
-			styleStr += "text-align: right;";
-		else
-			styleStr += "text-align: left;";
-		
-		styleStr += "margin-top: " + elemMarginTop + ";";
-		styleStr += "margin-bottom: " + elemMarginBottom + ";";
+		if (elemMarginTopEnable) styleStr += "margin-top: " + elemMarginTop + ";";
+		if (elemMarginBottomEnable) styleStr += "margin-bottom: " + elemMarginBottom + ";";
 		
 		return styleStr;
 	},
@@ -1157,48 +1213,44 @@ mlyrics.pane = {
 			var fullScreenStr = "";
 		else
 			var fullScreenStr = "fullScreen_";
-		
-		if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-			titleStyleProps = mlyrics.pane.getStyleProperty("title");
-			artistStyleProps = mlyrics.pane.getStyleProperty("artist");
-			albumStyleProps = mlyrics.pane.getStyleProperty("album");
+
+		titleStyleProps = mlyrics.pane.getStyleProperty("title");
+		artistStyleProps = mlyrics.pane.getStyleProperty("artist");
+		albumStyleProps = mlyrics.pane.getStyleProperty("album");
 			
-			if (mlyrics.pane.prefs.getCharPref(fullScreenStr + "backgroundType") == "C") {
-				iframe.contentDocument.body.style.background = mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundColor')
-			}
-			else if (mlyrics.pane.prefs.getCharPref(fullScreenStr + "backgroundType") == "I") {
-				var backgroundImageUrl = mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage');
-				if (backgroundImageUrl.substr(0, 9) == "chrome://") {
-					iframe.contentDocument.body.style.background = 'url("' + backgroundImageUrl + '") ' + 
-						mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
-						' fixed';
-				}
-				else {
-					iframe.contentDocument.body.style.background = 'url("file:///' + 
-						decodeURIComponent(mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage')).replace(/\\/g, "/") + '") ' +
-						mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
-						' fixed';
-				}
+		if (mlyrics.pane.prefs.getCharPref(fullScreenStr + "backgroundType") == "C") {
+			iframe.contentDocument.body.style.background = mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundColor')
+		}
+		else if (mlyrics.pane.prefs.getCharPref(fullScreenStr + "backgroundType") == "I") {
+			var backgroundImageUrl = mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage');
+			if (backgroundImageUrl.substr(0, 9) == "chrome://") {
+				iframe.contentDocument.body.style.background = 'url("' + backgroundImageUrl + '") ' +
+					mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
+					' fixed';
 			}
 			else {
-				var imageURL = mlyrics.pane.gMM.sequencer.currentItem.getProperty("http://songbirdnest.com/data/1.0#primaryImageURL");
-				if (!imageURL && mlyrics.pane.prefs.getBoolPref(fullScreenStr + "showStaticPicIf")) {
-					iframe.contentDocument.body.style.background = 'url("file:///' + 
-						decodeURIComponent(mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage')).replace(/\\/g, "/") +
-						'") ' + 
-						mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
-						' fixed';
-				}
-				else {
-					iframe.contentDocument.body.style.background = 'url("' + imageURL + '") center center fixed';
-				}
+				iframe.contentDocument.body.style.background = 'url("file:///' +
+					decodeURIComponent(mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage')).replace(/\\/g, "/") + '") ' +
+					mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
+					' fixed';
+			}
+		}
+		else if (mlyrics.pane.prefs.getCharPref(fullScreenStr + "backgroundType") == "O") {
+			var imageURL = mlyrics.pane.gMM.sequencer.currentItem.getProperty("http://songbirdnest.com/data/1.0#primaryImageURL");
+			if (!imageURL && mlyrics.pane.prefs.getBoolPref(fullScreenStr + "showStaticPicIf")) {
+				iframe.contentDocument.body.style.background = 'url("file:///' +
+					decodeURIComponent(mlyrics.pane.prefs.getCharPref(fullScreenStr + 'backgroundImage')).replace(/\\/g, "/") +
+					'") ' +
+					mlyrics.pane.prefs.getCharPref(fullScreenStr + 'BGImagePos') +
+					' fixed';
+			}
+			else {
+				iframe.contentDocument.body.style.background = 'url("' + imageURL + '") center center fixed';
 			}
 		}
 		else {
 			iframe.contentDocument.body.style.background = "";
 		}
-		
-		//alert(iframe.contentDocument.body.style.background);
 		
 		//  The following HTML and its CSS companion files are written by Gege from the MediaMonkey forums,  His addon for MediaMonkey (http://www.mediamonkey.com/forum/viewtopic.php?t=22624) is the inspiration for Lyricmaster.  Thanks Gege!!!
 		content_lyric_html = content_lyric_html + "  <table id='ml-table' border=0 width=100% cellspacing=0 cellpadding=0>";
@@ -1686,24 +1738,8 @@ mlyrics.pane = {
 				mode = 0;
 			}
 			
-			var lyricsStyleProps = "";
-			var transLyricsStyleProps = "";
-
-			if (!mlyrics.pane.fullScreenMode.fullScreen)
-				var fullScreenStr = "";
-			else
-				var fullScreenStr = "fullScreen_";
-			
-			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-				lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
-			}
-			
-			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-				transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
-			}
-			else {
-				transLyricsStyleProps = "text-decoration: underline;";
-			}
+			var lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
+			var transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 			
 			if (typeof(mode) == 'undefined') {
 				var mode = mlyrics.pane.prefs.getIntPref("lyricsViewMode");
@@ -1714,9 +1750,8 @@ mlyrics.pane = {
 				case 0:
 					var lyricsOrigArray = lyrics.substring(0, translDelimPos1).split("\n");
 					var lyricsStyleProps = "";
-					if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-						lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
-					}
+					
+					lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
 					
 					lyrics = "";
 					for (var i=0; i<lyricsOrigArray.length; i++) {
@@ -1729,15 +1764,9 @@ mlyrics.pane = {
 				case 1:
 					var translDelimPos2 = lyrics.indexOf(" ] \n =================== \n", translDelimPos1);
 					if (translDelimPos2 != -1) {
-						
 						var lyricsTransArray = lyrics.substr(translDelimPos2+27).split("\n");
-						var transLyricsStyleProps = "";
-						if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-							transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
-						}
-						else {
-							transLyricsStyleProps = "text-decoration: underline";
-						}
+						
+						var transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 						
 						lyrics = "";
 						for (var i=0; i<lyricsTransArray.length; i++) {
@@ -1779,24 +1808,8 @@ mlyrics.pane = {
 			if (lyricsOrigArray[lyricsOrigArray.length-1] == "") lyricsOrigArray.length --;
 			if (lyricsTransArray[lyricsTransArray.length-1] == "") lyricsTransArray.length --;
 			
-			var lyricsStyleProps = "";
-			var transLyricsStyleProps = "";
-
-			if (!mlyrics.pane.fullScreenMode.fullScreen)
-				var fullScreenStr = "";
-			else
-				var fullScreenStr = "fullScreen_";
-			
-			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-				lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
-			}
-			
-			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-				transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
-			}
-			else {
-				transLyricsStyleProps = "text-decoration: underline";
-			}
+			var lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
+			var transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 			
 			if (lyricsOrigArray.length == lyricsTransArray.length) {
 				lyrics = "";
@@ -1820,24 +1833,8 @@ mlyrics.pane = {
 			if (lyricsOrigArray[lyricsOrigArray.length-1] == "") lyricsOrigArray.length --;
 			if (lyricsTransArray[lyricsTransArray.length-1] == "") lyricsTransArray.length --;
 			
-			var lyricsStyleProps = "";
-			var transLyricsStyleProps = "";
-
-			if (!mlyrics.pane.fullScreenMode.fullScreen)
-				var fullScreenStr = "";
-			else
-				var fullScreenStr = "fullScreen_";
-			
-			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-				lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
-			}
-			
-			if (mlyrics.pane.prefs.getBoolPref(fullScreenStr + "applyCustomFont")) {
-				transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
-			}
-			else {
-				transLyricsStyleProps = "text-decoration: underline";
-			}
+			var lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
+			var transLyricsStyleProps = mlyrics.pane.getStyleProperty("transLyrics");
 			
 			if (lyricsOrigArray.length == lyricsTransArray.length) {
 				lyrics = "";

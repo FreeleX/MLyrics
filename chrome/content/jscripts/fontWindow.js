@@ -6,33 +6,15 @@ var xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"].getService(Co
 var fullScreenStr = "";
 
 function onload () {
-
+	
 	if (window.arguments) {
 		if (window.arguments[0]) fullScreenStr = "fullScreen_";
 	}
 
 	document.getElementById("styleSheet").value = prefs.getCharPref(fullScreenStr + "styleSheet")
 	document.getElementById("styleSheet").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'styleSheet', this.value)");
-	
-	var boolApplyCustomFont = prefs.getBoolPref(fullScreenStr + "applyCustomFont");
-	enableShowCustomRules(boolApplyCustomFont);
-	document.getElementById("applyRulesCheckbox").checked = boolApplyCustomFont;
-	document.getElementById("applyRulesCheckbox").setAttribute("oncommand", "enableEdit(this.checked)");
-	
-	if (prefs.getCharPref(fullScreenStr + "backgroundType") == "C") {
-		document.getElementById("CIRadiogroup").value = "C";
-		document.getElementById("CIDeck").selectedIndex = 1;
-	}
-	else if (prefs.getCharPref(fullScreenStr + "backgroundType") == "I") {
-		document.getElementById("CIRadiogroup").value = "I";
-		document.getElementById("CIDeck").selectedIndex = 0;
-	}
-	else {
-		document.getElementById("CIRadiogroup").value = "O";
-		document.getElementById("CIDeck").selectedIndex = 2;
-	}
-	document.getElementById("CIRadiogroup").setAttribute("oncommand", "onCISelect(this.value)");
 
+	// Background init start
 	document.getElementById("backgroundColor").color = prefs.getCharPref(fullScreenStr + "backgroundColor");
 	document.getElementById("backgroundColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'backgroundColor', this.color)");
 
@@ -43,6 +25,11 @@ function onload () {
 
 	document.getElementById("picturePosMenulist").value = prefs.getCharPref(fullScreenStr + "BGImagePos")
 	document.getElementById("picturePosMenulist").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'BGImagePos', this.value)");
+
+	document.getElementById("CIRadiogroup").setAttribute("oncommand", "onCISelect(this.value)");
+	document.getElementById("CIRadiogroup").value = prefs.getCharPref(fullScreenStr + "backgroundType");
+	onCISelect(prefs.getCharPref(fullScreenStr + "backgroundType"));
+	// Background init end
 
 	document.getElementById("titleSize").value = prefs.getIntPref(fullScreenStr + "titleSize");
 	document.getElementById("artistSize").value = prefs.getIntPref(fullScreenStr + "artistSize");
@@ -110,33 +97,6 @@ function onload () {
 	document.getElementById("lyricsColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'lyricsColor', this.color)");
 	document.getElementById("transLyricsColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'transLyricsColor', this.color)");
 
-	document.getElementById("titleBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + "titleBGColorEnable");
-	document.getElementById("artistBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + "artistBGColorEnable");
-	document.getElementById("albumBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + "albumBGColorEnable");
-	document.getElementById("lyricsBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + "lyricsBGColorEnable");
-	document.getElementById("transLyricsBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + "transLyricsBGColorEnable");
-	document.getElementById("titleBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'titleBGColorEnable', this.checked);" +
-										"document.getElementById('titleBGColor').disabled=!this.checked;" +
-										"document.getElementById('titleOpacity').disabled=!this.checked;");															
-	document.getElementById("artistBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'artistBGColorEnable', this.checked);" +
-										"document.getElementById('artistBGColor').disabled=!this.checked;" +
-										"document.getElementById('artistOpacity').disabled=!this.checked;");
-	document.getElementById("albumBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'albumBGColorEnable', this.checked);" +
-										"document.getElementById('albumBGColor').disabled=!this.checked;" +
-										"document.getElementById('albumOpacity').disabled=!this.checked;");
-	document.getElementById("lyricsBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'lyricsBGColorEnable', this.checked);" +
-										"document.getElementById('lyricsBGColor').disabled=!this.checked;" +
-										"document.getElementById('lyricsOpacity').disabled=!this.checked;");
-	document.getElementById("transLyricsBGColorEnable").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'transLyricsBGColorEnable', this.checked);" +
-										"document.getElementById('transLyricsBGColor').disabled=!this.checked;" +
-										"document.getElementById('transLyricsOpacity').disabled=!this.checked;");
-
-	document.getElementById("titleBGColor").disabled = !prefs.getBoolPref(fullScreenStr + "titleBGColorEnable");
-	document.getElementById("artistBGColor").disabled = !prefs.getBoolPref(fullScreenStr + "artistBGColorEnable");
-	document.getElementById("albumBGColor").disabled = !prefs.getBoolPref(fullScreenStr + "albumBGColorEnable");
-	document.getElementById("lyricsBGColor").disabled = !prefs.getBoolPref(fullScreenStr + "lyricsBGColorEnable");
-	document.getElementById("transLyricsBGColor").disabled = !prefs.getBoolPref(fullScreenStr + "transLyricsBGColorEnable");
-	
 	document.getElementById("titleBGColor").color = prefs.getCharPref(fullScreenStr + "titleBGColor");
 	document.getElementById("artistBGColor").color = prefs.getCharPref(fullScreenStr + "artistBGColor");
 	document.getElementById("albumBGColor").color = prefs.getCharPref(fullScreenStr + "albumBGColor");
@@ -148,12 +108,6 @@ function onload () {
 	document.getElementById("lyricsBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'lyricsBGColor', this.color)");
 	document.getElementById("transLyricsBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'transLyricsBGColor', this.color)");
 
-	document.getElementById("titleOpacity").disabled = !prefs.getBoolPref(fullScreenStr + "titleBGColorEnable");
-	document.getElementById("artistOpacity").disabled = !prefs.getBoolPref(fullScreenStr + "artistBGColorEnable");
-	document.getElementById("albumOpacity").disabled = !prefs.getBoolPref(fullScreenStr + "albumBGColorEnable");
-	document.getElementById("lyricsOpacity").disabled = !prefs.getBoolPref(fullScreenStr + "lyricsBGColorEnable");
-	document.getElementById("transLyricsOpacity").disabled = !prefs.getBoolPref(fullScreenStr + "transLyricsBGColorEnable");
-
 	document.getElementById("titleOpacity").value = prefs.getIntPref(fullScreenStr + "titleOpacity");
 	document.getElementById("artistOpacity").value = prefs.getIntPref(fullScreenStr + "artistOpacity");
 	document.getElementById("albumOpacity").value = prefs.getIntPref(fullScreenStr + "albumOpacity");
@@ -164,7 +118,7 @@ function onload () {
 	document.getElementById("albumOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumOpacity', this.value)");
 	document.getElementById("lyricsOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsOpacity', this.value)");
 	document.getElementById("transLyricsOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsOpacity', this.value)");
-	
+
 	document.getElementById("titleMarginTop").value = prefs.getIntPref(fullScreenStr + "titleMarginTop");
 	document.getElementById("artistMarginTop").value = prefs.getIntPref(fullScreenStr + "artistMarginTop");
 	document.getElementById("albumMarginTop").value = prefs.getIntPref(fullScreenStr + "albumMarginTop");
@@ -175,7 +129,7 @@ function onload () {
 	document.getElementById("albumMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumMarginTop', this.value)");
 	document.getElementById("lyricsMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsMarginTop', this.value)");
 	document.getElementById("transLyricsMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginTop', this.value)");
-	
+
 	document.getElementById("titleMarginBottom").value = prefs.getIntPref(fullScreenStr + "titleMarginBottom");
 	document.getElementById("artistMarginBottom").value = prefs.getIntPref(fullScreenStr + "artistMarginBottom");
 	document.getElementById("albumMarginBottom").value = prefs.getIntPref(fullScreenStr + "albumMarginBottom");
@@ -186,20 +140,245 @@ function onload () {
 	document.getElementById("albumMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumMarginBottom', this.value)");
 	document.getElementById("lyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsMarginBottom', this.value)");
 	document.getElementById("transLyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginBottom', this.value)");
-}
 
-function enableEdit(enable) {
-	enableShowCustomRules(enable);
-	prefs.setBoolPref(fullScreenStr + "applyCustomFont", enable);
-}
+	// Style enable init start
+	document.getElementById("titleStyleEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleBoldButton").disabled = !this.checked;
+		document.getElementById("titleItalicButton").disabled = !this.checked;
+		document.getElementById("titleUnderlinedButton").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleStyleEnable', this.checked);
+	}, false);
+	document.getElementById("titleStyleEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleStyleEnable');
 
-function enableShowCustomRules(enable) {
-	document.getElementById("backgroundHbox").hidden = !enable;
-	document.getElementById("titleHbox").hidden = !enable;
-	document.getElementById("artistHbox").hidden = !enable;
-	document.getElementById("albumHbox").hidden = !enable;
-	document.getElementById("lyricsHbox").hidden = !enable;
-	document.getElementById("transLyricsHbox").hidden = !enable;
+	document.getElementById("artistStyleEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistBoldButton").disabled = !this.checked;
+		document.getElementById("artistItalicButton").disabled = !this.checked;
+		document.getElementById("artistUnderlinedButton").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistStyleEnable', this.checked);
+	}, false);
+	document.getElementById("artistStyleEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistStyleEnable');
+
+	document.getElementById("albumStyleEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumBoldButton").disabled = !this.checked;
+		document.getElementById("albumItalicButton").disabled = !this.checked;
+		document.getElementById("albumUnderlinedButton").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumStyleEnable', this.checked);
+	}, false);
+	document.getElementById("albumStyleEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumStyleEnable');
+
+	document.getElementById("lyricsStyleEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsBoldButton").disabled = !this.checked;
+		document.getElementById("lyricsItalicButton").disabled = !this.checked;
+		document.getElementById("lyricsUnderlinedButton").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsStyleEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsStyleEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsStyleEnable');
+
+	document.getElementById("transLyricsStyleEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsBoldButton").disabled = !this.checked;
+		document.getElementById("transLyricsItalicButton").disabled = !this.checked;
+		document.getElementById("transLyricsUnderlinedButton").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsStyleEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsStyleEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsStyleEnable');
+	// Style enable init end
+
+	// Align enable init start
+	document.getElementById("titleAlignEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleAlign").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleAlignEnable', this.checked);
+	}, false);
+	document.getElementById("titleAlignEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleAlignEnable');
+
+	document.getElementById("artistAlignEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistAlign").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistAlignEnable', this.checked);
+	}, false);
+	document.getElementById("artistAlignEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistAlignEnable');
+
+	document.getElementById("albumAlignEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumAlign").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumAlignEnable', this.checked);
+	}, false);
+	document.getElementById("albumAlignEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumAlignEnable');
+
+	document.getElementById("lyricsAlignEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsAlign").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsAlignEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsAlignEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsAlignEnable');
+
+	document.getElementById("transLyricsAlignEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsAlign").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsAlignEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsAlignEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsAlignEnable');
+	// Align enable init end
+
+	// Color enable init start
+	document.getElementById("titleColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleColor").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleColorEnable', this.checked);
+	}, false);
+	document.getElementById("titleColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleColorEnable');
+
+	document.getElementById("artistColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistColor").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistColorEnable', this.checked);
+	}, false);
+	document.getElementById("artistColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistColorEnable');
+
+	document.getElementById("albumColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumColor").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumColorEnable', this.checked);
+	}, false);
+	document.getElementById("albumColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumColorEnable');
+
+	document.getElementById("lyricsColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsColor").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsColorEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsColorEnable');
+
+	document.getElementById("transLyricsColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsColor").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsColorEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsColorEnable');
+	// Color enable init end
+
+	// BGColor enable init start
+	document.getElementById("titleBGColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleBGColor").disabled = !this.checked;
+		document.getElementById("titleOpacity").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleBGColorEnable', this.checked);
+	}, false);
+	document.getElementById("titleBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleBGColorEnable');
+
+	document.getElementById("artistBGColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistBGColor").disabled = !this.checked;
+		document.getElementById("artistOpacity").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistBGColorEnable', this.checked);
+	}, false);
+	document.getElementById("artistBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistBGColorEnable');
+
+	document.getElementById("albumBGColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumBGColor").disabled = !this.checked;
+		document.getElementById("albumOpacity").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumBGColorEnable', this.checked);
+	}, false);
+	document.getElementById("albumBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumBGColorEnable');
+
+	document.getElementById("lyricsBGColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsBGColor").disabled = !this.checked;
+		document.getElementById("lyricsOpacity").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsBGColorEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsBGColorEnable');
+
+	document.getElementById("transLyricsBGColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsBGColor").disabled = !this.checked;
+		document.getElementById("transLyricsOpacity").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsBGColorEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsBGColorEnable');
+	// BGColor enable init end
+
+	// Size enable init start
+	document.getElementById("titleSizeEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleSize").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleSizeEnable', this.checked);
+	}, false);
+	document.getElementById("titleSizeEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleSizeEnable');
+
+	document.getElementById("artistSizeEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistSize").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistSizeEnable', this.checked);
+	}, false);
+	document.getElementById("artistSizeEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistSizeEnable');
+
+	document.getElementById("albumSizeEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumSize").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumSizeEnable', this.checked);
+	}, false);
+	document.getElementById("albumSizeEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumSizeEnable');
+
+	document.getElementById("lyricsSizeEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsSize").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsSizeEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsSizeEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsSizeEnable');
+
+	document.getElementById("transLyricsSizeEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsSize").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsSizeEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsSizeEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsSizeEnable');
+	// Size enable init end
+
+	// MarginTop enable init start
+	document.getElementById("titleMarginTopEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleMarginTop").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleMarginTopEnable', this.checked);
+	}, false);
+	document.getElementById("titleMarginTopEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleMarginTopEnable');
+
+	document.getElementById("artistMarginTopEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistMarginTop").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistMarginTopEnable', this.checked);
+	}, false);
+	document.getElementById("artistMarginTopEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistMarginTopEnable');
+
+	document.getElementById("albumMarginTopEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumMarginTop").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumMarginTopEnable', this.checked);
+	}, false);
+	document.getElementById("albumMarginTopEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumMarginTopEnable');
+
+	document.getElementById("lyricsMarginTopEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsMarginTop").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsMarginTopEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsMarginTopEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsMarginTopEnable');
+
+	document.getElementById("transLyricsMarginTopEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsMarginTop").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsMarginTopEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsMarginTopEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsMarginTopEnable');
+	// MarginTop enable init end
+
+	// MarginBottom enable init start
+	document.getElementById("titleMarginBottomEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleMarginBottom").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleMarginBottomEnable', this.checked);
+	}, false);
+	document.getElementById("titleMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleMarginBottomEnable');
+
+	document.getElementById("artistMarginBottomEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistMarginBottom").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistMarginBottomEnable', this.checked);
+	}, false);
+	document.getElementById("artistMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistMarginBottomEnable');
+
+	document.getElementById("albumMarginBottomEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumMarginBottom").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumMarginBottomEnable', this.checked);
+	}, false);
+	document.getElementById("albumMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumMarginBottomEnable');
+
+	document.getElementById("lyricsMarginBottomEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsMarginBottom").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsMarginBottomEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsMarginBottomEnable');
+
+	document.getElementById("transLyricsMarginBottomEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsMarginBottom").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsMarginBottomEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsMarginBottomEnable');
+	// MarginBottom enable init end
 }
 
 function selectImagesFolder () {
@@ -218,6 +397,7 @@ function selectImagesFolder () {
 }
 
 function onCISelect (value) {
+	
 	if (value == "I") {
 		document.getElementById("CIDeck").selectedIndex = 0;
 		prefs.setCharPref(fullScreenStr + "backgroundType", "I");
@@ -226,8 +406,12 @@ function onCISelect (value) {
 		document.getElementById("CIDeck").selectedIndex = 1;
 		prefs.setCharPref(fullScreenStr + "backgroundType", "C");
 	}
-	else {
+	else if (value == "O") {
 		document.getElementById("CIDeck").selectedIndex = 2;
 		prefs.setCharPref(fullScreenStr + "backgroundType", "O");
+	}
+	else {
+		document.getElementById("CIDeck").selectedIndex = 3;
+		prefs.setCharPref(fullScreenStr + "backgroundType", "E");
 	}
 }

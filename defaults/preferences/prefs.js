@@ -34,7 +34,7 @@ pref("extensions.mlyrics.showStaticPicIf", false);
 
 pref("extensions.mlyrics.backgroundImage", "chrome://mlyrics/skin/background-sample.jpg");
 pref("extensions.mlyrics.backgroundColor", "#000000");
-pref("extensions.mlyrics.backgroundType", "I");
+pref("extensions.mlyrics.backgroundType", "E");
 pref("extensions.mlyrics.BGImagePos", "center center");
 
 pref("extensions.mlyrics.lyricsSize", 16);
@@ -102,6 +102,48 @@ pref("extensions.mlyrics.transLyricsMarginBottom", 20);
 pref("extensions.mlyrics.albumMarginBottom", 30);
 pref("extensions.mlyrics.artistMarginBottom", 0);
 pref("extensions.mlyrics.titleMarginBottom", 0);
+
+pref("extensions.mlyrics.titleStyleEnable", false);
+pref("extensions.mlyrics.albumStyleEnable", false);
+pref("extensions.mlyrics.artistStyleEnable", false);
+pref("extensions.mlyrics.lyricsStyleEnable", false);
+pref("extensions.mlyrics.transLyricsStyleEnable", false);
+
+pref("extensions.mlyrics.titleAlignEnable", false);
+pref("extensions.mlyrics.albumAlignEnable", false);
+pref("extensions.mlyrics.artistAlignEnable", false);
+pref("extensions.mlyrics.lyricsAlignEnable", false);
+pref("extensions.mlyrics.transLyricsAlignEnable", false);
+
+pref("extensions.mlyrics.titleColorEnable", false);
+pref("extensions.mlyrics.albumColorEnable", false);
+pref("extensions.mlyrics.artistColorEnable", false);
+pref("extensions.mlyrics.lyricsColorEnable", false);
+pref("extensions.mlyrics.transLyricsColorEnable", false);
+
+pref("extensions.mlyrics.titleBGColorEnable", false);
+pref("extensions.mlyrics.albumBGColorEnable", false);
+pref("extensions.mlyrics.artistBGColorEnable", false);
+pref("extensions.mlyrics.lyricsBGColorEnable", false);
+pref("extensions.mlyrics.transLyricsBGColorEnable", false);
+
+pref("extensions.mlyrics.titleSizeEnable", false);
+pref("extensions.mlyrics.albumSizeEnable", false);
+pref("extensions.mlyrics.artistSizeEnable", false);
+pref("extensions.mlyrics.lyricsSizeEnable", false);
+pref("extensions.mlyrics.transLyricsSizeEnable", false);
+
+pref("extensions.mlyrics.titleMarginTopEnable", false);
+pref("extensions.mlyrics.albumMarginTopEnable", false);
+pref("extensions.mlyrics.artistMarginTopEnable", false);
+pref("extensions.mlyrics.lyricsMarginTopEnable", false);
+pref("extensions.mlyrics.transLyricsMarginTopEnable", false);
+
+pref("extensions.mlyrics.titleMarginBottomEnable", false);
+pref("extensions.mlyrics.albumMarginBottomEnable", false);
+pref("extensions.mlyrics.artistMarginBottomEnable", false);
+pref("extensions.mlyrics.lyricsMarginBottomEnable", false);
+pref("extensions.mlyrics.transLyricsMarginBottomEnable", false);
 // --------------------
 // Font style block end
 
@@ -182,6 +224,12 @@ pref("extensions.mlyrics.fullScreen_transLyricsMarginBottom", 20);
 pref("extensions.mlyrics.fullScreen_albumMarginBottom", 150);
 pref("extensions.mlyrics.fullScreen_artistMarginBottom", 0);
 pref("extensions.mlyrics.fullScreen_titleMarginBottom", 0);
+
+pref("extensions.mlyrics.fullScreen_titleStyleEnable", false);
+pref("extensions.mlyrics.fullScreen_albumStyleEnable", false);
+pref("extensions.mlyrics.fullScreen_artistStyleEnable", false);
+pref("extensions.mlyrics.fullScreen_lyricsStyleEnable", false);
+pref("extensions.mlyrics.fullScreen_transLyricsStyleEnable", false);
 // ----------------------------------
 // Font style block end (full screen)
 

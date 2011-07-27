@@ -114,6 +114,9 @@
 <!ENTITY mlyrics.font.showStaticPicIf "Show static picture if no cover">
 <!ENTITY mlyrics.font.color2Label "Color">
 <!ENTITY mlyrics.font.imageLabel "Image">
+<!ENTITY mlyrics.font.noBackgroundLabel "None">
 <!ENTITY mlyrics.font.coverImageLabel "Cover Image">
 <!ENTITY mlyrics.font.topSpace "Top space">
 <!ENTITY mlyrics.font.bottomSpace "Bottom space">
+<!ENTITY mlyrics.font.alignLabel "Align:">
+<!ENTITY mlyrics.font.fontStyleLabel "Font style:">
