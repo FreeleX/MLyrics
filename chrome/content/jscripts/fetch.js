@@ -93,7 +93,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -253,7 +253,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -311,7 +311,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -410,7 +410,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -537,7 +537,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -632,7 +632,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -739,7 +739,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -875,7 +875,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -932,7 +932,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1058,7 +1058,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1130,7 +1130,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1220,7 +1220,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1333,7 +1333,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1412,7 +1412,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1470,7 +1470,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1635,7 +1635,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1703,7 +1703,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1791,7 +1791,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1867,7 +1867,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -1959,7 +1959,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2045,7 +2045,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2122,7 +2122,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2225,7 +2225,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2306,7 +2306,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2416,7 +2416,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2504,7 +2504,7 @@ mlyrics.fetch = {
 				req.onreadystatechange = function() {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch1 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2582,7 +2582,7 @@ mlyrics.fetch = {
 				req2.onreadystatechange = function () {
 					
 					if (typeof(mlyrics.pane) != "undefined" && 
-					    mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+					    mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
 					{
 						mlyrics.lib.debugOutput("Fetch2 abort - track changed");
 						clearTimeout(abortTimeout);
@@ -2659,6 +2659,11 @@ mlyrics.fetch = {
 			this.docallback("", cbFn);
 			return;
 		}
+
+		if (!mlyrics.fetch.fetchMediaItem && mlyrics.fetch.fetchNext.caller.name == "CheckNextSource") {
+			mlyrics.lib.debugOutput("Fetch queue stopped due to user actions")
+			return;
+		}
 		
 		this.cSourceURL = this.prefs.getCharPref("laddress_" + sources[counter]);
 		this.cbSProgress = cbSProgress;
@@ -2680,7 +2685,7 @@ mlyrics.fetch = {
 			artist = artist.substr(artistDelimPos+2) + " " + artist.substring(0, artistDelimPos);
 		}
 		
-		if (typeof(mlyrics.pane) != "undefined") {
+		if (typeof(mlyrics.pane) != "undefined" && mlyrics.fetch.fetchNext.caller.name != "CheckNextSource") {
 			this.fetchMediaItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
 		}
 		
@@ -2689,7 +2694,7 @@ mlyrics.fetch = {
 			this.source[lm_webLoc].getLyrics(artist, 
 							 album, 
 							 track,
-							 function (gotLyrics) {
+							 function CheckNextSource (gotLyrics) {
 								 if (!forceone && ( !gotLyrics || gotLyrics == "" ) ) {
 									 fetchObj.fetchNext(artist, album, track, cbFn, ++counter, false, cbSProgress);
 								 }
@@ -2746,7 +2751,7 @@ mlyrics.fetch = {
 			treq.onreadystatechange = function () {
 				
 				if (typeof(mlyrics.pane) != "undefined" && 
-					( mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem && !ignoreTrack )
+					( mlyrics.fetch.fetchMediaItem && mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem && !ignoreTrack )
 				)
 				{
 					mlyrics.lib.debugOutput("Translate abort - track changed");
