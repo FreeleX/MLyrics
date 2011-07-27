@@ -29,7 +29,6 @@ pref("extensions.mlyrics.lyricsViewMode", 2);
 // ----------------------
 pref("extensions.mlyrics.styleSheet", "chrome://songbird/skin/mlyrics.css");
 
-pref("extensions.mlyrics.applyCustomFont", false);
 pref("extensions.mlyrics.showStaticPicIf", false);
 
 pref("extensions.mlyrics.backgroundImage", "chrome://mlyrics/skin/background-sample.jpg");
