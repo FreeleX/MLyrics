@@ -230,7 +230,7 @@
 					hidden="true" oncommand="mlyrics.pane.editTimeTracks.remove();mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
 			<toolbarbutton 	id="fullScreenBtn" image="chrome://mlyrics/content/images/full-screen.png" tooltiptext="&menu.fullscreen;"
-				hidden="false" oncommand="mlyrics.pane.fullScreenMode.switch();mlyrics.pane.hideBtnsbox(true, true);" />
+				hidden="false" oncommand="mlyrics.pane.hideBtnsbox(true, true);mlyrics.pane.fullScreenMode.switch();" />
 		</vbox>
 	</hbox>
 	
