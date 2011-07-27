@@ -32,6 +32,7 @@
 			<menuitem id="fullScreenMenuItem" label="&menu.fullscreen;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/full-screen.png" oncommand="mlyrics.pane.fullScreenMode.switch();" />
 			<menuseparator />
 			<menuitem id="createSmartScrollMenuItem" label="&mlyrics.pane.teachScroll;" class="menuitem-iconic" image="chrome://mlyrics/content/images/microphone-icon.png" oncommand="mlyrics.pane.positionListener.onMouseScrollReal(null, true);" />
+			<menuitem id="removeSmartScrollMenuItem" label="&mlyrics.pane.unteachScroll;" class="menuitem-iconic" image="chrome://mlyrics/content/images/remove-microphone-icon.png" oncommand="mlyrics.pane.removeSmartScrollInfo();" />
 			<menuseparator />
 			<menuitem id="notifEnabledMenuItem" label="&mlyrics.pane.contxtNotifEnabled;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/notes.png" oncommand="mlyrics.pane.enableNotifications(this.getAttribute('checked') == 'true');" />
 			<menuseparator />

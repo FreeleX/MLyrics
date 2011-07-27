@@ -93,6 +93,7 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Remove time tracks">
 <!ENTITY mlyrics.pane.dropherebtn "Drop lyrics here">
 <!ENTITY mlyrics.pane.teachScroll "Teach MLyrics how to scroll">
+<!ENTITY mlyrics.pane.unteachScroll "Remove Smart Scroll info">
 <!ENTITY mlyrics.pane.accelerator "Scroll Accelerator">
 <!ENTITY mlyrics.font.confFont "Configure style">
 <!ENTITY mlyrics.font.sizeLabel "Size:">

@@ -1653,7 +1653,24 @@ mlyrics.pane = {
 			mTop.removeAllNotifications(true);
 		}
 	},
-	
+
+	removeSmartScrollInfo: function () {
+		if ((this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PLAYING) ||
+		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PAUSED) ||
+		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_BUFFERING))
+		{
+			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
+				var mediaItem = this.mediaItemSelectListener.curMediaItem;
+			}
+			else {
+				var mediaItem = this.playlistPlaybackServiceListener.curMediaItem;
+			}
+
+			mediaItem.setProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray", null);
+			mlyrics.lib.writeID3Tag(mediaItem);
+		}
+	},
+
 	copyToClipboard: function () {
 		var iframe = document.getElementById('lm-content');
 		alert(iframe.contentDocument.getElementById("mlyrics_lyrics_row1").offsetTop);
