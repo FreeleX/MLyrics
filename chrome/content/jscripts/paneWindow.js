@@ -709,6 +709,22 @@ mlyrics.pane = {
 	},
 	
 	saveLyrics: function (notificationElement, notifcationButton, mediaItem, lyrics, source) {
+
+		var translDelimPos1 = lyrics.indexOf("\n\n =================== \n [ ");
+		if (translDelimPos1 == -1) {
+			translDelimPos1 = lyrics.length;
+		}
+
+		var translDelimPos2 = lyrics.indexOf(" ] \n =================== \n", translDelimPos1);
+		if (translDelimPos2 != -1) {
+			translDelimPos2 = translDelimPos2+27;
+		}
+		else {
+			translDelimPos2 = lyrics.length;
+		}
+
+		var onlyLyrics = lyrics.substring(0, translDelimPos1);
+		var onlyTranslation = lyrics.substr(translDelimPos2);
 		
 		var metadataComment = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyricistName");
 		if (!metadataComment) metadataComment = "";
@@ -720,7 +736,8 @@ mlyrics.pane = {
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
 		}
 		
-		mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", lyrics);
+		mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", onlyLyrics);
+		mediaItem.setProperty("http://songbirdnest.com/data/1.0#translatedLyrics", onlyTranslation);
 		mlyrics.lib.writeID3Tag(mediaItem);
 			
 		document.getElementById("ML_sourceAddressNextButton").hidden = true;
@@ -1029,6 +1046,42 @@ mlyrics.pane = {
 		}
 		
 		mlyrics.fetch.googleTranslate(lyrics, cbFn, true);
+	},
+
+	getFullLyrics: function (mediaItem) {
+		var lyrics = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+		var translation = mediaItem.getProperty("http://songbirdnest.com/data/1.0#translatedLyrics");
+
+		if (!lyrics) lyrics = "";
+		if (!translation) translation = "";
+
+		var translDelimPos1 = lyrics.indexOf("\n\n =================== \n [ ");
+		if (translDelimPos1 != -1) {
+			mlyrics.pane.saveLyrics("", "", mediaItem, lyrics);
+			
+			var translDelimPos2 = lyrics.indexOf(" ] \n =================== \n", translDelimPos1);
+			if (translDelimPos2 != -1) {
+				translDelimPos2 = translDelimPos2+27;
+			}
+			else {
+				translDelimPos2 = lyrics.length;
+			}
+
+			translation = lyrics.substr(translDelimPos2);
+			lyrics = lyrics.substring(0, translDelimPos1);
+		}
+		
+		var delimiter = "";
+
+		if (lyrics != "") {
+			if (translation != "") {
+				delimiter = "\n\n =================== \n [ Google translated ] \n =================== \n\n";
+			}
+		}
+
+		var fullLyrics = lyrics + delimiter + translation;
+		
+		return fullLyrics;
 	},
 
 	autoLuckySearch: function (artist, track) {
@@ -1444,7 +1497,7 @@ mlyrics.pane = {
 			mlyrics.pane.controller.lmDeck.selectedIndex = 1;
 		}
 		
-		var metadataLyrics = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+		var metadataLyrics = mlyrics.pane.getFullLyrics(mediaItem);
 		if (metadataLyrics != "" && 
 		    mediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics") &&
 		    mediaItem.getProperty("http://songbirdnest.com/data/1.0#hasLyrics").indexOf("-black") != -1 
@@ -1626,6 +1679,7 @@ mlyrics.pane = {
 			}
 			
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", null);
+			mediaItem.setProperty("http://songbirdnest.com/data/1.0#translatedLyrics", null);
 			
 			var artist = mediaItem.getProperty(SBProperties.artistName);
 			var album = mediaItem.getProperty(SBProperties.albumName);
@@ -1657,6 +1711,7 @@ mlyrics.pane = {
 			
 
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyrics", "[Instrumental]");
+			mediaItem.setProperty("http://songbirdnest.com/data/1.0#translatedLyrics", null);
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#lyricistName", null);
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#mlyricsScrollCorrArray", null);
 			
@@ -2261,7 +2316,7 @@ mlyrics.pane = {
 					var metadataArtist = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty(SBProperties.artistName);
 					var metadataAlbum = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty(SBProperties.albumName);
 					var metadataTrack = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty(SBProperties.trackName);
-					var metadataLyrics = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+					var metadataLyrics = mlyrics.pane.getFullLyrics(mlyrics.pane.mediaItemSelectListener.curMediaItem);
 					
 					mlyrics.pane.buildPage(metadataArtist, metadataAlbum, metadataTrack, metadataLyrics);
 					
@@ -2605,7 +2660,7 @@ mlyrics.pane = {
 
 			if (typeof(force) == 'undefined') force = false;
 
-			var metadataLyrics = this.postSave.mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+			var metadataLyrics = mlyrics.pane.getFullLyrics(this.postSave.mediaItem);
 			if (!metadataLyrics || metadataLyrics == "") return;	// In case we don't have stored lyrics - do not event try to init
 
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
@@ -2686,7 +2741,7 @@ mlyrics.pane = {
 			var metadataArtist = mediaItem.getProperty(SBProperties.artistName);
 			var metadataAlbum = mediaItem.getProperty(SBProperties.albumName);
 			var metadataTrack = mediaItem.getProperty(SBProperties.trackName);
-			var metadataLyrics = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+			var metadataLyrics = mlyrics.pane.getFullLyrics(mediaItem);
 			
 			if (!metadataArtist) metadataArtist = "";
 			if (!metadataAlbum) metadataAlbum = "";
