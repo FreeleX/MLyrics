@@ -27,7 +27,7 @@
 	</preferences>
 	
 	<vbox id="mainVBox" flex="1">
-		<menulist id="defaultFont" hidden="true" />
+		<menulist id="defaultFont" hidden="true" disabled="true" />
 		
 		<groupbox width="100%">
 			<caption label="&mlyrics.prefs.stylelabel;"/>
