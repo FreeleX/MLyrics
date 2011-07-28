@@ -57,6 +57,7 @@
 			<menuitem id="metadataMenuItem" label="&mlyrics.pane.showEditDialog;" class="menuitem-iconic" image="chrome://mlyrics/content/images/edit-icon.png" oncommand="mlyrics.pane.editMode.init()"/>
 			<menuitem id="makeInstrMenuItem" label="&mlyrics.pane.contxtMakeInstr;" class="menuitem-iconic" image="chrome://mlyrics/content/images/instrumental.png" oncommand="mlyrics.pane.contextMakeInstrumental();"/>
 			<menuitem id="clearMenuItem" label="&mlyrics.pane.contxtClear;" class="menuitem-iconic" image="chrome://mlyrics/content/images/clear2-icon.png" oncommand="mlyrics.pane.contextClear();"/>
+			<menuitem id="clearTranslMenuItem" label="&mlyrics.pane.translClear;" class="menuitem-iconic" image="chrome://mlyrics/content/images/no-google-translate-favicon.ico" oncommand="mlyrics.pane.translClear();"/>
 			<menuseparator />
 			<menuitem id="timeTracksMenuItem" label="&mlyrics.pane.showTimeTracksDialog;" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-clock.png" oncommand="mlyrics.pane.editTimeTracks.init()"/>
 			<menuitem id="removeTimeTracksMenuItem" label="&mlyrics.pane.removeTimeTracks;" class="menuitem-iconic" image="chrome://mlyrics/content/images/noclock.png" oncommand="mlyrics.pane.editTimeTracks.remove()"/>

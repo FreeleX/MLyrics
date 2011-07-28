@@ -1745,6 +1745,29 @@ mlyrics.pane = {
 		}
 	},
 
+	translClear: function () {
+		if ((this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PLAYING) ||
+		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PAUSED) ||
+		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_BUFFERING))
+		{
+			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
+				var mediaItem = this.mediaItemSelectListener.curMediaItem;
+			}
+			else {
+				var mediaItem = this.playlistPlaybackServiceListener.curMediaItem;
+			}
+
+			mediaItem.setProperty("http://songbirdnest.com/data/1.0#translatedLyrics", null);
+
+			var artist = mediaItem.getProperty(SBProperties.artistName);
+			var album = mediaItem.getProperty(SBProperties.albumName);
+			var track = mediaItem.getProperty(SBProperties.trackName);
+
+			mlyrics.lib.writeID3Tag(mediaItem);
+			this.buildPage(artist, album, track, mediaItem.getProperty(SBProperties.lyrics));
+		}
+	},
+
 	copyToClipboard: function () {
 		var iframe = document.getElementById('lm-content');
 		alert(iframe.contentDocument.getElementById("mlyrics_lyrics_row1").offsetTop);
