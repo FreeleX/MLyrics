@@ -102,11 +102,11 @@ pref("extensions.mlyrics.albumMarginBottom", 30);
 pref("extensions.mlyrics.artistMarginBottom", 0);
 pref("extensions.mlyrics.titleMarginBottom", 0);
 
-pref("extensions.mlyrics.lyricsFont", "serif");
-pref("extensions.mlyrics.transLyricsFont", "serif");
-pref("extensions.mlyrics.albumFont", "serif");
-pref("extensions.mlyrics.artistFont", "serif");
-pref("extensions.mlyrics.titleFont", "serif");
+pref("extensions.mlyrics.lyricsFont", "Arial");
+pref("extensions.mlyrics.transLyricsFont", "Arial");
+pref("extensions.mlyrics.albumFont", "Arial");
+pref("extensions.mlyrics.artistFont", "Arial");
+pref("extensions.mlyrics.titleFont", "Arial");
 
 pref("extensions.mlyrics.titleStyleEnable", false);
 pref("extensions.mlyrics.albumStyleEnable", false);
@@ -236,11 +236,11 @@ pref("extensions.mlyrics.fullScreen_albumMarginBottom", 150);
 pref("extensions.mlyrics.fullScreen_artistMarginBottom", 0);
 pref("extensions.mlyrics.fullScreen_titleMarginBottom", 0);
 
-pref("extensions.mlyrics.fullScreen_lyricsFont", "serif");
-pref("extensions.mlyrics.fullScreen_transLyricsFont", "serif");
-pref("extensions.mlyrics.fullScreen_albumFont", "serif");
-pref("extensions.mlyrics.fullScreen_artistFont", "serif");
-pref("extensions.mlyrics.fullScreen_titleFont", "serif");
+pref("extensions.mlyrics.fullScreen_lyricsFont", "Arial");
+pref("extensions.mlyrics.fullScreen_transLyricsFont", "Arial");
+pref("extensions.mlyrics.fullScreen_albumFont", "Arial");
+pref("extensions.mlyrics.fullScreen_artistFont", "Arial");
+pref("extensions.mlyrics.fullScreen_titleFont", "Arial");
 
 pref("extensions.mlyrics.fullScreen_titleStyleEnable", true);
 pref("extensions.mlyrics.fullScreen_albumStyleEnable", true);
