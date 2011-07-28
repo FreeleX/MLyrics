@@ -1,25 +1,22 @@
-if (typeof(SBProperties) == "undefined") {
-	Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
-	if (!SBProperties)
-		throw new Error("Failed to import sbProperties.jsm");
-}
+try {
+	if (typeof(SBProperties) == "undefined") {
+		Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
+	}
 
-if (typeof(LibraryUtils) == "undefined") {
-	Components.utils.import("resource://app/jsmodules/sbLibraryUtils.jsm");
-	if (!LibraryUtils)
-		throw new Error("resource://app/jsmodules/sbLibraryUtils.jsm");
-}
+	if (typeof(LibraryUtils) == "undefined") {
+		Components.utils.import("resource://app/jsmodules/sbLibraryUtils.jsm");
+	}
 
-if (typeof(SBJobUtils) == "undefined") {
-	Components.utils.import("resource://app/jsmodules/SBJobUtils.jsm");
-	if (!SBJobUtils)
-		throw new Error("Failed to import resource://app/jsmodules/SBJobUtils.jsm");
+	if (typeof(SBJobUtils) == "undefined") {
+		Components.utils.import("resource://app/jsmodules/SBJobUtils.jsm");
+	}
 }
+catch (error) {alert("MLyrics: Unexpected error - module import error\n\n" + error)}
 
 if (typeof(this.mlyrics) !== 'object') {
 	this.mlyrics = {};
 }
-
+	
 ( function () {
 	if (typeof(mlyrics.scanlib) !== 'object') {
 		mlyrics.scanlib = {};

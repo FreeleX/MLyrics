@@ -1,5 +1,8 @@
+try {
 Components.utils.import("resource://app/jsmodules/ArrayConverter.jsm");
 Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
+}
+catch (error) {alert("MLyrics: Unexpected error - module import error\n\n" + error)}
 
 var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.mlyrics.");
 prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);

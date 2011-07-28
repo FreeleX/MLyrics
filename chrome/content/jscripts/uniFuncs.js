@@ -1,4 +1,7 @@
+try {
 Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
+}
+catch (error) {alert("MLyrics: Unexpected error - module import error\n\n" + error)}
 
 // We need to have base object
 if (typeof(this.mlyrics) !== 'object') {

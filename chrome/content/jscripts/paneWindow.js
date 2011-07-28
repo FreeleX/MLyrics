@@ -2,8 +2,11 @@ if (typeof(Cc) == "undefined") var Cc = Components.classes;
 if (typeof(Ci) == "undefined") var Ci = Components.interfaces;
 if (typeof(Cu) == "undefined") var Cu = Components.utils;
 
+try {
 Components.utils.import("resource://app/jsmodules/ArrayConverter.jsm");
 Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
+}
+catch (error) {alert("MLyrics: Unexpected error - module import error\n\n" + error)}
 
 // We need to have base object
 if (typeof(this.mlyrics) !== 'object') {

@@ -1,8 +1,11 @@
+try {
 Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
 Components.utils.import("resource://app/jsmodules/sbLibraryUtils.jsm");
 Components.utils.import("resource://app/jsmodules/sbColumnSpecParser.jsm");
 Components.utils.import("resource://app/jsmodules/SBJobUtils.jsm");
 Components.utils.import("resource://app/jsmodules/StringUtils.jsm");
+}
+catch (error) {alert("MLyrics: Unexpected error - module import error\n\n" + error)}
 
 // We need to have base object
 if (typeof(this.mlyrics) !== 'object') {
