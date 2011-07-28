@@ -11,6 +11,38 @@ function onload () {
 		if (window.arguments[0]) fullScreenStr = "fullScreen_";
 	}
 
+	// Create fonts list
+	rebuildFonts();
+
+	var fontNode = document.getElementById("defaultFont");
+
+	// Font menu cloning start
+	var titleFontNode = fontNode.cloneNode(true);
+	titleFontNode.id = "titleFont";
+	titleFontNode.hidden = false;
+	document.getElementById("titleFontEnable").parentNode.appendChild(titleFontNode);
+
+	var artistFontNode = fontNode.cloneNode(true);
+	artistFontNode.id = "artistFont";
+	artistFontNode.hidden = false;
+	document.getElementById("artistFontEnable").parentNode.appendChild(artistFontNode);
+
+	var albumFontNode = fontNode.cloneNode(true);
+	albumFontNode.id = "albumFont";
+	albumFontNode.hidden = false;
+	document.getElementById("albumFontEnable").parentNode.appendChild(albumFontNode);
+
+	var lyricsFontNode = fontNode.cloneNode(true);
+	lyricsFontNode.id = "lyricsFont";
+	lyricsFontNode.hidden = false;
+	document.getElementById("lyricsFontEnable").parentNode.appendChild(lyricsFontNode);
+
+	var transLyricsFontNode = fontNode.cloneNode(true);
+	transLyricsFontNode.id = "transLyricsFont";
+	transLyricsFontNode.hidden = false;
+	document.getElementById("transLyricsFontEnable").parentNode.appendChild(transLyricsFontNode);
+	// Font menu cloning end
+
 	document.getElementById("styleSheet").value = prefs.getCharPref(fullScreenStr + "styleSheet")
 	document.getElementById("styleSheet").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'styleSheet', this.value)");
 
@@ -140,6 +172,17 @@ function onload () {
 	document.getElementById("albumMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumMarginBottom', this.value)");
 	document.getElementById("lyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsMarginBottom', this.value)");
 	document.getElementById("transLyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginBottom', this.value)");
+
+	document.getElementById("titleFont").value = prefs.getCharPref(fullScreenStr + "titleFont");
+	document.getElementById("artistFont").value = prefs.getCharPref(fullScreenStr + "artistFont");
+	document.getElementById("albumFont").value = prefs.getCharPref(fullScreenStr + "albumFont");
+	document.getElementById("lyricsFont").value = prefs.getCharPref(fullScreenStr + "lyricsFont");
+	document.getElementById("transLyricsFont").value = prefs.getCharPref(fullScreenStr + "transLyricsFont");
+	document.getElementById("titleFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'titleFont', this.value)");
+	document.getElementById("artistFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'artistFont', this.value)");
+	document.getElementById("albumFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'albumFont', this.value)");
+	document.getElementById("lyricsFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'lyricsFont', this.value)");
+	document.getElementById("transLyricsFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'transLyricsFont', this.value)");
 
 	// Style enable init start
 	document.getElementById("titleStyleEnable").addEventListener("CheckboxStateChange", function () {
@@ -379,6 +422,38 @@ function onload () {
 	}, false);
 	document.getElementById("transLyricsMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsMarginBottomEnable');
 	// MarginBottom enable init end
+
+	// Font enable init start
+	document.getElementById("titleFontEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleFont").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleFontEnable', this.checked);
+	}, false);
+	document.getElementById("titleFontEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleFontEnable');
+
+	document.getElementById("artistFontEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistFont").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistFontEnable', this.checked);
+	}, false);
+	document.getElementById("artistFontEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistFontEnable');
+
+	document.getElementById("albumFontEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumFont").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumFontEnable', this.checked);
+	}, false);
+	document.getElementById("albumFontEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumFontEnable');
+
+	document.getElementById("lyricsFontEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsFont").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsFontEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsFontEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsFontEnable');
+
+	document.getElementById("transLyricsFontEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsFont").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsFontEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsFontEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsFontEnable');
+	// Font enable init end
 }
 
 function selectImagesFolder () {
@@ -414,4 +489,69 @@ function onCISelect (value) {
 		document.getElementById("CIDeck").selectedIndex = 3;
 		prefs.setCharPref(fullScreenStr + "backgroundType", "E");
 	}
+}
+
+function rebuildFonts () {
+	var langGroupPref = document.getElementById("font.language.group");
+	selectDefaultLanguageGroup(langGroupPref.value, readDefaultFontTypeForLanguage(langGroupPref.value) == "serif");
+}
+
+function selectDefaultLanguageGroup (aLanguageGroup, aIsSerif) {
+	const kFontNameFmtSerif         = "font.name.serif.%LANG%";
+	const kFontNameFmtSansSerif     = "font.name.sans-serif.%LANG%";
+	const kFontNameListFmtSerif     = "font.name-list.serif.%LANG%";
+	const kFontNameListFmtSansSerif = "font.name-list.sans-serif.%LANG%";
+	const kFontSizeFmtVariable      = "font.size.variable.%LANG%";
+
+	var prefs = [{ format   : aIsSerif ? kFontNameFmtSerif : kFontNameFmtSansSerif,
+			type     : "fontname",
+			element  : "defaultFont",
+			fonttype : aIsSerif ? "serif" : "sans-serif" },
+			{ format   : aIsSerif ? kFontNameListFmtSerif : kFontNameListFmtSansSerif,
+			type     : "unichar",
+			element  : null,
+			fonttype : aIsSerif ? "serif" : "sans-serif" },
+			{ format   : kFontSizeFmtVariable,
+			type     : "int",
+			element  : "defaultFontSize",
+			fonttype : null }];
+	var preferences = document.getElementById("contentPreferences");
+	for (var i = 0; i < prefs.length; ++i) {
+		var preference = document.getElementById(prefs[i].format.replace(/%LANG%/, aLanguageGroup));
+		if (!preference) {
+			preference = document.createElement("preference");
+			var name = prefs[i].format.replace(/%LANG%/, aLanguageGroup);
+			preference.id = name;
+			preference.setAttribute("name", name);
+			preference.setAttribute("type", prefs[i].type);
+			preferences.appendChild(preference);
+		}
+
+		if (!prefs[i].element)
+			continue;
+
+		var element = document.getElementById(prefs[i].element);
+		if (element) {
+			element.setAttribute("preference", preference.id);
+
+			if (prefs[i].fonttype)
+				FontBuilder.buildFontList(aLanguageGroup, prefs[i].fonttype, element);
+
+			preference.setElementValue(element);
+		}
+	}
+}
+
+function readDefaultFontTypeForLanguage (aLanguageGroup) {
+	const kDefaultFontType = "font.default.%LANG%";
+	var defaultFontTypePref = kDefaultFontType.replace(/%LANG%/, aLanguageGroup);
+	var preference = document.getElementById(defaultFontTypePref);
+	if (!preference) {
+		preference = document.createElement("preference");
+		preference.id = defaultFontTypePref;
+		preference.setAttribute("name", defaultFontTypePref);
+		preference.setAttribute("type", "string");
+		document.getElementById("contentPreferences").appendChild(preference);
+	}
+	return preference.value;
 }

@@ -102,6 +102,12 @@ pref("extensions.mlyrics.albumMarginBottom", 30);
 pref("extensions.mlyrics.artistMarginBottom", 0);
 pref("extensions.mlyrics.titleMarginBottom", 0);
 
+pref("extensions.mlyrics.lyricsFont", "serif");
+pref("extensions.mlyrics.transLyricsFont", "serif");
+pref("extensions.mlyrics.albumFont", "serif");
+pref("extensions.mlyrics.artistFont", "serif");
+pref("extensions.mlyrics.titleFont", "serif");
+
 pref("extensions.mlyrics.titleStyleEnable", false);
 pref("extensions.mlyrics.albumStyleEnable", false);
 pref("extensions.mlyrics.artistStyleEnable", false);
@@ -143,6 +149,12 @@ pref("extensions.mlyrics.albumMarginBottomEnable", false);
 pref("extensions.mlyrics.artistMarginBottomEnable", false);
 pref("extensions.mlyrics.lyricsMarginBottomEnable", false);
 pref("extensions.mlyrics.transLyricsMarginBottomEnable", false);
+
+pref("extensions.mlyrics.titleFontEnable", false);
+pref("extensions.mlyrics.albumFontEnable", false);
+pref("extensions.mlyrics.artistFontEnable", false);
+pref("extensions.mlyrics.lyricsFontEnable", false);
+pref("extensions.mlyrics.transLyricsFontEnable", false);
 // --------------------
 // Font style block end
 
@@ -224,6 +236,12 @@ pref("extensions.mlyrics.fullScreen_albumMarginBottom", 150);
 pref("extensions.mlyrics.fullScreen_artistMarginBottom", 0);
 pref("extensions.mlyrics.fullScreen_titleMarginBottom", 0);
 
+pref("extensions.mlyrics.fullScreen_lyricsFont", "serif");
+pref("extensions.mlyrics.fullScreen_transLyricsFont", "serif");
+pref("extensions.mlyrics.fullScreen_albumFont", "serif");
+pref("extensions.mlyrics.fullScreen_artistFont", "serif");
+pref("extensions.mlyrics.fullScreen_titleFont", "serif");
+
 pref("extensions.mlyrics.fullScreen_titleStyleEnable", true);
 pref("extensions.mlyrics.fullScreen_albumStyleEnable", true);
 pref("extensions.mlyrics.fullScreen_artistStyleEnable", true);
@@ -265,6 +283,12 @@ pref("extensions.mlyrics.fullScreen_albumMarginBottomEnable", true);
 pref("extensions.mlyrics.fullScreen_artistMarginBottomEnable", true);
 pref("extensions.mlyrics.fullScreen_lyricsMarginBottomEnable", true);
 pref("extensions.mlyrics.fullScreen_transLyricsMarginBottomEnable", true);
+
+pref("extensions.mlyrics.fullScreen_titleFontEnable", true);
+pref("extensions.mlyrics.fullScreen_albumFontEnable", true);
+pref("extensions.mlyrics.fullScreen_artistFontEnable", true);
+pref("extensions.mlyrics.fullScreen_lyricsFontEnable", true);
+pref("extensions.mlyrics.fullScreen_transLyricsFontEnable", true);
 // ----------------------------------
 // Font style block end (full screen)
 

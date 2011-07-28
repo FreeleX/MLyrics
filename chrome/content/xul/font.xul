@@ -17,9 +17,18 @@
 	    style="overflow: auto">
 	    
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/uniFuncs.js"/>
+	<script type="application/x-javascript" src="chrome://mozapps/content/preferences/fontbuilder.js"/>
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/fontWindow.js"/>
-	    
+
+	<preferences id="contentPreferences">
+		<preference id="font.language.group"
+			name="font.language.group"
+			type="wstring"/>
+	</preferences>
+	
 	<vbox id="mainVBox" flex="1">
+		<menulist id="defaultFont" hidden="true" />
+		
 		<groupbox width="100%">
 			<caption label="&mlyrics.prefs.stylelabel;"/>
 			
@@ -105,9 +114,13 @@
 								<checkbox id="titleStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
+									<spacer flex="1" />
 									<button id="titleBoldButton" label="B" style="font-weight:bold" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="titleItalicButton" label="i" style="font-style:italic" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="titleUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 								</hbox>
 							</row>
 							<row align="left" valign="middle">
@@ -155,6 +168,11 @@
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="titleMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
 							</row>
+							<row align="left" valign="middle">
+								<checkbox id="titleFontEnable" />
+
+								<label value="&mlyrics.font.fontLabel;" />
+							</row>
 						</rows>
 					</grid>
 				</groupbox>
@@ -172,9 +190,13 @@
 								<checkbox id="artistStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
+									<spacer flex="1" />
 									<button id="artistBoldButton" label="B" style="font-weight:bold" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="artistItalicButton" label="i" style="font-style:italic" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="artistUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 								</hbox>
 							</row>
 							<row align="left" valign="middle">
@@ -222,6 +244,11 @@
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="artistMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
 							</row>
+							<row align="left" valign="middle">
+								<checkbox id="artistFontEnable" />
+
+								<label value="&mlyrics.font.fontLabel;" />
+							</row>
 						</rows>
 					</grid>
 				</groupbox>
@@ -239,9 +266,13 @@
 								<checkbox id="albumStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
+									<spacer flex="1" />
 									<button id="albumBoldButton" label="B" style="font-weight:bold" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="albumItalicButton" label="i" style="font-style:italic" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="albumUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 								</hbox>
 							</row>
 							<row align="left" valign="middle">
@@ -289,6 +320,11 @@
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="albumMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
 							</row>
+							<row align="left" valign="middle">
+								<checkbox id="albumFontEnable" />
+
+								<label value="&mlyrics.font.fontLabel;" />
+							</row>
 						</rows>
 					</grid>
 				</groupbox>
@@ -306,9 +342,13 @@
 								<checkbox id="lyricsStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
+									<spacer flex="1" />
 									<button id="lyricsBoldButton" label="B" style="font-weight:bold" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="lyricsItalicButton" label="i" style="font-style:italic" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="lyricsUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 								</hbox>
 							</row>
 							<row align="left" valign="middle">
@@ -356,6 +396,11 @@
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="lyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
 							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lyricsFontEnable" />
+
+								<label value="&mlyrics.font.fontLabel;" />
+							</row>
 						</rows>
 					</grid>
 				</groupbox>
@@ -373,9 +418,13 @@
 								<checkbox id="transLyricsStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
+									<spacer flex="1" />
 									<button id="transLyricsBoldButton" label="B" style="font-weight:bold" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="transLyricsItalicButton" label="i" style="font-style:italic" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 									<button id="transLyricsUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" disabled="true" />
+									<spacer flex="1" />
 								</hbox>
 							</row>
 							<row align="left" valign="middle">
@@ -422,6 +471,11 @@
 
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="transLyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="transLyricsFontEnable" />
+
+								<label value="&mlyrics.font.fontLabel;" />
 							</row>
 						</rows>
 					</grid>

@@ -306,6 +306,12 @@ mlyrics.pane = {
 				case fullScreenStr + "albumMarginBottom":
 				case fullScreenStr + "titleMarginBottom":
 
+				case fullScreenStr + "lyricsFont":
+				case fullScreenStr + "transLyricsFont":
+				case fullScreenStr + "artistFont":
+				case fullScreenStr + "albumFont":
+				case fullScreenStr + "titleFont":
+
 				case fullScreenStr + "lyricsStyleEnable":
 				case fullScreenStr + "transLyricsStyleEnable":
 				case fullScreenStr + "artistStyleEnable":
@@ -347,6 +353,12 @@ mlyrics.pane = {
 				case fullScreenStr + "artistMarginBottomEnable":
 				case fullScreenStr + "albumMarginBottomEnable":
 				case fullScreenStr + "titleMarginBottomEnable":
+
+				case fullScreenStr + "lyricsFontEnable":
+				case fullScreenStr + "transLyricsFontEnable":
+				case fullScreenStr + "artistFontEnable":
+				case fullScreenStr + "albumFontEnable":
+				case fullScreenStr + "titleFontEnable":
 					
 					mlyrics.pane.viewMode.change(mlyrics.pane.prefs.getIntPref("lyricsViewMode"));
 					break;
@@ -409,6 +421,7 @@ mlyrics.pane = {
 		var elemOpacity 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Opacity");
 		var elemMarginTop 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginTop");
 		var elemMarginBottom 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginBottom");
+		var elemFont			= mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Font");
 
 		var elemStyleEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "StyleEnable");
 		var elemAlignEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "AlignEnable");
@@ -417,6 +430,7 @@ mlyrics.pane = {
 		var elemSizeEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "SizeEnable");
 		var elemMarginTopEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginTopEnable");
 		var elemMarginBottomEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginBottomEnable");
+		var elemFontEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "FontEnable");
 		
 		var styleStr = "";
 
@@ -460,6 +474,8 @@ mlyrics.pane = {
 		
 		if (elemMarginTopEnable) styleStr += "margin-top: " + elemMarginTop + ";";
 		if (elemMarginBottomEnable) styleStr += "margin-bottom: " + elemMarginBottom + ";";
+		
+		if (elemFontEnable) styleStr += "font-family: " + elemFont + ";";
 		
 		return styleStr;
 	},

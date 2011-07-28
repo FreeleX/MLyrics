@@ -121,3 +121,4 @@
 <!ENTITY mlyrics.font.bottomSpace "Bottom space">
 <!ENTITY mlyrics.font.alignLabel "Align:">
 <!ENTITY mlyrics.font.fontStyleLabel "Font style:">
+<!ENTITY mlyrics.font.fontLabel "Font:">
