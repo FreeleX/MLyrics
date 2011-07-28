@@ -2636,6 +2636,7 @@ mlyrics.pane = {
 				}
 				else {								// Init smart scroll mode
 					this.correctionMode = true;
+					mlyrics.pane.removeSmartScrollInfo();
 					document.getElementById("lm-content").contentDocument.body.style.cursor = "url(chrome://mlyrics/content/images/sing-ico.png), move";
 					this.iframe.contentDocument.getElementById("bottomspace").height = this.lyricsNormalHeight;
 					
