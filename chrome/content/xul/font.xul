@@ -34,6 +34,7 @@
 			
 			<menulist id="styleSheet" >
 				<menupopup>
+					<menuitem label="&mlyrics.prefs.stloptnone;" value="" />
 					<menuitem label="[&mlyrics.prefs.stloptcurfthr;]" value="chrome://songbird/skin/mlyrics.css" />
 					<menuitem label="&mlyrics.prefs.stloptbluq;" value="chrome://mlyrics/content/style/blue_quote.css" />
 					<menuitem label="&mlyrics.prefs.stloptlite;" value="chrome://mlyrics/content/style/blue_quote_lite.css" />
