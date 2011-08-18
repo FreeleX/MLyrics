@@ -13,5 +13,4 @@ locale  mlyrics  de  	chrome/locale/de/
 locale  mlyrics  sv-SE  chrome/locale/sv-SE/
 
 overlay chrome://songbird/content/xul/layoutBaseOverlay.xul 	chrome://mlyrics/content/xul/base.xul
-overlay chrome://songbird/content/xul/trackEditor.xul 		chrome://mlyrics/content/xul/lyricsEditor.xul
 overlay windowtype:Songbird:MediaPage 				chrome://mlyrics/content/xul/overlayPlaylist.xul
