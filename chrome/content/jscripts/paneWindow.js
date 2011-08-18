@@ -212,7 +212,7 @@ mlyrics.pane = {
 			tabbrowser.getBrowserForTab(currentTab).loadURI(url, nsIURI);
 		}
 	},
-	
+
 	preferencesObserver: {
 		register: function () {
 			mlyrics.pane.prefs.addObserver("", this, false);
@@ -961,7 +961,8 @@ mlyrics.pane = {
 				document.getElementById("timeTracksMenuItem").disabled = true;
 				document.getElementById("makeInstrMenuItem").disabled = true;
 				document.getElementById("clearMenuItem").disabled = true;
-			}
+			},
+			0
 		);
 	},
 	
@@ -2218,6 +2219,147 @@ mlyrics.pane = {
 			mediaItem.setProperty("http://songbirdnest.com/data/1.0#hasLRCfile", null);
 		}
 	},
+
+	multiFetchMode: {
+		item: null,
+		savedWidth: 250,
+		mouseover: false,
+		
+		initMultiFetch: function () {
+			document.getElementById("lm-deck").selectedIndex = 4;
+
+			var mainwindow = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIWebNavigation)
+					.QueryInterface(Components.interfaces.nsIDocShellTreeItem).rootTreeItem
+					.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindow);
+
+			this.savedWidth = mlyrics.pane.displayPane.width;
+			mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 3/5;
+			
+			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
+				this.item = mlyrics.pane.mediaItemSelectListener.curMediaItem;
+				document.getElementById("nextPrevBtnsHboxEdit").hidden = false;
+			}
+			else {
+				this.item = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
+				document.getElementById("nextPrevBtnsHboxEdit").hidden = true;
+			}
+
+			var parent = document.getElementById("ML-hbox-multi-fetch");
+			while (parent.childNodes.length > 1) {
+				parent.removeChild(parent.lastChild);
+			}
+
+			var tagBtn = document.getElementById("ML-vbox-multi-fetch-tag");
+			this.refreshFromTag(tagBtn);
+
+			this.createNext(0);
+		},
+
+		onDiscard: function () {
+			mlyrics.pane.displayPane.width = this.savedWidth;
+			document.getElementById("lm-deck").selectedIndex = 1;
+		},
+
+		createNext: function (nIndex) {
+			currentOffset = nIndex;
+
+			var vboxTab = document.getElementById("ML-vbox-multi-fetch-Tab");
+			var hbox = document.getElementById("ML-hbox-multi-fetch");
+
+			var sources = mlyrics.pane.prefs.getCharPref("fetchSourcesList").split("|");
+
+			var laddress = mlyrics.pane.prefs.getCharPref("laddress_" + sources[nIndex]);
+			var newVbox = vboxTab.cloneNode(true);
+
+			newVbox.id = "ML-vbox-multi-fetch-source" + nIndex;
+			newVbox.childNodes[0].setAttribute("label", laddress);
+			newVbox.childNodes[0].setAttribute("oncommand", "mlyrics.pane.multiFetchMode.refetch(" + nIndex + ", this)");
+
+			hbox.appendChild(newVbox);
+
+			if (!this.mouseover) hbox.scrollLeft = hbox.scrollWidth;
+
+			var self = this;
+
+			this.refetch(nIndex,
+				newVbox.childNodes[0],
+				function () {
+					if (currentOffset == nIndex) {
+						nIndex++;
+						if (nIndex < sources.length) self.createNext(nIndex);
+					}
+				}
+			);
+		},
+
+		refetch: function (lindex, callbtn, cbFn) {
+			callbtn.parentNode.childNodes[0].disabled = true;
+			callbtn.parentNode.childNodes[1].disabled = true;
+			document.getElementById("ML-progress-multi").hidden = false;
+
+			setTimeout(function () {callbtn.disabled = false;}, 500);
+
+			mlyrics.fetch.fetchNext(this.item.getProperty("http://songbirdnest.com/data/1.0#artistName"),
+						this.item.getProperty("http://songbirdnest.com/data/1.0#albumName"),
+						this.item.getProperty("http://songbirdnest.com/data/1.0#trackName"),
+
+						function (lyrics, source, localIndex) {
+
+							if (document.getElementById("lm-deck").selectedIndex != 4) return;
+
+							callbtn.parentNode.childNodes[0].disabled = false;
+							callbtn.parentNode.childNodes[1].disabled = false;
+							callbtn.parentNode.childNodes[1].value=lyrics;
+
+							if (lyrics == "" && mlyrics.pane.prefs.getBoolPref("multiHideEmpty")) {
+								callbtn.parentNode.hidden = true;
+							}
+
+							document.getElementById("ML-progress-multi").hidden = true;
+
+							if (cbFn) cbFn();
+						},
+
+						lindex,
+						true,
+
+						function (lsource, lprogress, localIndex) {
+							if (typeof(localIndex) == "undefined") return;
+						},
+						0
+					);
+		},
+
+		refreshFromTag: function (callbtn) {
+			callbtn.parentNode.childNodes[1].value = this.item.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+		},
+
+		accept: function (callbtn) {
+			window.opener.document.getElementById("lyrics-editor").value = callbtn.parentNode.childNodes[1].value;
+
+			if (callbtn.parentNode.id == "ML-vbox-multi-fetch-Tab") {
+				window.opener.document.getElementById("refreshMenuItem").selectedIndex = 0;
+				window.opener.document.getElementById("lyrics-edit-source").value = null;
+			}
+			else {
+				var sources = prefs.getCharPref("fetchSourcesList").split("|");
+				var sIndex = parseInt(callbtn.parentNode.id.substr(26), 10);
+
+				window.opener.document.getElementById("refreshMenuItem").selectedIndex = sIndex + 2;
+				window.opener.document.getElementById("lyrics-edit-source").value = prefs.getCharPref("laddress_" + sources[sIndex]);
+			}
+
+			window.close();
+		},
+
+		onHideEmpty: function (checkbox) {
+			var hbox = document.getElementById("ML-hbox-multi-fetch");
+			for (var i=0; i<hbox.childNodes.length; i++) {
+				if (hbox.childNodes[i].childNodes[1].value == "" && hbox.childNodes[i].id != "ML-vbox-multi-fetch-Tab")
+					hbox.childNodes[i].hidden = checkbox.checked;
+			}
+		}
+	},
 	
 	// pane.xul controller
 	controller: {
@@ -2824,7 +2966,8 @@ mlyrics.pane = {
 					false,
 					
 					function (lsource, lprogress, localIndex) {
-					}
+					},
+					0
 				);
 			}
 			else {

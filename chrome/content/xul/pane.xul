@@ -133,6 +133,10 @@
 									<menuitem id="contxtLuckySearchMenu" 
 										label="I'm Feeling Lucky" 
 										oncommand="mlyrics.pane.autoLuckySearch();"/>
+
+									<menuitem id="contxtMultiFetchMenu"
+										label="&mlyrics.trackeditor.fbtnlabel;"
+										oncommand="mlyrics.pane.multiFetchMode.initMultiFetch();"/>
 									
 									<menuitem id="contxtRefreshTagMenu" 
 										label="&mlyrics.pane.contxtRefreshTag;" 
@@ -175,7 +179,6 @@
 				</hbox>
 			</vbox>
 
-			<window id="timetracks-scrollwindow">
 			<vbox flex="1">
 				<hbox>
 					<button id="prev-timetracks-button" label="&lt;&lt;&lt;" flex="3" oncommand="mlyrics.pane.editTimeTracks.nextLine(-1)"/>				
@@ -192,7 +195,38 @@
 					<button id="cancel-timetracks-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.editTimeTracks.onDiscard()"/>
 				</hbox>
 			</vbox>
-			</window>
+
+			<vbox flex="1">
+				<hbox id="ML-hbox-multi-fetch" style="overflow: auto;" flex="1"
+					onmouseover="mlyrics.pane.multiFetchMode.mouseover = true;"
+					onmouseout="mlyrics.pane.multiFetchMode.mouseover = false;">
+					
+					<vbox id="ML-vbox-multi-fetch-Tab" flex="1">
+						<button
+							id="ML-vbox-multi-fetch-tag"
+							label="Tag"
+							image="chrome://mlyrics/content/images/fetch.png"
+						/>
+						<textbox
+							multiline="true"
+							flex="1"
+							minheight="400"
+							minwidth="300"
+						/>
+						<button
+							label="Accept"
+							oncommand="mlyrics.pane.multiFetchMode.accept(this)"
+						/>
+					</vbox>
+				</hbox>
+
+				<progressmeter id="ML-progress-multi" mode="undetermined" />
+
+				<hbox>
+					<checkbox label="Hide empty" preference="prefHideEmptyText" oncommand="mlyrics.pane.multiFetchMode.onHideEmpty(this)"/>
+					<button id="cancel-multi-fetch-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.multiFetchMode.onDiscard()"/>
+				</hbox>
+			</vbox>
 		</deck>
 
 		<splitter id="mlyrics-btnsbox-splitter" onmouseover="mlyrics.pane.onBtnsboxSeparatorMouseover();" onmouseout="mlyrics.pane.onBtnsboxSeparatorMouseout();"/>

@@ -28,7 +28,7 @@ if (typeof(mlyrics.playlist) !== 'object') {
 		},
 		
 		onbatchcommand: function () {
-			var batchFetchWindow = openDialog("chrome://mlyrics/content/xul/batch.xul", "mlyrics batch", "chrome,centerscreen,resizable,modal=yes");
+			var batchFetchWindow = openDialog("chrome://mlyrics/content/xul/batch.xul", "mlyrics batch", "chrome,centerscreen,titlebar,resizable,modal=no");
 		}
 	}
 }
