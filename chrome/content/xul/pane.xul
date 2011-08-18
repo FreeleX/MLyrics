@@ -158,12 +158,12 @@
 			<vbox flex="1">
 				<hbox flex="1">
 					<vbox flex="1" style="margin:0">
-						<label value="Lyrics" style="font-weight:bold" />
+						<label value="&mlyrics.font.lyrics;" style="font-weight:bold" />
 						<textbox id="edit-content" multiline="true" flex="1" style="margin:0"/>
 					</vbox>
 					<splitter style="margin:0" width="15"/>
 					<vbox flex="1" style="margin:0">
-						<label value="Translation" style="font-weight:bold" />
+						<label value="&mlyrics.font.transLyrics;" style="font-weight:bold" />
 						<textbox id="edit-translContent" multiline="true" flex="1" style="margin:0"/>
 					</vbox>
 				</hbox>

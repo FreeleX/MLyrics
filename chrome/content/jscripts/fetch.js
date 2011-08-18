@@ -2724,7 +2724,7 @@ mlyrics.fetch = {
 										var oldPopularity = fetchObj.prefs.getIntPref("popularity_" + sources[counter]);
 										fetchObj.prefs.setIntPref("popularity_" + sources[counter], ++oldPopularity);
 									 }
-									 d
+									 
 									 fetchObj.docallback(gotLyrics, cbFn, ++counter);
 								 }
 							 }
