@@ -45,9 +45,6 @@
 					<hbox>
 						<menulist height="27" id="refreshMenuItem" label="&mlyrics.pane.contxtRefresh;">
 							<menupopup id="ML_sourcesPopup">
-								<menuitem label="&mlyrics.trackeditor.fbtnlabel;" image="chrome://mlyrics/content/images/fetch.png" oncommand="multiFetch();"/>
-								
-								<menuseparator />
 
 								<menuitem label="&mlyrics.pane.contxtRefreshObO;" 
 									  oncommand="onFetch(0, false)"/>
