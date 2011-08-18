@@ -989,6 +989,7 @@ mlyrics.fetch = {
 				if (respLyr== null || respLyr == "") return "";
 				
 				respLyr = respLyr.replace(/<br \/>/g, "&#10;");
+				respLyr = respLyr.replace(/<i>/g, "").replace(/<\/i>/g, "");
 				respLyr = this.specCharsDecode(respLyr);
 				respLyr = respLyr.replace(/\r\n/g, "\n");
 				
