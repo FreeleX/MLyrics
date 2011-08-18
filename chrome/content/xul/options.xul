@@ -101,9 +101,13 @@
 					</tabpanel>
 					
 					<tabpanel>
-						<vbox>
-							<hbox>
-								<vbox>
+						<grid flex="1">
+							<columns>
+								<column flex="1"/>
+								<column flex="1"/>
+							</columns>
+							<rows>
+								<row>
 									<groupbox flex="1" width="100%">
 										<caption label="&mlyrics.prefs.enabletranslatelabel;"/>
 										
@@ -189,9 +193,9 @@
 												flex="1"
 												rows="5" />
 									</groupbox>
-								</vbox>
+								</row>
 								
-								<vbox>
+								<row>
 									<groupbox flex="1" width="100%">
 										<caption label="&mlyrics.prefs.savelyricslabel;"/>
 										
@@ -211,13 +215,9 @@
 											<radio class="noWrap" label="&mlyrics.prefs.saveoptalways;" 	id="ALWAYSAVE" 	value="ALWAYSAVE" />
 										</radiogroup>
 									</groupbox>
-								</vbox>
-								
-								<spacer flex="1" />
-							</hbox>
-							
-							<spacer flex="1" />
-						</vbox>
+								</row>
+							</rows>
+						</grid>
 					</tabpanel>
 				</tabpanels>
 			</tabbox>
