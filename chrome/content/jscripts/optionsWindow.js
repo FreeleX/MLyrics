@@ -145,6 +145,7 @@ function enableUpDownButtons () {
 function enableTranslateLanguage (state) {
   document.getElementById("trLanguageMenu").disabled = !state;
   document.getElementById("trMetadataCheckbox").disabled = !state;
+  document.getElementById("ignoreLangListBox").disabled = !state;
   enableSaveTranslationBox(state)
 }
 
