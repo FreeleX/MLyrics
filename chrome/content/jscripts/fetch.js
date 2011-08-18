@@ -9,6 +9,7 @@ mlyrics.fetch = {
 	prefs: null,
 	cSourceURL: "",
 	fetchMediaItem: null,
+	fetchQueueNumber: 0,
 	
 	init: function () {
 		this.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.mlyrics.");
@@ -2643,8 +2644,7 @@ mlyrics.fetch = {
 		},
 	},
 	
-	fetchNext: function (artist, album, track, cbFn, counter, forceone, cbSProgress) {
-		
+	fetchNext: function (artist, album, track, cbFn, counter, forceone, cbSProgress, localFetchQueueNumber) {
 		if (!album) album = "";
 		
 		if (!artist || !track) {
@@ -2660,6 +2660,16 @@ mlyrics.fetch = {
 			this.docallback("", cbFn);
 			return;
 		}
+		
+		if (!localFetchQueueNumber) {
+			var localFetchQueueNumber = ++mlyrics.fetch.fetchQueueNumber;
+			mlyrics.lib.debugOutput("localFetchQueueNumber: " + localFetchQueueNumber);
+		}
+
+		if (localFetchQueueNumber < mlyrics.fetch.fetchQueueNumber) {
+			mlyrics.lib.debugOutput("Current fetch stopped because newer fetch is in progress");
+			return;
+		}
 
 		if (mlyrics.fetch.fetchNext.caller.name == "CheckNextSource") {
 			if (!mlyrics.fetch.fetchMediaItem) {
@@ -2671,7 +2681,7 @@ mlyrics.fetch = {
 				return;
 			}
 		}
-		
+
 		this.cSourceURL = this.prefs.getCharPref("laddress_" + sources[counter]);
 		this.cbSProgress = cbSProgress;
 		
@@ -2682,7 +2692,7 @@ mlyrics.fetch = {
 		var lm_webLoc = sources[counter];
 		
 		if (!this.prefs.getBoolPref("fetch_" + lm_webLoc) && !forceone) {
-			this.fetchNext (artist, album, track, cbFn, ++counter, false, cbSProgress);
+			this.fetchNext (artist, album, track, cbFn, ++counter, false, cbSProgress, localFetchQueueNumber);
 			return;
 		}
 		
@@ -2703,23 +2713,25 @@ mlyrics.fetch = {
 							 track,
 							 function CheckNextSource (gotLyrics) {
 								 if (!mlyrics.fetch.fetchMediaItem ||
-									 mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem) return;
+									mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem ||
+									localFetchQueueNumber < mlyrics.fetch.fetchQueueNumber) return;
 								 
 								 if (!forceone && ( !gotLyrics || gotLyrics == "" ) ) {
-									 fetchObj.fetchNext(artist, album, track, cbFn, ++counter, false, cbSProgress);
+									 fetchObj.fetchNext(artist, album, track, cbFn, ++counter, false, cbSProgress, localFetchQueueNumber);
 								 }
 								 else {
 									 if (!forceone) {
 										var oldPopularity = fetchObj.prefs.getIntPref("popularity_" + sources[counter]);
 										fetchObj.prefs.setIntPref("popularity_" + sources[counter], ++oldPopularity);
 									 }
+									 d
 									 fetchObj.docallback(gotLyrics, cbFn, ++counter);
 								 }
 							 }
 							);
 		}
 		else {
-			this.fetchNext(artist, album, track, cbFn, ++counter, false, cbSProgress);
+			this.fetchNext(artist, album, track, cbFn, ++counter, false, cbSProgress, localFetchQueueNumber);
 		}
 	},
 	
