@@ -2036,6 +2036,7 @@ mlyrics.pane = {
 		selectedItemStyle: "background-color: grey;",
 		oldItemStyle: "text-decoration:line-through; font-style: italic;",
 		currentIndex: 0,
+		savedWidth: 250,
 
 		init: function () {
 			if (mlyrics.pane.fullScreenMode.fullScreen) {
@@ -2045,6 +2046,13 @@ mlyrics.pane = {
 			
 			mlyrics.pane.mediaCoreManager.playbackControl.pause();
 			setTimeout(function () {mlyrics.pane.mediaCoreManager.playbackControl.play();}, 2000);
+
+			var mainwindow = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIWebNavigation)
+					.QueryInterface(Components.interfaces.nsIDocShellTreeItem).rootTreeItem
+					.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindow);
+
+			this.savedWidth = mlyrics.pane.displayPane.width;
+			mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 1/2;
 
 			this.restart();
 
@@ -2193,6 +2201,7 @@ mlyrics.pane = {
 		},
 
 		onDiscard: function () {
+			mlyrics.pane.displayPane.width = this.savedWidth;
 			document.getElementById("lm-deck").selectedIndex = 1;
 		},
 
