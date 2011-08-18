@@ -25,6 +25,8 @@ pref("extensions.mlyrics.translateMetadata", true);
 
 pref("extensions.mlyrics.lyricsViewMode", 2);
 
+pref("extensions.mlyrics.doNotLuckySearchSites", "youtube.com,mp3searchy.com,www.salestron.com");
+
 // Font style block begin
 // ----------------------
 pref("extensions.mlyrics.styleSheet", "chrome://songbird/skin/mlyrics.css");

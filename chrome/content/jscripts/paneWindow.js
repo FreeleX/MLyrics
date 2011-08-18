@@ -1058,10 +1058,14 @@ mlyrics.pane = {
 
 		if (!artist || !track) return;
 
+		var doNotLuckySearchSites = mlyrics.pane.prefs.getCharPref("doNotLuckySearchSites").split(",");
+		var sitesExceptionStr = "";
+		for (var i=0; i<doNotLuckySearchSites.length; i++) {
+			sitesExceptionStr += "%20-site:" + doNotLuckySearchSites[i];
+		}
+
 		var goUri = "http://www.google.com/search?btnI=i&q=lyrics%20" +
-				encodeURIComponent(artist) + "%20" + encodeURIComponent(track) +
-				"%20-site:youtube.com" +
-				"%20-site:mp3searchy.com";
+				encodeURIComponent(artist) + "%20" + encodeURIComponent(track) + sitesExceptionStr;
 
 		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
 		var nsIURI = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService).newURI("http://www.google.com", null, null);
