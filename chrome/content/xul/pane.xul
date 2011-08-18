@@ -152,8 +152,24 @@
 			</vbox>
 		
 			<vbox flex="1">
-				<textbox id="edit-content" multiline="true" flex="1" />
+				<hbox flex="1">
+					<vbox flex="1" style="margin:0">
+						<label value="Lyrics" style="font-weight:bold" />
+						<textbox id="edit-content" multiline="true" flex="1" style="margin:0"/>
+					</vbox>
+					<splitter style="margin:0" width="15"/>
+					<vbox flex="1" style="margin:0">
+						<label value="Translation" style="font-weight:bold" />
+						<textbox id="edit-translContent" multiline="true" flex="1" style="margin:0"/>
+					</vbox>
+				</hbox>
+				
+				<label id="edit-trackInfo" style="font-weight:bold; font-style:italic" value="" />
 				<hbox>
+					<hbox id="nextPrevBtnsHboxEdit" hidden="true">
+						<toolbarbutton image="chrome://mlyrics/content/images/back-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.selectPrev()"/>
+						<toolbarbutton image="chrome://mlyrics/content/images/next-icon.png" oncommand="mlyrics.pane.mediaItemSelectListener.selectNext()"/>
+					</hbox>
 					<button label="&mlyrics.pane.saveButton;" flex="1" tooltiptext="Ctrl+S" oncommand="mlyrics.pane.editMode.onAccept()"/>
 					<button label="&mlyrics.pane.cancelButton;" flex="3" oncommand="mlyrics.pane.editMode.onDiscard()"/>
 				</hbox>

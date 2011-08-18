@@ -14,7 +14,7 @@ function onfLoad() {
 	tagBtn.setAttribute("oncommand", "refreshFromTag(this)");
 	
 	var trackDataObj = window.opener.document.getElementById("lyrics-editor").trackData;
-	document.title += "  [ " + trackDataObj.artist + " - " + trackDataObj.album + " - " + trackDataObj.track + " ]";
+	document.title += " ( " + trackDataObj.track + " [" + trackDataObj.artist + " - " + trackDataObj.album + "] )";
 	
 	createNext(0);
 }
