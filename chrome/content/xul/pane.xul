@@ -223,7 +223,7 @@
 				<progressmeter id="ML-progress-multi" mode="undetermined" />
 
 				<hbox>
-					<checkbox label="Hide empty" preference="prefHideEmptyText" oncommand="mlyrics.pane.multiFetchMode.onHideEmpty(this)"/>
+					<checkbox id="hideEmptyCheckbox" label="Hide empty" oncommand="mlyrics.pane.multiFetchMode.onHideEmpty(this)"/>
 					<button id="cancel-multi-fetch-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.multiFetchMode.onDiscard()"/>
 				</hbox>
 			</vbox>
@@ -241,9 +241,6 @@
 			<spacer flex="1" hidden="true" />
 			<toolbarbutton 	id="scrollEnabledBtn" type="checkbox" image="chrome://mlyrics/content/images/scroll-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.contxtScrollEnabled;" 
 					hidden="true" oncommand="mlyrics.pane.positionListener.enableScroll(this.checked);mlyrics.pane.hideBtnsbox(true, true);" />
-			<spacer flex="1" hidden="true" />
-			<toolbarbutton 	id="showSelectedBtn" type="checkbox" image="chrome://mlyrics/content/images/now-selected-icon.png" style="margin:0" tooltiptext="&mlyrics.pane.showSelected;" 
-					hidden="true" oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.checked);mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1" hidden="true" />
 			<label id="accelerateScaleValueLabel" style="margin:0; text-align:center" value="0" tooltiptext="&mlyrics.pane.accelerator;" />
 			<scale id="accelerateScale" orient="vertical" minwidth="35" maxwidth="35" flex="5" style="margin:0" min="-4" max="100" value="0" tooltiptext="&mlyrics.pane.accelerator;"
@@ -280,6 +277,8 @@
 			<toolbarbutton 	id="removeTimeTracksBtn" image="chrome://mlyrics/content/images/noclock.png"  style="margin:0" tooltiptext="&mlyrics.pane.removeTimeTracks;" 
 					hidden="true" oncommand="mlyrics.pane.editTimeTracks.remove();mlyrics.pane.hideBtnsbox(true, true);" />
 			<spacer flex="1"/>
+			<toolbarbutton 	id="showSelectedBtn" type="checkbox" image="chrome://mlyrics/content/images/now-selected-icon.png" tooltiptext="&mlyrics.pane.showSelected;"
+					hidden="false" oncommand="mlyrics.pane.mediaItemSelectListener.enableOnSelect(this.checked);mlyrics.pane.hideBtnsbox(true, true);" />
 			<toolbarbutton 	id="fullScreenBtn" image="chrome://mlyrics/content/images/full-screen.png" tooltiptext="&menu.fullscreen;"
 				hidden="false" oncommand="mlyrics.pane.hideBtnsbox(true, true);mlyrics.pane.fullScreenMode.switch();" />
 		</vbox>

@@ -2249,6 +2249,10 @@ mlyrics.pane = {
 				parent.removeChild(parent.lastChild);
 			}
 
+			var hideEmptyCheckbox = document.getElementById("hideEmptyCheckbox");
+			hideEmptyCheckbox.checked = mlyrics.pane.prefs.getBoolPref("multiHideEmpty");
+			this.onHideEmpty(hideEmptyCheckbox);
+
 			var tagBtn = document.getElementById("ML-vbox-multi-fetch-tag");
 			this.refreshFromTag(tagBtn);
 
@@ -2358,6 +2362,7 @@ mlyrics.pane = {
 				if (hbox.childNodes[i].childNodes[1].value == "" && hbox.childNodes[i].id != "ML-vbox-multi-fetch-Tab")
 					hbox.childNodes[i].hidden = checkbox.checked;
 			}
+			mlyrics.pane.prefs.setBoolPref("multiHideEmpty", !!checkbox.checked);
 		}
 	},
 	
@@ -2506,7 +2511,7 @@ mlyrics.pane = {
 				if (document.getElementById("lm-deck").selectedIndex == 2) {
 					mlyrics.pane.editMode.onViewUpdate();
 				}
-				else {
+				if (document.getElementById("lm-deck").selectedIndex == 1) {
 
 					// Remove notifications
 					var mTop = document.getElementById("infobar");
