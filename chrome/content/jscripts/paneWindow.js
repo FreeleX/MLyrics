@@ -2582,10 +2582,12 @@ mlyrics.pane = {
 			if (enable == -1) {
 				if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
 					document.getElementById("showSelectedBtn").checked = true;
+					document.getElementById("showSelectedMenuItem").setAttribute("checked", true);
 					document.getElementById("nextPrevBtnsHbox").hidden = false;
 				}
 				else {
 					document.getElementById("showSelectedBtn").checked = false;
+					document.getElementById("showSelectedMenuItem").setAttribute("checked", false);
 					document.getElementById("nextPrevBtnsHbox").hidden = true;
 				}
 			}
@@ -2593,11 +2595,13 @@ mlyrics.pane = {
 				if (enable) {
 					mlyrics.pane.prefs.setBoolPref("showNowSelected", true);
 					document.getElementById("showSelectedBtn").checked = true;
+					document.getElementById("showSelectedMenuItem").setAttribute("checked", true);
 					document.getElementById("nextPrevBtnsHbox").hidden = false;
 				}
 				else {
 					mlyrics.pane.prefs.setBoolPref("showNowSelected", false);
 					document.getElementById("showSelectedBtn").checked = false;
+					document.getElementById("showSelectedMenuItem").setAttribute("checked", false);
 					document.getElementById("nextPrevBtnsHbox").hidden = true;
 					
 					mlyrics.pane.showInfo(mlyrics.pane.playlistPlaybackServiceListener.curMediaItem);
