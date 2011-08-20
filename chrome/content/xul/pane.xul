@@ -224,7 +224,7 @@
 
 				<hbox>
 					<checkbox id="hideEmptyCheckbox" label="Hide empty" oncommand="mlyrics.pane.multiFetchMode.onHideEmpty(this)"/>
-					<button id="cancel-multi-fetch-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.multiFetchMode.onDiscard()"/>
+					<button id="cancel-multi-fetch-button" label="&mlyrics.pane.cancelButton;" flex="1" oncommand="mlyrics.pane.multiFetchMode.onClose()"/>
 				</hbox>
 			</vbox>
 		</deck>
