@@ -2523,6 +2523,7 @@ mlyrics.pane = {
 		mediaListView: null,
 		
 		start: function () {
+			mlyrics.lib.debugOutput("mediaItemSelectListemer loaded");
 			if (!mlyrics.pane.mediaItemSelectListener.timer)
 				mlyrics.pane.mediaItemSelectListener.timer = setInterval("mlyrics.pane.mediaItemSelectListener.updatePaneInfo()", 50);
 			
@@ -2548,6 +2549,11 @@ mlyrics.pane = {
 			if (force || mlyrics.pane.mediaItemSelectListener.curMediaItem != mediaSelection.currentMediaItem) {
 				mlyrics.pane.mediaItemSelectListener.curMediaItem = mediaSelection.currentMediaItem;
 
+				mlyrics.lib.debugOutput("Selection changed");
+
+				if (document.getElementById("lm-deck").selectedIndex == 0) {
+					document.getElementById("lm-deck").selectedIndex = 1;
+				}
 				if (document.getElementById("lm-deck").selectedIndex == 2) {
 					mlyrics.pane.editMode.onViewUpdate();
 				}
