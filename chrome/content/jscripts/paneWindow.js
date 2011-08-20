@@ -1997,11 +1997,11 @@ mlyrics.pane = {
 				
 				mlyrics.pane.saveLyrics("", "", mlyrics.pane.editMode.editMediaItem, editedLyrics + this.delimiter + editedTranslation, mlyrics.pane.editMode.lyricsSource);
 			}
-			
-			mlyrics.pane.contextRefresh();
 
 			mlyrics.pane.displayPane.width = this.savedWidth;
+
 			document.getElementById("lm-deck").selectedIndex = 1;
+			mlyrics.pane.contextRefresh();
 		},
 		
 		onDiscard: function () {
