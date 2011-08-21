@@ -1828,6 +1828,11 @@ mlyrics.pane = {
 			if (typeof(mode) == 'undefined') {
 				var mode = mlyrics.pane.prefs.getIntPref("lyricsViewMode");
 			}
+
+			if (mode == 3) { // Show as is mode needs to be deactivated
+				mode = 2;
+				mlyrics.pane.prefs.setIntPref("lyricsViewMode", mode);
+			}
 			
 			document.getElementById("viewModeMenuBtnItem0").setAttribute("checked", "false");
 			document.getElementById("viewModeMenuBtnItem1").setAttribute("checked", "false");

@@ -44,7 +44,7 @@
 			<menuitem id="viewModeMenuItem1" label="&mlyrics.pane.viewModeMenu1;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(1);" />
 			<menuitem id="viewModeMenuItem2" label="&mlyrics.pane.viewModeMenu2;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(2);" />
 			<menuitem id="viewModeMenuItem4" label="&mlyrics.pane.viewModeMenu4;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(4);" />
-			<menuitem id="viewModeMenuItem3" label="&mlyrics.pane.viewModeMenu3;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(3);" />
+			<menuitem id="viewModeMenuItem3" label="&mlyrics.pane.viewModeMenu3;" type="checkbox" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-tagwhite.png" oncommand="mlyrics.pane.viewMode.change(3);" hidden="true"/>
 			<menuseparator />
 			<menuitem id="configFontMenuItem" label="&mlyrics.font.confFont;" class="menuitem-iconic" image="chrome://mlyrics/content/images/skins-icon.png"
 				oncommand="window.openDialog('chrome://mlyrics/content/xul/font.xul','','chrome,titlebar,toolbar,centerscreen,dialog=yes,resizable=yes', mlyrics.pane.fullScreenMode.fullScreen);" />
@@ -252,7 +252,7 @@
 					<menuitem id="viewModeMenuBtnItem1" label="&mlyrics.pane.viewModeMenu1;" oncommand="mlyrics.pane.viewMode.change(1);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
 					<menuitem id="viewModeMenuBtnItem2" label="&mlyrics.pane.viewModeMenu2;" oncommand="mlyrics.pane.viewMode.change(2);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
 					<menuitem id="viewModeMenuBtnItem4" label="&mlyrics.pane.viewModeMenu4;" oncommand="mlyrics.pane.viewMode.change(4);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
-					<menuitem id="viewModeMenuBtnItem3" label="&mlyrics.pane.viewModeMenu3;" oncommand="mlyrics.pane.viewMode.change(3);mlyrics.pane.hideBtnsbox(true, true);" checked="false"/>
+					<menuitem id="viewModeMenuBtnItem3" label="&mlyrics.pane.viewModeMenu3;" oncommand="mlyrics.pane.viewMode.change(3);mlyrics.pane.hideBtnsbox(true, true);" checked="false" hidden="true"/>
 				</menupopup>
 			</toolbarbutton>
 			<spacer flex="1" hidden="true" />
