@@ -1958,21 +1958,32 @@ mlyrics.pane = {
 				lyrics = "";
 				var originalLyrics = "";
 				var translatedLyrics = "";
+				var j=0;
 				for (var i=0; i<lyricsOrigArray.length; i++) {
 						if (lyricsOrigArray[i].replace(/^\s+|\s+$/g, '') == '') { //That's a trim
-								lyrics = lyrics + "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p><br><p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p><br><br><br>";
+								lyrics = lyrics +
+									"<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p>" +
+									"<label id='mlyrics_lyrics_row" + (j++) + "' />" + // Empty row must be enumerated too
+									"<br>" +
+									"<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p>" +
+									"<br><br><br>";
 								originalLyrics = "";
 								translatedLyrics = "";
 						} else {
-								originalLyrics += (originalLyrics == "" ? "" : "<br>") + lyricsOrigArray[i];
-								translatedLyrics += (translatedLyrics == "" ? "" : "<br>") + lyricsTransArray[i];
+								originalLyrics += (originalLyrics == "" ? "" : "<br>") + "<label id='mlyrics_lyrics_row" + (j++) + "'>" + lyricsOrigArray[i] + "</label>";
+								translatedLyrics += (translatedLyrics == "" ? "" : "<br>") + "<label>" + lyricsTransArray[i] + "</label>";
 						}
 				}
 				if (originalLyrics != "") {
-					lyrics = lyrics + "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p><br><p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p><br><br>";
+					lyrics = lyrics +
+						"<p class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + originalLyrics + "</p>" +
+						"<br>" +
+						"<p class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + translatedLyrics + "</p>" +
+						"<br><br>";
 				}
-			}                       
-			return lyrics;                  
+			}
+			
+			return lyrics;
 		}
 	},
 	
