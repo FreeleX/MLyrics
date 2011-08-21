@@ -1867,21 +1867,25 @@ mlyrics.pane = {
 			if (typeof(mode) == 'undefined') {
 				var mode = mlyrics.pane.prefs.getIntPref("lyricsViewMode");
 			}
-			
+
+			function getOnlyOriginalView () {
+				var lyricsOrigArray = lyrics.substring(0, translDelimPos1).split("\n");
+				var lyricsStyleProps = "";
+
+				lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
+
+				lyrics = "";
+				for (var i=0; i<lyricsOrigArray.length; i++) {
+					if (lyricsOrigArray[i] == "") lyrics += "<br>";
+					var transLyricsStyleProps = "";
+					lyrics += "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
+				}
+			}
+
 			switch (mode) {
 				
 				case 0:
-					var lyricsOrigArray = lyrics.substring(0, translDelimPos1).split("\n");
-					var lyricsStyleProps = "";
-					
-					lyricsStyleProps = mlyrics.pane.getStyleProperty("lyrics");
-					
-					lyrics = "";
-					for (var i=0; i<lyricsOrigArray.length; i++) {
-						if (lyricsOrigArray[i] == "") lyrics += "<br>";
-						var transLyricsStyleProps = "";
-						lyrics += "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + lyricsStyleProps + "'>" + lyricsOrigArray[i] + "</p>";
-					}
+					getOnlyOriginalView();
 					break;
 					
 				case 1:
@@ -1896,6 +1900,10 @@ mlyrics.pane = {
 							if (lyricsTransArray[i] == "") lyrics += "<br>";
 							lyrics += "<p id='mlyrics_lyrics_row" + i + "' class='mlyrics_lyrics' style='" + transLyricsStyleProps + "'>" + lyricsTransArray[i] + "</p>";
 						}
+					}
+					else {
+						mlyrics.lib.debugOutput("No translation found, view mode switched to show only original lyrics");
+						getOnlyOriginalView();
 					}
 					break;
 					
@@ -2696,6 +2704,7 @@ mlyrics.pane = {
 		corrArrayDimen: 20, 
 		playPart: 0,
 		iframe: null,
+		timeTracksCurrentRowIndex: 0,
 
 		constShowDelayMiliSec: 500,
 
@@ -2805,7 +2814,7 @@ mlyrics.pane = {
 				var maxHeight = this.lyricsMaxHeight;
 			}
 
-			var nowScrollTo = 0;
+			var nowScrollTo = NaN;
 
 			// Time tracks scrolling
 			if (this.timeArray.length > 1) {
@@ -2814,14 +2823,22 @@ mlyrics.pane = {
 				for (var i=0; i<this.timeArray.length-1; i++) {
 					if (	position >= this.timeArray[i]  && 
 						position < this.timeArray[i+1] ) {
-
+						
 						var currLineTimeLen = this.timeArray[i+1] - this.timeArray[i];	// Real current line scroll duration
 						var currLineTimeElapsed = position - this.timeArray[i];		// How much we scrolled already
 
 						var speedIndex = currLineTimeElapsed/currLineTimeLen;		// How much in percents we need to scroll between lines
+
+						var firstItem = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + i);
+						var firstOffset  = firstItem.offsetTop;
 						
-						var firstOffset  = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + i).offsetTop;
-						var secondOffset = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (i+1)).offsetTop;
+						var secondItem = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (i+1));
+						if (!secondItem) {
+							var secondOffset = firstOffset;
+						}
+						else {
+							var secondOffset = secondItem.offsetTop;
+						}
 
 						nowScrollTo = firstOffset + (secondOffset - firstOffset) * speedIndex;
 
@@ -2843,8 +2860,16 @@ mlyrics.pane = {
 
 						var linePairsNumber = i; // Indicates line pairs nimber (not line number)
 
-						var firstOffset  = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + linePairsNumber*2).offsetTop;
-						var secondOffset = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (linePairsNumber+1)*2).offsetTop;
+						var firstItem = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + linePairsNumber*2);
+						var firstOffset  = firstItem.offsetTop;
+
+						var secondItem = this.iframe.contentDocument.getElementById("mlyrics_lyrics_row" + (linePairsNumber+1)*2);
+						if (!secondItem) {
+							var secondOffset = firstOffset;
+						}
+						else {
+							var secondOffset = secondItem.offsetTop;
+						}
 
 						nowScrollTo = firstOffset + (secondOffset - firstOffset) * speedIndex;
 
@@ -2859,6 +2884,8 @@ mlyrics.pane = {
 				this.playPart = playPart;
 				nowScrollTo = this.playPart * maxHeight;
 			}
+
+			if (isNaN(nowScrollTo)) return;
 			
 			var scrollTop = document.getElementById('lm-content').contentWindow.document.body.scrollTop;
 			var intPart = parseInt(scrollTop/maxHeight * this.corrArrayDimen);
