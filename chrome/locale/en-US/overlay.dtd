@@ -110,6 +110,7 @@
 <!ENTITY mlyrics.font.album "Album">
 <!ENTITY mlyrics.font.lyrics "Lyrics">
 <!ENTITY mlyrics.font.transLyrics "Translated Lyrics">
+<!ENTITY mlyrics.font.lrcLyrics "Time Track">
 <!ENTITY mlyrics.font.opacityLabel "Opacity:">
 <!ENTITY mlyrics.font.colorLabel "Color:">
 <!ENTITY mlyrics.font.bgColorLabel "BG Color:">

@@ -244,120 +244,140 @@ mlyrics.pane = {
 				case fullScreenStr + "backgroundColor":
 				
 				case fullScreenStr + "lyricsSize":
+				case fullScreenStr + "lrcLyricsSize":
 				case fullScreenStr + "transLyricsSize":
 				case fullScreenStr + "artistSize":
 				case fullScreenStr + "albumSize":
 				case fullScreenStr + "titleSize":
 				
 				case fullScreenStr + "lyricsColor":
+				case fullScreenStr + "lrcLyricsColor":
 				case fullScreenStr + "transLyricsColor":
 				case fullScreenStr + "artistColor":
 				case fullScreenStr + "albumColor":
 				case fullScreenStr + "titleColor":
 
 				case fullScreenStr + "lyricsBGColorEnable":
+				case fullScreenStr + "lrcLyricsBGColorEnable":
 				case fullScreenStr + "transLyricsBGColorEnable":
 				case fullScreenStr + "artistBGColorEnable":
 				case fullScreenStr + "albumBGColorEnable":
 				case fullScreenStr + "titleBGColorEnable":
 					
 				case fullScreenStr + "lyricsBGColor":
+				case fullScreenStr + "lrcLyricsBGColor":
 				case fullScreenStr + "transLyricsBGColor":
 				case fullScreenStr + "artistBGColor":
 				case fullScreenStr + "albumBGColor":
 				case fullScreenStr + "titleBGColor":
 					
 				case fullScreenStr + "lyricsAlign":
+				case fullScreenStr + "lrcLyricsAlign":
 				case fullScreenStr + "transLyricsAlign":
 				case fullScreenStr + "artistAlign":
 				case fullScreenStr + "albumAlign":
 				case fullScreenStr + "titleAlign":
 					
 				case fullScreenStr + "lyricsOpacity":
+				case fullScreenStr + "lrcLyricsOpacity":
 				case fullScreenStr + "transLyricsOpacity":
 				case fullScreenStr + "artistOpacity":
 				case fullScreenStr + "albumOpacity":
 				case fullScreenStr + "titleOpacity":
 					
 				case fullScreenStr + "lyricsBold":
+				case fullScreenStr + "lrcLyricsBold":
 				case fullScreenStr + "transLyricsBold":
 				case fullScreenStr + "artistBold":
 				case fullScreenStr + "albumBold":
 				case fullScreenStr + "titleBold":
 					
 				case fullScreenStr + "lyricsItalic":
+				case fullScreenStr + "lrcLyricsItalic":
 				case fullScreenStr + "transLyricsItalic":
 				case fullScreenStr + "artistItalic":
 				case fullScreenStr + "albumItalic":
 				case fullScreenStr + "titleItalic":
 					
 				case fullScreenStr + "lyricsUnderlined":
+				case fullScreenStr + "lrcLyricsUnderlined":
 				case fullScreenStr + "transLyricsUnderlined":
 				case fullScreenStr + "artistUnderlined":
 				case fullScreenStr + "albumUnderlined":
 				case fullScreenStr + "titleUnderlined":
 					
 				case fullScreenStr + "lyricsMarginTop":
+				case fullScreenStr + "lrcLyricsMarginTop":
 				case fullScreenStr + "transLyricsMarginTop":
 				case fullScreenStr + "artistMarginTop":
 				case fullScreenStr + "albumMarginTop":
 				case fullScreenStr + "titleMarginTop":
 					
 				case fullScreenStr + "lyricsMarginBottom":
+				case fullScreenStr + "lrcLyricsMarginBottom":
 				case fullScreenStr + "transLyricsMarginBottom":
 				case fullScreenStr + "artistMarginBottom":
 				case fullScreenStr + "albumMarginBottom":
 				case fullScreenStr + "titleMarginBottom":
 
 				case fullScreenStr + "lyricsFont":
+				case fullScreenStr + "lrcLyricsFont":
 				case fullScreenStr + "transLyricsFont":
 				case fullScreenStr + "artistFont":
 				case fullScreenStr + "albumFont":
 				case fullScreenStr + "titleFont":
 
 				case fullScreenStr + "lyricsStyleEnable":
+				case fullScreenStr + "lrcLyricsStyleEnable":
 				case fullScreenStr + "transLyricsStyleEnable":
 				case fullScreenStr + "artistStyleEnable":
 				case fullScreenStr + "albumStyleEnable":
 				case fullScreenStr + "titleStyleEnable":
 
 				case fullScreenStr + "lyricsAlignEnable":
+				case fullScreenStr + "lrcLyricsAlignEnable":
 				case fullScreenStr + "transLyricsAlignEnable":
 				case fullScreenStr + "artistAlignEnable":
 				case fullScreenStr + "albumAlignEnable":
 				case fullScreenStr + "titleAlignEnable":
 
 				case fullScreenStr + "lyricsColorEnable":
+				case fullScreenStr + "lrcLyricsColorEnable":
 				case fullScreenStr + "transLyricsColorEnable":
 				case fullScreenStr + "artistColorEnable":
 				case fullScreenStr + "albumColorEnable":
 				case fullScreenStr + "titleColorEnable":
 
 				case fullScreenStr + "lyricsBGColorEnable":
+				case fullScreenStr + "lrcLyricsBGColorEnable":
 				case fullScreenStr + "transLyricsBGColorEnable":
 				case fullScreenStr + "artistBGColorEnable":
 				case fullScreenStr + "albumBGColorEnable":
 				case fullScreenStr + "titleBGColorEnable":
 
 				case fullScreenStr + "lyricsSizeEnable":
+				case fullScreenStr + "lrcLyricsSizeEnable":
 				case fullScreenStr + "transLyricsSizeEnable":
 				case fullScreenStr + "artistSizeEnable":
 				case fullScreenStr + "albumSizeEnable":
 				case fullScreenStr + "titleSizeEnable":
 
 				case fullScreenStr + "lyricsMarginTopEnable":
+				case fullScreenStr + "lrcLyricsMarginTopEnable":
 				case fullScreenStr + "transLyricsMarginTopEnable":
 				case fullScreenStr + "artistMarginTopEnable":
 				case fullScreenStr + "albumMarginTopEnable":
 				case fullScreenStr + "titleMarginTopEnable":
 
 				case fullScreenStr + "lyricsMarginBottomEnable":
+				case fullScreenStr + "lrcLyricsMarginBottomEnable":
 				case fullScreenStr + "transLyricsMarginBottomEnable":
 				case fullScreenStr + "artistMarginBottomEnable":
 				case fullScreenStr + "albumMarginBottomEnable":
 				case fullScreenStr + "titleMarginBottomEnable":
 
 				case fullScreenStr + "lyricsFontEnable":
+				case fullScreenStr + "lrcLyricsFontEnable":
 				case fullScreenStr + "transLyricsFontEnable":
 				case fullScreenStr + "artistFontEnable":
 				case fullScreenStr + "albumFontEnable":
@@ -2841,6 +2861,14 @@ mlyrics.pane = {
 						}
 
 						nowScrollTo = firstOffset + (secondOffset - firstOffset) * speedIndex;
+
+						if (i != this.timeTracksCurrentRowIndex) {
+							this.timeTracksCurrentRowIndex = i;
+							var currentClasses = firstItem.getAttribute("class");
+							if (!currentClasses || currentClasses.indexOf("timetracked") == -1)
+								firstItem.setAttribute("class", currentClasses + " timetracked");
+							firstItem.setAttribute("style", mlyrics.pane.getStyleProperty("lrcLyrics"));
+						}
 
 						break;
 					}

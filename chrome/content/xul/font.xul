@@ -48,14 +48,15 @@
 			</menulist>
 		</groupbox>
 
-		<tabbox>
-			<tabs>
+		<tabbox orient="horizontal">
+			<tabs orient="vertical">
 				<tab label="&mlyrics.font.background;" />
 				<tab label="&mlyrics.font.title;" />
 				<tab label="&mlyrics.font.artist;" />
 				<tab label="&mlyrics.font.album;" />
 				<tab label="&mlyrics.font.lyrics;" />
 				<tab label="&mlyrics.font.transLyrics;" />
+				<tab label="&mlyrics.font.lrcLyrics;" />
 			</tabs>
 
 			<tabpanels>
@@ -475,6 +476,82 @@
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="transLyricsFontEnable" />
+
+								<label value="&mlyrics.font.fontLabel;" />
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+
+				<groupbox>
+					<grid flex="1">
+						<columns>
+							<column />
+							<column />
+							<column />
+						</columns>
+
+						<rows>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsStyleEnable" />
+								<label value="&mlyrics.font.fontStyleLabel;" />
+								<hbox>
+									<spacer flex="1" />
+									<button id="lrcLyricsBoldButton" label="B" style="font-weight:bold" type="checkbox" disabled="true" />
+									<spacer flex="1" />
+									<button id="lrcLyricsItalicButton" label="i" style="font-style:italic" type="checkbox" disabled="true" />
+									<spacer flex="1" />
+									<button id="lrcLyricsUnderlinedButton" label="U" style="text-decoration:underline" type="checkbox" disabled="true" />
+									<spacer flex="1" />
+								</hbox>
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsAlignEnable" />
+								<label value="&mlyrics.font.alignLabel;" />
+								<menulist id="lrcLyricsAlign" disabled="true" >
+									<menupopup>
+										<menuitem label="&mlyrics.font.leftLabel;" value="L" />
+										<menuitem label="&mlyrics.font.centerLabel;" value="C" />
+										<menuitem label="&mlyrics.font.rightLabel;" value="R" />
+									</menupopup>
+								</menulist>
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsColorEnable" />
+
+								<label value="&mlyrics.font.colorLabel;" />
+								<colorpicker id="lrcLyricsColor" type="button" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsBGColorEnable" />
+
+								<label value="&mlyrics.font.bgColorLabel;" />
+								<colorpicker id="lrcLyricsBGColor" type="button" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<label />
+								<label value="&mlyrics.font.opacityLabel;" />
+								<textbox id="lrcLyricsOpacity" type="number" size="4" min="1" max="10" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsSizeEnable" />
+								<label value="&mlyrics.font.sizeLabel;" />
+								<textbox id="lrcLyricsSize" type="number" size="4" min="8" max="75" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsMarginTopEnable" />
+
+								<label value="&mlyrics.font.topSpace;" />
+								<textbox id="lrcLyricsMarginTop" type="number" size="4" min="0" max="1000" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsMarginBottomEnable" />
+
+								<label value="&mlyrics.font.bottomSpace;" />
+								<textbox id="lrcLyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsFontEnable" />
 
 								<label value="&mlyrics.font.fontLabel;" />
 							</row>

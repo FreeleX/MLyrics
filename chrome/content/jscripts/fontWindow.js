@@ -41,6 +41,11 @@ function onload () {
 	transLyricsFontNode.id = "transLyricsFont";
 	transLyricsFontNode.hidden = false;
 	document.getElementById("transLyricsFontEnable").parentNode.appendChild(transLyricsFontNode);
+
+	var lrcLyricsFontNode = fontNode.cloneNode(true);
+	lrcLyricsFontNode.id = "lrcLyricsFont";
+	lrcLyricsFontNode.hidden = false;
+	document.getElementById("lrcLyricsFontEnable").parentNode.appendChild(lrcLyricsFontNode);
 	// Font menu cloning end
 
 	document.getElementById("styleSheet").value = prefs.getCharPref(fullScreenStr + "styleSheet")
@@ -68,121 +73,143 @@ function onload () {
 	document.getElementById("albumSize").value = prefs.getIntPref(fullScreenStr + "albumSize");
 	document.getElementById("lyricsSize").value = prefs.getIntPref(fullScreenStr + "lyricsSize");
 	document.getElementById("transLyricsSize").value = prefs.getIntPref(fullScreenStr + "transLyricsSize");
+	document.getElementById("lrcLyricsSize").value = prefs.getIntPref(fullScreenStr + "lrcLyricsSize");
 	document.getElementById("titleSize").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'titleSize', this.value)");
 	document.getElementById("artistSize").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'artistSize', this.value)");
 	document.getElementById("albumSize").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumSize', this.value)");
 	document.getElementById("lyricsSize").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsSize', this.value)");
 	document.getElementById("transLyricsSize").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsSize', this.value)");
+	document.getElementById("lrcLyricsSize").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lrcLyricsSize', this.value)");
 	
 	document.getElementById("titleBoldButton").checked = prefs.getBoolPref(fullScreenStr + "titleBold");
 	document.getElementById("artistBoldButton").checked = prefs.getBoolPref(fullScreenStr + "artistBold");
 	document.getElementById("albumBoldButton").checked = prefs.getBoolPref(fullScreenStr + "albumBold");
 	document.getElementById("lyricsBoldButton").checked = prefs.getBoolPref(fullScreenStr + "lyricsBold");
 	document.getElementById("transLyricsBoldButton").checked = prefs.getBoolPref(fullScreenStr + "transLyricsBold");
+	document.getElementById("lrcLyricsBoldButton").checked = prefs.getBoolPref(fullScreenStr + "lrcLyricsBold");
 	document.getElementById("titleBoldButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'titleBold', this.checked)");
 	document.getElementById("artistBoldButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'artistBold', this.checked)");
 	document.getElementById("albumBoldButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'albumBold', this.checked)");
 	document.getElementById("lyricsBoldButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'lyricsBold', this.checked)");
 	document.getElementById("transLyricsBoldButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'transLyricsBold', this.checked)");
+	document.getElementById("lrcLyricsBoldButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'lrcLyricsBold', this.checked)");
 	
 	document.getElementById("titleItalicButton").checked = prefs.getBoolPref(fullScreenStr + "titleItalic");
 	document.getElementById("artistItalicButton").checked = prefs.getBoolPref(fullScreenStr + "artistItalic");
 	document.getElementById("albumItalicButton").checked = prefs.getBoolPref(fullScreenStr + "albumItalic");
 	document.getElementById("lyricsItalicButton").checked = prefs.getBoolPref(fullScreenStr + "lyricsItalic");
 	document.getElementById("transLyricsItalicButton").checked = prefs.getBoolPref(fullScreenStr + "transLyricsItalic");
+	document.getElementById("lrcLyricsItalicButton").checked = prefs.getBoolPref(fullScreenStr + "lrcLyricsItalic");
 	document.getElementById("titleItalicButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'titleItalic', this.checked)");
 	document.getElementById("artistItalicButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'artistItalic', this.checked)");
 	document.getElementById("albumItalicButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'albumItalic', this.checked)");
 	document.getElementById("lyricsItalicButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'lyricsItalic', this.checked)");
 	document.getElementById("transLyricsItalicButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'transLyricsItalic', this.checked)");
+	document.getElementById("lrcLyricsItalicButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'lrcLyricsItalic', this.checked)");
 	
 	document.getElementById("titleUnderlinedButton").checked = prefs.getBoolPref(fullScreenStr + "titleUnderlined");
 	document.getElementById("artistUnderlinedButton").checked = prefs.getBoolPref(fullScreenStr + "artistUnderlined");
 	document.getElementById("albumUnderlinedButton").checked = prefs.getBoolPref(fullScreenStr + "albumUnderlined");
 	document.getElementById("lyricsUnderlinedButton").checked = prefs.getBoolPref(fullScreenStr + "lyricsUnderlined");
 	document.getElementById("transLyricsUnderlinedButton").checked = prefs.getBoolPref(fullScreenStr + "transLyricsUnderlined");
+	document.getElementById("lrcLyricsUnderlinedButton").checked = prefs.getBoolPref(fullScreenStr + "lrcLyricsUnderlined");
 	document.getElementById("titleUnderlinedButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'titleUnderlined', this.checked)");
 	document.getElementById("artistUnderlinedButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'artistUnderlined', this.checked)");
 	document.getElementById("albumUnderlinedButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'albumUnderlined', this.checked)");
 	document.getElementById("lyricsUnderlinedButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'lyricsUnderlined', this.checked)");
 	document.getElementById("transLyricsUnderlinedButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'transLyricsUnderlined', this.checked)");
+	document.getElementById("lrcLyricsUnderlinedButton").setAttribute("oncommand", "prefs.setBoolPref(fullScreenStr + 'lrcLyricsUnderlined', this.checked)");
 
 	document.getElementById("titleAlign").value = prefs.getCharPref(fullScreenStr + "titleAlign");
 	document.getElementById("artistAlign").value = prefs.getCharPref(fullScreenStr + "artistAlign");
 	document.getElementById("albumAlign").value = prefs.getCharPref(fullScreenStr + "albumAlign");
 	document.getElementById("lyricsAlign").value = prefs.getCharPref(fullScreenStr + "lyricsAlign");
 	document.getElementById("transLyricsAlign").value = prefs.getCharPref(fullScreenStr + "transLyricsAlign");
+	document.getElementById("lrcLyricsAlign").value = prefs.getCharPref(fullScreenStr + "lrcLyricsAlign");
 	document.getElementById("titleAlign").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'titleAlign', this.value)");
 	document.getElementById("artistAlign").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'artistAlign', this.value)");
 	document.getElementById("albumAlign").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'albumAlign', this.value)");
 	document.getElementById("lyricsAlign").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'lyricsAlign', this.value)");
 	document.getElementById("transLyricsAlign").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'transLyricsAlign', this.value)");
+	document.getElementById("lrcLyricsAlign").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'lrcLyricsAlign', this.value)");
 
 	document.getElementById("titleColor").color = prefs.getCharPref(fullScreenStr + "titleColor");
 	document.getElementById("artistColor").color = prefs.getCharPref(fullScreenStr + "artistColor");
 	document.getElementById("albumColor").color = prefs.getCharPref(fullScreenStr + "albumColor");
 	document.getElementById("lyricsColor").color = prefs.getCharPref(fullScreenStr + "lyricsColor");
 	document.getElementById("transLyricsColor").color = prefs.getCharPref(fullScreenStr + "transLyricsColor");
+	document.getElementById("lrcLyricsColor").color = prefs.getCharPref(fullScreenStr + "lrcLyricsColor");
 	document.getElementById("titleColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'titleColor', this.color)");
 	document.getElementById("artistColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'artistColor', this.color)");
 	document.getElementById("albumColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'albumColor', this.color)");
 	document.getElementById("lyricsColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'lyricsColor', this.color)");
 	document.getElementById("transLyricsColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'transLyricsColor', this.color)");
+	document.getElementById("lrcLyricsColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'lrcLyricsColor', this.color)");
 
 	document.getElementById("titleBGColor").color = prefs.getCharPref(fullScreenStr + "titleBGColor");
 	document.getElementById("artistBGColor").color = prefs.getCharPref(fullScreenStr + "artistBGColor");
 	document.getElementById("albumBGColor").color = prefs.getCharPref(fullScreenStr + "albumBGColor");
 	document.getElementById("lyricsBGColor").color = prefs.getCharPref(fullScreenStr + "lyricsBGColor");
 	document.getElementById("transLyricsBGColor").color = prefs.getCharPref(fullScreenStr + "transLyricsBGColor");
+	document.getElementById("lrcLyricsBGColor").color = prefs.getCharPref(fullScreenStr + "lrcLyricsBGColor");
 	document.getElementById("titleBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'titleBGColor', this.color)");
 	document.getElementById("artistBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'artistBGColor', this.color)");
 	document.getElementById("albumBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'albumBGColor', this.color)");
 	document.getElementById("lyricsBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'lyricsBGColor', this.color)");
 	document.getElementById("transLyricsBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'transLyricsBGColor', this.color)");
+	document.getElementById("lrcLyricsBGColor").setAttribute("onchange", "prefs.setCharPref(fullScreenStr + 'lrcLyricsBGColor', this.color)");
 
 	document.getElementById("titleOpacity").value = prefs.getIntPref(fullScreenStr + "titleOpacity");
 	document.getElementById("artistOpacity").value = prefs.getIntPref(fullScreenStr + "artistOpacity");
 	document.getElementById("albumOpacity").value = prefs.getIntPref(fullScreenStr + "albumOpacity");
 	document.getElementById("lyricsOpacity").value = prefs.getIntPref(fullScreenStr + "lyricsOpacity");
 	document.getElementById("transLyricsOpacity").value = prefs.getIntPref(fullScreenStr + "transLyricsOpacity");
+	document.getElementById("lrcLyricsOpacity").value = prefs.getIntPref(fullScreenStr + "lrcLyricsOpacity");
 	document.getElementById("titleOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'titleOpacity', this.value)");
 	document.getElementById("artistOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'artistOpacity', this.value)");
 	document.getElementById("albumOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumOpacity', this.value)");
 	document.getElementById("lyricsOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsOpacity', this.value)");
 	document.getElementById("transLyricsOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsOpacity', this.value)");
+	document.getElementById("lrcLyricsOpacity").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lrcLyricsOpacity', this.value)");
 
 	document.getElementById("titleMarginTop").value = prefs.getIntPref(fullScreenStr + "titleMarginTop");
 	document.getElementById("artistMarginTop").value = prefs.getIntPref(fullScreenStr + "artistMarginTop");
 	document.getElementById("albumMarginTop").value = prefs.getIntPref(fullScreenStr + "albumMarginTop");
 	document.getElementById("lyricsMarginTop").value = prefs.getIntPref(fullScreenStr + "lyricsMarginTop");
 	document.getElementById("transLyricsMarginTop").value = prefs.getIntPref(fullScreenStr + "transLyricsMarginTop");
+	document.getElementById("lrcLyricsMarginTop").value = prefs.getIntPref(fullScreenStr + "lrcLyricsMarginTop");
 	document.getElementById("titleMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'titleMarginTop', this.value)");
 	document.getElementById("artistMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'artistMarginTop', this.value)");
 	document.getElementById("albumMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumMarginTop', this.value)");
 	document.getElementById("lyricsMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsMarginTop', this.value)");
 	document.getElementById("transLyricsMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginTop', this.value)");
+	document.getElementById("lrcLyricsMarginTop").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lrcLyricsMarginTop', this.value)");
 
 	document.getElementById("titleMarginBottom").value = prefs.getIntPref(fullScreenStr + "titleMarginBottom");
 	document.getElementById("artistMarginBottom").value = prefs.getIntPref(fullScreenStr + "artistMarginBottom");
 	document.getElementById("albumMarginBottom").value = prefs.getIntPref(fullScreenStr + "albumMarginBottom");
 	document.getElementById("lyricsMarginBottom").value = prefs.getIntPref(fullScreenStr + "lyricsMarginBottom");
 	document.getElementById("transLyricsMarginBottom").value = prefs.getIntPref(fullScreenStr + "transLyricsMarginBottom");
+	document.getElementById("lrcLyricsMarginBottom").value = prefs.getIntPref(fullScreenStr + "lrcLyricsMarginBottom");
 	document.getElementById("titleMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'titleMarginBottom', this.value)");
 	document.getElementById("artistMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'artistMarginBottom', this.value)");
 	document.getElementById("albumMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumMarginBottom', this.value)");
 	document.getElementById("lyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsMarginBottom', this.value)");
 	document.getElementById("transLyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginBottom', this.value)");
+	document.getElementById("lrcLyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lrcLyricsMarginBottom', this.value)");
 
 	document.getElementById("titleFont").value = prefs.getCharPref(fullScreenStr + "titleFont");
 	document.getElementById("artistFont").value = prefs.getCharPref(fullScreenStr + "artistFont");
 	document.getElementById("albumFont").value = prefs.getCharPref(fullScreenStr + "albumFont");
 	document.getElementById("lyricsFont").value = prefs.getCharPref(fullScreenStr + "lyricsFont");
 	document.getElementById("transLyricsFont").value = prefs.getCharPref(fullScreenStr + "transLyricsFont");
+	document.getElementById("lrcLyricsFont").value = prefs.getCharPref(fullScreenStr + "lrcLyricsFont");
 	document.getElementById("titleFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'titleFont', this.value)");
 	document.getElementById("artistFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'artistFont', this.value)");
 	document.getElementById("albumFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'albumFont', this.value)");
 	document.getElementById("lyricsFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'lyricsFont', this.value)");
 	document.getElementById("transLyricsFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'transLyricsFont', this.value)");
+	document.getElementById("lrcLyricsFont").setAttribute("onselect", "prefs.setCharPref(fullScreenStr + 'lrcLyricsFont', this.value)");
 
 	// Style enable init start
 	document.getElementById("titleStyleEnable").addEventListener("CheckboxStateChange", function () {
@@ -224,6 +251,14 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsStyleEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsStyleEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsStyleEnable');
+
+	document.getElementById("lrcLyricsStyleEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsBoldButton").disabled = !this.checked;
+		document.getElementById("lrcLyricsItalicButton").disabled = !this.checked;
+		document.getElementById("lrcLyricsUnderlinedButton").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsStyleEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsStyleEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsStyleEnable');
 	// Style enable init end
 
 	// Align enable init start
@@ -256,6 +291,12 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsAlignEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsAlignEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsAlignEnable');
+
+	document.getElementById("lrcLyricsAlignEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsAlign").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsAlignEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsAlignEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsAlignEnable');
 	// Align enable init end
 
 	// Color enable init start
@@ -288,6 +329,12 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsColorEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsColorEnable');
+
+	document.getElementById("lrcLyricsColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsColor").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsColorEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsColorEnable');
 	// Color enable init end
 
 	// BGColor enable init start
@@ -325,6 +372,13 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsBGColorEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsBGColorEnable');
+
+	document.getElementById("lrcLyricsBGColorEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsBGColor").disabled = !this.checked;
+		document.getElementById("lrcLyricsOpacity").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsBGColorEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsBGColorEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsBGColorEnable');
 	// BGColor enable init end
 
 	// Size enable init start
@@ -357,6 +411,12 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsSizeEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsSizeEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsSizeEnable');
+
+	document.getElementById("lrcLyricsSizeEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsSize").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsSizeEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsSizeEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsSizeEnable');
 	// Size enable init end
 
 	// MarginTop enable init start
@@ -389,6 +449,12 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsMarginTopEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsMarginTopEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsMarginTopEnable');
+
+	document.getElementById("lrcLyricsMarginTopEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsMarginTop").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsMarginTopEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsMarginTopEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsMarginTopEnable');
 	// MarginTop enable init end
 
 	// MarginBottom enable init start
@@ -421,6 +487,12 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsMarginBottomEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsMarginBottomEnable');
+
+	document.getElementById("lrcLyricsMarginBottomEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsMarginBottom").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsMarginBottomEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsMarginBottomEnable');
 	// MarginBottom enable init end
 
 	// Font enable init start
@@ -453,6 +525,12 @@ function onload () {
 		prefs.setBoolPref(fullScreenStr + 'transLyricsFontEnable', this.checked);
 	}, false);
 	document.getElementById("transLyricsFontEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsFontEnable');
+
+	document.getElementById("lrcLyricsFontEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsFont").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsFontEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsFontEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsFontEnable');
 	// Font enable init end
 }
 
