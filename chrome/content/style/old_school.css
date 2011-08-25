@@ -19,6 +19,10 @@ p  { font-size:9pt;font-style:italic;text-align:center;margin-top:0;margin-botto
 
 /* a  { color:#222; }   */
 
+.mlyrics_lyrics_timetracked {
+  color: red;
+}
+
 /* The following are "p" spare classes, which you can use as additional formating
    elements. If you don't want to use them, just use display:none to hide them. 
    Otherwise use display:block with additional parameters to give them the

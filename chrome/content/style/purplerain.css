@@ -29,3 +29,7 @@ body.mlyrics p.separator2 {
 ::-moz-selection {
   background-color: #000;
 }
+.mlyrics_lyrics_timetracked {
+  font-size: 11px;
+  color: coral;
+}

@@ -2864,10 +2864,22 @@ mlyrics.pane = {
 
 						if (i != this.timeTracksCurrentRowIndex) {
 							this.timeTracksCurrentRowIndex = i;
-							var currentClasses = firstItem.getAttribute("class");
-							if (!currentClasses || currentClasses.indexOf("timetracked") == -1)
-								firstItem.setAttribute("class", currentClasses + " timetracked");
-							firstItem.setAttribute("style", mlyrics.pane.getStyleProperty("lrcLyrics"));
+
+							var overrideStyle = mlyrics.pane.getStyleProperty("lrcLyrics");
+							if (!overrideStyle) {
+								var currentClasses = firstItem.getAttribute("class");
+								if (!currentClasses || currentClasses.indexOf("mlyrics_lyrics_timetracked") == -1) {
+									firstItem.setAttribute("style", "");
+									firstItem.setAttribute("class", currentClasses + " mlyrics_lyrics_timetracked");
+								}
+							}
+							else {
+								var currentStyles = firstItem.getAttribute("style");
+								if (!!currentStyles)
+									firstItem.setAttribute("style", currentStyles + ";" + overrideStyle);
+								else
+									firstItem.setAttribute("style", overrideStyle);
+							}
 						}
 
 						break;
