@@ -418,12 +418,12 @@ function onAcceptChages (btn) {
 						if (fileItemPath == fileErrorPath) {
 							errorFilesList +=  fileErrorPath + "\n";
 							
-							if (!prefs.getBoolPref("saveInDB")) {
-								clearItem(mediaItemArray, i, bbox.childNodes[i]);
-							}
-							else {
+							//if (!prefs.getBoolPref("saveInDB")) {
+							//	clearItem(mediaItemArray, i, bbox.childNodes[i]);
+							//}
+							//else {
 								markBadItem(mediaItemArray, i, bbox.childNodes[i]);
-							}
+							//}
 							break;
 						}
 					}
