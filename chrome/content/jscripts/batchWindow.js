@@ -429,7 +429,7 @@ function onAcceptChages (btn) {
 					}
 				}
 				
-				if (!prefs.getBoolPref("saveInDB")) metadataService.write(mediaItemArray, propArray);
+				//if (!prefs.getBoolPref("saveInDB")) metadataService.write(mediaItemArray, propArray);
 				
 				alert(metadataWriteProgress.statusText + "\n\n" + errorFilesList);
 			}
