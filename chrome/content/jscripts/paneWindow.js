@@ -2420,21 +2420,24 @@ mlyrics.pane = {
 		},
 
 		accept: function (callbtn) {
-			window.opener.document.getElementById("lyrics-editor").value = callbtn.parentNode.childNodes[1].value;
+			var sources = mlyrics.pane.prefs.getCharPref("fetchSourcesList").split("|");
+			var sIndex = parseInt(callbtn.parentNode.id.substr(26), 10);
 
-			if (callbtn.parentNode.id == "ML-vbox-multi-fetch-Tab") {
-				window.opener.document.getElementById("refreshMenuItem").selectedIndex = 0;
-				window.opener.document.getElementById("lyrics-edit-source").value = null;
-			}
-			else {
-				var sources = prefs.getCharPref("fetchSourcesList").split("|");
-				var sIndex = parseInt(callbtn.parentNode.id.substr(26), 10);
+			var fullLyrics = callbtn.parentNode.childNodes[1].value;
+			var source = mlyrics.pane.prefs.getCharPref("laddress_" + sources[sIndex]);
 
-				window.opener.document.getElementById("refreshMenuItem").selectedIndex = sIndex + 2;
-				window.opener.document.getElementById("lyrics-edit-source").value = prefs.getCharPref("laddress_" + sources[sIndex]);
-			}
+			mlyrics.pane.saveLyrics("", "", this.item, fullLyrics, source);
+			mlyrics.pane.contextRefresh();
 
 			this.onClose();
+
+			var itemsArray = document.getElementById("ML_sourcesPopup").getElementsByTagName("menuitem");
+			for (var i=0; i<itemsArray.length; i++) {
+				if (itemsArray[i].label == source) {
+					document.getElementById("refreshMenuItem").selectedItem = itemsArray[i];
+					break;
+				}
+			}
 		},
 
 		onHideEmpty: function (checkbox) {
