@@ -682,6 +682,7 @@ mlyrics.fetch = {
 				if (respLyr== null || respLyr == "") return "";
 				
 				respLyr = respLyr.replace(/\n<span.*<\/span>/g, "");
+				respLyr = respLyr.replace(/\[ Lyrics from: .* \]/g, "")
 				respLyr = respLyr.replace(/ <br>/g, "\n");
 				respLyr = respLyr.replace(/<br> /g, "\n");
 				respLyr = respLyr.replace(/<br>/g, "\n");
