@@ -278,7 +278,8 @@ function refetch (findex, cbFn, sHbox) {
 							document.getElementById("ML-maintextbox-multi").disabled = false;
 							document.getElementById("ML-progress-multi").hidden = false;
 							document.getElementById("ML_sourceAddressNextButton").hidden = true;
-						}
+						},
+						0
 					);
 }
 

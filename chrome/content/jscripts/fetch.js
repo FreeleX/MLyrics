@@ -2665,20 +2665,22 @@ mlyrics.fetch = {
 			var localFetchQueueNumber = ++mlyrics.fetch.fetchQueueNumber;
 			mlyrics.lib.debugOutput("localFetchQueueNumber: " + localFetchQueueNumber);
 		}
-
+		
 		if (localFetchQueueNumber < mlyrics.fetch.fetchQueueNumber) {
 			mlyrics.lib.debugOutput("Current fetch stopped because newer fetch is in progress");
 			return;
 		}
 
 		if (mlyrics.fetch.fetchNext.caller.name == "CheckNextSource") {
-			if (!mlyrics.fetch.fetchMediaItem) {
-				mlyrics.lib.debugOutput("Fetch queue stopped due to user actions");
-				return;
-			}
-			else if (mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem) {
-				mlyrics.lib.debugOutput("Fetch queue stopped due to track change");
-				return;
+			if (mlyrics.pane) {
+				if (!mlyrics.fetch.fetchMediaItem) {
+					mlyrics.lib.debugOutput("Fetch queue stopped due to user actions");
+					return;
+				}
+				else if (mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem) {
+					mlyrics.lib.debugOutput("Fetch queue stopped due to track change");
+					return;
+				}
 			}
 		}
 
@@ -2712,10 +2714,11 @@ mlyrics.fetch = {
 							 album, 
 							 track,
 							 function CheckNextSource (gotLyrics) {
-								 if (!mlyrics.fetch.fetchMediaItem ||
-									mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem ||
+								 if ( (mlyrics.pane &&
+									 (!mlyrics.fetch.fetchMediaItem || mlyrics.pane.playlistPlaybackServiceListener.curMediaItem != mlyrics.fetch.fetchMediaItem)
+									) ||
 									localFetchQueueNumber < mlyrics.fetch.fetchQueueNumber) return;
-								 
+								
 								 if (!forceone && ( !gotLyrics || gotLyrics == "" ) ) {
 									 fetchObj.fetchNext(artist, album, track, cbFn, ++counter, false, cbSProgress, localFetchQueueNumber);
 								 }
