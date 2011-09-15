@@ -93,7 +93,9 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Verwijder tijdslijn">
 <!ENTITY mlyrics.pane.dropherebtn "Sleep songteksten hier naartoe">
 <!ENTITY mlyrics.pane.teachScroll "Leer MLyrics aan hoe te scrollen">
+<!ENTITY mlyrics.pane.unteachScroll "Verwijder scrollinformatie">
 <!ENTITY mlyrics.pane.accelerator "Scroll Accelerator">
+<!ENTITY mlyrics.pane.translClear "Verwijder vertaling">
 <!ENTITY mlyrics.font.confFont "Configureer stijl">
 <!ENTITY mlyrics.font.sizeLabel "Grootte:">
 <!ENTITY mlyrics.font.leftLabel "Links">
@@ -108,12 +110,17 @@
 <!ENTITY mlyrics.font.album "Album">
 <!ENTITY mlyrics.font.lyrics "Songtekst">
 <!ENTITY mlyrics.font.transLyrics "Vertaalde songtekst">
+<!ENTITY mlyrics.font.lrcLyrics "Tijd traceren">
 <!ENTITY mlyrics.font.opacityLabel "Doorzichtigheid:">
 <!ENTITY mlyrics.font.colorLabel "Kleur:">
 <!ENTITY mlyrics.font.bgColorLabel "Achtergrondkleur:">
 <!ENTITY mlyrics.font.showStaticPicIf "Statische afbeelding tonen als er geen cover is">
 <!ENTITY mlyrics.font.color2Label "Kleur">
 <!ENTITY mlyrics.font.imageLabel "Afbeelding">
+<!ENTITY mlyrics.font.noBackgroundLabel "Geen">
 <!ENTITY mlyrics.font.coverImageLabel "Afbeelding van cover">
 <!ENTITY mlyrics.font.topSpace "Ruimte bovenaan">
 <!ENTITY mlyrics.font.bottomSpace "Ruimte onderaan">
+<!ENTITY mlyrics.font.alignLabel "Uitlijnen:">
+<!ENTITY mlyrics.font.fontStyleLabel "Tekststijl:">
+<!ENTITY mlyrics.font.fontLabel "Lettertype:">

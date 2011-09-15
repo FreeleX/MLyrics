@@ -93,7 +93,9 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Remove time tracks">
 <!ENTITY mlyrics.pane.dropherebtn "Drop lyrics here">
 <!ENTITY mlyrics.pane.teachScroll "Teach MLyrics how to scroll">
+<!ENTITY mlyrics.pane.unteachScroll "Remove Smart Scroll info">
 <!ENTITY mlyrics.pane.accelerator "Scroll Accelerator">
+<!ENTITY mlyrics.pane.translClear "Clear translation">
 <!ENTITY mlyrics.font.confFont "Configure style">
 <!ENTITY mlyrics.font.sizeLabel "Size:">
 <!ENTITY mlyrics.font.leftLabel "Left">
@@ -108,12 +110,17 @@
 <!ENTITY mlyrics.font.album "Album">
 <!ENTITY mlyrics.font.lyrics "Lyrics">
 <!ENTITY mlyrics.font.transLyrics "Translated Lyrics">
+<!ENTITY mlyrics.font.lrcLyrics "Time Track">
 <!ENTITY mlyrics.font.opacityLabel "Opacity:">
 <!ENTITY mlyrics.font.colorLabel "Color:">
 <!ENTITY mlyrics.font.bgColorLabel "BG Color:">
 <!ENTITY mlyrics.font.showStaticPicIf "Show static picture if no cover">
 <!ENTITY mlyrics.font.color2Label "Color">
 <!ENTITY mlyrics.font.imageLabel "Image">
+<!ENTITY mlyrics.font.noBackgroundLabel "None">
 <!ENTITY mlyrics.font.coverImageLabel "Cover Image">
 <!ENTITY mlyrics.font.topSpace "Top space">
 <!ENTITY mlyrics.font.bottomSpace "Bottom space">
+<!ENTITY mlyrics.font.alignLabel "Align:">
+<!ENTITY mlyrics.font.fontStyleLabel "Font style:">
+<!ENTITY mlyrics.font.fontLabel "Font:">

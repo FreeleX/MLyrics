@@ -93,7 +93,9 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Zeitspur entfernen">
 <!ENTITY mlyrics.pane.dropherebtn "Lyrics hier ablegen">
 <!ENTITY mlyrics.pane.teachScroll "Bringe MLyrics bei, wie gescrollt werden soll">
+<!ENTITY mlyrics.pane.unteachScroll "Smart-Scroll-Daten entfernen">
 <!ENTITY mlyrics.pane.accelerator "Scroll-Beschleuniger">
+<!ENTITY mlyrics.pane.translClear "Übersetzung löschen">
 <!ENTITY mlyrics.font.confFont "Stil konfigurieren">
 <!ENTITY mlyrics.font.sizeLabel "Größe:">
 <!ENTITY mlyrics.font.leftLabel "Links">
@@ -108,12 +110,17 @@
 <!ENTITY mlyrics.font.album "Albumtitel">
 <!ENTITY mlyrics.font.lyrics "Lyrics">
 <!ENTITY mlyrics.font.transLyrics "Übersetzte Lyrics">
+<!ENTITY mlyrics.font.lrcLyrics "Titel mit Zeitspur">
 <!ENTITY mlyrics.font.opacityLabel "Transparenz:">
 <!ENTITY mlyrics.font.colorLabel "Farbe:">
 <!ENTITY mlyrics.font.bgColorLabel "Hintergrundfarbe:">
 <!ENTITY mlyrics.font.showStaticPicIf "Statisches Bild anzeigen, wenn kein Cover-Bild verfügbar ist">
 <!ENTITY mlyrics.font.color2Label "Farbe">
 <!ENTITY mlyrics.font.imageLabel "Bild">
+<!ENTITY mlyrics.font.noBackgroundLabel "Keiner">
 <!ENTITY mlyrics.font.coverImageLabel "Cover-Bild">
 <!ENTITY mlyrics.font.topSpace "Oberer Bereich">
 <!ENTITY mlyrics.font.bottomSpace "Unterer Bereich">
+<!ENTITY mlyrics.font.alignLabel "Ausrichtung:">
+<!ENTITY mlyrics.font.fontStyleLabel "Schriftstil:">
+<!ENTITY mlyrics.font.fontLabel "Schrift:">

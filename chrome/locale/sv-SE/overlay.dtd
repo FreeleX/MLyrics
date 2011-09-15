@@ -93,7 +93,9 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Ta bort tidsspår">
 <!ENTITY mlyrics.pane.dropherebtn "Släpp sångtexter här">
 <!ENTITY mlyrics.pane.teachScroll "Lär MLyrics hur texten skall rullas">
+<!ENTITY mlyrics.pane.unteachScroll "Ta bort Smart rullnings-info">
 <!ENTITY mlyrics.pane.accelerator "Rullningsaccelerator">
+<!ENTITY mlyrics.pane.translClear "Rensa översättning">
 <!ENTITY mlyrics.font.confFont "Konfigurera format">
 <!ENTITY mlyrics.font.sizeLabel "Storlek:">
 <!ENTITY mlyrics.font.leftLabel "Vänster">
@@ -108,12 +110,17 @@
 <!ENTITY mlyrics.font.album "Album">
 <!ENTITY mlyrics.font.lyrics "Sångtexter">
 <!ENTITY mlyrics.font.transLyrics "Översatta sångtexter">
+<!ENTITY mlyrics.font.lrcLyrics "Tidsspår">
 <!ENTITY mlyrics.font.opacityLabel "Genomskinlighet:">
 <!ENTITY mlyrics.font.colorLabel "Färg:">
 <!ENTITY mlyrics.font.bgColorLabel "Bg-färg:">
 <!ENTITY mlyrics.font.showStaticPicIf "Visa statisk bild om inget omslag finns">
 <!ENTITY mlyrics.font.color2Label "Färg">
 <!ENTITY mlyrics.font.imageLabel "Bild">
+<!ENTITY mlyrics.font.noBackgroundLabel "Ingen">
 <!ENTITY mlyrics.font.coverImageLabel "Omslagsbild">
 <!ENTITY mlyrics.font.topSpace "Utrymme ovanför">
 <!ENTITY mlyrics.font.bottomSpace "Utrymme nedanför">
+<!ENTITY mlyrics.font.alignLabel "Justera:">
+<!ENTITY mlyrics.font.fontStyleLabel "Typsnittsstil:">
+<!ENTITY mlyrics.font.fontLabel "Typsnitt:">

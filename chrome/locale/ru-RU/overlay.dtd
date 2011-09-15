@@ -93,7 +93,9 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Удалить метки времени">
 <!ENTITY mlyrics.pane.dropherebtn "Бросьте текст сюда">
 <!ENTITY mlyrics.pane.teachScroll "Научить MLyrics как прокручивать текст">
+<!ENTITY mlyrics.pane.unteachScroll "Удалить умную прокрутку">
 <!ENTITY mlyrics.pane.accelerator "Ускоритель прокрутки">
+<!ENTITY mlyrics.pane.translClear "Удалить перевод">
 <!ENTITY mlyrics.font.confFont "Настроить стиль">
 <!ENTITY mlyrics.font.sizeLabel "Размер:">
 <!ENTITY mlyrics.font.leftLabel "Слева">
@@ -108,12 +110,17 @@
 <!ENTITY mlyrics.font.album "Альбом">
 <!ENTITY mlyrics.font.lyrics "Текст">
 <!ENTITY mlyrics.font.transLyrics "Переведенный текст">
+<!ENTITY mlyrics.font.lrcLyrics "Временная метка">
 <!ENTITY mlyrics.font.opacityLabel "Прозрачность:">
 <!ENTITY mlyrics.font.colorLabel "Цвет:">
 <!ENTITY mlyrics.font.bgColorLabel "Фоновый цвет:">
 <!ENTITY mlyrics.font.showStaticPicIf "Показывать выбранную картинку при отсутсвии обложки">
 <!ENTITY mlyrics.font.color2Label "Цвет">
 <!ENTITY mlyrics.font.imageLabel "Изображение">
+<!ENTITY mlyrics.font.noBackgroundLabel "Нету">
 <!ENTITY mlyrics.font.coverImageLabel "Изображение обложки">
 <!ENTITY mlyrics.font.topSpace "Отступ сверху">
 <!ENTITY mlyrics.font.bottomSpace "Отступ снизу">
+<!ENTITY mlyrics.font.alignLabel "Выравнивание:">
+<!ENTITY mlyrics.font.fontStyleLabel "Стиль шрифта:">
+<!ENTITY mlyrics.font.fontLabel "Шрифт:">

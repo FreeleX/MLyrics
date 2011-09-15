@@ -93,7 +93,9 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Supprimer des pistes temps">
 <!ENTITY mlyrics.pane.dropherebtn "Déposer les paroles ici">
 <!ENTITY mlyrics.pane.teachScroll "Apprendre à MLyrics comment défiler">
+<!ENTITY mlyrics.pane.unteachScroll "Enlever les informations du défilement intelligent">
 <!ENTITY mlyrics.pane.accelerator "Accélérateur de défilement">
+<!ENTITY mlyrics.pane.translClear "Effacer la traduction">
 <!ENTITY mlyrics.font.confFont "Configurer le style">
 <!ENTITY mlyrics.font.sizeLabel "Taille :">
 <!ENTITY mlyrics.font.leftLabel "Gauche">
@@ -108,12 +110,17 @@
 <!ENTITY mlyrics.font.album "Album">
 <!ENTITY mlyrics.font.lyrics "Paroles">
 <!ENTITY mlyrics.font.transLyrics "Paroles traduites">
+<!ENTITY mlyrics.font.lrcLyrics "Temps de piste">
 <!ENTITY mlyrics.font.opacityLabel "Opacité :">
 <!ENTITY mlyrics.font.colorLabel "Couleur :">
 <!ENTITY mlyrics.font.bgColorLabel "Couleur BG :">
 <!ENTITY mlyrics.font.showStaticPicIf "Voir l'image statique s'il n'y a pas de couverture">
 <!ENTITY mlyrics.font.color2Label "Couleur">
 <!ENTITY mlyrics.font.imageLabel "Image">
+<!ENTITY mlyrics.font.noBackgroundLabel "Aucun">
 <!ENTITY mlyrics.font.coverImageLabel "Image de la couverture">
 <!ENTITY mlyrics.font.topSpace "Espace du haut">
 <!ENTITY mlyrics.font.bottomSpace "Espace du bas">
+<!ENTITY mlyrics.font.alignLabel "Aligner :">
+<!ENTITY mlyrics.font.fontStyleLabel "Style de police :">
+<!ENTITY mlyrics.font.fontLabel "Police :">

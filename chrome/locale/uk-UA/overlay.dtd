@@ -93,7 +93,9 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Видалити мітки часу">
 <!ENTITY mlyrics.pane.dropherebtn "Киньте текст сюди">
 <!ENTITY mlyrics.pane.teachScroll "Навчити MLyrics прокрутці тексту">
+<!ENTITY mlyrics.pane.unteachScroll "Видалити розумну прокрутку">
 <!ENTITY mlyrics.pane.accelerator "Прискорювач прокрутки">
+<!ENTITY mlyrics.pane.translClear "Видалити переклад">
 <!ENTITY mlyrics.font.confFont "Налаштувати стиль">
 <!ENTITY mlyrics.font.sizeLabel "Розмір:">
 <!ENTITY mlyrics.font.leftLabel "Ліворуч">
@@ -108,12 +110,17 @@
 <!ENTITY mlyrics.font.album "Альбом">
 <!ENTITY mlyrics.font.lyrics "Текст">
 <!ENTITY mlyrics.font.transLyrics "Перекладений текст">
+<!ENTITY mlyrics.font.lrcLyrics "Часова мітка">
 <!ENTITY mlyrics.font.opacityLabel "Прозорість:">
 <!ENTITY mlyrics.font.colorLabel "Колір:">
 <!ENTITY mlyrics.font.bgColorLabel "Колір фону:">
 <!ENTITY mlyrics.font.showStaticPicIf "Показувати обране зображення за відсутності обкладинки">
 <!ENTITY mlyrics.font.color2Label "Колір">
 <!ENTITY mlyrics.font.imageLabel "Зображення">
+<!ENTITY mlyrics.font.noBackgroundLabel "Немає">
 <!ENTITY mlyrics.font.coverImageLabel "Зображення обкладинки">
 <!ENTITY mlyrics.font.topSpace "Відступ згори">
 <!ENTITY mlyrics.font.bottomSpace "Відступ знизу">
+<!ENTITY mlyrics.font.alignLabel "Вирівнювання:">
+<!ENTITY mlyrics.font.fontStyleLabel "Стиль шрифту:">
+<!ENTITY mlyrics.font.fontLabel "Шрифт:">
