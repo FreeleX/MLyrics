@@ -3160,7 +3160,7 @@ mlyrics.pane = {
 					.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindow);
 			
 			this.savedWidth = mlyrics.pane.displayPane.width;
-			mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width;
+			mlyrics.pane.displayPane.width = screen.width;
 
 			mainwindow.document.getElementById("content_wrapper").hidden 			= true;
 			mainwindow.document.getElementById("displaypane_right_sidebar_splitter").hidden = true;
