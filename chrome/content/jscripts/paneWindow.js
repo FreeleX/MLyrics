@@ -2063,8 +2063,15 @@ mlyrics.pane = {
 					.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindow);
 
 			this.savedWidth = mlyrics.pane.displayPane.width;
-			mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 3/5;
-			
+
+			if (mlyrics.pane.prefs.getCharPref("enableTranslate") != "TRANSLATE" ) {
+				document.getElementById("editModeTranslBox").hidden = true;
+			}
+			else {
+				document.getElementById("editModeTranslBox").hidden = false;
+				mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 3/5;
+			}
+
 			document.getElementById("lm-deck").selectedIndex = 2;
 		},
 
