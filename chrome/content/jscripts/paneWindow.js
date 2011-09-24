@@ -2065,9 +2065,11 @@ mlyrics.pane = {
 			this.savedWidth = mlyrics.pane.displayPane.width;
 
 			if (mlyrics.pane.prefs.getCharPref("enableTranslate") != "TRANSLATE" ) {
+				document.getElementById("editModeSplitter").hidden = true;
 				document.getElementById("editModeTranslBox").hidden = true;
 			}
 			else {
+				document.getElementById("editModeSplitter").hidden = false;
 				document.getElementById("editModeTranslBox").hidden = false;
 				mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 3/5;
 			}
