@@ -2064,15 +2064,21 @@ mlyrics.pane = {
 
 			this.savedWidth = mlyrics.pane.displayPane.width;
 
-			if (mlyrics.pane.prefs.getCharPref("enableTranslate") != "TRANSLATE" ) {
-				document.getElementById("editModeSplitter").hidden = true;
-				document.getElementById("editModeTranslBox").hidden = true;
+			if (mlyrics.pane.prefs.getCharPref("enableTranslate") == "TRANSLATE" ) {
+				var servicepaneWidth = mainwindow.document.getElementById("servicepane_box").width;
+				if (mainwindow.document.getElementById("mainplayer").getAttribute("sizemode") == "normal") {
+					var newPaneWidth = mainwindow.document.getElementById("mainplayer").width - servicepaneWidth;
+				}
+				else {
+					var newPaneWidth = screen.width - servicepaneWidth;
+				}
+				newPaneWidth -= 200;
+
+				mlyrics.pane.displayPane.width = newPaneWidth;
 			}
-			else {
-				document.getElementById("editModeSplitter").hidden = false;
-				document.getElementById("editModeTranslBox").hidden = false;
-				mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 3/5;
-			}
+
+			document.getElementById("editModeSplitter").hidden = false;
+			document.getElementById("editModeTranslBox").hidden = false;
 
 			document.getElementById("lm-deck").selectedIndex = 2;
 		},
@@ -2142,7 +2148,18 @@ mlyrics.pane = {
 					.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindow);
 
 			this.savedWidth = mlyrics.pane.displayPane.width;
-			mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 1/2;
+
+			var servicepaneWidth = mainwindow.document.getElementById("servicepane_box").width;
+			if (mainwindow.document.getElementById("mainplayer").getAttribute("sizemode") == "normal") {
+				var newPaneWidth = mainwindow.document.getElementById("mainplayer").width - servicepaneWidth;
+			}
+			else {
+				var newPaneWidth = screen.width - servicepaneWidth;
+			}
+			newPaneWidth -= 200;
+
+			if (mlyrics.pane.displayPane.width * 1.5 < newPaneWidth) newPaneWidth = mlyrics.pane.displayPane.width * 1.5;
+			mlyrics.pane.displayPane.width = newPaneWidth;
 
 			this.restart();
 
@@ -2322,7 +2339,17 @@ mlyrics.pane = {
 					.QueryInterface(Components.interfaces.nsIInterfaceRequestor).getInterface(Components.interfaces.nsIDOMWindow);
 
 			this.savedWidth = mlyrics.pane.displayPane.width;
-			mlyrics.pane.displayPane.width = mainwindow.document.getElementById("mainplayer").width * 3/5;
+
+			var servicepaneWidth = mainwindow.document.getElementById("servicepane_box").width;
+			if (mainwindow.document.getElementById("mainplayer").getAttribute("sizemode") == "normal") {
+				var newPaneWidth = mainwindow.document.getElementById("mainplayer").width - servicepaneWidth;
+			}
+			else {
+				var newPaneWidth = screen.width - servicepaneWidth;
+			}
+			newPaneWidth -= 200;
+				
+			mlyrics.pane.displayPane.width = newPaneWidth;
 			
 			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
 				this.item = mlyrics.pane.mediaItemSelectListener.curMediaItem;

@@ -155,7 +155,7 @@
 				</vbox>
 			</vbox>
 		
-			<vbox flex="1">
+			<vbox style="overflow:auto">
 				<hbox flex="1">
 					<vbox flex="1" style="margin:0">
 						<label value="&mlyrics.font.lyrics;" style="font-weight:bold" />
