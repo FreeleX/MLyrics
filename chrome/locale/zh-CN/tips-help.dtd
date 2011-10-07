@@ -1,0 +1,8 @@
+<!ENTITY mlyrics.tips-help.gatherlyrics "想要聚合大量歌词?只要选中它们然后右击 -&gt; 聚合歌词">
+<!ENTITY mlyrics.tips-help.multifetch "不确定第一个搜索结果是最优歌词? - 右击歌曲 -&gt; 查看元数据 -&gt; 歌词标签 -&gt; 批量获取. 然后就可以从可用的歌词站点对比歌词并选择最优歌词">
+<!ENTITY mlyrics.tips-help.ignoretranslate "希望 MLyrics 不要翻译你比 Googel翻译 更了解的语言? - 别忘了在设定窗口中标记上他们">
+<!ENTITY mlyrics.tips-help.dropit "在网络上找到 MLyrics 找不到的歌词? - 在网页上选中它并拖放到 MLyrics 面板">
+<!ENTITY mlyrics.tips-help.nowselectedmode "如果你忘了一个小时前唱到了哪一句, MLyrics 当前选中模式可以帮到你">
+<!ENTITY mlyrics.tips-help.smartlist "想要听所有关于友谊的歌曲? - 您可以建立一个歌词中包含这个词的智能播放列表. 但要有耐心 - 这对 Songbird 是很困难的工作">
+<!ENTITY mlyrics.tips-help.smartscroll "您可以通过进入智能滚动教学模式教 MLyrics 如何滚动歌词(唱这首歌) - 听到第一个字时上滚鼠标滚轮,直到指针变动.然后向下滚动(并唱) - 这样 MLyrics 将记忆并在播放这首歌时重复">
+<!ENTITY mlyrics.tips-help.donotforgetvisit "别忘了阅读 Songbird 站点上的 MLyrics 扩展页面 - 有新特性的有用贴士在那里">

@@ -1,0 +1,126 @@
+<!ENTITY mlyrics.trackeditor.caption "MLyrics 批量获取">
+<!ENTITY mlyrics.trackeditor.fbtnlabel "批量获取">
+<!ENTITY mlyrics.trackeditor.fbtntooltextdef "使用 MLyrics 获取这些歌词!">
+<!ENTITY mlyrics.trackeditor.cbtntooltextdef "清除这些歌词.">
+<!ENTITY mlyrics.trackeditor.btninstr "可用">
+<!ENTITY mlyrics.trackeditor.btninstrtip "是这些歌词可用">
+<!ENTITY mlyrics.trackeditor.bbtnlabel "批量">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "必须选中 2 - 1000 项才能启用批量按钮.">
+<!ENTITY mlyrics.trackeditor.btnremtransl "移除译文">
+<!ENTITY mlyrics.manuoverlay.batchmenulabel "聚合歌词">
+<!ENTITY mlyrics.menuoverlay.addonhelplabel "Add-On 帮助">
+<!ENTITY mlyrics.menuoverlay.lmhelplabel "MLyrics 帮助">
+<!ENTITY mlyrics.batchwin.winlabel "MLyrics 总计">
+<!ENTITY mlyrics.batchwin.btncheckall "标记所有">
+<!ENTITY mlyrics.batchwin.btnuncheckall "取消标记所有">
+<!ENTITY mlyrics.batchwin.btnaccept "应用更改">
+<!ENTITY mlyrics.prefs.winlabel "MLyrics 设定">
+<!ENTITY mlyrics.prefs.weblocupbtn "上">
+<!ENTITY mlyrics.prefs.weblocdownbtn "下">
+<!ENTITY mlyrics.prefs.webloclabel "从哪里获得歌词?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "是否添加 Google 歌词翻译?">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "为已有歌词检查译文">
+<!ENTITY mlyrics.prefs.libstylelabel "您的艺术家命名方案?">
+<!ENTITY mlyrics.prefs.savelyricslabel "如何保存歌词?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "如何保存译文?">
+<!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "忽略译文从:">
+<!ENTITY mlyrics.prefs.saveoptneversave "从不保存 / 从不询问">
+<!ENTITY mlyrics.prefs.saveoptprompt "提示保存 / 总是询问">
+<!ENTITY mlyrics.prefs.saveoptalways "总是保存 / 从不询问">
+<!ENTITY mlyrics.prefs.miscellaneous "杂项">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "标签页切换时隐藏歌词">
+<!ENTITY mlyrics.prefs.notiflabel "若无歌词则通知我">
+<!ENTITY mlyrics.prefs.autoSearchLyr "若无歌词则使用 Google 搜索">
+<!ENTITY mlyrics.prefs.notifInstrlabel "歌词可用时显示">
+<!ENTITY mlyrics.prefs.saveInDBLabel "保存歌词于数据库中以防写入错误">
+<!ENTITY mlyrics.prefs.displabel "MLyrics 应当显示什么信息?">
+<!ENTITY mlyrics.prefs.dispoptartist "艺术家">
+<!ENTITY mlyrics.prefs.dispopttrack "歌曲名">
+<!ENTITY mlyrics.prefs.dispoptalbum "专辑名">
+<!ENTITY mlyrics.prefs.stylelabel "想要使用哪个显示样式?">
+<!ENTITY mlyrics.prefs.stloptnone "无">
+<!ENTITY mlyrics.prefs.stloptcurfthr "流行羽毛">
+<!ENTITY mlyrics.prefs.stloptbluq "蓝色引用">
+<!ENTITY mlyrics.prefs.stloptlite "蓝色引用 - 轻">
+<!ENTITY mlyrics.prefs.stlopteclp "失色">
+<!ENTITY mlyrics.prefs.stloptglid "流水">
+<!ENTITY mlyrics.prefs.stlopthigh "高对比">
+<!ENTITY mlyrics.prefs.stloptolds "怀旧">
+<!ENTITY mlyrics.prefs.stloptsong "Songbird - RubberDucky">
+<!ENTITY mlyrics.prefs.stloptstar "星级">
+<!ENTITY mlyrics.prefs.scanlib "扫描所有库以查找歌词.">
+<!ENTITY mlyrics.prefs.linkInfo1 "需要更多功能？有建议？发现问题？">
+<!ENTITY mlyrics.prefs.linkInfo2 "也请不要忘记核对意见 :)">
+<!ENTITY mlyrics.helloworld.label "Do HelloWorld">
+<!ENTITY mlyrics.helloworld.accesskey "H">
+<!ENTITY mlyrics.pane.label "这是显示面板">
+<!ENTITY mlyrics.pane.button "更多">
+<!ENTITY mlyrics.helpwin.winlabel "MLyrics 帮助">
+<!ENTITY mlyrics.helpwin.startlabel "封页">
+<!ENTITY mlyrics.helpwin.displabel "显示面板">
+<!ENTITY mlyrics.helpwin.preflabel "偏好面板">
+<!ENTITY mlyrics.helpwin.metalabel "元数据编辑器">
+<!ENTITY mlyrics.helpwin.batchlabel "批量获取窗口">
+<!ENTITY mlyrics.helpwin.haslyrlabel "有歌词图标">
+<!ENTITY mlyrics.helpwin.lisclabel "MLyrics 许可">
+<!ENTITY mlyrics.helpwin.aboutlabel "关于 MLyrics">
+<!ENTITY mlyrics.helpwin.stylelabel "定义样式">
+<!ENTITY mlyrics.helpwin.medialistlabel "媒体列表图标">
+<!ENTITY mlyrics.helpwin.tipslabel "贴士">
+<!ENTITY mlyrics.pane.contxtRefresh "重载歌词">
+<!ENTITY mlyrics.pane.contxtRefreshObO "轮流">
+<!ENTITY mlyrics.pane.contxtRefreshTag "从标签">
+<!ENTITY mlyrics.pane.contxtMakeInstr "使有用">
+<!ENTITY mlyrics.pane.contxtClear "清除歌词">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "启用通知">
+<!ENTITY mlyrics.pane.contxtNotifDisabled "仅用通知">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "启用自动滚动">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "禁用自动滚动">
+<!ENTITY mlyrics.pane.showSettings "设定">
+<!ENTITY mlyrics.pane.showEditDialog "编辑歌词">
+<!ENTITY mlyrics.pane.contxWebSrch "网络搜索">
+<!ENTITY mlyrics.pane.viewModeMenu0 "仅显示原始歌词">
+<!ENTITY mlyrics.pane.viewModeMenu1 "仅显示译文">
+<!ENTITY mlyrics.pane.viewModeMenu2 "逐行混合显示">
+<!ENTITY mlyrics.pane.viewModeMenu3 "显示为">
+<!ENTITY mlyrics.pane.viewModeMenu4 "按对句混合显示">
+<!ENTITY mlyrics.pane.saveButton "保存">
+<!ENTITY mlyrics.pane.cancelButton "取消">
+<!ENTITY mlyrics.pane.showSelected "显示当前选中">
+<!ENTITY mlyrics.pane.showNowPlaying "显示当前播放">
+<!ENTITY mlyrics.pane.restartSongButton "重新开始">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "建立时间轨">
+<!ENTITY mlyrics.pane.removeTimeTracks "移除时间轨">
+<!ENTITY mlyrics.pane.dropherebtn "拖动歌词到此">
+<!ENTITY mlyrics.pane.teachScroll "教 MLyrics 如何滚动">
+<!ENTITY mlyrics.pane.unteachScroll "移除智能滚动信息">
+<!ENTITY mlyrics.pane.accelerator "滚动加速">
+<!ENTITY mlyrics.pane.translClear "清除译文">
+<!ENTITY mlyrics.font.confFont "配置样式">
+<!ENTITY mlyrics.font.sizeLabel "大小:">
+<!ENTITY mlyrics.font.leftLabel "左">
+<!ENTITY mlyrics.font.centerLabel "中">
+<!ENTITY mlyrics.font.rightLabel "右">
+<!ENTITY mlyrics.font.topLabel "顶部">
+<!ENTITY mlyrics.font.bottomLabel "底部">
+<!ENTITY mlyrics.font.applyRules "应用定制规则">
+<!ENTITY mlyrics.font.background "背景">
+<!ENTITY mlyrics.font.title "标题">
+<!ENTITY mlyrics.font.artist "艺术家">
+<!ENTITY mlyrics.font.album "专辑">
+<!ENTITY mlyrics.font.lyrics "歌词">
+<!ENTITY mlyrics.font.transLyrics "歌词译文">
+<!ENTITY mlyrics.font.lrcLyrics "时间轨">
+<!ENTITY mlyrics.font.opacityLabel "不透明度:">
+<!ENTITY mlyrics.font.colorLabel "颜色:">
+<!ENTITY mlyrics.font.bgColorLabel "背景色:">
+<!ENTITY mlyrics.font.showStaticPicIf "若无封面则显示静态图片">
+<!ENTITY mlyrics.font.color2Label "颜色">
+<!ENTITY mlyrics.font.imageLabel "图像">
+<!ENTITY mlyrics.font.noBackgroundLabel "无">
+<!ENTITY mlyrics.font.coverImageLabel "封面图像">
+<!ENTITY mlyrics.font.topSpace "顶部空间">
+<!ENTITY mlyrics.font.bottomSpace "底部空间">
+<!ENTITY mlyrics.font.alignLabel "对齐:">
+<!ENTITY mlyrics.font.fontStyleLabel "字体样式:">
+<!ENTITY mlyrics.font.fontLabel "字体:">

@@ -1,0 +1,6 @@
+<!ENTITY mlyrics.style-help.annotation "有些定义目前尚未使用，但以后可能会使用">
+<!ENTITY mlyrics.style-help.pclassesinfo "以下为 'p' 备用类, 可以作为额外的格式化元素使用. 如果不想使用，只要使用 display:none 隐藏。否则通过额外参数使用 display:block 将其设为您想要的外观。它们在页面中的位置如下:">
+<!ENTITY mlyrics.style-help.pclassesinfoheader "在歌曲标题上方">
+<!ENTITY mlyrics.style-help.pclassesinfosong "在歌曲标题和附加信息之间">
+<!ENTITY mlyrics.style-help.pclassesinfoadditional "在附加信息和歌词之间">
+<!ENTITY mlyrics.style-help.pclassesinfolyrics "在歌词下方">

@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "此歌曲包含歌词在标签中">
+<!ENTITY mlyrics.medialist-help.darkicon "此歌曲包含歌词，但因标签书写问题仅保存在Songbird数据库中">
+<!ENTITY mlyrics.medialist-help.timetracksicon "此歌曲包含.lrc文件与时间轨在相同的目录中。Mlyrics将据此滚动歌词.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "(这意味着MLyrics将智能同步滚动歌词 :) )">
