@@ -48,7 +48,7 @@
 <!ENTITY mlyrics.prefs.stloptolds "Old School">
 <!ENTITY mlyrics.prefs.stloptsong "Songbird - RubberDucky">
 <!ENTITY mlyrics.prefs.stloptstar "Stars">
-<!ENTITY mlyrics.prefs.scanlib "Пересканувати базу пісень на наявність\відсутність збережених текстів">
+<!ENTITY mlyrics.prefs.scanlib "Пересканувати базу пісень на наявність/відсутність збережених текстів.">
 <!ENTITY mlyrics.prefs.linkInfo1 "Хочете більше можливостей, маєте ідеї? Знайшли помилку?">
 <!ENTITY mlyrics.prefs.linkInfo2 "Не забудьте будь-ласка перевірити комментарі">
 <!ENTITY mlyrics.helloworld.label "Do HelloWorld">
