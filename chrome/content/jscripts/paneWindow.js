@@ -2075,10 +2075,14 @@ mlyrics.pane = {
 				newPaneWidth -= 200;
 
 				mlyrics.pane.displayPane.width = newPaneWidth;
+				
+				document.getElementById("editModeSplitter").hidden = false;
+				document.getElementById("editModeTranslBox").hidden = false;
 			}
-
-			document.getElementById("editModeSplitter").hidden = false;
-			document.getElementById("editModeTranslBox").hidden = false;
+			else {
+				document.getElementById("editModeSplitter").hidden = true;
+				document.getElementById("editModeTranslBox").hidden = true;
+			}
 
 			document.getElementById("lm-deck").selectedIndex = 2;
 		},
