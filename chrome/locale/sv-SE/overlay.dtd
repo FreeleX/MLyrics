@@ -93,7 +93,7 @@
 <!ENTITY mlyrics.pane.removeTimeTracks "Ta bort tidsspår">
 <!ENTITY mlyrics.pane.dropherebtn "Släpp sångtexter här">
 <!ENTITY mlyrics.pane.teachScroll "Lär MLyrics hur texten skall rullas">
-<!ENTITY mlyrics.pane.unteachScroll "Ta bort Smart rullnings-info">
+<!ENTITY mlyrics.pane.unteachScroll "Ta bort Smart rullning-information">
 <!ENTITY mlyrics.pane.accelerator "Rullningsaccelerator">
 <!ENTITY mlyrics.pane.translClear "Rensa översättning">
 <!ENTITY mlyrics.font.confFont "Konfigurera format">
@@ -121,6 +121,6 @@
 <!ENTITY mlyrics.font.coverImageLabel "Omslagsbild">
 <!ENTITY mlyrics.font.topSpace "Utrymme ovanför">
 <!ENTITY mlyrics.font.bottomSpace "Utrymme nedanför">
-<!ENTITY mlyrics.font.alignLabel "Justera:">
-<!ENTITY mlyrics.font.fontStyleLabel "Typsnittsstil:">
-<!ENTITY mlyrics.font.fontLabel "Typsnitt:">
+<!ENTITY mlyrics.font.alignLabel "Justering:">
+<!ENTITY mlyrics.font.fontStyleLabel "Teckenstil:">
+<!ENTITY mlyrics.font.fontLabel "Teckensnitt:">
