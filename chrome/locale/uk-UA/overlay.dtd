@@ -1,4 +1,4 @@
-<!ENTITY mlyrics.trackeditor.caption "Мульти збір MLyrics">
+<!ENTITY mlyrics.trackeditor.caption "Мультизбір MLyrics">
 <!ENTITY mlyrics.trackeditor.fbtnlabel "Порівняти">
 <!ENTITY mlyrics.trackeditor.fbtntooltextdef "Знайти текст з допомогою MLyrics!">
 <!ENTITY mlyrics.trackeditor.cbtntooltextdef "Очистити текст.">
@@ -6,7 +6,7 @@
 <!ENTITY mlyrics.trackeditor.btninstrtip "Записати, що пісня не має слів">
 <!ENTITY mlyrics.trackeditor.bbtnlabel "Збір">
 <!ENTITY mlyrics.trackeditor.bbtntooltextdef "Має бути вибрано від 2 до 1000 елементів щоб активувати &quot;Збір&quot;">
-<!ENTITY mlyrics.trackeditor.btnremtransl "Видалити переклад">
+<!ENTITY mlyrics.trackeditor.btnremtransl "Вилучити переклад">
 <!ENTITY mlyrics.manuoverlay.batchmenulabel "Зібрати текст">
 <!ENTITY mlyrics.menuoverlay.addonhelplabel "Довідка додатків">
 <!ENTITY mlyrics.menuoverlay.lmhelplabel "Довідка MLyrics">
@@ -22,16 +22,16 @@
 <!ENTITY mlyrics.prefs.enablemetadatatranslate "Шукати переклад для вже збережених текстів">
 <!ENTITY mlyrics.prefs.libstylelabel "Яка схема найменування виконавця?">
 <!ENTITY mlyrics.prefs.savelyricslabel "Що робити коли знайдено текст?">
-<!ENTITY mlyrics.prefs.savetranslationlabel "Що робити якшо зроблено переклад?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "Що робити, якщо зроблено переклад?">
 <!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Не перекладати з:">
 <!ENTITY mlyrics.prefs.saveoptneversave "Ніколи не зберігати / Ніколи не питати">
 <!ENTITY mlyrics.prefs.saveoptprompt "Питати підтвердження / Завжди питати">
 <!ENTITY mlyrics.prefs.saveoptalways "Завжди зберігати / Ніколи не питати">
 <!ENTITY mlyrics.prefs.miscellaneous "Різне">
 <!ENTITY mlyrics.prefs.hideonswitchlabel "При переключенні вкладки сховати текст">
-<!ENTITY mlyrics.prefs.notiflabel "Повідомляти якщо текст не знайдено">
-<!ENTITY mlyrics.prefs.autoSearchLyr "Шукати в Гуглі якщо не знайдено текст">
-<!ENTITY mlyrics.prefs.notifInstrlabel "Показувати якщо текст без слів">
+<!ENTITY mlyrics.prefs.notiflabel "Повідомляти, якщо текст не знайдено">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Шукати в Гуглі, якщо не знайдено текст">
+<!ENTITY mlyrics.prefs.notifInstrlabel "Показувати, якщо текст без слів">
 <!ENTITY mlyrics.prefs.saveInDBLabel "Зберігати текст в базі у разі помилки запису">
 <!ENTITY mlyrics.prefs.displabel "Що саме має показувати MLyrics?">
 <!ENTITY mlyrics.prefs.dispoptartist "Ім'я виконавця">
@@ -39,7 +39,7 @@
 <!ENTITY mlyrics.prefs.dispoptalbum "Назву альбому">
 <!ENTITY mlyrics.prefs.stylelabel "Який стиль показу обрати?">
 <!ENTITY mlyrics.prefs.stloptnone "Відсутній">
-<!ENTITY mlyrics.prefs.stloptcurfthr "Current Feather">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Поточне пір'я">
 <!ENTITY mlyrics.prefs.stloptbluq "Blue Quote">
 <!ENTITY mlyrics.prefs.stloptlite "Blue Quote - Lite">
 <!ENTITY mlyrics.prefs.stlopteclp "Eclipse">
@@ -50,17 +50,17 @@
 <!ENTITY mlyrics.prefs.stloptstar "Stars">
 <!ENTITY mlyrics.prefs.scanlib "Пересканувати базу пісень на наявність/відсутність збережених текстів.">
 <!ENTITY mlyrics.prefs.linkInfo1 "Хочете більше можливостей, маєте ідеї? Знайшли помилку?">
-<!ENTITY mlyrics.prefs.linkInfo2 "Не забудьте будь-ласка перевірити комментарі">
-<!ENTITY mlyrics.helloworld.label "Do HelloWorld">
+<!ENTITY mlyrics.prefs.linkInfo2 "Не забудьте будь-ласка перевірити коментарі">
+<!ENTITY mlyrics.helloworld.label "Виконати HelloWorld">
 <!ENTITY mlyrics.helloworld.accesskey "H">
 <!ENTITY mlyrics.pane.label "Це панель відображення">
-<!ENTITY mlyrics.pane.button "Узнати більше">
+<!ENTITY mlyrics.pane.button "Дізнатись більше">
 <!ENTITY mlyrics.helpwin.winlabel "Довідка MLyrics">
 <!ENTITY mlyrics.helpwin.startlabel "Обкладинка">
 <!ENTITY mlyrics.helpwin.displabel "Панель відображення">
-<!ENTITY mlyrics.helpwin.preflabel "Панель налаштуваннь">
+<!ENTITY mlyrics.helpwin.preflabel "Панель налаштувань">
 <!ENTITY mlyrics.helpwin.metalabel "Редактор метаданих">
-<!ENTITY mlyrics.helpwin.batchlabel "Мастер збору текстів">
+<!ENTITY mlyrics.helpwin.batchlabel "Майстер збору текстів">
 <!ENTITY mlyrics.helpwin.haslyrlabel "Знак наявності текст в пісні">
 <!ENTITY mlyrics.helpwin.lisclabel "Ліцензія MLyrics">
 <!ENTITY mlyrics.helpwin.aboutlabel "Про MLyrics">
@@ -72,13 +72,13 @@
 <!ENTITY mlyrics.pane.contxtRefreshTag "Із тегу">
 <!ENTITY mlyrics.pane.contxtMakeInstr "Зробити інструментальною">
 <!ENTITY mlyrics.pane.contxtClear "Очистити текст">
-<!ENTITY mlyrics.pane.contxtNotifEnabled "Ввімкнути повідомення">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "Ввімкнути повідомлення">
 <!ENTITY mlyrics.pane.contxtNotifDisabled "Вимкнути повідомлення">
 <!ENTITY mlyrics.pane.contxtScrollEnabled "Ввімкнути прокрутку">
 <!ENTITY mlyrics.pane.contxtScrollDisabled "Вимкнути прокрутку">
 <!ENTITY mlyrics.pane.showSettings "Налаштування">
 <!ENTITY mlyrics.pane.showEditDialog "Редагувати текст">
-<!ENTITY mlyrics.pane.contxWebSrch "Web пошук">
+<!ENTITY mlyrics.pane.contxWebSrch "Веб-пошук">
 <!ENTITY mlyrics.pane.viewModeMenu0 "Показати тільки оригінальний текст">
 <!ENTITY mlyrics.pane.viewModeMenu1 "Показати тільки переклад">
 <!ENTITY mlyrics.pane.viewModeMenu2 "Показати змішано лінію за лінією">
@@ -103,7 +103,7 @@
 <!ENTITY mlyrics.font.rightLabel "Праворуч">
 <!ENTITY mlyrics.font.topLabel "Вгорі">
 <!ENTITY mlyrics.font.bottomLabel "Внизу">
-<!ENTITY mlyrics.font.applyRules "Приймінити налаштування">
+<!ENTITY mlyrics.font.applyRules "Застосувати налаштування">
 <!ENTITY mlyrics.font.background "Фон">
 <!ENTITY mlyrics.font.title "Пісня">
 <!ENTITY mlyrics.font.artist "Виконавець">
