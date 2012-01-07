@@ -2767,7 +2767,7 @@ mlyrics.pane = {
 		corrArrayDimen: 20, 
 		playPart: 0,
 		iframe: null,
-		timeTracksCurrentRowIndex: 0,
+		timeTracksCurrentRowIndex: -1,
 
 		constShowDelayMiliSec: 500,
 
@@ -2798,6 +2798,7 @@ mlyrics.pane = {
 			this.correctionMode = false;
 			this.scrollCorrection = 0;
 			this.playPart = 0;
+			this.timeTracksCurrentRowIndex = -1;
 
 			this.iframe = document.getElementById('lm-content');
 
