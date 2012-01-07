@@ -2884,9 +2884,9 @@ mlyrics.pane = {
 			if (this.timeArray.length > 1) {
 				var normalLineTimeLen = this.duration / this.timeArray.length;			// Normal line scroll duration
 				
-				for (var i=0; i<this.timeArray.length-1; i++) {
+				for (var i=0; i<this.timeArray.length; i++) {
 					if (	position >= this.timeArray[i]  && 
-						position < this.timeArray[i+1] ) {
+						(position < this.timeArray[i+1] || i == this.timeArray.length-1) ) { // Last line mark fix
 						
 						var currLineTimeLen = this.timeArray[i+1] - this.timeArray[i];	// Real current line scroll duration
 						var currLineTimeElapsed = position - this.timeArray[i];		// How much we scrolled already
