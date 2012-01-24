@@ -3028,7 +3028,10 @@ mlyrics.pane = {
 		},
 
 		onMouseScroll: function (event) {
-			document.getElementById('lm-content').contentWindow.document.body.scrollTop += event.detail/3 * 10;
+			var slowDownScroll = 1;
+			if (this.correctionMode) 
+				var slowDownScroll = 1/3;
+			document.getElementById('lm-content').contentWindow.document.body.scrollTop += event.detail * slowDownScroll * 10;
 			mlyrics.pane.positionListener.onMouseScrollReal(event);
 		},
 
