@@ -755,7 +755,7 @@ mlyrics.pane = {
 		mediaItem.setProperty("http://songbirdnest.com/data/1.0#translatedLyrics", onlyTranslation);
 		mlyrics.lib.writeID3Tag(mediaItem);
 			
-		document.getElementById("ML_sourceAddressNextButton").hidden = true;
+		document.getElementById("ML_sourceAddressNextButton").disabled = true;
 	},
 	
 	addNotification: function (notificationBoxElement, notificationPriority, mediaItem, lyrics, source) {
@@ -969,7 +969,7 @@ mlyrics.pane = {
 			track,
 			
 			function (localLyrics, localSource, localIndex) {
-				document.getElementById("ML_sourceAddressNextButton").hidden = false;
+				document.getElementById("ML_sourceAddressNextButton").disabled = false;
 				document.getElementById("refreshMenuItem").disabled = false;
 				
 				document.getElementById("editBtn").disabled = true;
@@ -1005,7 +1005,7 @@ mlyrics.pane = {
 				document.getElementById("refreshMenuItem").selectedIndex = localIndex+2;
 				document.getElementById("ML_sourceFetchProgress").hidden = !lprogress;
 				document.getElementById("ML_sourceFetchStopButton").hidden = !lprogress;
-				document.getElementById("ML_sourceAddressNextButton").hidden = true;
+				document.getElementById("ML_sourceAddressNextButton").disabled = true;
 				document.getElementById("refreshMenuItem").disabled = true;
 				
 				document.getElementById("editBtn").disabled = true;
@@ -1026,7 +1026,7 @@ mlyrics.pane = {
 		mlyrics.lib.debugOutput("Abort action, emulating track change");
 		mlyrics.fetch.fetchMediaItem = 0;
 		
-		document.getElementById("ML_sourceAddressNextButton").hidden = false;
+		document.getElementById("ML_sourceAddressNextButton").disabled = false;
 		document.getElementById("refreshMenuItem").disabled = false;
 		document.getElementById("ML_sourceFetchProgress").hidden = true;
 		document.getElementById("ML_sourceFetchStopButton").hidden = true;
@@ -1044,7 +1044,7 @@ mlyrics.pane = {
 		document.getElementById("clearMenuItem").disabled = false;
 			
 		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("ML_contextSourcesSeparator");
-		document.getElementById("ML_sourceAddressNextButton").disabled = true;
+		document.getElementById("ML_sourceAddressNextButton").disabled = false;
 		document.getElementById("ML_sourceAddressNextButton").nextSourceIndex = 0;
 	},
 	
@@ -1131,7 +1131,7 @@ mlyrics.pane = {
 		document.getElementById('web-content').hidden = false;
 		document.getElementById('web-dropbtn').hidden = false;
 
-		document.getElementById("ML_sourceAddressNextButton").hidden = false;
+		document.getElementById("ML_sourceAddressNextButton").disabled = false;
 		document.getElementById("refreshMenuItem").disabled = false;
 		
 		document.getElementById("editBtn").disabled = false;
@@ -1471,6 +1471,7 @@ mlyrics.pane = {
 		
 		document.getElementById("ML_sourceFetchProgress").hidden = true;
 		document.getElementById("ML_sourceFetchStopButton").hidden = true;
+		document.getElementById("ML_sourceAddressNextButton").disabled = false;
 		document.getElementById("refreshMenuItem").disabled = false;
 		
 		if (source && source != "") {
@@ -1587,9 +1588,8 @@ mlyrics.pane = {
 
 				document.getElementById("ML_sourceFetchProgress").hidden = false;
 				document.getElementById("ML_sourceFetchStopButton").hidden = false;
-				document.getElementById("ML_sourceAddressNextButton").hidden = true;
+				document.getElementById("ML_sourceAddressNextButton").disabled = true;
 				document.getElementById("refreshMenuItem").disabled = true;
-				document.getElementById("ML_sourceAddressNextButton").hidden = true;
 				document.getElementById("refreshMenuItem").selectedItem = document.getElementById("contxtTranslateMetaMenu");
 				
 				this.translateMetadataLyrics(   metadataLyrics,

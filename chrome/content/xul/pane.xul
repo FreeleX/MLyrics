@@ -151,8 +151,8 @@
 							label=">"
 							width="20"
 							style="margin:0"
-							hidden="true" 
-							disabled="true" 
+							hidden="false" 
+							disabled="false" 
 							oncommand="mlyrics.pane.contextRefresh(true, this.nextSourceIndex)"/>
 					</hbox>
 				</vbox>
