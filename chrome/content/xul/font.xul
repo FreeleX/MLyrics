@@ -171,6 +171,18 @@
 								<textbox id="titleMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
+								<checkbox id="titleMarginLeftEnable" />
+
+								<label value="&mlyrics.font.leftSpace;" />
+								<textbox id="titleMarginLeft" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="titleMarginRightEnable" />
+
+								<label value="&mlyrics.font.rightSpace;" />
+								<textbox id="titleMarginRight" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
 								<checkbox id="titleFontEnable" />
 
 								<label value="&mlyrics.font.fontLabel;" />
@@ -245,6 +257,18 @@
 
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="artistMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="artistMarginLeftEnable" />
+
+								<label value="&mlyrics.font.leftSpace;" />
+								<textbox id="artistMarginLeft" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="artistMarginRightEnable" />
+
+								<label value="&mlyrics.font.rightSpace;" />
+								<textbox id="artistMarginRight" type="number" size="4" min="-100" max="500" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="artistFontEnable" />
@@ -323,6 +347,18 @@
 								<textbox id="albumMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
+								<checkbox id="albumMarginLeftEnable" />
+
+								<label value="&mlyrics.font.leftSpace;" />
+								<textbox id="albumMarginLeft" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="albumMarginRightEnable" />
+
+								<label value="&mlyrics.font.rightSpace;" />
+								<textbox id="albumMarginRight" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
 								<checkbox id="albumFontEnable" />
 
 								<label value="&mlyrics.font.fontLabel;" />
@@ -397,6 +433,18 @@
 
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="lyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lyricsMarginLeftEnable" />
+
+								<label value="&mlyrics.font.leftSpace;" />
+								<textbox id="lyricsMarginLeft" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lyricsMarginRightEnable" />
+
+								<label value="&mlyrics.font.rightSpace;" />
+								<textbox id="lyricsMarginRight" type="number" size="4" min="-100" max="500" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lyricsFontEnable" />
@@ -475,6 +523,18 @@
 								<textbox id="transLyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
+								<checkbox id="transLyricsMarginLeftEnable" />
+
+								<label value="&mlyrics.font.leftSpace;" />
+								<textbox id="transLyricsMarginLeft" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="transLyricsMarginRightEnable" />
+
+								<label value="&mlyrics.font.rightSpace;" />
+								<textbox id="transLyricsMarginRight" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
 								<checkbox id="transLyricsFontEnable" />
 
 								<label value="&mlyrics.font.fontLabel;" />
@@ -549,6 +609,18 @@
 
 								<label value="&mlyrics.font.bottomSpace;" />
 								<textbox id="lrcLyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsMarginLeftEnable" />
+
+								<label value="&mlyrics.font.leftSpace;" />
+								<textbox id="lrcLyricsMarginLeft" type="number" size="4" min="-100" max="500" disabled="true" />
+							</row>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsMarginRightEnable" />
+
+								<label value="&mlyrics.font.rightSpace;" />
+								<textbox id="lrcLyricsMarginRight" type="number" size="4" min="-100" max="500" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lrcLyricsFontEnable" />

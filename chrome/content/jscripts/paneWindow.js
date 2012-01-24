@@ -320,6 +320,20 @@ mlyrics.pane = {
 				case fullScreenStr + "albumMarginBottom":
 				case fullScreenStr + "titleMarginBottom":
 
+				case fullScreenStr + "lyricsMarginLeft":
+				case fullScreenStr + "lrcLyricsMarginLeft":
+				case fullScreenStr + "transLyricsMarginLeft":
+				case fullScreenStr + "artistMarginLeft":
+				case fullScreenStr + "albumMarginLeft":
+				case fullScreenStr + "titleMarginLeft":
+
+				case fullScreenStr + "lyricsMarginRight":
+				case fullScreenStr + "lrcLyricsMarginRight":
+				case fullScreenStr + "transLyricsMarginRight":
+				case fullScreenStr + "artistMarginRight":
+				case fullScreenStr + "albumMarginRight":
+				case fullScreenStr + "titleMarginRight":
+
 				case fullScreenStr + "lyricsFont":
 				case fullScreenStr + "lrcLyricsFont":
 				case fullScreenStr + "transLyricsFont":
@@ -375,6 +389,20 @@ mlyrics.pane = {
 				case fullScreenStr + "artistMarginBottomEnable":
 				case fullScreenStr + "albumMarginBottomEnable":
 				case fullScreenStr + "titleMarginBottomEnable":
+
+				case fullScreenStr + "lyricsMarginLeftEnable":
+				case fullScreenStr + "lrcLyricsMarginLeftEnable":
+				case fullScreenStr + "transLyricsMarginLeftEnable":
+				case fullScreenStr + "artistMarginLeftEnable":
+				case fullScreenStr + "albumMarginLeftEnable":
+				case fullScreenStr + "titleMarginLeftEnable":
+
+				case fullScreenStr + "lyricsMarginRightEnable":
+				case fullScreenStr + "lrcLyricsMarginRightEnable":
+				case fullScreenStr + "transLyricsMarginRightEnable":
+				case fullScreenStr + "artistMarginRightEnable":
+				case fullScreenStr + "albumMarginRightEnable":
+				case fullScreenStr + "titleMarginRightEnable":
 
 				case fullScreenStr + "lyricsFontEnable":
 				case fullScreenStr + "lrcLyricsFontEnable":
@@ -444,6 +472,8 @@ mlyrics.pane = {
 		var elemOpacity 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "Opacity");
 		var elemMarginTop 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginTop");
 		var elemMarginBottom 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginBottom");
+		var elemMarginLeft 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginLeft");
+		var elemMarginRight 		= mlyrics.pane.prefs.getIntPref(fullScreenStr + prefPartStr + "MarginRight");
 		var elemFont			= mlyrics.pane.prefs.getCharPref(fullScreenStr + prefPartStr + "Font");
 
 		var elemStyleEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "StyleEnable");
@@ -453,6 +483,8 @@ mlyrics.pane = {
 		var elemSizeEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "SizeEnable");
 		var elemMarginTopEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginTopEnable");
 		var elemMarginBottomEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginBottomEnable");
+		var elemMarginLeftEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginLeftEnable");
+		var elemMarginRightEnable 	= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "MarginRightEnable");
 		var elemFontEnable 		= mlyrics.pane.prefs.getBoolPref(fullScreenStr + prefPartStr + "FontEnable");
 		
 		var styleStr = "";
@@ -497,6 +529,8 @@ mlyrics.pane = {
 		
 		if (elemMarginTopEnable) styleStr += "margin-top: " + elemMarginTop + ";";
 		if (elemMarginBottomEnable) styleStr += "margin-bottom: " + elemMarginBottom + ";";
+		if (elemMarginLeftEnable) styleStr += "margin-left: " + elemMarginLeft + ";";
+		if (elemMarginRightEnable) styleStr += "margin-right: " + elemMarginRight + ";";
 		
 		if (elemFontEnable) styleStr += "font-family: " + elemFont + ";";
 		

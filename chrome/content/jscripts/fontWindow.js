@@ -198,6 +198,32 @@ function onload () {
 	document.getElementById("transLyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginBottom', this.value)");
 	document.getElementById("lrcLyricsMarginBottom").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lrcLyricsMarginBottom', this.value)");
 
+	document.getElementById("titleMarginLeft").value = prefs.getIntPref(fullScreenStr + "titleMarginLeft");
+	document.getElementById("artistMarginLeft").value = prefs.getIntPref(fullScreenStr + "artistMarginLeft");
+	document.getElementById("albumMarginLeft").value = prefs.getIntPref(fullScreenStr + "albumMarginLeft");
+	document.getElementById("lyricsMarginLeft").value = prefs.getIntPref(fullScreenStr + "lyricsMarginLeft");
+	document.getElementById("transLyricsMarginLeft").value = prefs.getIntPref(fullScreenStr + "transLyricsMarginLeft");
+	document.getElementById("lrcLyricsMarginLeft").value = prefs.getIntPref(fullScreenStr + "lrcLyricsMarginLeft");
+	document.getElementById("titleMarginLeft").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'titleMarginLeft', this.value)");
+	document.getElementById("artistMarginLeft").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'artistMarginLeft', this.value)");
+	document.getElementById("albumMarginLeft").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumMarginLeft', this.value)");
+	document.getElementById("lyricsMarginLeft").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsMarginLeft', this.value)");
+	document.getElementById("transLyricsMarginLeft").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginLeft', this.value)");
+	document.getElementById("lrcLyricsMarginLeft").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lrcLyricsMarginLeft', this.value)");
+
+	document.getElementById("titleMarginRight").value = prefs.getIntPref(fullScreenStr + "titleMarginRight");
+	document.getElementById("artistMarginRight").value = prefs.getIntPref(fullScreenStr + "artistMarginRight");
+	document.getElementById("albumMarginRight").value = prefs.getIntPref(fullScreenStr + "albumMarginRight");
+	document.getElementById("lyricsMarginRight").value = prefs.getIntPref(fullScreenStr + "lyricsMarginRight");
+	document.getElementById("transLyricsMarginRight").value = prefs.getIntPref(fullScreenStr + "transLyricsMarginRight");
+	document.getElementById("lrcLyricsMarginRight").value = prefs.getIntPref(fullScreenStr + "lrcLyricsMarginRight");
+	document.getElementById("titleMarginRight").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'titleMarginRight', this.value)");
+	document.getElementById("artistMarginRight").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'artistMarginRight', this.value)");
+	document.getElementById("albumMarginRight").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'albumMarginRight', this.value)");
+	document.getElementById("lyricsMarginRight").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lyricsMarginRight', this.value)");
+	document.getElementById("transLyricsMarginRight").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'transLyricsMarginRight', this.value)");
+	document.getElementById("lrcLyricsMarginRight").setAttribute("onchange", "prefs.setIntPref(fullScreenStr + 'lrcLyricsMarginRight', this.value)");
+
 	document.getElementById("titleFont").value = prefs.getCharPref(fullScreenStr + "titleFont");
 	document.getElementById("artistFont").value = prefs.getCharPref(fullScreenStr + "artistFont");
 	document.getElementById("albumFont").value = prefs.getCharPref(fullScreenStr + "albumFont");
@@ -494,6 +520,82 @@ function onload () {
 	}, false);
 	document.getElementById("lrcLyricsMarginBottomEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsMarginBottomEnable');
 	// MarginBottom enable init end
+
+	// MarginLeft enable init start
+	document.getElementById("titleMarginLeftEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleMarginLeft").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleMarginLeftEnable', this.checked);
+	}, false);
+	document.getElementById("titleMarginLeftEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleMarginLeftEnable');
+
+	document.getElementById("artistMarginLeftEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistMarginLeft").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistMarginLeftEnable', this.checked);
+	}, false);
+	document.getElementById("artistMarginLeftEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistMarginLeftEnable');
+
+	document.getElementById("albumMarginLeftEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumMarginLeft").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumMarginLeftEnable', this.checked);
+	}, false);
+	document.getElementById("albumMarginLeftEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumMarginLeftEnable');
+
+	document.getElementById("lyricsMarginLeftEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsMarginLeft").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsMarginLeftEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsMarginLeftEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsMarginLeftEnable');
+
+	document.getElementById("transLyricsMarginLeftEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsMarginLeft").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsMarginLeftEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsMarginLeftEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsMarginLeftEnable');
+
+	document.getElementById("lrcLyricsMarginLeftEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsMarginLeft").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsMarginLeftEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsMarginLeftEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsMarginLeftEnable');
+	// MarginLeft enable init end
+
+	// MarginRight enable init start
+	document.getElementById("titleMarginRightEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("titleMarginRight").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'titleMarginRightEnable', this.checked);
+	}, false);
+	document.getElementById("titleMarginRightEnable").checked = prefs.getBoolPref(fullScreenStr + 'titleMarginRightEnable');
+
+	document.getElementById("artistMarginRightEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("artistMarginRight").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'artistMarginRightEnable', this.checked);
+	}, false);
+	document.getElementById("artistMarginRightEnable").checked = prefs.getBoolPref(fullScreenStr + 'artistMarginRightEnable');
+
+	document.getElementById("albumMarginRightEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("albumMarginRight").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'albumMarginRightEnable', this.checked);
+	}, false);
+	document.getElementById("albumMarginRightEnable").checked = prefs.getBoolPref(fullScreenStr + 'albumMarginRightEnable');
+
+	document.getElementById("lyricsMarginRightEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lyricsMarginRight").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lyricsMarginRightEnable', this.checked);
+	}, false);
+	document.getElementById("lyricsMarginRightEnable").checked = prefs.getBoolPref(fullScreenStr + 'lyricsMarginRightEnable');
+
+	document.getElementById("transLyricsMarginRightEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("transLyricsMarginRight").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'transLyricsMarginRightEnable', this.checked);
+	}, false);
+	document.getElementById("transLyricsMarginRightEnable").checked = prefs.getBoolPref(fullScreenStr + 'transLyricsMarginRightEnable');
+
+	document.getElementById("lrcLyricsMarginRightEnable").addEventListener("CheckboxStateChange", function () {
+		document.getElementById("lrcLyricsMarginRight").disabled = !this.checked;
+		prefs.setBoolPref(fullScreenStr + 'lrcLyricsMarginRightEnable', this.checked);
+	}, false);
+	document.getElementById("lrcLyricsMarginRightEnable").checked = prefs.getBoolPref(fullScreenStr + 'lrcLyricsMarginRightEnable');
+	// MarginRight enable init end
 
 	// Font enable init start
 	document.getElementById("titleFontEnable").addEventListener("CheckboxStateChange", function () {
