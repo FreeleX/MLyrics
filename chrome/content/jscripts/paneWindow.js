@@ -1024,7 +1024,6 @@ mlyrics.pane = {
 	
 	stopFetch: function () {
 		mlyrics.lib.debugOutput("Abort action, emulating track change");
-		mlyrics.fetch.fetchMediaItem = 0;
 		
 		document.getElementById("ML_sourceAddressNextButton").disabled = false;
 		document.getElementById("refreshMenuItem").disabled = false;
@@ -1046,6 +1045,14 @@ mlyrics.pane = {
 		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("ML_contextSourcesSeparator");
 		document.getElementById("ML_sourceAddressNextButton").disabled = false;
 		document.getElementById("ML_sourceAddressNextButton").nextSourceIndex = 0;
+
+		var artist = mlyrics.fetch.fetchMediaItem.getProperty(SBProperties.artistName);
+		var album = mlyrics.fetch.fetchMediaItem.getProperty(SBProperties.albumName);
+		var track = mlyrics.fetch.fetchMediaItem.getProperty(SBProperties.trackName);
+
+		mlyrics.fetch.fetchMediaItem = 0;
+
+		mlyrics.pane.buildPage(artist, album, track, "");
 	},
 	
 	translateMetadataLyrics: function (lyrics, cbFn, force) {
