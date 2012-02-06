@@ -2652,6 +2652,8 @@ mlyrics.fetch = {
 			this.docallback("", cbFn);
 			return;
 		}
+
+		if (artist.indexOf("/") != -1) artist = artist.substr(0, artist.indexOf("/"));
 		
 		var sources = this.prefs.getCharPref("fetchSourcesList").split("|");
 		
