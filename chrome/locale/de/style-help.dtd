@@ -1,5 +1,5 @@
 <!ENTITY mlyrics.style-help.annotation "Einige der Definitionen werden derzeit nicht verwendet, könnten jedoch in Zukunft verwendet werden.">
-<!ENTITY mlyrics.style-help.pclassesinfo "Im folgenden sind weitere Klassen für 'p'-Elemente, die als zusätzliche Formatierungselemente verwendet werden können. Wenn sie nicht verwendet werden sollen, kann display:none verwendet werden, um sie auszublenden. Ansonsten kann display:block in verbindung mit weiteren Parametern verwendet werden, um ihnen das gewünschte Erscheinungsbild zu geben. Die Positionierung auf der Seite ist wie folgt:">
+<!ENTITY mlyrics.style-help.pclassesinfo "Im folgenden sind weitere Klassen für \'p\'-Elemente, die als zusätzliche Formatierungselemente verwendet werden können. Wenn sie nicht verwendet werden sollen, kann display:none verwendet werden, um sie auszublenden. Ansonsten kann display:block in verbindung mit weiteren Parametern verwendet werden, um ihnen das gewünschte Erscheinungsbild zu geben. Die Positionierung auf der Seite ist wie folgt:">
 <!ENTITY mlyrics.style-help.pclassesinfoheader "über dem Liedtitel">
 <!ENTITY mlyrics.style-help.pclassesinfosong "zwischen Liedtitel und weiteren Informationen">
 <!ENTITY mlyrics.style-help.pclassesinfoadditional "zwischen weiteren Informationen und den Lyrics">

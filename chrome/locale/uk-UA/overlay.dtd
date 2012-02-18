@@ -5,7 +5,7 @@
 <!ENTITY mlyrics.trackeditor.btninstr "Без слів">
 <!ENTITY mlyrics.trackeditor.btninstrtip "Записати, що пісня не має слів">
 <!ENTITY mlyrics.trackeditor.bbtnlabel "Збір">
-<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Має бути вибрано від 2 до 1000 елементів щоб активувати &quot;Збір&quot;">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Має бути вибрано від 2 до 1000 елементів щоб активувати \&quot;Збір\&quot;">
 <!ENTITY mlyrics.trackeditor.btnremtransl "Вилучити переклад">
 <!ENTITY mlyrics.manuoverlay.batchmenulabel "Зібрати текст">
 <!ENTITY mlyrics.menuoverlay.addonhelplabel "Довідка додатків">
@@ -34,12 +34,12 @@
 <!ENTITY mlyrics.prefs.notifInstrlabel "Показувати, якщо текст без слів">
 <!ENTITY mlyrics.prefs.saveInDBLabel "Зберігати текст в базі у разі помилки запису">
 <!ENTITY mlyrics.prefs.displabel "Що саме має показувати MLyrics?">
-<!ENTITY mlyrics.prefs.dispoptartist "Ім'я виконавця">
+<!ENTITY mlyrics.prefs.dispoptartist "Ім\'я виконавця">
 <!ENTITY mlyrics.prefs.dispopttrack "Назву пісні">
 <!ENTITY mlyrics.prefs.dispoptalbum "Назву альбому">
 <!ENTITY mlyrics.prefs.stylelabel "Який стиль показу обрати?">
 <!ENTITY mlyrics.prefs.stloptnone "Відсутній">
-<!ENTITY mlyrics.prefs.stloptcurfthr "Поточне пір'я">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Поточне пір\'я">
 <!ENTITY mlyrics.prefs.stloptbluq "Blue Quote">
 <!ENTITY mlyrics.prefs.stloptlite "Blue Quote - Lite">
 <!ENTITY mlyrics.prefs.stlopteclp "Eclipse">

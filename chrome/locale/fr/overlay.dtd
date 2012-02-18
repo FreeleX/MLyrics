@@ -21,23 +21,23 @@
 <!ENTITY mlyrics.prefs.enabletranslatelabel "Voulez-vous ajouter la traduction de paroles Google ?">
 <!ENTITY mlyrics.prefs.enablemetadatatranslate "Vérifier la traduction pour les paroles sauvegardées">
 <!ENTITY mlyrics.prefs.libstylelabel "Comment voulez-vous nommer vos artistes ?">
-<!ENTITY mlyrics.prefs.savelyricslabel "Comment voulez-vous que les paroles s'enregistrent ?">
+<!ENTITY mlyrics.prefs.savelyricslabel "Comment voulez-vous que les paroles s\'enregistrent ?">
 <!ENTITY mlyrics.prefs.savetranslationlabel "Comment désirez-vous sauvegarder vos traductions ?">
 <!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Ignorer les traductions de :">
 <!ENTITY mlyrics.prefs.saveoptneversave "Ne jamais sauvegarder et ne jamais demander">
 <!ENTITY mlyrics.prefs.saveoptprompt "Toujours demander pour sauvegarder">
 <!ENTITY mlyrics.prefs.saveoptalways "Toujours sauvegarder et ne jamais demander">
 <!ENTITY mlyrics.prefs.miscellaneous "Divers">
-<!ENTITY mlyrics.prefs.hideonswitchlabel "Si l'onglet change, désirez-vous cacher les paroles ?">
-<!ENTITY mlyrics.prefs.notiflabel "Désirez-vous être averti si aucune parole n'est trouvée ?">
-<!ENTITY mlyrics.prefs.autoSearchLyr "Rechercher sur Google si aucune paroles n'est trouvée">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "Si l\'onglet change, désirez-vous cacher les paroles ?">
+<!ENTITY mlyrics.prefs.notiflabel "Désirez-vous être averti si aucune parole n\'est trouvée ?">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Rechercher sur Google si aucune paroles n\'est trouvée">
 <!ENTITY mlyrics.prefs.notifInstrlabel "Voir si les paroles sont instrumentales">
-<!ENTITY mlyrics.prefs.saveInDBLabel "Conserver les paroles dans la base de données en cas d'erreur d'écriture">
-<!ENTITY mlyrics.prefs.displabel "Qu'est-ce que MLyrics devrait montrer ?">
-<!ENTITY mlyrics.prefs.dispoptartist "Nom de l'artiste">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Conserver les paroles dans la base de données en cas d\'erreur d\'écriture">
+<!ENTITY mlyrics.prefs.displabel "Qu\'est-ce que MLyrics devrait montrer ?">
+<!ENTITY mlyrics.prefs.dispoptartist "Nom de l\'artiste">
 <!ENTITY mlyrics.prefs.dispopttrack "Nom de la chanson">
-<!ENTITY mlyrics.prefs.dispoptalbum "Nom de l'album">
-<!ENTITY mlyrics.prefs.stylelabel "Quel style d'affichage personnalisé voulez-vous utiliser ?">
+<!ENTITY mlyrics.prefs.dispoptalbum "Nom de l\'album">
+<!ENTITY mlyrics.prefs.stylelabel "Quel style d\'affichage personnalisé voulez-vous utiliser ?">
 <!ENTITY mlyrics.prefs.stloptnone "Aucun">
 <!ENTITY mlyrics.prefs.stloptcurfthr "Plume actuelle">
 <!ENTITY mlyrics.prefs.stloptbluq "Citation bleue">
@@ -53,11 +53,11 @@
 <!ENTITY mlyrics.prefs.linkInfo2 "Veuillez également ne pas oublier de regarder les commentaires :)">
 <!ENTITY mlyrics.helloworld.label "Faire BonjourMonde">
 <!ENTITY mlyrics.helloworld.accesskey "H">
-<!ENTITY mlyrics.pane.label "Ceci est le panneau d'affichage">
+<!ENTITY mlyrics.pane.label "Ceci est le panneau d\'affichage">
 <!ENTITY mlyrics.pane.button "En apprendre plus">
 <!ENTITY mlyrics.helpwin.winlabel "Aide pour MLyrics">
 <!ENTITY mlyrics.helpwin.startlabel "Page couverture">
-<!ENTITY mlyrics.helpwin.displabel "Panneau d'affichage">
+<!ENTITY mlyrics.helpwin.displabel "Panneau d\'affichage">
 <!ENTITY mlyrics.helpwin.preflabel "Panneau des préférences">
 <!ENTITY mlyrics.helpwin.metalabel "Éditeur de métadonées">
 <!ENTITY mlyrics.helpwin.batchlabel "Fenêtre de la recherche de paroles du lot">
@@ -114,7 +114,7 @@
 <!ENTITY mlyrics.font.opacityLabel "Opacité :">
 <!ENTITY mlyrics.font.colorLabel "Couleur :">
 <!ENTITY mlyrics.font.bgColorLabel "Couleur BG :">
-<!ENTITY mlyrics.font.showStaticPicIf "Voir l'image statique s'il n'y a pas de couverture">
+<!ENTITY mlyrics.font.showStaticPicIf "Voir l\'image statique s\'il n\'y a pas de couverture">
 <!ENTITY mlyrics.font.color2Label "Couleur">
 <!ENTITY mlyrics.font.imageLabel "Image">
 <!ENTITY mlyrics.font.noBackgroundLabel "Aucun">

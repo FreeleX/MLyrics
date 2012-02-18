@@ -1,0 +1,4 @@
+<!ENTITY mlyrics.medialist-help.lighticon "Ova pjesma ima tekst spremljen u oznaci">
+<!ENTITY mlyrics.medialist-help.darkicon "Ova pjesma ima tekst spremljen samo u Songbird bazi podataka zbog problema pri pisanju oznake">
+<!ENTITY mlyrics.medialist-help.timetracksicon "Ova pjesma ima .irc datoteku u istoj mapi s vremenom pjesme. MLyrics će pomicati tekst pjesme prema ovoj informaciji.">
+<!ENTITY mlyrics.medialist-help.smartscrollicon "To znači da će se MLyrics sam učiti kako pomicati tekstove pjesama (pjevat će sa vama :) )">

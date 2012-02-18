@@ -121,8 +121,6 @@
 <!ENTITY mlyrics.font.coverImageLabel "Cover Image">
 <!ENTITY mlyrics.font.topSpace "Top space">
 <!ENTITY mlyrics.font.bottomSpace "Bottom space">
-<!ENTITY mlyrics.font.leftSpace "Left space">
-<!ENTITY mlyrics.font.rightSpace "Right space">
 <!ENTITY mlyrics.font.alignLabel "Align:">
 <!ENTITY mlyrics.font.fontStyleLabel "Font style:">
 <!ENTITY mlyrics.font.fontLabel "Font:">

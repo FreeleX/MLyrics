@@ -1,7 +1,7 @@
 <!ENTITY mlyrics.tips-help.gatherlyrics "Want quickly gather lyrics for numbers of tracks? - Just select them and right click -&gt; Gather Lyrics">
 <!ENTITY mlyrics.tips-help.multifetch "Not sure that first found lyrics is best? - Right click on track -&gt; View Metadata -&gt; Lyrics tab -&gt; Multi Fetch. Now you can compare lyrics from all lyrics sites available and choose the best">
-<!ENTITY mlyrics.tips-help.ignoretranslate "Want MLyrics to not translate from languages you know better than Google translator? - Don't forget to check them in settings window">
-<!ENTITY mlyrics.tips-help.dropit "Found lyrics on the internet MLyrics couldn't find? - Select it on the html page and drop onto the MLyrics pane">
+<!ENTITY mlyrics.tips-help.ignoretranslate "Want MLyrics to not translate from languages you know better than Google translator? - Don\'t forget to check them in settings window">
+<!ENTITY mlyrics.tips-help.dropit "Found lyrics on the internet MLyrics couldn\'t find? - Select it on the html page and drop onto the MLyrics pane">
 <!ENTITY mlyrics.tips-help.nowselectedmode "MLyrics now selected mode can help you if you forgot where is couplet you was singing an hour ago">
 <!ENTITY mlyrics.tips-help.smartlist "Want to listen all tracks about friendship? - You can create smart playlist with lyrics containing this word. But be patient - this can be very hard work for Songbird">
 <!ENTITY mlyrics.tips-help.smartscroll "You can teach MLyrics how to scroll lyrics (sing this song) by entering smart scroll teach mode - scroll up your mouse wheel when you hear first words untill cursor change. Now scroll down (and sing) - MLyrics will remember and repeat every time you play this track">

@@ -1,0 +1,126 @@
+<!ENTITY mlyrics.trackeditor.caption "MLyrics višestruko preuzimanje">
+<!ENTITY mlyrics.trackeditor.fbtnlabel "Višestruko preuzimanje">
+<!ENTITY mlyrics.trackeditor.fbtntooltextdef "Preuzmi ove tekstove pjesama sa MLyrics-om!">
+<!ENTITY mlyrics.trackeditor.cbtntooltextdef "Obriši ove tekstove pjesama.">
+<!ENTITY mlyrics.trackeditor.btninstr "Instrumentalno">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Učini ove tekstove pjesme instrumentalnim">
+<!ENTITY mlyrics.trackeditor.bbtnlabel "Batch">
+<!ENTITY mlyrics.trackeditor.bbtntooltextdef "Odabir mora sadržavati 2 - 1000 stavki za omogućavanje Batch tipke.">
+<!ENTITY mlyrics.trackeditor.btnremtransl "Ukloni prijevod">
+<!ENTITY mlyrics.manuoverlay.batchmenulabel "Preuzmi tekst pjesme">
+<!ENTITY mlyrics.menuoverlay.addonhelplabel "Pomoć dodatka">
+<!ENTITY mlyrics.menuoverlay.lmhelplabel "MLyrics pomoć">
+<!ENTITY mlyrics.batchwin.winlabel "MLyrics sakupljač">
+<!ENTITY mlyrics.batchwin.btncheckall "Označi sve">
+<!ENTITY mlyrics.batchwin.btnuncheckall "Odznači sve">
+<!ENTITY mlyrics.batchwin.btnaccept "Prihvati promjene">
+<!ENTITY mlyrics.prefs.winlabel "MLyrics postavke">
+<!ENTITY mlyrics.prefs.weblocupbtn "GORE">
+<!ENTITY mlyrics.prefs.weblocdownbtn "DOLJE">
+<!ENTITY mlyrics.prefs.webloclabel "Odkuda želite preuzeti tekstove pjesama?">
+<!ENTITY mlyrics.prefs.enabletranslatelabel "Želite li dodati Google prijevod tekstova pjesama?">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "Odaberi prijevod za spremljene tekstove pjesama">
+<!ENTITY mlyrics.prefs.libstylelabel "Koja je naziv sheme vašeg izvođačaa?">
+<!ENTITY mlyrics.prefs.savelyricslabel "Kako želite spremiti vaše tekstove pjesama?">
+<!ENTITY mlyrics.prefs.savetranslationlabel "Kako želite spremiti vaš prijevod?">
+<!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Zanemari prijevod za:">
+<!ENTITY mlyrics.prefs.saveoptneversave "Nikada ne spremaj / Nikada ne pitaj">
+<!ENTITY mlyrics.prefs.saveoptprompt "Pitaj me za spremanje / Uvijek pitaj">
+<!ENTITY mlyrics.prefs.saveoptalways "Uvijek spremi / Nikada ne pitaj">
+<!ENTITY mlyrics.prefs.miscellaneous "Ostalo">
+<!ENTITY mlyrics.prefs.hideonswitchlabel "Sakrij tekst pjesme ako se napusti kartica">
+<!ENTITY mlyrics.prefs.notiflabel "Obavijesti ako se ne pronađe tekst pjesme">
+<!ENTITY mlyrics.prefs.autoSearchLyr "Pretraži Google ako se ne pronađe tekst pjesme">
+<!ENTITY mlyrics.prefs.notifInstrlabel "Prikaži ako je tekst pjesme instrumentalan">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Pohrani tekstove pjesama u bazu podataka u slučaju greške zapisivanja">
+<!ENTITY mlyrics.prefs.displabel "Što bi trebao MLyrics prikazati?">
+<!ENTITY mlyrics.prefs.dispoptartist "Naziv izvođača">
+<!ENTITY mlyrics.prefs.dispopttrack "Naziv pjesme">
+<!ENTITY mlyrics.prefs.dispoptalbum "Naziv albuma">
+<!ENTITY mlyrics.prefs.stylelabel "Koji prilagođeni stil prikaza želite koristiti?">
+<!ENTITY mlyrics.prefs.stloptnone "Nepoznato">
+<!ENTITY mlyrics.prefs.stloptcurfthr "Trenutna presvlaka">
+<!ENTITY mlyrics.prefs.stloptbluq "Blue Quote">
+<!ENTITY mlyrics.prefs.stloptlite "Blue Quote - Lite">
+<!ENTITY mlyrics.prefs.stlopteclp "Eklipsa">
+<!ENTITY mlyrics.prefs.stloptglid "Glided">
+<!ENTITY mlyrics.prefs.stlopthigh "Visok kontrast">
+<!ENTITY mlyrics.prefs.stloptolds "Stara škola">
+<!ENTITY mlyrics.prefs.stloptsong "Songbird - RubberDucky">
+<!ENTITY mlyrics.prefs.stloptstar "Zvijezde">
+<!ENTITY mlyrics.prefs.scanlib "Pretraži u cijeloj zbirci spremljenje tekstove pjesama.">
+<!ENTITY mlyrics.prefs.linkInfo1 "Želite li više značajki, imate ideju? Možda ste pronašli grešku?">
+<!ENTITY mlyrics.prefs.linkInfo2 "Također vas molimo da ne zaboravite provjeriti komentare :)">
+<!ENTITY mlyrics.helloworld.label "Pozdravite">
+<!ENTITY mlyrics.helloworld.accesskey "H">
+<!ENTITY mlyrics.pane.label "Ovo je okno prikaza">
+<!ENTITY mlyrics.pane.button "Naučite više">
+<!ENTITY mlyrics.helpwin.winlabel "MLyrics pomoć">
+<!ENTITY mlyrics.helpwin.startlabel "Stranica omota">
+<!ENTITY mlyrics.helpwin.displabel "Okno prikaza">
+<!ENTITY mlyrics.helpwin.preflabel "Okno postavki">
+<!ENTITY mlyrics.helpwin.metalabel "Uređivač oznaka">
+<!ENTITY mlyrics.helpwin.batchlabel "Batch prozor preuzimatelja">
+<!ENTITY mlyrics.helpwin.haslyrlabel "Imaju li tekstovi pjesama ikone?">
+<!ENTITY mlyrics.helpwin.lisclabel "MLyrics licenca">
+<!ENTITY mlyrics.helpwin.aboutlabel "O MLyrics-u">
+<!ENTITY mlyrics.helpwin.stylelabel "Odredite stil">
+<!ENTITY mlyrics.helpwin.medialistlabel "Ikone medijskog popisa">
+<!ENTITY mlyrics.helpwin.tipslabel "Savjeti">
+<!ENTITY mlyrics.pane.contxtRefresh "Osvježi tekstove pjesama">
+<!ENTITY mlyrics.pane.contxtRefreshObO "Tijekom sviranja">
+<!ENTITY mlyrics.pane.contxtRefreshTag "Iz oznake">
+<!ENTITY mlyrics.pane.contxtMakeInstr "Učini instrumentalom">
+<!ENTITY mlyrics.pane.contxtClear "Obriši popise pjesama">
+<!ENTITY mlyrics.pane.contxtNotifEnabled "Omogući obavijesti">
+<!ENTITY mlyrics.pane.contxtNotifDisabled "Onemogući obavijesti">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "Omogući automatsko klizanje">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "Onemogući automatsko klizanje">
+<!ENTITY mlyrics.pane.showSettings "Postavke">
+<!ENTITY mlyrics.pane.showEditDialog "Uredi tekst pjesme">
+<!ENTITY mlyrics.pane.contxWebSrch "Web pretraga">
+<!ENTITY mlyrics.pane.viewModeMenu0 "Prikaži samo izvorne tekstove pjesama">
+<!ENTITY mlyrics.pane.viewModeMenu1 "Prikaži samo prijevod">
+<!ENTITY mlyrics.pane.viewModeMenu2 "Prikaži pomiješano, liniju po liniju">
+<!ENTITY mlyrics.pane.viewModeMenu3 "Prikaži kao što je">
+<!ENTITY mlyrics.pane.viewModeMenu4 "Prikaži pomiješano, dvostih po dvostih">
+<!ENTITY mlyrics.pane.saveButton "Spremi">
+<!ENTITY mlyrics.pane.cancelButton "Poništi">
+<!ENTITY mlyrics.pane.showSelected "Prikaži trenutno odabrano">
+<!ENTITY mlyrics.pane.showNowPlaying "Prikaži trenutno reproducirano">
+<!ENTITY mlyrics.pane.restartSongButton "Ponovno pokreni">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "Izradi zapise vremena">
+<!ENTITY mlyrics.pane.removeTimeTracks "Ukloni zapise vremena">
+<!ENTITY mlyrics.pane.dropherebtn "Ispusti tekst pjesama ovdje">
+<!ENTITY mlyrics.pane.teachScroll "Nauči MLyrics kako klizati">
+<!ENTITY mlyrics.pane.unteachScroll "Ukloni informacije pametnog klizanja">
+<!ENTITY mlyrics.pane.accelerator "Ubrzivač klizanja">
+<!ENTITY mlyrics.pane.translClear "Obriši prijevod">
+<!ENTITY mlyrics.font.confFont "Podesite izgled">
+<!ENTITY mlyrics.font.sizeLabel "Veličina:">
+<!ENTITY mlyrics.font.leftLabel "Lijevo">
+<!ENTITY mlyrics.font.centerLabel "Sredina">
+<!ENTITY mlyrics.font.rightLabel "Desno">
+<!ENTITY mlyrics.font.topLabel "Vrh">
+<!ENTITY mlyrics.font.bottomLabel "Dno">
+<!ENTITY mlyrics.font.applyRules "Primjeni prilagođena pravila">
+<!ENTITY mlyrics.font.background "Pozadina">
+<!ENTITY mlyrics.font.title "Naziv">
+<!ENTITY mlyrics.font.artist "Izvođač">
+<!ENTITY mlyrics.font.album "Album">
+<!ENTITY mlyrics.font.lyrics "Tekst pjesme">
+<!ENTITY mlyrics.font.transLyrics "Prevedeni tekst pjesme">
+<!ENTITY mlyrics.font.lrcLyrics "Vrijeme trajanja pjesme">
+<!ENTITY mlyrics.font.opacityLabel "Prozirnost:">
+<!ENTITY mlyrics.font.colorLabel "Boja:">
+<!ENTITY mlyrics.font.bgColorLabel "BG boja:">
+<!ENTITY mlyrics.font.showStaticPicIf "Prikaži statičnu sliku ako nema omota">
+<!ENTITY mlyrics.font.color2Label "Boja">
+<!ENTITY mlyrics.font.imageLabel "Slika">
+<!ENTITY mlyrics.font.noBackgroundLabel "Nepoznato">
+<!ENTITY mlyrics.font.coverImageLabel "Slika omota">
+<!ENTITY mlyrics.font.topSpace "Razmak na vrhu">
+<!ENTITY mlyrics.font.bottomSpace "Razmak na dnu">
+<!ENTITY mlyrics.font.alignLabel "Poravnaj:">
+<!ENTITY mlyrics.font.fontStyleLabel "Stil slova:">
+<!ENTITY mlyrics.font.fontLabel "Slova:">

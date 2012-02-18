@@ -1,6 +1,6 @@
-<!ENTITY mlyrics.style-help.annotation "Quelques-unes des définitions ne sont pas actuellement utilisées, mais pourront l'être dans le futur">
-<!ENTITY mlyrics.style-help.pclassesinfo "Les éléments suivants sont des classes de rechange «p», que vous pouvez utiliser comme éléments de formatage supplémentaire. Si vous ne voulez pas les utiliser, il suffit d'utiliser display:none pour les cacher. Sinon, utilisez display: block avec des paramètres additionnels pour leur donner l'apparence que vous souhaitez qu'ils aient. Leur position dans la page sont comme ceci :">
+<!ENTITY mlyrics.style-help.annotation "Quelques-unes des définitions ne sont pas actuellement utilisées, mais pourront l\'être dans le futur">
+<!ENTITY mlyrics.style-help.pclassesinfo "Les éléments suivants sont des classes de rechange «p», que vous pouvez utiliser comme éléments de formatage supplémentaire. Si vous ne voulez pas les utiliser, il suffit d\'utiliser display:none pour les cacher. Sinon, utilisez display: block avec des paramètres additionnels pour leur donner l\'apparence que vous souhaitez qu\'ils aient. Leur position dans la page sont comme ceci :">
 <!ENTITY mlyrics.style-help.pclassesinfoheader "au-dessus du titre de la chanson">
 <!ENTITY mlyrics.style-help.pclassesinfosong "entre le titre de la chanson et les informations additionnelles">
-<!ENTITY mlyrics.style-help.pclassesinfoadditional "entre l'information additionnelle et les paroles">
+<!ENTITY mlyrics.style-help.pclassesinfoadditional "entre l\'information additionnelle et les paroles">
 <!ENTITY mlyrics.style-help.pclassesinfolyrics "en-dessous des paroles">

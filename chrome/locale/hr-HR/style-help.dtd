@@ -1,0 +1,6 @@
+<!ENTITY mlyrics.style-help.annotation "Neke od definicija se trenutno ne koriste ali bi mogle u budućnosti">
+<!ENTITY mlyrics.style-help.pclassesinfo "Slijede \'p\' rezervirane klase, koje možee koristiti kao dodatne elemente formata. Ako ih ne želite koristiti, koristite prikaz:nepoznat za sakrivanje. Drugačije koristite prikaz:blokiran sa dodatnim parametrima da izgledaju kako želite. Njihov položaj na slici je sljedeći:">
+<!ENTITY mlyrics.style-help.pclassesinfoheader "iznad naziva pjesme">
+<!ENTITY mlyrics.style-help.pclassesinfosong "između naziva pjesme i dodatne informacije">
+<!ENTITY mlyrics.style-help.pclassesinfoadditional "između dodatne informacije i teksta pjesme">
+<!ENTITY mlyrics.style-help.pclassesinfolyrics "ispod teksta pjesme">

@@ -1,4 +1,4 @@
 <!ENTITY mlyrics.medialist-help.lighticon "Cette piste a des paroles stockées dans son fichier">
-<!ENTITY mlyrics.medialist-help.darkicon "Cette piste a des paroles stockées seulement dans la base de données de Songbird à cause des problèmes d'écriture dans le fichier.">
-<!ENTITY mlyrics.medialist-help.timetracksicon "Cette piste a un fichier .lrc dans le même dossier avec des pistes de temps à l'intérieur. MLyrics va faire défiler les paroles selon ces informations.">
+<!ENTITY mlyrics.medialist-help.darkicon "Cette piste a des paroles stockées seulement dans la base de données de Songbird à cause des problèmes d\'écriture dans le fichier.">
+<!ENTITY mlyrics.medialist-help.timetracksicon "Cette piste a un fichier .lrc dans le même dossier avec des pistes de temps à l\'intérieur. MLyrics va faire défiler les paroles selon ces informations.">
 <!ENTITY mlyrics.medialist-help.smartscrollicon "Ceci veut dire que MLyrics a appris a bien faire défiler ces paroles (chante avec vous :) )">

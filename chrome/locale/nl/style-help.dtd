@@ -1,5 +1,5 @@
 <!ENTITY mlyrics.style-help.annotation "Sommige definities worden momenteel niet gebruikt, maar mogelijk wel in de toekomst">
-<!ENTITY mlyrics.style-help.pclassesinfo "De volgende zijn 'p' extra klassen, die je kan gebruiken als bijkomstige formatteringselementen. Als je ze niet wenst te gebruiken, gebruik display:none om ze te verbergen. Anders gebruik je display:block met andere eigenschappen om ze de weergave te geven die je wenst. Hun positie op de pagina is als volgt:">
+<!ENTITY mlyrics.style-help.pclassesinfo "De volgende zijn \'p\' extra klassen, die je kan gebruiken als bijkomstige formatteringselementen. Als je ze niet wenst te gebruiken, gebruik display:none om ze te verbergen. Anders gebruik je display:block met andere eigenschappen om ze de weergave te geven die je wenst. Hun positie op de pagina is als volgt:">
 <!ENTITY mlyrics.style-help.pclassesinfoheader "boven de titel van het lied">
 <!ENTITY mlyrics.style-help.pclassesinfosong "tussen de titel en extra informatie">
 <!ENTITY mlyrics.style-help.pclassesinfoadditional "tussen extra informatie en songtekst">
