@@ -118,7 +118,7 @@
 <!ENTITY mlyrics.font.color2Label "Boja">
 <!ENTITY mlyrics.font.imageLabel "Slika">
 <!ENTITY mlyrics.font.noBackgroundLabel "Nepoznato">
-<!ENTITY mlyrics.font.coverImageLabel "Slika omota">
+<!ENTITY mlyrics.font.coverImageLabel "Slika omota albuma">
 <!ENTITY mlyrics.font.topSpace "Razmak na vrhu">
 <!ENTITY mlyrics.font.bottomSpace "Razmak na dnu">
 <!ENTITY mlyrics.font.alignLabel "Poravnaj:">
