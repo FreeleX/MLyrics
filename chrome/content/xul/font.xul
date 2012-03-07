@@ -162,13 +162,13 @@
 								<checkbox id="titleMarginTopEnable" />
 
 								<label value="&mlyrics.font.topSpace;" />
-								<textbox id="titleMarginTop" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="titleMarginTop" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="titleMarginBottomEnable" />
 
 								<label value="&mlyrics.font.bottomSpace;" />
-								<textbox id="titleMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="titleMarginBottom" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="titleMarginLeftEnable" />
@@ -250,13 +250,13 @@
 								<checkbox id="artistMarginTopEnable" />
 
 								<label value="&mlyrics.font.topSpace;" />
-								<textbox id="artistMarginTop" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="artistMarginTop" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="artistMarginBottomEnable" />
 
 								<label value="&mlyrics.font.bottomSpace;" />
-								<textbox id="artistMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="artistMarginBottom" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="artistMarginLeftEnable" />
@@ -338,13 +338,13 @@
 								<checkbox id="albumMarginTopEnable" />
 
 								<label value="&mlyrics.font.topSpace;" />
-								<textbox id="albumMarginTop" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="albumMarginTop" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="albumMarginBottomEnable" />
 
 								<label value="&mlyrics.font.bottomSpace;" />
-								<textbox id="albumMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="albumMarginBottom" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="albumMarginLeftEnable" />
@@ -426,13 +426,13 @@
 								<checkbox id="lyricsMarginTopEnable" />
 
 								<label value="&mlyrics.font.topSpace;" />
-								<textbox id="lyricsMarginTop" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="lyricsMarginTop" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lyricsMarginBottomEnable" />
 
 								<label value="&mlyrics.font.bottomSpace;" />
-								<textbox id="lyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="lyricsMarginBottom" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lyricsMarginLeftEnable" />
@@ -514,13 +514,13 @@
 								<checkbox id="transLyricsMarginTopEnable" />
 
 								<label value="&mlyrics.font.topSpace;" />
-								<textbox id="transLyricsMarginTop" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="transLyricsMarginTop" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="transLyricsMarginBottomEnable" />
 
 								<label value="&mlyrics.font.bottomSpace;" />
-								<textbox id="transLyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="transLyricsMarginBottom" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="transLyricsMarginLeftEnable" />
@@ -602,13 +602,13 @@
 								<checkbox id="lrcLyricsMarginTopEnable" />
 
 								<label value="&mlyrics.font.topSpace;" />
-								<textbox id="lrcLyricsMarginTop" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="lrcLyricsMarginTop" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lrcLyricsMarginBottomEnable" />
 
 								<label value="&mlyrics.font.bottomSpace;" />
-								<textbox id="lrcLyricsMarginBottom" type="number" size="4" min="0" max="1000" disabled="true" />
+								<textbox id="lrcLyricsMarginBottom" type="number" size="4" min="-100" max="1000" disabled="true" />
 							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lrcLyricsMarginLeftEnable" />
