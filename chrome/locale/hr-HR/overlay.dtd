@@ -3,7 +3,7 @@
 <!ENTITY mlyrics.trackeditor.fbtntooltextdef "Preuzmi ove tekstove pjesama sa MLyrics-om!">
 <!ENTITY mlyrics.trackeditor.cbtntooltextdef "Obriši ove tekstove pjesama.">
 <!ENTITY mlyrics.trackeditor.btninstr "Instrumentalno">
-<!ENTITY mlyrics.trackeditor.btninstrtip "Učini ove tekstove pjesme instrumentalnim">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Učini ovaj tekst pjesme instrumentalnim">
 <!ENTITY mlyrics.trackeditor.bbtnlabel "Batch">
 <!ENTITY mlyrics.trackeditor.bbtntooltextdef "Odabir mora sadržavati 2 - 1000 stavki za omogućavanje Batch tipke.">
 <!ENTITY mlyrics.trackeditor.btnremtransl "Ukloni prijevod">
@@ -15,12 +15,12 @@
 <!ENTITY mlyrics.batchwin.btnuncheckall "Odznači sve">
 <!ENTITY mlyrics.batchwin.btnaccept "Prihvati promjene">
 <!ENTITY mlyrics.prefs.winlabel "MLyrics postavke">
-<!ENTITY mlyrics.prefs.weblocupbtn "GORE">
-<!ENTITY mlyrics.prefs.weblocdownbtn "DOLJE">
-<!ENTITY mlyrics.prefs.webloclabel "Odkuda želite preuzeti tekstove pjesama?">
+<!ENTITY mlyrics.prefs.weblocupbtn "POMAKNITE GORE">
+<!ENTITY mlyrics.prefs.weblocdownbtn "POMAKNITE DOLJE">
+<!ENTITY mlyrics.prefs.webloclabel "Odberite web izvore preuzimanja tekstova pjesama!?">
 <!ENTITY mlyrics.prefs.enabletranslatelabel "Želite li dodati Google prijevod tekstova pjesama?">
 <!ENTITY mlyrics.prefs.enablemetadatatranslate "Odaberi prijevod za spremljene tekstove pjesama">
-<!ENTITY mlyrics.prefs.libstylelabel "Koja je naziv sheme vašeg izvođačaa?">
+<!ENTITY mlyrics.prefs.libstylelabel "Koji je naziv sheme vašeg izvođačaa?">
 <!ENTITY mlyrics.prefs.savelyricslabel "Kako želite spremiti vaše tekstove pjesama?">
 <!ENTITY mlyrics.prefs.savetranslationlabel "Kako želite spremiti vaš prijevod?">
 <!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Zanemari prijevod za:">
@@ -50,7 +50,7 @@
 <!ENTITY mlyrics.prefs.stloptstar "Zvijezde">
 <!ENTITY mlyrics.prefs.scanlib "Pretraži u cijeloj zbirci spremljenje tekstove pjesama.">
 <!ENTITY mlyrics.prefs.linkInfo1 "Želite li više značajki, imate ideju? Možda ste pronašli grešku?">
-<!ENTITY mlyrics.prefs.linkInfo2 "Također vas molimo da ne zaboravite provjeriti komentare :)">
+<!ENTITY mlyrics.prefs.linkInfo2 "Također vas molimo da ne zaboravite pogledati komentare :)">
 <!ENTITY mlyrics.helloworld.label "Pozdravite">
 <!ENTITY mlyrics.helloworld.accesskey "H">
 <!ENTITY mlyrics.pane.label "Ovo je okno prikaza">
@@ -68,14 +68,14 @@
 <!ENTITY mlyrics.helpwin.medialistlabel "Ikone medijskog popisa">
 <!ENTITY mlyrics.helpwin.tipslabel "Savjeti">
 <!ENTITY mlyrics.pane.contxtRefresh "Osvježi tekstove pjesama">
-<!ENTITY mlyrics.pane.contxtRefreshObO "Tijekom sviranja">
-<!ENTITY mlyrics.pane.contxtRefreshTag "Iz oznake">
-<!ENTITY mlyrics.pane.contxtMakeInstr "Učini instrumentalom">
-<!ENTITY mlyrics.pane.contxtClear "Obriši popise pjesama">
+<!ENTITY mlyrics.pane.contxtRefreshObO "Tekst pjesme iz web izvora">
+<!ENTITY mlyrics.pane.contxtRefreshTag "Tekst pjesme iz oznake">
+<!ENTITY mlyrics.pane.contxtMakeInstr "Učini pjesmu instrumentalom">
+<!ENTITY mlyrics.pane.contxtClear "Obriši tekst pjesme">
 <!ENTITY mlyrics.pane.contxtNotifEnabled "Omogući obavijesti">
 <!ENTITY mlyrics.pane.contxtNotifDisabled "Onemogući obavijesti">
-<!ENTITY mlyrics.pane.contxtScrollEnabled "Omogući automatsko klizanje">
-<!ENTITY mlyrics.pane.contxtScrollDisabled "Onemogući automatsko klizanje">
+<!ENTITY mlyrics.pane.contxtScrollEnabled "Omogući automatsko pomicanje">
+<!ENTITY mlyrics.pane.contxtScrollDisabled "Onemogući automatsko pomicanje">
 <!ENTITY mlyrics.pane.showSettings "Postavke">
 <!ENTITY mlyrics.pane.showEditDialog "Uredi tekst pjesme">
 <!ENTITY mlyrics.pane.contxWebSrch "Web pretraga">
@@ -89,13 +89,13 @@
 <!ENTITY mlyrics.pane.showSelected "Prikaži trenutno odabrano">
 <!ENTITY mlyrics.pane.showNowPlaying "Prikaži trenutno reproducirano">
 <!ENTITY mlyrics.pane.restartSongButton "Ponovno pokreni">
-<!ENTITY mlyrics.pane.showTimeTracksDialog "Izradi zapise vremena">
-<!ENTITY mlyrics.pane.removeTimeTracks "Ukloni zapise vremena">
-<!ENTITY mlyrics.pane.dropherebtn "Ispusti tekst pjesama ovdje">
-<!ENTITY mlyrics.pane.teachScroll "Nauči MLyrics kako klizati">
-<!ENTITY mlyrics.pane.unteachScroll "Ukloni informacije pametnog klizanja">
-<!ENTITY mlyrics.pane.accelerator "Ubrzivač klizanja">
-<!ENTITY mlyrics.pane.translClear "Obriši prijevod">
+<!ENTITY mlyrics.pane.showTimeTracksDialog "Izradi zapise vremena sviranja stihova">
+<!ENTITY mlyrics.pane.removeTimeTracks "Ukloni zapise vremena sviranja stihova">
+<!ENTITY mlyrics.pane.dropherebtn "Ispustite tekst pjesame ovdje">
+<!ENTITY mlyrics.pane.teachScroll "Nauči MLyrics pomicati tekst">
+<!ENTITY mlyrics.pane.unteachScroll "Ukloni informacije pametnog pomicanja">
+<!ENTITY mlyrics.pane.accelerator "Ubrzivač pomicanja">
+<!ENTITY mlyrics.pane.translClear "Obriši prijevod pjesme">
 <!ENTITY mlyrics.font.confFont "Podesite izgled">
 <!ENTITY mlyrics.font.sizeLabel "Veličina:">
 <!ENTITY mlyrics.font.leftLabel "Lijevo">
