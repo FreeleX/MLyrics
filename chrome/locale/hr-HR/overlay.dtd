@@ -20,7 +20,7 @@
 <!ENTITY mlyrics.prefs.webloclabel "Odberite web izvore preuzimanja tekstova pjesama!?">
 <!ENTITY mlyrics.prefs.enabletranslatelabel "Želite li dodati Google prijevod tekstova pjesama?">
 <!ENTITY mlyrics.prefs.enablemetadatatranslate "Odaberi prijevod za spremljene tekstove pjesama">
-<!ENTITY mlyrics.prefs.libstylelabel "Koji je naziv sheme vašeg izvođačaa?">
+<!ENTITY mlyrics.prefs.libstylelabel "Koja je shema naziva vašeg izvođača?">
 <!ENTITY mlyrics.prefs.savelyricslabel "Kako želite spremiti vaše tekstove pjesama?">
 <!ENTITY mlyrics.prefs.savetranslationlabel "Kako želite spremiti vaš prijevod?">
 <!ENTITY mlyrics.prefs.ignoreTranslationFromLabel "Zanemari prijevod za:">
