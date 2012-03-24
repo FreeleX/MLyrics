@@ -39,6 +39,7 @@
     <em:contributor>EliasCury</em:contributor>
 
     <em:targetApplication RDF:resource="rdf:#$rGbMF2"/>
+    <em:targetApplication RDF:resource="rdf:#$qGbMF2"/>
     <songbird:displayPane RDF:resource="rdf:#$wGbMF2"/>
     
   </RDF:Description>
@@ -47,4 +48,9 @@
                    em:id="songbird@songbirdnest.com"
                    em:maxVersion="1.11.*"
                    em:minVersion="1.2.*" />
+
+  <RDF:Description RDF:about="rdf:#$qGbMF2"
+                   em:id="nightingale@getnightingale.com"
+                   em:maxVersion="1.12.0a"
+                   em:minVersion="1.11.0" />
 </RDF:RDF>
