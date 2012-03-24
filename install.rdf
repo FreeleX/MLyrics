@@ -51,6 +51,6 @@
 
   <RDF:Description RDF:about="rdf:#$qGbMF2"
                    em:id="nightingale@getnightingale.com"
-                   em:maxVersion="1.12.0a"
+                   em:maxVersion="1.12.*"
                    em:minVersion="1.11.0" />
 </RDF:RDF>
