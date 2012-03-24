@@ -2538,6 +2538,7 @@ mlyrics.pane = {
 		haveLyr: false,
 		isInstr: false,
 		lmDeck: null,
+		paneSizeTimer: null,
 		
 		onLoad: function() {
 			document.addEventListener("unload", function(e) {
@@ -2558,6 +2559,14 @@ mlyrics.pane = {
 			
 			mlyrics.pane.preferencesObserver.updateStyle();
 			mlyrics.pane.preferencesObserver.updateNotif();
+
+			var loadedWidth = mlyrics.pane.prefs.getIntPref("savedWidth");
+			
+			if (loadedWidth > 100) {
+				mlyrics.pane.displayPane.width = loadedWidth;
+				mlyrics.pane.savedWidth = loadedWidth;
+				mlyrics.lib.debugOutput("loaded pane width to: " + loadedWidth);
+			}
 			
 			// Check for the new sources since last update and add them to preferences (not default!)
 			var sourcesstr = mlyrics.pane.prefs.getCharPref("fetchSourcesList");
@@ -2623,6 +2632,12 @@ mlyrics.pane = {
 			}
 			
 			window.top.gBrowser.tabContainer.addEventListener("TabSelect", mlyrics.pane.tabSelectListener, false);
+
+			mlyrics.pane.controller.paneSizeTimer = setInterval(mlyrics.pane.controller.sizeRecheck, 500)
+		},
+
+		sizeRecheck: function () {
+			if (mlyrics.pane.displayPane.width > 0)  mlyrics.pane.savedWidth = mlyrics.pane.displayPane.width;
 		},
 		
 		showPane: function (needShow) {
@@ -2637,6 +2652,11 @@ mlyrics.pane = {
 		
 		// On pane unload event
 		onUnLoad: function() {
+			if (mlyrics.pane.savedWidth > 100) {
+				mlyrics.pane.prefs.setIntPref("savedWidth", mlyrics.pane.savedWidth);
+				mlyrics.lib.debugOutput("saved pane width to: " + mlyrics.pane.savedWidth);
+			}
+			clearInterval(mlyrics.pane.controller.paneSizeTimer);
 			window.top.gBrowser.tabContainer.removeEventListener("TabSelect", mlyrics.pane.tabSelectListener, false);
 			mlyrics.pane.gMM.removeListener(mlyrics.pane.playlistPlaybackServiceListener);
 			mlyrics.pane.gMM.removeListener(mlyrics.pane.titleDataRemoteObserver);
