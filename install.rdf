@@ -46,7 +46,7 @@
   
   <RDF:Description RDF:about="rdf:#$rGbMF2"
                    em:id="songbird@songbirdnest.com"
-                   em:maxVersion="1.12.*"
+                   em:maxVersion="2.1.*"
                    em:minVersion="1.2.*" />
 
   <RDF:Description RDF:about="rdf:#$qGbMF2"
