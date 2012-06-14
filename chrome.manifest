@@ -12,6 +12,7 @@ locale  mlyrics  uk-UA  chrome/locale/uk-UA/
 locale  mlyrics  de  	chrome/locale/de/
 locale  mlyrics  sv-SE  chrome/locale/sv-SE/
 locale  mlyrics  zh-CN	chrome/locale/zh-CN/
+locale  mlyrics  hr-HR	chrome/locale/hr-HR/
 
 overlay chrome://songbird/content/xul/layoutBaseOverlay.xul 	chrome://mlyrics/content/xul/base.xul
 overlay windowtype:Songbird:MediaPage 				chrome://mlyrics/content/xul/overlayPlaylist.xul
