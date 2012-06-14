@@ -113,6 +113,10 @@
 
 						<rows>
 							<row align="left" valign="middle">
+								<checkbox id="titleSelectAll" />
+								<label value="&mlyrics.font.un_selectAll;" />
+							</row>
+							<row align="left" valign="middle">
 								<checkbox id="titleStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
@@ -200,6 +204,10 @@
 						</columns>
 
 						<rows>
+							<row align="left" valign="middle">
+								<checkbox id="artistSelectAll" />
+								<label value="&mlyrics.font.un_selectAll;" />
+							</row>
 							<row align="left" valign="middle">
 								<checkbox id="artistStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
@@ -289,6 +297,10 @@
 
 						<rows>
 							<row align="left" valign="middle">
+								<checkbox id="albumSelectAll" />
+								<label value="&mlyrics.font.un_selectAll;" />
+							</row>
+							<row align="left" valign="middle">
 								<checkbox id="albumStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
@@ -376,6 +388,10 @@
 						</columns>
 
 						<rows>
+							<row align="left" valign="middle">
+								<checkbox id="lyricsSelectAll" />
+								<label value="&mlyrics.font.un_selectAll;" />
+							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lyricsStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
@@ -465,6 +481,10 @@
 
 						<rows>
 							<row align="left" valign="middle">
+								<checkbox id="transLyricsSelectAll" />
+								<label value="&mlyrics.font.un_selectAll;" />
+							</row>
+							<row align="left" valign="middle">
 								<checkbox id="transLyricsStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
 								<hbox>
@@ -552,6 +572,10 @@
 						</columns>
 
 						<rows>
+							<row align="left" valign="middle">
+								<checkbox id="lrcLyricsSelectAll" />
+								<label value="&mlyrics.font.un_selectAll;" />
+							</row>
 							<row align="left" valign="middle">
 								<checkbox id="lrcLyricsStyleEnable" />
 								<label value="&mlyrics.font.fontStyleLabel;" />
