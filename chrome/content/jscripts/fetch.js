@@ -33,6 +33,10 @@ mlyrics.fetch = {
 					search_str = edit_str[0];
 				}
 				
+				search_str = search_str.replace(/\[.*\] */g, "");
+				
+				mlyrics.lib.debugOutput("search_str: " + search_str);
+				
 				return search_str;
 			}
 			
