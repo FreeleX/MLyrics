@@ -1,8 +1,8 @@
 body.mlyrics {
-  color: rgb(194,192,203);
-  background-color: rgb(54,52,63);
+  color: rgb(219,219,219);
+  background-color: rgb(47,43,58);
   padding: 10px;
-  font-family: Helvetica, Arial, Sans;
+  font-family: Lucida Grande, Lucida Sans, Helvetica, Arial, Sans;
 }
 h1#mlyrics_title {
   color: white;
@@ -18,6 +18,8 @@ h3#mlyrics_album {
 }
 p.mlyrics_lyrics {
   font-size: 11px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 body.mlyrics p.header,
 body.mlyrics p.separator1,
@@ -25,9 +27,10 @@ body.mlyrics p.separator2 {
   display: none;
 }
 
-/* Text selection colour */
+/* Text selection color */
 ::-moz-selection {
-  background-color: #000;
+  background-color: rgb(213,179,247);
+  color: rgb(40,40,40);
 }
 .mlyrics_lyrics_timetracked {
   font-size: 11px;
