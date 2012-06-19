@@ -439,7 +439,7 @@ mlyrics.pane = {
 			
 			var prefStyleFile = mlyrics.pane.prefs.getCharPref(fullScreenStr + "styleSheet");
 			
-			if ( currentSkin == "purplerain" && (!prefStyleFile || prefStyleFile == customStyleFile) ) {
+			if ( currentSkin == "purplerain" && (prefStyleFile == customStyleFile) ) {
 				CSS_defined.setAttribute("href", "purplerain.css");
 			} else {
 				CSS_defined.setAttribute("href", prefStyleFile);
