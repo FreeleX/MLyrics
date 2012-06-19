@@ -441,6 +441,9 @@ mlyrics.pane = {
 			
 			if ( currentSkin == "purplerain" && (prefStyleFile == customStyleFile) ) {
 				CSS_defined.setAttribute("href", "purplerain.css");
+			}
+			else if ( currentSkin == "pinkmartini" && (prefStyleFile == customStyleFile) ) {
+				CSS_defined.setAttribute("href", "pinkmartini.css");
 			} else {
 				CSS_defined.setAttribute("href", prefStyleFile);
 			}
