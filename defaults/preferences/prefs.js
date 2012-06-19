@@ -157,7 +157,7 @@ pref("extensions.mlyrics.albumColorEnable", false);
 pref("extensions.mlyrics.artistColorEnable", false);
 pref("extensions.mlyrics.lyricsColorEnable", false);
 pref("extensions.mlyrics.transLyricsColorEnable", false);
-pref("extensions.mlyrics.lrcLyricsColorEnable", true);
+pref("extensions.mlyrics.lrcLyricsColorEnable", false);
 
 pref("extensions.mlyrics.titleBGColorEnable", false);
 pref("extensions.mlyrics.albumBGColorEnable", false);
