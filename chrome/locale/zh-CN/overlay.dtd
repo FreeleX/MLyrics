@@ -46,12 +46,12 @@
 <!ENTITY mlyrics.prefs.stloptglid "流水">
 <!ENTITY mlyrics.prefs.stlopthigh "高对比">
 <!ENTITY mlyrics.prefs.stloptolds "怀旧">
-<!ENTITY mlyrics.prefs.stloptsong "Songbird - RubberDucky">
+<!ENTITY mlyrics.prefs.stloptsong "Songbird - 橡皮鸭">
 <!ENTITY mlyrics.prefs.stloptstar "星级">
 <!ENTITY mlyrics.prefs.scanlib "扫描所有库以查找歌词.">
 <!ENTITY mlyrics.prefs.linkInfo1 "需要更多功能？有建议？发现问题？">
 <!ENTITY mlyrics.prefs.linkInfo2 "也请不要忘记核对意见 :)">
-<!ENTITY mlyrics.helloworld.label "Do HelloWorld">
+<!ENTITY mlyrics.helloworld.label "进行 HelloWorld">
 <!ENTITY mlyrics.helloworld.accesskey "H">
 <!ENTITY mlyrics.pane.label "这是显示面板">
 <!ENTITY mlyrics.pane.button "更多">
@@ -124,3 +124,6 @@
 <!ENTITY mlyrics.font.alignLabel "对齐:">
 <!ENTITY mlyrics.font.fontStyleLabel "字体样式:">
 <!ENTITY mlyrics.font.fontLabel "字体:">
+<!ENTITY mlyrics.font.leftSpace "左侧空间">
+<!ENTITY mlyrics.font.rightSpace "右侧空间">
+<!ENTITY mlyrics.font.un_selectAll "选择全部">

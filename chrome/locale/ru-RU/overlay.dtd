@@ -124,3 +124,6 @@
 <!ENTITY mlyrics.font.alignLabel "Выравнивание:">
 <!ENTITY mlyrics.font.fontStyleLabel "Стиль шрифта:">
 <!ENTITY mlyrics.font.fontLabel "Шрифт:">
+<!ENTITY mlyrics.font.leftSpace "Отступ слева">
+<!ENTITY mlyrics.font.rightSpace "Отступ справа">
+<!ENTITY mlyrics.font.un_selectAll "Выбрать все">

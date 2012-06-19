@@ -124,3 +124,6 @@
 <!ENTITY mlyrics.font.alignLabel "Ausrichtung:">
 <!ENTITY mlyrics.font.fontStyleLabel "Schriftstil:">
 <!ENTITY mlyrics.font.fontLabel "Schrift:">
+<!ENTITY mlyrics.font.leftSpace "Linker Abstand">
+<!ENTITY mlyrics.font.rightSpace "Rechter Abstand">
+<!ENTITY mlyrics.font.un_selectAll "Alle auswählen">

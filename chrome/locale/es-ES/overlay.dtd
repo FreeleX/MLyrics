@@ -124,3 +124,6 @@
 <!ENTITY mlyrics.font.alignLabel "Align:">
 <!ENTITY mlyrics.font.fontStyleLabel "Font style:">
 <!ENTITY mlyrics.font.fontLabel "Font:">
+<!ENTITY mlyrics.font.leftSpace "Left space">
+<!ENTITY mlyrics.font.rightSpace "Right space">
+<!ENTITY mlyrics.font.un_selectAll "Select all">
