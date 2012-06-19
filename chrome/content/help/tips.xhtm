@@ -19,13 +19,12 @@
 			<td align="left">
 				<big>
 					<b>1.</b>&mlyrics.tips-help.gatherlyrics;<br /><hr /><br />
-					<b>2.</b>&mlyrics.tips-help.multifetch;<br /><hr /><br />
-					<b>3.</b>&mlyrics.tips-help.ignoretranslate;<br /><hr /><br />
-					<b>4.</b>&mlyrics.tips-help.dropit;<br /><hr /><br />
-					<b>5.</b>&mlyrics.tips-help.nowselectedmode;<br /><hr /><br />
-					<b>6.</b>&mlyrics.tips-help.smartlist;<br /><hr /><br />
-					<b>7.</b>&mlyrics.tips-help.smartscroll;<br /><hr /><br />
-					<b>8.</b>&mlyrics.tips-help.donotforgetvisit;<br /><hr /><br />
+					<b>2.</b>&mlyrics.tips-help.ignoretranslate;<br /><hr /><br />
+					<b>3.</b>&mlyrics.tips-help.dropit;<br /><hr /><br />
+					<b>4.</b>&mlyrics.tips-help.nowselectedmode;<br /><hr /><br />
+					<b>5.</b>&mlyrics.tips-help.smartlist;<br /><hr /><br />
+					<b>6.</b>&mlyrics.tips-help.smartscroll;<br /><hr /><br />
+					<b>7.</b>&mlyrics.tips-help.donotforgetvisit;<br /><hr /><br />
 				</big>
 			</td>
 		</tr>

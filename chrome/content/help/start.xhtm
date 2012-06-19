@@ -27,10 +27,9 @@
 		</tr>
 		<tr>
 			<td align="center">
-				<hr/>
-				<b>Do you like MLyrics?</b>
-				<img src="chrome://mlyrics/content/help/btn_donateCC_LG.gif" onclick="window.prompt ('Copy to clipboard: Ctrl+C, Enter', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=AMUFYG5GTDCEE'.replace(/amp;/g, ''));"/>
-				<b>Help me to make it better</b>
+				<br />
+				<br />
+				<br />
 			</td>
 		</tr>
 	</table>
