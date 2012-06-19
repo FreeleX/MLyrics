@@ -658,7 +658,7 @@
 		</tabbox>
 		
 		<spacer flex="1"/>
-		<button label="Close" oncommand="window.close()"/>
+		<button label="&tooltip.close;" oncommand="window.close()"/>
 	</vbox>
 	
 </window>
