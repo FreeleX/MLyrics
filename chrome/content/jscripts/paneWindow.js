@@ -2111,7 +2111,7 @@ mlyrics.pane = {
 
 			this.savedWidth = mlyrics.pane.displayPane.width;
 
-			if (mlyrics.pane.prefs.getCharPref("enableTranslate") == "TRANSLATE" ) {
+			if (mlyrics.pane.prefs.getIntPref("lyricsViewMode")) {
 				var servicepaneWidth = mainwindow.document.getElementById("servicepane_box").width;
 				if (mainwindow.document.getElementById("mainplayer").getAttribute("sizemode") == "normal") {
 					var newPaneWidth = mainwindow.document.getElementById("mainplayer").width - servicepaneWidth;
