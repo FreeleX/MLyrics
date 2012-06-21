@@ -48,6 +48,9 @@
 			</menulist>
 		</groupbox>
 
+		<groupbox width="100%" style="background-color: transparent; border:2px solid;">
+			<caption label="&mlyrics.font.rulesDescription;"/>
+
 		<tabbox orient="horizontal">
 			<tabs orient="vertical">
 				<tab label="&mlyrics.font.background;" />
@@ -656,6 +659,7 @@
 				</groupbox>
 			</tabpanels>
 		</tabbox>
+		</groupbox>
 		
 		<spacer flex="1"/>
 		<button label="&tooltip.close;" oncommand="window.close()"/>
