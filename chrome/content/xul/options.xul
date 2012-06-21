@@ -200,9 +200,9 @@
 										<caption label="&mlyrics.prefs.savelyricslabel;"/>
 										
 										<radiogroup flex="1" id="saveLyrics" preference="pref_saveLyrics" >
-											<radio class="noWrap" label="&mlyrics.prefs.saveoptneversave;" 	id="NEVERSAVE" 	value="NEVERSAVE" oncommand="enableSaveTranslationBox(false)"/>
-											<radio class="noWrap" label="&mlyrics.prefs.saveoptprompt;" 	id="PROMPT" 	value="PROMPT" oncommand="enableSaveTranslationBox(true)"/>
-											<radio class="noWrap" label="&mlyrics.prefs.saveoptalways;" 	id="ALWAYSAVE" 	value="ALWAYSAVE" oncommand="enableSaveTranslationBox(true)"/>
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptneversave;" 	id="NEVERSAVE" 	value="NEVERSAVE" />
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptprompt;" 	id="PROMPT" 	value="PROMPT" />
+											<radio class="noWrap" label="&mlyrics.prefs.saveoptalways;" 	id="ALWAYSAVE" 	value="ALWAYSAVE" />
 										</radiogroup>
 									</groupbox>
 									
