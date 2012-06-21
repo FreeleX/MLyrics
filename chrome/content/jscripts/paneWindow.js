@@ -888,8 +888,10 @@ mlyrics.pane = {
 								break;
 								
 							case "PROMPT":
-								if (showNotifsPref) {
-									mlyrics.pane.addNotification("infobar", 3, mediaItem, respLyr, respSource);
+								if (respLyr.indexOf("\n [ Google translated ] \n") != -1) {
+									if (showNotifsPref) {
+										mlyrics.pane.addNotification("infobar", 3, mediaItem, respLyr, respSource);
+									}
 								}
 								else {
 									mlyrics.pane.saveLyrics("", "", mediaItem, respLyr, respSource);
@@ -1061,12 +1063,12 @@ mlyrics.pane = {
 		mlyrics.pane.buildPage(artist, album, track, "");
 	},
 	
-	translateMetadataLyrics: function (lyrics, cbFn, force) {
+	translateMetadataLyrics: function (lyrics, cbFn, force, forceForContextMenu) {
 		
 		if (   !lyrics || 
 			lyrics == "" || 
 			( !this.prefs.getBoolPref("translateMetadata") && !force ) ||
-			( this.prefs.getCharPref("enableTranslate") != "TRANSLATE" && !force) ||
+			( this.prefs.getCharPref("enableTranslate") != "TRANSLATE" && !forceForContextMenu) ||
 			!this.prefs.getIntPref("lyricsViewMode")
 		   ) 
 		{
@@ -1660,7 +1662,8 @@ mlyrics.pane = {
 									
 									mlyrics.pane.buildPage(metadataArtist, metadataAlbum, metadataTrack, fullLyrics);
 								},
-								true
+								true,
+								place == -2
 							);
 			}
 			else {
