@@ -1066,7 +1066,7 @@ mlyrics.pane = {
 		if (   !lyrics || 
 			lyrics == "" || 
 			( !this.prefs.getBoolPref("translateMetadata") && !force ) ||
-			this.prefs.getCharPref("enableTranslate") != "TRANSLATE" ||
+			( this.prefs.getCharPref("enableTranslate") != "TRANSLATE" && !force) ||
 			!this.prefs.getIntPref("lyricsViewMode")
 		   ) 
 		{
@@ -1075,6 +1075,25 @@ mlyrics.pane = {
 		}
 		
 		mlyrics.fetch.googleTranslate(lyrics, cbFn, true);
+	},
+
+	getOrigLyrics: function (mediaItem) {
+		if (mediaItem = -1) { // means we need to get saved fetched lyrics
+			var lyrics = mlyrics.pane.viewMode.savedData.lyrics;
+		}
+		else {
+			var lyrics = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyrics");
+		}
+		if (!lyrics) lyrics = "";
+
+		var translDelimPos1 = lyrics.indexOf("\n\n =================== \n [ ");
+		if (translDelimPos1 != -1) {
+			mlyrics.pane.saveLyrics("", "", mediaItem, lyrics);
+			
+			lyrics = lyrics.substring(0, translDelimPos1);
+		}
+		
+		return lyrics;
 	},
 
 	getFullLyrics: function (mediaItem) {
@@ -1193,11 +1212,10 @@ mlyrics.pane = {
 
 		if (mlyrics.pane.viewMode.savedData.lyrics == "" || mlyrics.pane.viewMode.savedData.lyrics.substr(0, 14).toLowerCase() == "[instrumental]") {
 			document.getElementById("timeTracksBtn").disabled = true;
-			document.getElementById("contxtTranslateMetaMenu").disabled = true;
+			mlyrics.pane.viewMode.enableTranslateMenu(false);
 		}
 		
-		if (mlyrics.pane.viewMode.savedData.lyrics.indexOf("[ Google translated ]") != -1)
-			document.getElementById("contxtTranslateMetaMenu").disabled = true;
+		mlyrics.pane.viewMode.enableTranslateMenu(true);
 		
 		// get view mode
 		lyrics = mlyrics.pane.viewMode.getHTMLView(lyrics);
@@ -1262,7 +1280,7 @@ mlyrics.pane = {
 			document.getElementById("clearMenuItem").disabled 		= true;
 			
 			document.getElementById("contxtRefreshTagMenu").disabled 	= true;
-			document.getElementById("contxtTranslateMetaMenu").disabled 	= true;
+			mlyrics.pane.viewMode.ableTranslateMenu(false);
 		}
 		else {
 			document.getElementById("editBtn").disabled 			= false;
@@ -1568,6 +1586,14 @@ mlyrics.pane = {
 		document.getElementById('lm-content').contentWindow.document.body.innerHTML = "";
 		
 		this.controller.haveLyr = false;
+
+		// Context translate action was made
+		if (place == -2) {
+			metadataArtist = mlyrics.pane.viewMode.savedData.artist;
+			metadataAlbum = mlyrics.pane.viewMode.savedData.album;
+			metadataTrack = mlyrics.pane.viewMode.savedData.track;
+			metadataLyrics = mlyrics.pane.viewMode.savedData.lyrics;
+		}
 		
 		if (metadataLyrics != null && metadataLyrics != "" & !force) {
 			
@@ -1590,7 +1616,7 @@ mlyrics.pane = {
 				return;
 			}
 			
-			document.getElementById("contxtTranslateMetaMenu").disabled = false;
+			mlyrics.pane.viewMode.enableTranslateMenu(true);
 			
 			if (    typeof(force) != "undefined" ||
 				this.prefs.getBoolPref("translateMetadata") &&
@@ -1605,6 +1631,7 @@ mlyrics.pane = {
 				document.getElementById("refreshMenuItem").disabled = true;
 				document.getElementById("refreshMenuItem").selectedItem = document.getElementById("contxtTranslateMetaMenu");
 				
+				metadataLyrics = mlyrics.pane.getOrigLyrics(mediaItem);
 				this.translateMetadataLyrics(   metadataLyrics,
 								function (translated) {
 									
@@ -1642,7 +1669,7 @@ mlyrics.pane = {
 			}
 		}
 		else {
-			document.getElementById("contxtTranslateMetaMenu").disabled = true;
+			mlyrics.pane.viewMode.enableTranslateMenu(false);
 			this.updateLyrics(metadataArtist, metadataAlbum, metadataTrack, mediaItem, place, forceone);
 		}
 	},
@@ -1994,6 +2021,8 @@ mlyrics.pane = {
 			
 			mlyrics.pane.prefs.setIntPref("lyricsViewMode", mode);
 			mlyrics.pane.buildPage(this.savedData.artist, this.savedData.album, this.savedData.track, this.savedData.lyrics, this.savedData.source);
+
+			mlyrics.pane.viewMode.enableTranslateMenu(true);
 		},
 		
 		mashLines: function (lyrics) {
@@ -2064,6 +2093,17 @@ mlyrics.pane = {
 			}
 			
 			return lyrics;
+		},
+
+		enableTranslateMenu: function (needEnable) {
+			var enable = needEnable;
+			var menuItem = document.getElementById("contxtTranslateMetaMenu");
+
+			if (needEnable) {
+				if (!mlyrics.pane.prefs.getIntPref("lyricsViewMode")) enable = false;
+			}
+
+			menuItem.disabled = !enable;
 		}
 	},
 	
@@ -2136,19 +2176,22 @@ mlyrics.pane = {
 
 		onViewUpdate: function () {
 			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
-				var newItem = mlyrics.pane.mediaItemSelectListener.curMediaItem;
 				document.getElementById("nextPrevBtnsHboxEdit").hidden = false;
+
+				var newItem = mlyrics.pane.mediaItemSelectListener.curMediaItem;
+				if (newItem === mlyrics.pane.editMode.editMediaItem) return;
+				mlyrics.pane.editMode.editMediaItem = newItem;
+
+				var fullLyrics = mlyrics.pane.getFullLyrics(mlyrics.pane.editMode.editMediaItem);
 			}
 			else {
-				var newItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
 				document.getElementById("nextPrevBtnsHboxEdit").hidden = true;
+
+				var newItem = mlyrics.pane.playlistPlaybackServiceListener.curMediaItem;
+				mlyrics.pane.editMode.editMediaItem = newItem;
+
+				var fullLyrics = mlyrics.pane.viewMode.savedData.lyrics;
 			}
-
-			if (newItem === mlyrics.pane.editMode.editMediaItem) return;
-
-			mlyrics.pane.editMode.editMediaItem = newItem;
-
-			var fullLyrics = mlyrics.pane.getFullLyrics(mlyrics.pane.editMode.editMediaItem);
 
 			mlyrics.pane.editMode.lyricsSource = mlyrics.pane.editMode.editMediaItem.getProperty('http://songbirdnest.com/data/1.0#lyricistName');
 
@@ -2718,7 +2761,7 @@ mlyrics.pane = {
 					mTop.removeAllNotifications(true);
 
 					document.getElementById("refreshMenuItem").selectedItem = document.getElementById("contxtRefreshTagMenu");
-					document.getElementById("contxtTranslateMetaMenu").disabled = false;
+					mlyrics.pane.viewMode.enableTranslateMenu(true);
 
 					var metadataArtist = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty(SBProperties.artistName);
 					var metadataAlbum = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty(SBProperties.albumName);
