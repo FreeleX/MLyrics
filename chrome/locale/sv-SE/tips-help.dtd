@@ -3,6 +3,6 @@
 <!ENTITY mlyrics.tips-help.ignoretranslate "Vill du inte att MLyrics skall översätta från språk som du kan bättre än Google Översätt? -- Glöm inte att markera dem i inställningarna">
 <!ENTITY mlyrics.tips-help.dropit "Har du hittat sångtexter på Internet som MLyrics inte kunde hitta? -- Markera den på webbsidan och släpp den på MLyrics-panelen">
 <!ENTITY mlyrics.tips-help.nowselectedmode "MLyrics Markerade objekt-läge kan vara till hjälp när du glömmer var den där sången fanns, som du sjöng för en timme sedan">
-<!ENTITY mlyrics.tips-help.smartlist "Vill du lyssna på alla spår som handlar om vänskap? -- Du kan skapa smarta spellistor med sångtexter som innehåller detta ord. Men ha tålamod, det här kan vara arbetsintensivt för Songbird">
+<!ENTITY mlyrics.tips-help.smartlist "Vill du lyssna på alla spår som handlar om vänskap? -- Du kan skapa smarta spellistor med sångtexter som innehåller detta ord. Men ha tålamod, det här kan vara arbetsintensivt för &brandShortName;">
 <!ENTITY mlyrics.tips-help.smartscroll "Du kan lära MLyrics hur en sångtext skall rullas genom att välja läget &quot;Lär MLyrics hur texten skall rullas&quot;. Rulla uppåt med mushjulet när du hör de första orden, tills markören ändras. Rulla nu nedåt (och sjung) - MLyrics kommer att komma ihåg rullningen och upprepa den varje gång du spelar spåret">
 <!ENTITY mlyrics.tips-help.donotforgetvisit "Glöm inte att gå till MLlyrics tilläggssida på Songbirds webbplats. Där hittar du användbara tips om nya funktioner">

@@ -3,7 +3,7 @@
 <!ENTITY mlyrics.tips-help.ignoretranslate "Want MLyrics to not translate from languages you know better than Google translator? - Don\'t forget to check them in settings window">
 <!ENTITY mlyrics.tips-help.dropit "Found lyrics on the internet MLyrics couldn\'t find? - Select it on the html page and drop onto the MLyrics pane">
 <!ENTITY mlyrics.tips-help.nowselectedmode "MLyrics now selected mode can help you if you forgot where is couplet you was singing an hour ago">
-<!ENTITY mlyrics.tips-help.smartlist "Want to listen all tracks about friendship? - You can create smart playlist with lyrics containing this word. But be patient - this can be very hard work for Songbird">
+<!ENTITY mlyrics.tips-help.smartlist "Want to listen all tracks about friendship? - You can create smart playlist with lyrics containing this word. But be patient - this can be very hard work for &brandShortName;">
 <!ENTITY mlyrics.tips-help.smartscroll "You can teach MLyrics how to scroll lyrics (sing this song) by entering smart scroll teach mode - scroll up your mouse wheel when you hear first words untill cursor change. Now scroll down (and sing) - MLyrics will remember and repeat every time you play this track">
 <!ENTITY mlyrics.tips-help.donotforgetvisit "Do not forget to read MLyrics add-on page on Songbird site - usefull tips about new feature can be there">
 <!ENTITY mlyrics.tips-help.debugoutput "Open new tab and go to about:config. Search for extensions.mlyrics.debugMode and set to true. Now open Tools - Error console - Messages, you can see there some MLyrics output. This can be usefull to track a bug or to see what MLyrics doing">
