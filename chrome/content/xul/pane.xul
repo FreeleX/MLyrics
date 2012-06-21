@@ -59,8 +59,8 @@
 			<menuitem id="clearMenuItem" label="&mlyrics.pane.contxtClear;" type="" class="menuitem-iconic" image="chrome://mlyrics/content/images/clear2-icon.png" oncommand="mlyrics.pane.contextClear();"/>
 			<menuitem id="clearTranslMenuItem" label="&mlyrics.pane.translClear;" type="" class="menuitem-iconic" image="chrome://mlyrics/content/images/no-google-translate-favicon.ico" oncommand="mlyrics.pane.translClear();"/>
 			<menuseparator />
-			<menuitem id="timeTracksMenuItem" label="&mlyrics.pane.showTimeTracksDialog;" type="" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-clock.png" oncommand="mlyrics.pane.editTimeTracks.init()"/>
-			<menuitem id="removeTimeTracksMenuItem" label="&mlyrics.pane.removeTimeTracks;" type="" class="menuitem-iconic" image="chrome://mlyrics/content/images/noclock.png" oncommand="mlyrics.pane.editTimeTracks.remove()"/>
+			<menuitem id="timeTracksMenuItem" label="&mlyrics.pane.showTimeTracksDialog; (&menu.file; .lrc)" type="" class="menuitem-iconic" image="chrome://mlyrics/content/images/haslyrics-clock.png" oncommand="mlyrics.pane.editTimeTracks.init()"/>
+			<menuitem id="removeTimeTracksMenuItem" label="&mlyrics.pane.removeTimeTracks; (&menu.file; .lrc)" type="" class="menuitem-iconic" image="chrome://mlyrics/content/images/noclock.png" oncommand="mlyrics.pane.editTimeTracks.remove()"/>
 		</menupopup>
 	</popupset>
 
