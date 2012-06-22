@@ -124,6 +124,6 @@
 <!ENTITY mlyrics.font.alignLabel "Poravnaj:">
 <!ENTITY mlyrics.font.fontStyleLabel "Stil slova:">
 <!ENTITY mlyrics.font.fontLabel "Slova:">
-<!ENTITY mlyrics.font.leftSpace "Left space">
-<!ENTITY mlyrics.font.rightSpace "Right space">
-<!ENTITY mlyrics.font.un_selectAll "Select all">
+<!ENTITY mlyrics.font.leftSpace "Razmak s lijeva">
+<!ENTITY mlyrics.font.rightSpace "Razmak s desna">
+<!ENTITY mlyrics.font.un_selectAll "Odaberi sve">
