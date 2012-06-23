@@ -934,14 +934,22 @@ mlyrics.pane = {
 						break;
 						
 					case "NEVERSAVE":
-						/*switch (saveTranslPref) {
+						switch (saveTranslPref) {
 							case "ALWAYSAVE":
+								mlyrics.pane.saveLyrics("", "", mediaItem, respLyr, respSource);
 								break;
+								
 							case "PROMPT":
+								if (respLyr.indexOf("\n [ Google translated ] \n") != -1) {
+									if (showNotifsPref) {
+										mlyrics.pane.addNotification("infobar", 3, mediaItem, respLyr, respSource);
+									}
+								}
 								break;
+								
 							case "NEVERSAVE":
 								break;
-						}*/
+						}
 						break;
 				}
 			}
@@ -989,6 +997,7 @@ mlyrics.pane = {
 				document.getElementById("timeTracksMenuItem").disabled = true;
 				document.getElementById("makeInstrMenuItem").disabled = true;
 				document.getElementById("clearMenuItem").disabled = true;
+				document.getElementById("clearTranslMenuItem").disabled = true;
 				
 				if (!localIndex) {
 					document.getElementById("refreshMenuItem").selectedItem = document.getElementById("ML_contextSourcesSeparator");
@@ -1025,6 +1034,7 @@ mlyrics.pane = {
 				document.getElementById("timeTracksMenuItem").disabled = true;
 				document.getElementById("makeInstrMenuItem").disabled = true;
 				document.getElementById("clearMenuItem").disabled = true;
+				document.getElementById("clearTranslMenuItem").disabled = true;
 			},
 			0
 		);
@@ -1049,6 +1059,7 @@ mlyrics.pane = {
 		document.getElementById("timeTracksMenuItem").disabled = false;
 		document.getElementById("makeInstrMenuItem").disabled = false;
 		document.getElementById("clearMenuItem").disabled = false;
+		document.getElementById("clearTranslMenuItem").disabled = false;
 			
 		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("ML_contextSourcesSeparator");
 		document.getElementById("ML_sourceAddressNextButton").disabled = false;
@@ -1080,7 +1091,7 @@ mlyrics.pane = {
 	},
 
 	getOrigLyrics: function (mediaItem) {
-		if (mediaItem = -1) { // means we need to get saved fetched lyrics
+		if (mediaItem == -1) { // means we need to get saved fetched lyrics
 			var lyrics = mlyrics.pane.viewMode.savedData.lyrics;
 		}
 		else {
@@ -1090,7 +1101,7 @@ mlyrics.pane = {
 
 		var translDelimPos1 = lyrics.indexOf("\n\n =================== \n [ ");
 		if (translDelimPos1 != -1) {
-			mlyrics.pane.saveLyrics("", "", mediaItem, lyrics);
+			if (mediaItem != -1) mlyrics.pane.saveLyrics("", "", mediaItem, lyrics);
 			
 			lyrics = lyrics.substring(0, translDelimPos1);
 		}
@@ -1177,6 +1188,7 @@ mlyrics.pane = {
 		document.getElementById("timeTracksMenuItem").disabled = true;
 		document.getElementById("makeInstrMenuItem").disabled = false;
 		document.getElementById("clearMenuItem").disabled = false;
+		document.getElementById("clearTranslMenuItem").disabled = false;
 		
 		document.getElementById("ML_sourceAddressNextButton").nextSourceIndex = 0;
 		document.getElementById("refreshMenuItem").selectedItem = document.getElementById("contxtLuckySearchMenu");
@@ -1280,6 +1292,7 @@ mlyrics.pane = {
 			document.getElementById("timeTracksMenuItem").disabled 		= true;
 			document.getElementById("makeInstrMenuItem").disabled 		= true;
 			document.getElementById("clearMenuItem").disabled 		= true;
+			document.getElementById("clearTranslMenuItem").disabled 	= true;
 			
 			document.getElementById("contxtRefreshTagMenu").disabled 	= true;
 			mlyrics.pane.viewMode.ableTranslateMenu(false);
@@ -1296,6 +1309,7 @@ mlyrics.pane = {
 				document.getElementById("timeTracksMenuItem").disabled 	= false;
 			document.getElementById("makeInstrMenuItem").disabled 		= false;
 			document.getElementById("clearMenuItem").disabled 		= false;
+			document.getElementById("clearTranslMenuItem").disabled 	= false;
 			
 			document.getElementById("contxtRefreshTagMenu").disabled 	= false;
 		}
@@ -1633,7 +1647,7 @@ mlyrics.pane = {
 				document.getElementById("refreshMenuItem").disabled = true;
 				document.getElementById("refreshMenuItem").selectedItem = document.getElementById("contxtTranslateMetaMenu");
 				
-				metadataLyrics = mlyrics.pane.getOrigLyrics(mediaItem);
+				metadataLyrics = mlyrics.pane.getOrigLyrics(-1);
 				this.translateMetadataLyrics(   metadataLyrics,
 								function (translated) {
 									
@@ -1848,25 +1862,37 @@ mlyrics.pane = {
 		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_PAUSED) ||
 		    (this.gMM.status.state == Components.interfaces.sbIMediacoreStatus.STATUS_BUFFERING))
 		{
-			function makeTranslClean(mediaItem) {
-				mediaItem.setProperty("http://songbirdnest.com/data/1.0#translatedLyrics", null);
-
-				var artist = mediaItem.getProperty(SBProperties.artistName);
-				var album = mediaItem.getProperty(SBProperties.albumName);
-				var track = mediaItem.getProperty(SBProperties.trackName);
-
-				mlyrics.lib.writeID3Tag(mediaItem);
-				mlyrics.pane.buildPage(artist, album, track, mediaItem.getProperty(SBProperties.lyrics));
+			function makeTranslClean(mediaItem, artist, album, track, lyrics) {
+				if (mediaItem != -1) {
+					mediaItem.setProperty("http://songbirdnest.com/data/1.0#translatedLyrics", null);
+					mlyrics.lib.writeID3Tag(mediaItem);
+				}
+				
+				mlyrics.pane.buildPage(artist, album, track, lyrics);
+				
+				// Remove notifications
+				var mTop = document.getElementById("infobar");
+				mTop.removeAllNotifications(true);
 			}
 			
 			if (mlyrics.pane.prefs.getBoolPref("showNowSelected")) {
 				var selectedMediaItems = mlyrics.pane.mediaItemSelectListener.mediaListView.selection.selectedMediaItems;
 				while (selectedMediaItems.hasMoreElements()) {
-					makeTranslClean(selectedMediaItems.getNext());
+					var mediaItem = selectedMediaItems.getNext();
+					
+					makeTranslClean(mediaItem, 	mediaItem.getProperty(SBProperties.artistName), 
+												mediaItem.getProperty(SBProperties.albumName),
+												mediaItem.getProperty(SBProperties.trackName),
+												mediaItem.getProperty(SBProperties.lyrics));
 				}
 			}
 			else {
-				makeTranslClean(this.playlistPlaybackServiceListener.curMediaItem);
+				var mediaItem = this.playlistPlaybackServiceListener.curMediaItem;
+				
+				makeTranslClean(mediaItem,	mlyrics.pane.viewMode.savedData.artist, 
+											mlyrics.pane.viewMode.savedData.album, 
+											mlyrics.pane.viewMode.savedData.track, 
+											mlyrics.pane.getOrigLyrics(-1));
 			}
 		}
 	},
