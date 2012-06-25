@@ -1090,6 +1090,18 @@ mlyrics.pane = {
 		mlyrics.fetch.googleTranslate(lyrics, cbFn, true);
 	},
 
+	getSource: function (mediaItem) {
+		var source = "";
+		var lyricistName = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyricistName");
+		var squareFirstPos = lyricistName.indexOf("[");
+		if (squareFirstPos != -1) {
+			var squareLastPos = lyricistName.indexOf("]", squareFirstPos);
+			if (squareLastPos != -1) source = lyricistName.substring(squareFirstPos+1, squareLastPos);
+		}
+
+		return source;
+	},
+
 	getOrigLyrics: function (mediaItem) {
 		if (mediaItem == -1) { // means we need to get saved fetched lyrics
 			var lyrics = mlyrics.pane.viewMode.savedData.lyrics;
@@ -2584,15 +2596,8 @@ mlyrics.pane = {
 			
 			var fullLyrics = callbtn.parentNode.childNodes[1].value;
 
-			if (isNaN(sIndex)) {
-				var source = "";
-				var lyricistName = this.item.getProperty("http://songbirdnest.com/data/1.0#lyricistName");
-				var squareFirstPos = lyricistName.indexOf("[");
-				if (squareFirstPos != -1) {
-					var squareLastPos = lyricistName.indexOf("]", squareFirstPos);
-					if (squareLastPos != -1) source = lyricistName.substring(squareFirstPos+1, squareLastPos);
-				}
-			}
+			if (isNaN(sIndex))
+				var source = mlyrics.pane.getSource(this.item);
 			else
 				var source = mlyrics.pane.prefs.getCharPref("laddress_" + sources[sIndex]);
 
@@ -2807,8 +2812,9 @@ mlyrics.pane = {
 					var metadataAlbum = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty(SBProperties.albumName);
 					var metadataTrack = mlyrics.pane.mediaItemSelectListener.curMediaItem.getProperty(SBProperties.trackName);
 					var metadataLyrics = mlyrics.pane.getFullLyrics(mlyrics.pane.mediaItemSelectListener.curMediaItem);
+					var metadataSource = mlyrics.pane.getSource(mlyrics.pane.mediaItemSelectListener.curMediaItem);
 
-					mlyrics.pane.buildPage(metadataArtist, metadataAlbum, metadataTrack, metadataLyrics);
+					mlyrics.pane.buildPage(metadataArtist, metadataAlbum, metadataTrack, metadataLyrics, metadataSource);
 
 					mlyrics.pane.controller.lmDeck.selectedIndex = 1;
 				}
