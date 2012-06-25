@@ -2173,7 +2173,7 @@ mlyrics.pane = {
 			mlyrics.pane.displayPane.width = this.savedWidth;
 
 			document.getElementById("lm-deck").selectedIndex = 1;
-			mlyrics.pane.contextRefresh();
+			setTimeout(function () {mlyrics.pane.contextRefresh();}, 500);
 		},
 		
 		onDiscard: function () {
