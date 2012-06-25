@@ -2597,7 +2597,7 @@ mlyrics.pane = {
 				var source = mlyrics.pane.prefs.getCharPref("laddress_" + sources[sIndex]);
 
 			mlyrics.pane.saveLyrics("", "", this.item, fullLyrics, source);
-			mlyrics.pane.contextRefresh();
+			setTimeout(function () {mlyrics.pane.contextRefresh();}, 500);
 
 			this.onClose();
 
