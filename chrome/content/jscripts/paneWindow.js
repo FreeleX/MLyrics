@@ -2581,9 +2581,20 @@ mlyrics.pane = {
 		accept: function (callbtn) {
 			var sources = mlyrics.pane.prefs.getCharPref("fetchSourcesList").split("|");
 			var sIndex = parseInt(callbtn.parentNode.id.substr(26), 10);
-
+			
 			var fullLyrics = callbtn.parentNode.childNodes[1].value;
-			var source = mlyrics.pane.prefs.getCharPref("laddress_" + sources[sIndex]);
+
+			if (isNaN(sIndex)) {
+				var source = "";
+				var lyricistName = this.item.getProperty("http://songbirdnest.com/data/1.0#lyricistName");
+				var squareFirstPos = lyricistName.indexOf("[");
+				if (squareFirstPos != -1) {
+					var squareLastPos = lyricistName.indexOf("]", squareFirstPos);
+					if (squareLastPos != -1) source = lyricistName.substring(squareFirstPos+1, squareLastPos);
+				}
+			}
+			else
+				var source = mlyrics.pane.prefs.getCharPref("laddress_" + sources[sIndex]);
 
 			mlyrics.pane.saveLyrics("", "", this.item, fullLyrics, source);
 			mlyrics.pane.contextRefresh();
