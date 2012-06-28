@@ -6,3 +6,4 @@
 <!ENTITY mlyrics.tips-help.smartlist "想要听所有关于友谊的歌曲? - 您可以建立一个歌词中包含这个词的智能播放列表. 但要有耐心 - 这对 &brandShortName; 是很困难的工作">
 <!ENTITY mlyrics.tips-help.smartscroll "您可以通过进入智能滚动教学模式教 MLyrics 如何滚动歌词(唱这首歌) - 听到第一个字时上滚鼠标滚轮,直到指针变动.然后向下滚动(并唱) - 这样 MLyrics 将记忆并在播放这首歌时重复">
 <!ENTITY mlyrics.tips-help.donotforgetvisit "别忘了阅读 Songbird 站点上的 MLyrics 扩展页面 - 有新特性的有用贴士在那里">
+<!ENTITY mlyrics.tips-help.debugoutput "在新标签页打开 about:config ,搜索 extensions.mlyrics.debugMode 并把值设为 true .现在打开 工具-错误控制台-消息,将可以看到MLyrics 的一些 输出. 这将有助于跟踪BUG或查看 MLyrics 的工作状态.">

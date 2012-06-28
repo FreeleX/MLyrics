@@ -127,3 +127,4 @@
 <!ENTITY mlyrics.font.leftSpace "左侧空间">
 <!ENTITY mlyrics.font.rightSpace "右侧空间">
 <!ENTITY mlyrics.font.un_selectAll "选择全部">
+<!ENTITY mlyrics.font.rulesDescription "选择要覆写的规则:">

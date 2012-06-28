@@ -127,3 +127,4 @@
 <!ENTITY mlyrics.font.leftSpace "Отступ слева">
 <!ENTITY mlyrics.font.rightSpace "Отступ справа">
 <!ENTITY mlyrics.font.un_selectAll "Выбрать все">
+<!ENTITY mlyrics.font.rulesDescription "Выберите правила для перезаписи:">

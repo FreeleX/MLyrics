@@ -127,3 +127,4 @@
 <!ENTITY mlyrics.font.leftSpace "Linker Abstand">
 <!ENTITY mlyrics.font.rightSpace "Rechter Abstand">
 <!ENTITY mlyrics.font.un_selectAll "Alle auswählen">
+<!ENTITY mlyrics.font.rulesDescription "Regeln zum Überschreiben auswählen:">

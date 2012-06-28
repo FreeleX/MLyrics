@@ -3,7 +3,7 @@
 <!ENTITY mlyrics.trackeditor.fbtntooltextdef "Procurar lyrics no MLyrics!">
 <!ENTITY mlyrics.trackeditor.cbtntooltextdef "Apagar estas lyrics.">
 <!ENTITY mlyrics.trackeditor.btninstr "Instrumental">
-<!ENTITY mlyrics.trackeditor.btninstrtip "Fazer estas lyrics instrumentais">
+<!ENTITY mlyrics.trackeditor.btninstrtip "Tornar estas lyrics instrumentais">
 <!ENTITY mlyrics.trackeditor.bbtnlabel "Lote">
 <!ENTITY mlyrics.trackeditor.bbtntooltextdef "A selecção deve conter entre 2 - 1000 itens para activar o botão Lote.">
 <!ENTITY mlyrics.trackeditor.btnremtransl "Remover tradução">
@@ -13,13 +13,13 @@
 <!ENTITY mlyrics.batchwin.winlabel "Agregador do MLyrics">
 <!ENTITY mlyrics.batchwin.btncheckall "Marcar todos">
 <!ENTITY mlyrics.batchwin.btnuncheckall "Desmarcar todos">
-<!ENTITY mlyrics.batchwin.btnaccept "Aceitar mudanças">
+<!ENTITY mlyrics.batchwin.btnaccept "Confirmar alterações">
 <!ENTITY mlyrics.prefs.winlabel "Definições do MLyrics">
 <!ENTITY mlyrics.prefs.weblocupbtn "CIMA">
 <!ENTITY mlyrics.prefs.weblocdownbtn "BAIXO">
 <!ENTITY mlyrics.prefs.webloclabel "De onde quer ver as lyrics?">
 <!ENTITY mlyrics.prefs.enabletranslatelabel "Quer adicionar a tradução do Google às lyrics?">
-<!ENTITY mlyrics.prefs.enablemetadatatranslate "Verificar traduções para lyrics gravadas">
+<!ENTITY mlyrics.prefs.enablemetadatatranslate "Verificar traduções para as lyrics gravadas">
 <!ENTITY mlyrics.prefs.libstylelabel "Qual é o tipo de nome que deseja ver dos seus artistas?">
 <!ENTITY mlyrics.prefs.savelyricslabel "Como quer que as suas lyrics sejam gravadas?">
 <!ENTITY mlyrics.prefs.savetranslationlabel "Como quer que a tradução seja gravada?">
@@ -32,7 +32,7 @@
 <!ENTITY mlyrics.prefs.notiflabel "Se não forem encontradas lyrics quer ser notificado?">
 <!ENTITY mlyrics.prefs.autoSearchLyr "Pesquisar no Google se não forem achadas lyrics">
 <!ENTITY mlyrics.prefs.notifInstrlabel "Mostrar se as lyrics forem instrumentais">
-<!ENTITY mlyrics.prefs.saveInDBLabel "Guardar lyrics na base de dados em caso de erro de escrita">
+<!ENTITY mlyrics.prefs.saveInDBLabel "Gravar lyrics na base de dados em caso de erro de escrita">
 <!ENTITY mlyrics.prefs.displabel "O que deve o MLyrics mostrar?">
 <!ENTITY mlyrics.prefs.dispoptartist "Nome do Artista">
 <!ENTITY mlyrics.prefs.dispopttrack "Nome da Faixa">
@@ -65,7 +65,7 @@
 <!ENTITY mlyrics.helpwin.lisclabel "Licença do MLyrics">
 <!ENTITY mlyrics.helpwin.aboutlabel "Acerca do MLyrics">
 <!ENTITY mlyrics.helpwin.stylelabel "Estilo Definido">
-<!ENTITY mlyrics.helpwin.medialistlabel "Media List Icons Icones da Lista de Media">
+<!ENTITY mlyrics.helpwin.medialistlabel "Icones da Lista de Media">
 <!ENTITY mlyrics.helpwin.tipslabel "Dicas">
 <!ENTITY mlyrics.pane.contxtRefresh "Actualizar lyrics">
 <!ENTITY mlyrics.pane.contxtRefreshObO "Em torno">
@@ -84,7 +84,7 @@
 <!ENTITY mlyrics.pane.viewModeMenu2 "Mostrar mistura linha por linha">
 <!ENTITY mlyrics.pane.viewModeMenu3 "Mostrar como é">
 <!ENTITY mlyrics.pane.viewModeMenu4 "Mostrar mistura verso a verso">
-<!ENTITY mlyrics.pane.saveButton "Guardar">
+<!ENTITY mlyrics.pane.saveButton "Gravar">
 <!ENTITY mlyrics.pane.cancelButton "Cancelar">
 <!ENTITY mlyrics.pane.showSelected "Mostrar agora seleccionado ">
 <!ENTITY mlyrics.pane.showNowPlaying "Mostrar a tocar agora">
@@ -126,4 +126,5 @@
 <!ENTITY mlyrics.font.fontLabel "Fonte:">
 <!ENTITY mlyrics.font.leftSpace "Espaço esquerdo">
 <!ENTITY mlyrics.font.rightSpace "Espaço direito">
-<!ENTITY mlyrics.font.un_selectAll "Selecionar todos">
+<!ENTITY mlyrics.font.un_selectAll "Seleccionar todos">
+<!ENTITY mlyrics.font.rulesDescription "Seleccione as regras para sobrescrever:">

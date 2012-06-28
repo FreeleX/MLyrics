@@ -127,3 +127,4 @@
 <!ENTITY mlyrics.font.leftSpace "Espace à gauche">
 <!ENTITY mlyrics.font.rightSpace "Espace à droite">
 <!ENTITY mlyrics.font.un_selectAll "Tout sélectionner">
+<!ENTITY mlyrics.font.rulesDescription "Sélectionner les règles à refaire :">

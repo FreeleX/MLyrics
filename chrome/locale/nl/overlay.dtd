@@ -124,6 +124,7 @@
 <!ENTITY mlyrics.font.alignLabel "Uitlijnen:">
 <!ENTITY mlyrics.font.fontStyleLabel "Tekststijl:">
 <!ENTITY mlyrics.font.fontLabel "Lettertype:">
-<!ENTITY mlyrics.font.leftSpace "Espace de gauche">
-<!ENTITY mlyrics.font.rightSpace "Espace de droite">
-<!ENTITY mlyrics.font.un_selectAll "Sélectionner tout">
+<!ENTITY mlyrics.font.leftSpace "Linkerruimte">
+<!ENTITY mlyrics.font.rightSpace "Rechterruimte">
+<!ENTITY mlyrics.font.un_selectAll "Alles selecteren">
+<!ENTITY mlyrics.font.rulesDescription "Selecteer te overschrijven regels:">
