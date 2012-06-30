@@ -1093,10 +1093,12 @@ mlyrics.pane = {
 	getSource: function (mediaItem) {
 		var source = "";
 		var lyricistName = mediaItem.getProperty("http://songbirdnest.com/data/1.0#lyricistName");
-		var squareFirstPos = lyricistName.indexOf("[");
-		if (squareFirstPos != -1) {
-			var squareLastPos = lyricistName.indexOf("]", squareFirstPos);
-			if (squareLastPos != -1) source = lyricistName.substring(squareFirstPos+1, squareLastPos);
+		if (lyricistName) {
+			var squareFirstPos = lyricistName.indexOf("[");
+			if (squareFirstPos != -1) {
+				var squareLastPos = lyricistName.indexOf("]", squareFirstPos);
+				if (squareLastPos != -1) source = lyricistName.substring(squareFirstPos+1, squareLastPos);
+			}
 		}
 
 		return source;
