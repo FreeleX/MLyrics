@@ -34,6 +34,7 @@ mlyrics.fetch = {
 				}
 				
 				search_str = search_str.replace(/\[.*\] */g, "");
+				search_str = search_str.replace(/^\d+ *- */g, "");
 				
 				mlyrics.lib.debugOutput("search_str: " + search_str);
 				
