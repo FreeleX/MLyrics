@@ -903,7 +903,7 @@ mlyrics.fetch = {
 						var songUrlStartPos = respLyr.indexOf("'url':'");
 						if (songUrlStartPos != -1) {
 							var songUrlEndPos = respLyr.indexOf("'", songUrlStartPos+7);
-							var songUrl = respLyr.substring(songUrlStartPos+7, songUrlEndPos);
+							var songUrl = decodeURIComponent(respLyr.substring(songUrlStartPos+7, songUrlEndPos));
 							
 							sourceObj.getLyrics2(songUrl, cbFn);
 						}
