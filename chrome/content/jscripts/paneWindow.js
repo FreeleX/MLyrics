@@ -2949,7 +2949,8 @@ mlyrics.pane = {
 		playPart: 0,
 		iframe: null,
 		timeTracksCurrentRowIndex: -1,
-
+		sleepTimer: null,
+		
 		constShowDelayMiliSec: 500,
 
 		postSave: {
@@ -2959,8 +2960,8 @@ mlyrics.pane = {
 		},
 		
 		restart: function () {
-			if (!mlyrics.pane.controller.windowActive ||
-				!mlyrics.pane.prefs.getBoolPref("scrollEnable")
+			if (!mlyrics.pane.prefs.getBoolPref("scrollEnable") ||
+				mlyrics.pane.prefs.getBoolPref("showNowSelected")
 				) {
 					clearInterval(this.timer);
 					return;
@@ -2970,6 +2971,33 @@ mlyrics.pane = {
 				this.duration = 0;
 			else
 				this.duration = mlyrics.pane.gMM.playbackControl.duration;
+				
+			if (!mlyrics.pane.controller.windowActive) {
+				if (!this.sleepTimer) {
+					var duration = mlyrics.pane.gMM.playbackControl.duration;
+					var position = mlyrics.pane.gMM.playbackControl.position;
+					if (position < 0) position = 0;
+				
+					var that = this;
+					this.sleepTimer = 
+						setTimeout(
+							function () {
+								clearInterval(that.timer);
+								mlyrics.lib.debugOutput("cleared!");
+							},
+							duration - position - 1000);
+							
+					mlyrics.lib.debugOutput("Sleep scroll timer set to: " + (this.duration - position)/1000 + " sec");
+				}
+				return;
+			}
+			else {
+				if (this.sleepTimer) {
+					clearTimeout(this.sleepTimer);
+					this.sleepTimer = null;
+					mlyrics.lib.debugOutput("Sleep scroll timer disabled");
+				}
+			}
 
 			var scrollHeight = document.getElementById('lm-content').contentWindow.document.body.scrollHeight;
 			var offsetHeight = document.getElementById('lm-content').contentWindow.document.body.offsetHeight;
