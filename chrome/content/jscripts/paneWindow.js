@@ -417,6 +417,10 @@ mlyrics.pane = {
 				case "showNotifs":
 					this.updateNotif();
 					break;
+					
+				case "scrollEnable":
+					mlyrics.pane.positionListener.restart();
+					break;
 			}
 		},
 		
@@ -2635,6 +2639,7 @@ mlyrics.pane = {
 		isInstr: false,
 		lmDeck: null,
 		paneSizeTimer: null,
+		windowActive: true,
 		
 		onLoad: function() {
 			document.addEventListener("unload", function(e) {
@@ -2727,6 +2732,9 @@ mlyrics.pane = {
 				mlyrics.pane.ourDisplayPane.collapsed = true;
 			}
 			
+			mlyrics.pane.songbirdWindow.addEventListener("activate", this.onActivate, false);
+			mlyrics.pane.songbirdWindow.addEventListener("deactivate", this.onDeactivate, false);
+			
 			window.top.gBrowser.tabContainer.addEventListener("TabSelect", mlyrics.pane.tabSelectListener, false);
 
 			mlyrics.pane.controller.paneSizeTimer = setInterval(mlyrics.pane.controller.sizeRecheck, 500)
@@ -2758,6 +2766,21 @@ mlyrics.pane = {
 			mlyrics.pane.gMM.removeListener(mlyrics.pane.titleDataRemoteObserver);
 			mlyrics.pane.mediaItemSelectListener.stop();
 			mlyrics.pane.preferencesObserver.unregister();
+			
+			mlyrics.pane.songbirdWindow.removeEventListener("activate", this.onActivate, false);
+			mlyrics.pane.songbirdWindow.removeEventListener("deactivate", this.onDeactivate, false);
+		},
+		
+		onActivate: function () {
+			mlyrics.pane.controller.windowActive = true;
+			mlyrics.pane.positionListener.restart();
+			mlyrics.lib.debugOutput("Main window activated");
+		},
+		
+		onDeactivate: function () {
+			mlyrics.pane.controller.windowActive = false;
+			mlyrics.pane.positionListener.restart();
+			mlyrics.lib.debugOutput("Main window deactivated");
 		}
 	},
 	
@@ -2936,6 +2959,12 @@ mlyrics.pane = {
 		},
 		
 		restart: function () {
+			if (!mlyrics.pane.controller.windowActive ||
+				!mlyrics.pane.prefs.getBoolPref("scrollEnable")
+				) {
+					clearInterval(this.timer);
+					return;
+			}
 			
 			if (!mlyrics.pane.gMM.playbackControl)
 				this.duration = 0;
