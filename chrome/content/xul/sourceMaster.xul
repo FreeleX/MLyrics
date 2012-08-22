@@ -8,10 +8,13 @@
 	%mlyricsDTD;
 ]>
 
-<window title="Lyrics Source Master"
+<window id="sourceMasterWindow"
+		title="Lyrics Source Master"
         xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        style="overflow: auto">
 
+	<!--<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/JSON2.js"/>-->
 	<script type="application/x-javascript" src="chrome://mlyrics/content/jscripts/sourceMasterWindow.js"/>
 	
 	<menupopup id="lyricsPageContextMenu">
@@ -25,6 +28,7 @@
 		<menuitem data="needlesslines"		label="Remove needless empty lines" flex="1" oncommand="addLyricsFilter(this)" />
 		<menuitem data="needlesssyms"		label="Remove needless symbols (\t \r)" flex="1" oncommand="addLyricsFilter(this)" />
 		<menuitem data="needlessspaces"		label="Remove needless spaces" flex="1" oncommand="addLyricsFilter(this)" />
+		<menuitem data="strangesyms"		label="Remove strange symbols (�)" flex="1" oncommand="addLyricsFilter(this)" />
 		<menuitem data="tolowercase"		label="Convert all letters to lower case" flex="1" oncommand="addLyricsFilter(this)" />
 		<menuitem data="capitalizefirsts"	label="Capitalize first letter on the line" flex="1" oncommand="addLyricsFilter(this)" />
 		<menuseparator />
@@ -32,119 +36,41 @@
 	</menupopup>
 	
 	<menupopup id="trackFiltersPopup" position="after_start" flex="1" >
+		<menuitem label="Custom regular expression" flex="1" oncommand="showCustomTrackRegExpField(true);" />
+		<menuseparator />
 		<menuitem data="tolowercaseall" label="Convert all letters to lower case" flex="1" oncommand="addTrackFilter(this)" />
 		<menuitem data="tolowercasefirst" label="Convert first letter to lower case" flex="1" oncommand="addTrackFilter(this)" />
 		<menuitem data="touppercaseall" label="Convert all letters to upper case" flex="1" oncommand="addTrackFilter(this)" />
 		<menuitem data="touppercasefirst" label="Convert first letter to upper case" flex="1" oncommand="addTrackFilter(this)" />
 		<menuitem data="removespaces" label="Remove spaces" flex="1" oncommand="addTrackFilter(this)" />
+		<menuitem data="cyrillictolatinic" label="Translit cyrillic (UA, RU) to latin (EN)" flex="1" oncommand="addTrackFilter(this)" />
+		<menuitem data="removeinroundbrackets" label="Remove in round brackets" flex="1" oncommand="addTrackFilter(this)" />
+		<menuitem data="removeinsquarebrackets" label="Remove in square brackets" flex="1" oncommand="addTrackFilter(this)" />
 	</menupopup>
 
-	<vbox flex="1" style="overflow:auto" >
-		<hbox equalsize="always">
-			<groupbox flex="1">
-				<caption label="Title data:" />
-				
-				<vbox flex="1">
-					<hbox>
-						<vbox>
-							<label value="Title:" />
-							<label value="Filtered:" />
-						</vbox>
-						<vbox flex="1">
-							<textbox id="titleInputTextbox" flex="1" oninput="onFetchTitleChange(this.value);" />
-							<textbox id="titleOutputTextbox" flex="1" disabled="true" value="7Twenty7" />
-						</vbox>
-					</hbox>
-					<listbox id="titleFiltersListBox" 
-							rows="0"
-					>
-						<listcols>
-							<!--<listcol/>-->
-							<listcol flex="1"/>
-						</listcols>
-					</listbox>
-					<hbox>
-						<button id="titleAddFilterMenuButton" label="Add filter" type="menu" popup="trackFiltersPopup" onmousedown="lastTrackButtonClicked = 'title';" flex="1" />
-						<button label="Remove filter" flex="1" oncommand="removeTrackFilter('title')" />
-					</hbox>
-					<description disabled="true" flex="1">Specify working example of track title to be used later as {title}. Also here you can adjust filtered title to be used as {f_title}</description>
-				</vbox>
-			</groupbox>
-		
-			<groupbox flex="1">
-				<caption label="Artist data:" />
-				
-				<vbox flex="1">
-					<hbox>
-						<vbox>
-							<label value="Artist:" />
-							<label value="Filtered:" />
-						</vbox>
-						<vbox flex="1">
-							<textbox id="artistInputTextbox" flex="1" oninput="onFetchArtistChange(this.value);" />
-							<textbox id="artistOutputTextbox" flex="1" disabled="true" value="Roxette" />
-						</vbox>
-					</hbox>
-					<listbox id="artistFiltersListBox" 
-							rows="0"
-					>
-						<listcols>
-							<!--<listcol/>-->
-							<listcol flex="1"/>
-						</listcols>
-					</listbox>
-					<hbox>
-						<button id="artistAddFilterMenuButton" label="Add filter" type="menu" popup="trackFiltersPopup" onmousedown="lastTrackButtonClicked = 'artist';" flex="1" />
-						<button label="Remove filter" flex="1" oncommand="removeTrackFilter('artist')" />
-					</hbox>
-					<description disabled="true" flex="1">Specify working example of track artist name to be used later as {artist}. Also here you can adjust filtered artist name to be used as {f_artist}</description>
-					<description disabled="true" flex="1">If you need first letter of artist use {a} or {f_a} for lowercased and {A} or {f_A} for uppercased</description>
-				</vbox>
-			</groupbox>
-		
-			<groupbox flex="1">
-				<caption label="Album data:" />
-				
-				<vbox flex="1">
-					<hbox>
-						<vbox>
-							<label value="Album:" />
-							<label value="Filtered:" />
-						</vbox>
-						<vbox flex="1">
-							<textbox id="albumInputTextbox" flex="1" oninput="onFetchAlbumChange(this.value);" />
-							<textbox id="albumOutputTextbox" flex="1" disabled="true" value="Hits" />
-						</vbox>
-					</hbox>
-					<listbox id="albumFiltersListBox" 
-						rows="0"
-				>
-					<listcols>
-						<!--<listcol/>-->
-						<listcol flex="1"/>
-					</listcols>
-				</listbox>
-					<hbox>
-						<button id="albumAddFilterMenuButton" label="Add filter" type="menu" popup="trackFiltersPopup" onmousedown="lastTrackButtonClicked = 'album';" flex="1" />
-						<button label="Remove filter" flex="1" oncommand="removeTrackFilter('album')" />
-					</hbox>
-					<description disabled="true" flex="1">Specify working example of track album to be used later as {album}. Also here you can adjust filtered album to be used as {f_album}</description>
-				</vbox>
-			</groupbox>
-		</hbox>
+	<vbox id="mainVbox" flex="1" style="overflow:auto" >
+		<groupbox>
+			<caption><checkbox label="Quick help" /></caption>
+			
+			<vbox>
+				<description>This a description</description>
+				<description>This a description</description>
+				<description>This a description</description>
+			</vbox>
+		</groupbox>
 		
 		<groupbox>
-			<caption label="Use the source:" />
+			<caption label="Use the source" />
 			
 			<hbox>
-				<label value="Database file:" />
+				<label value="Database file" />
 				<textbox flex="1" id="sourceDBFilePath" disabled="true" />
 				<button label="Browse" oncommand="openUserDatabase();" />
 			</hbox>
 			<checkbox id="saveToLastDBCheckbox" label="Save to this database (do not prompt for another)" />
 			<description disabled="true" flex="1">Choose database file to loaded additional sources from. This file can be used to save new source. Sources will be added to the list below (overwriting existing). This way you can load as many number of databases as you want</description>
 			<hbox>
-				<vbox style="overflow: auto">
+				<vbox>
 					<listbox id="sourcesListBox"
 							flex="0"
 							rows="0"
@@ -167,6 +93,7 @@
 				<listbox id="sourcesKeysListBox"
 						flex="1"
 						rows="0"
+						onselect="onSourcesKeysListBoxSelect(event)"
 				>
 					<listhead>
 						<listheader label="Setting" flex="0" />
@@ -181,28 +108,271 @@
 			</hbox>
 			<description disabled="true" flex="1">Select the source you want to edit\delete. Click empty if you want to create new</description>
 		</groupbox>	
+		
+		<hbox id="trackDataHbox" equalsize="always">
+			<vbox flex="1">
+				<groupbox flex="1">
+					<caption label="Title data" />
+					
+					<vbox flex="1">
+						<hbox align="left" valign="middle">
+							<vbox>
+								<label value="Title" />
+								<label value="Filtered" />
+							</vbox>
+							<vbox flex="1">
+								<textbox id="titleInputTextbox" flex="1" oninput="onFetchTitleChange(this.value);" />
+								<textbox id="titleOutputTextbox" flex="1" readonly="true" value="7Twenty7" />
+							</vbox>
+						</hbox>
+						<button id="titleUpFilterButton" 
+								label="&mlyrics.prefs.weblocupbtn;" 
+								disabled="true" 
+								oncommand="moveTrackFilterUp('title')" />		
+						<listbox id="titleFiltersListBox" 
+								rows="0"
+								onselect="onTrackFilterSelect('title')"
+						>
+							<listhead>
+								<listheader id="titleFiltersLabel" label="Title filters" />
+							</listhead>
+							
+							<listcols>
+								<!--<listcol/>-->
+								<listcol flex="1"/>
+							</listcols>
+						</listbox>
+						<button id="titleDownFilterButton"
+								label="&mlyrics.prefs.weblocdownbtn;" 
+								disabled="true" 
+								oncommand="moveTrackFilterDown('title')" />
+						<hbox>
+							<button id="titleAddFilterMenuButton" label="Add filter" type="menu" popup="trackFiltersPopup" onmousedown="lastTrackButtonClicked = 'title';" flex="1" />
+							<button label="Remove filter" flex="1" oncommand="removeTrackFilter('title')" />
+						</hbox>
+						
+						<description disabled="true" flex="1">Specify working example of track title to be used later as {title}. Also here you can adjust filtered title to be used as {f_title}</description>
+					</vbox>
+				</groupbox>
+				
+				<groupbox>
+					<caption label="Add Custom Title Filter" />
+					
+					<vbox id="titleCustomRegExpVbox" hidden="true">
+						<hbox align="left" valign="middle">
+							<vbox>
+								<label value="Search for (RegExp)" />
+								<label value="Replace with (Text)" />
+							</vbox>
+							<vbox flex="1">
+								<textbox id="titleSearchForTextBox" flex="1" />
+								<textbox id="titleReplaceWithTextBox" flex="1" />
+							</vbox>
+						</hbox>
+						<hbox>
+							<button label="Add" oncommand="addCustomTrackFilter('title');" flex="1" />
+							<button label="Cancel" oncommand="showCustomTrackRegExpField(false, 'title');" flex="1" />
+						</hbox>
+					</vbox>
+				</groupbox>
+			</vbox>
+				
+			<vbox flex="1">
+				<groupbox flex="1">
+					<caption label="Artist data" />
+					
+					<vbox flex="1">
+						<hbox align="left" valign="middle">
+							<vbox>
+								<label value="Artist" />
+								<label value="Filtered" />
+							</vbox>
+							<vbox flex="1">
+								<textbox id="artistInputTextbox" flex="1" oninput="onFetchArtistChange(this.value);" />
+								<textbox id="artistOutputTextbox" flex="1" readonly="true" value="Roxette" />
+							</vbox>
+						</hbox>
+						<button id="artistUpFilterButton" 
+								label="&mlyrics.prefs.weblocupbtn;" 
+								disabled="true" 
+								oncommand="moveTrackFilterUp('artist')" />
+						<listbox id="artistFiltersListBox" 
+								rows="0"
+								onselect="onTrackFilterSelect('artist')"
+						>
+							<listhead>
+								<listheader id="artistFiltersLabel" label="Artist filters" />
+							</listhead>
+							
+							<listcols>
+								<!--<listcol/>-->
+								<listcol flex="1"/>
+							</listcols>
+						</listbox>
+						<button id="artistDownFilterButton"
+								label="&mlyrics.prefs.weblocdownbtn;" 
+								disabled="true" 
+								oncommand="moveTrackFilterDown('artist')" />
+						<hbox>
+							<button id="artistAddFilterMenuButton" label="Add filter" type="menu" popup="trackFiltersPopup" onmousedown="lastTrackButtonClicked = 'artist';" flex="1" />
+							<button label="Remove filter" flex="1" oncommand="removeTrackFilter('artist')" />
+						</hbox>
+						<description disabled="true" flex="1">Specify working example of track artist name to be used later as {artist}. Also here you can adjust filtered artist name to be used as {f_artist}</description>
+						<description disabled="true" flex="1">If you need first letter of artist use {a} or {f_a} for lowercased and {A} or {f_A} for uppercased</description>
+					</vbox>
+				</groupbox>
+				
+				<groupbox>
+					<caption label="Add Custom Artist Filter" />
+					
+					<vbox id="artistCustomRegExpVbox" hidden="true">
+						<hbox align="left" valign="middle">
+							<vbox>
+								<label value="Search for (RegExp)" />
+								<label value="Replace with (Text)" />
+							</vbox>
+							<vbox flex="1">
+								<textbox id="artistSearchForTextBox" flex="1" />
+								<textbox id="artistReplaceWithTextBox" flex="1" />
+							</vbox>
+						</hbox>
+						<hbox>
+							<button label="Add" oncommand="addCustomTrackFilter('artist');" flex="1" />
+							<button label="Cancel" oncommand="showCustomTrackRegExpField(false, 'artist');" flex="1" />
+						</hbox>
+					</vbox>
+				</groupbox>
+			</vbox>
+		
+			<vbox flex="1">
+				<groupbox flex="1">
+					<caption label="Album data" />
+					
+					<vbox flex="1">
+						<hbox align="left" valign="middle">
+							<vbox>
+								<label value="Album" />
+								<label value="Filtered" />
+							</vbox>
+							<vbox flex="1">
+								<textbox id="albumInputTextbox" flex="1" oninput="onFetchAlbumChange(this.value);" />
+								<textbox id="albumOutputTextbox" flex="1" readonly="true" value="Hits" />
+							</vbox>
+						</hbox>
+						<button id="albumUpFilterButton" 
+								label="&mlyrics.prefs.weblocupbtn;" 
+								disabled="true" 
+								oncommand="moveTrackFilterUp('album')" />
+						<listbox id="albumFiltersListBox" 
+							rows="0"
+							onselect="onTrackFilterSelect('album')"
+						>
+							<listhead>
+									<listheader id="albumFiltersLabel" label="Album filters" />
+								</listhead>
+								
+							<listcols>
+								<!--<listcol/>-->
+								<listcol flex="1"/>
+							</listcols>
+						</listbox>
+						<button id="albumDownFilterButton"
+								label="&mlyrics.prefs.weblocdownbtn;" 
+								disabled="true" 
+								oncommand="moveTrackFilterDown('album')" />
+						<hbox>
+							<button id="albumAddFilterMenuButton" label="Add filter" type="menu" popup="trackFiltersPopup" onmousedown="lastTrackButtonClicked = 'album';" flex="1" />
+							<button label="Remove filter" flex="1" oncommand="removeTrackFilter('album')" />
+						</hbox>
+						<description disabled="true" flex="1">Specify working example of track album to be used later as {album}. Also here you can adjust filtered album to be used as {f_album}</description>
+					</vbox>
+				</groupbox>
+				
+				<groupbox>
+					<caption label="Add Custom Album Filter" />
+					
+					<vbox id="albumCustomRegExpVbox" hidden="true">
+						<hbox align="left" valign="middle">
+							<vbox>
+								<label value="Search for (RegExp)" />
+								<label value="Replace with (Text)" />
+							</vbox>
+							<vbox flex="1">
+								<textbox id="albumSearchForTextBox" flex="1" />
+								<textbox id="albumReplaceWithTextBox" flex="1" />
+							</vbox>
+						</hbox>
+						<hbox>
+							<button label="Add" oncommand="addCustomTrackFilter('album');" flex="1" />
+							<button label="Cancel" oncommand="showCustomTrackRegExpField(false, 'album');" flex="1" />
+						</hbox>
+					</vbox>
+				</groupbox>
+			</vbox>
+		</hbox>
 			
-		<groupbox>
-			<caption label="Fetch:" />
+		<groupbox id="fetchGroupBox">
+			<caption label="Fetch" />
 			
 			<vbox id="fetchVbox">
 				<hbox>
-					<label value="Fetch URL: " id="fetchLabel" />
-					<textbox id="fetchTextbox" flex="1" value="http://www.seeklyrics.com/lyrics/{artist}/{title}.html"/>
+					<vbox flex="0" valign="middle">
+						<label valign="middle" value="Masked Fetch URL" id="maskedFetchLabel" />
+						<label valign="middle" value="Real Fetch URL" id="realFetchLabel" />
+					</vbox>
+					<vbox flex="1">
+						<textbox id="maskedFetchTextbox" flex="1" value="http://www.seeklyrics.com/lyrics/{artist}/{title}.html" oninput="updateRealFetchURL()" />
+						<textbox id="realFetchTextbox" flex="1" readonly="true" value="http://www.seeklyrics.com/lyrics/{artist}/{title}.html" />
+					</vbox>
 					<button id="fetchTryButton" label="Try" onclick="onFetchTry();"/>
-					<label value="??" hidden="true" />
 				</hbox>
-				<description disabled="true">Specify direct link to lyrics page (try to predict URL). Example: http://www.lyricsbay.com/{f_title}_lyrics-{f_artist}.html </description>
+				<hbox align="left" valign="middle">
+					<label id="requestMethodLabel" value="Request method" />
+					<radiogroup id="requestMethodRadiogroup" orient="horizontal" selectedIndex="0" onselect="onRequestMethodChange()">
+						<radio id="requestMethodGETRadio" label="GET" />
+						<radio id="requestMethodPOSTRadio" label="POST" />
+					</radiogroup>
+					<hbox id="postDataHbox" align="left" valign="middle" flex="1">
+						<label id="postDataLabel" value="Data" />
+						<textbox id="postDataTextbox" flex="1" />
+					</hbox>
+				</hbox>
+				<vbox>
+					<listbox id="headersListBox" 
+						rows="0"
+					>
+						<listhead>
+							<listheader id="headerNameListheader" label="Custom headers" />
+							<listheader id="headerValueListheader" label="Value" />
+						</listhead>
+							
+						<listcols>
+							<listcol/>
+							<listcol flex="1"/>
+						</listcols>
+					</listbox>
+					<button label="Remove header" oncommand="removeCustomHeader()" />
+					<button id="customHeaderShowButton" label="Add header" oncommand="showCustomHeaderHbox(true)" />
+					<hbox id="customHeaderHbox" align="left" valign="middle" hidden="true">
+						<label value="Custom header" />
+						<textbox flex="0" id="customHeaderNameTextbox" />
+						<label value="Value" />
+						<textbox flex="3" id="customHeaderValueTextbox" />
+						<button label="Add" oncommand="addCustomHeader()" />
+						
+					</hbox>
+				</vbox>
+				<description disabled="true">Specify direct link to lyrics page (try to predict URL). Example: http://www.lyricsbay.com/{f_title}_lyrics-{f_artist}.html Use GET method if you not sure</description>
 				<progressmeter id="fetchProgressmeter" mode="undetermined" hidden="true"/>
 			</vbox>
 		</groupbox>
 			
 		<hbox equalsize="always">
-			<vbox flex="1">
+			<vbox flex="1" id="lyricsResultVbox" >
 				<groupbox flex="1">
-					<caption label="Result:" />
+					<caption label="Result" />
 					
-					<tabbox flex="1">
+					<tabbox flex="1" id="lyricsResultTabBox">
 						<tabs >
 							<tab label="Lyrics page" />
 							<tab label="Error page" />
@@ -212,14 +382,14 @@
 							<vbox id="fetchResultVbox" hidden="true" flex="1">
 								<textbox id="fetchResultTextbox" hidden="false" multiline="true" readonly="true" rows="30" onmouseup="onLyricsPageMouseUp(event);" onpopupshowing="event.preventDefault();" flex="1" />
 								<description disabled="true">This is a LYRICS page source code as seen by MLyrics. Find lyrics and select it with mouse (lyrics can be with html tags and some strange symbols). It is better to select more rather than less. Right click and select Discover marks around to automatically find marks (or enter your marks below), than push Test to test them  </description>
-								<grid>
+								<grid id="lyricsMarksGrid">
 									<rows>
 										<row>
-											<label value="Start mark: " id="fetchResultStartMarkLabel" />
+											<label value="Start mark" id="fetchResultStartMarkLabel" />
 											<textbox id="fetchResultStartMarkTextbox" value="" flex="1" oninput="onMarksInput()" />
 										</row>
 										<row>
-											<label value="End mark: " id="fetchResultEndMarkLabel" />
+											<label value="End mark" id="fetchResultEndMarkLabel" />
 											<textbox id="fetchResultEndMarkTextbox" value="" flex="1" oninput="onMarksInput()" />
 										</row>
 									</rows>
@@ -238,7 +408,7 @@
 								<textbox id="fetchErrorTextbox" hidden="false" multiline="true" readonly="true" rows="30" flex="1" />
 								<description disabled="true">This is an ERROR page source code as seen by MLyrics. You may find and input below an additional error mark which will indicate no lyrics on the page or lyrics incorrect </description>
 								<hbox>
-									<label value="Error mark: " id="fetchResultErrorMarkLabel" />
+									<label value="Error mark" id="fetchResultErrorMarkLabel" />
 									<textbox id="fetchErrorTestMarkTextbox" value="" flex="1" oninput="onErrorMarkInput()" />
 								</hbox>
 								<button id="fetchErrorTestMarksButton" label="Test" oncommand="testErrorResultMark()" />
@@ -251,7 +421,7 @@
 
 			<vbox flex="1">
 				<groupbox flex="1">
-					<caption label="Filtered Lyrics: " />
+					<caption label="Filtered Lyrics" />
 					
 					<vbox id="lyricsViewVbox" flex="1" hidden="true">
 						<textbox id="lyricsTextbox" value="" flex="1" multiline="true" readonly="true" rows="30" />
@@ -259,12 +429,12 @@
 				</groupbox>
 				
 				<groupbox>
-					<caption label="Add Custom Lyrics Filter: " />
+					<caption label="Add Custom Lyrics Filter" />
 					
 					<hbox id="customLyricsRegExpHbox" hidden="true">
 						<vbox>
-							<label value="Search for (RegExp): " />
-							<label value="Replace with (Text): " />
+							<label value="Search for (RegExp)" />
+							<label value="Replace with (Text)" />
 						</vbox>
 						<vbox flex="1">
 							<textbox id="searchLyricsForTextBox" flex="1" />
@@ -278,7 +448,7 @@
 				</groupbox>
 			
 				<groupbox flex="1">
-					<caption label="Lyrics filters: " id="lyricsFiltersCaption" />
+					<caption label="Lyrics filters" id="lyricsFiltersCaption" />
 					
 					<vbox id="lyricsFiltersVbox" flex="1" hidden="true">
 						<hbox>
@@ -292,7 +462,7 @@
 						<listbox id="lyricsFiltersListBox" 
 								flex="1"
 								rows="5"
-								onselect="enableLyricsFilterUpDownButtons(true)"
+								onselect="onLyricsFilterSelect()"
 						>
 							<listcols>
 								<!--<listcol/>-->
@@ -309,20 +479,20 @@
 		</hbox>
 		
 		<groupbox>
-			<caption label="Save: " />
+			<caption label="Save" />
 			
 			<vbox id="saveDescriptionVbox" hidden="true">
 				<hbox>
 					<vbox>
-						<label value="Site name: " />
-						<label value="Site description: " id="sourceDescriptionLabel" />
+						<label value="Site name" />
+						<label value="Site description" id="sourceDescriptionLabel" />
 					</vbox>
 					<vbox flex="1">
 						<textbox flex="1" id="sourceNameTextbox" oninput="onSiteNameInput();" />
 						<textbox flex="1" id="sourceDescriptionTextbox" />
 					</vbox>
 				</hbox>
-				<description disabled="true">Here you can change source name (not recommended) and enter description of the site</description>
+				<description disabled="true">Here you can change source name (not recommended) and enter description of the site (go to the site main page and look for some slogan or look at emblem)</description>
 			</vbox>
 			
 			<hbox>
@@ -337,7 +507,7 @@
 		</groupbox>
 		
 		<groupbox>
-			<caption label="Logging: " />
+			<caption label="Logging" />
 			
 			<textbox id="debugTextbox" multiline="true" readonly="true" rows="5"/>
 		</groupbox>

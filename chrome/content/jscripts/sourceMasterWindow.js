@@ -1,5 +1,6 @@
 try {
 Components.utils.import("resource://gre/modules/NetUtil.jsm");
+Components.utils.import("resource://app/jsmodules/sbProperties.jsm");
 }
 catch (error) {alert("MLyrics: Unexpected error - module import error\n\n" + error)}
 
@@ -10,7 +11,49 @@ var maxMarkLength 			= 100;
 var configVersion			= "1.0";
 
 var regExpCharacters = [".", ",", "?", "!", "\\", "^", "$", "*", "+", "(", ")", ":", "=", "[", "]", "{", "}", "|"]
-var customRegExpDelimiter = " ››› ";
+var customRegExpDelimiter = "⟶";
+var filtersViewDelimiter = "❚";
+
+var translitArray = 
+	{
+		"а": "a",
+		"б": "b",
+		"в": "v",
+		"г": "g",
+		"ґ": "g",
+		"д": "d",
+		"е": "e",
+		"є": "ye",
+		"ё": "yo",
+		"ж": "zh",
+		"з": "z",
+		"и": "i",
+		"і": "i",
+		"ї": "yi",
+		"й": "i",
+		"к": "k",
+		"л": "l",
+		"м": "m",
+		"н": "n",
+		"о": "o",
+		"п": "p",
+		"р": "r",
+		"с": "s",
+		"т": "t",
+		"у": "u",
+		"ф": "f",
+		"х": "kh",
+		"ц": "ts",
+		"ч": "ch",
+		"ш": "sh",
+		"щ": "shch",
+		"ъ": "",
+		"ы": "y",
+		"ь": "",
+		"э": "e",
+		"ю": "yu",
+		"я": "ya"
+	};
 
 var debugOutputTries = 0;
 var globalOriginalLyrics = "";
@@ -19,8 +62,48 @@ var lastTrackButtonClicked = "title";
 var sites = [];
 var notificationCounter = 0;
 
+var gMM = Components.classes["@songbirdnest.com/Songbird/Mediacore/Manager;1"].getService(Components.interfaces.sbIMediacoreManager);
+var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.mlyrics.");
+	prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
+var songbirdWindow = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator)
+					.getMostRecentWindow("Songbird:Main")
+					.window;				
+var gBrowser = songbirdWindow.gBrowser;
+
+
 function onLoad () {
 //alert("loaded!");
+	
+	if (prefs.getBoolPref("showNowSelected")) {
+		var mediaItem = null;
+		var mediaListView = gBrowser.tabContainer.getItemAtIndex(0).mediaListView;
+		if (mediaListView && mediaListView.selection) {
+			mediaItem = mediaListView.selection.currentMediaItem;
+		}
+	}
+	else {
+		var mediaItem = gMM.sequencer.currentItem;
+	}
+	
+	if (mediaItem) {
+		var title = mediaItem.getProperty(SBProperties.trackName);
+		var artist = mediaItem.getProperty(SBProperties.artistName);
+		var album = mediaItem.getProperty(SBProperties.albumName);
+		
+		if (title) {
+			document.getElementById("titleInputTextbox").value = title;
+			onFetchTitleChange();
+		}
+		if (artist) {
+			document.getElementById("artistInputTextbox").value = artist;
+			onFetchArtistChange();
+		}
+		if (album) {
+			document.getElementById("albumInputTextbox").value = album;
+			onFetchAlbumChange();
+		}
+	}
+
 	loadDatabase("/home/alex/MLyrics.Sites.ini");
 }
 
@@ -39,27 +122,51 @@ function copyToClipboard () {
 
 function onFetchTitleChange (trackName) {
 	applyTrackFilters("title");
-	//document.getElementById("titleOutputTextbox").value = trackName;
+	updateRealFetchURL();
 }
 
 function onFetchArtistChange (artistName) {
 	applyTrackFilters("artist");
-	//document.getElementById("artistOutputTextbox").value = artistName;
+	updateRealFetchURL();
 }
 
 function onFetchAlbumChange (albumName) {
 	applyTrackFilters("album");
-	//document.getElementById("albumOutputTextbox").value = albumName;
+	updateRealFetchURL();
 }
 
 function onFetchTry () {
-	var textboxValue = document.getElementById("fetchTextbox").value;
+	var textboxValue = document.getElementById("maskedFetchTextbox").value;
 	if (textboxValue == "") return;
 	
 	document.getElementById("fetchTryButton").disabled = true;
 	document.getElementById("fetchProgressmeter").hidden = false;
 
+	document.getElementById("mainVbox").scrollTop += getTopPosition("fetchGroupBox");
+
 	var lyricsUrl = replaceCustomRegExps(textboxValue);
+	
+	var usePOST = (document.getElementById("requestMethodRadiogroup").selectedIndex == 1);
+	if (!usePOST) {
+		var fetchMethod = "GET";
+	}
+	else {
+		var postData = document.getElementById("postDataTextbox").value;
+		if (postData != "")
+			var fetchMethod = "POST:" + postData;
+		else
+			var fetchMethod = "POST";
+	}
+	
+	var headersArray = {};
+	var headersListBox = document.getElementById("headersListBox");
+	var items = headersListBox.getElementsByTagName("listitem");
+	for (var i=0; i<items.length; i++) {
+		var name = items[i].childNodes[0].getAttribute("data");
+		var value = items[i].childNodes[1].getAttribute("data");
+		
+		headersArray[name] = value;
+	}
 	
 	var domainNameStart = lyricsUrl.indexOf("://");
 	if (domainNameStart == -1) 
@@ -72,12 +179,15 @@ function onFetchTry () {
 	
 	document.getElementById("sourceNameTextbox").value = lyricsUrl.substring(domainNameStart, domainNameEnd);
 	
-	//var finished = false;
+	var finished = false;
 	
-	/*fetchPage(lyricsUrl, function (data) {
+	fetchPage(lyricsUrl, fetchMethod, headersArray, function (data) {
 			if (finished) {
 				document.getElementById("fetchTryButton").disabled = false;
 				document.getElementById("fetchProgressmeter").hidden = true;
+				document.getElementById("fetchResultTestMarksButton").disabled = false;
+				
+				document.getElementById("mainVbox").scrollTop += getTopPosition("lyricsResultTabBox");
 			}
 			else {
 				finished = true;
@@ -88,10 +198,10 @@ function onFetchTry () {
 			if (!!data && data != "") {
 				var fetchResultTextbox = document.getElementById("fetchResultTextbox");
 				fetchResultTextbox.hidden = false;
-				fetchResultTextbox.value = data.toLowerCase();
+				fetchResultTextbox.value = specCharsDecode(data);
 			}
 		}
-	);*/
+	);
 	
 	var trackName = document.getElementById("titleOutputTextbox").value;
 	var artistName = document.getElementById("artistOutputTextbox").value;
@@ -101,14 +211,18 @@ function onFetchTry () {
 	var randArtist = Math.random().toString(36).substring(2);
 	var randAlbum = Math.random().toString(36).substring(2);
 	
-	var errorUrl = lyricsUrl.replace(trackName, randTitle)
-							.replace(artistName, randArtist)
-							.replace(albumName, randAlbum);
+	var errorUrl = lyricsUrl;
+	if (trackName != "") var errorUrl = errorUrl.replace(trackName, randTitle)
+	if (artistName != "") var errorUrl = errorUrl.replace(artistName, randArtist)
+	if (albumName != "") var errorUrl = errorUrl.replace(albumName, randAlbum);
 	
-	/*fetchPage(errorUrl, function (data) {
+	fetchPage(errorUrl, fetchMethod, headersArray, function (data) {
 			if (finished) {
 				document.getElementById("fetchTryButton").disabled = false;
 				document.getElementById("fetchProgressmeter").hidden = true;
+				document.getElementById("fetchResultTestMarksButton").disabled = false;
+				
+				document.getElementById("mainVbox").scrollTop += getTopPosition("lyricsResultTabBox");
 			}
 			else {
 				finished = true;
@@ -119,12 +233,12 @@ function onFetchTry () {
 			if (!!data && data != "") {
 				var fetchErrorTextbox = document.getElementById("fetchErrorTextbox");
 				fetchErrorTextbox.hidden = false;
-				fetchErrorTextbox.value = data.toLowerCase();
+				fetchErrorTextbox.value = specCharsDecode(data);
 			}
 		}
-	);*/
+	);
 	
-	document.getElementById("fetchTryButton").disabled = false;
+	/*document.getElementById("fetchTryButton").disabled = false;
 	document.getElementById("fetchProgressmeter").hidden = true;
 	document.getElementById("fetchErrorVbox").hidden = false;
 	document.getElementById("fetchResultVbox").hidden = false;
@@ -132,47 +246,60 @@ function onFetchTry () {
 	
 	var fetchResultTextbox = document.getElementById("fetchResultTextbox");
 	fetchResultTextbox.hidden = false;
-	fetchResultTextbox.value = lyricsCodeData.toLowerCase();
-				
+	fetchResultTextbox.value = specCharsDecode(lyricsCodeData);
+			
 	var fetchErrorTextbox = document.getElementById("fetchErrorTextbox");
 	fetchErrorTextbox.hidden = false;
-	fetchErrorTextbox.value = lyricsErrorData.toLowerCase();
+	fetchErrorTextbox.value = specCharsDecode(lyricsErrorData);*/
 }
 
-function fetchPage (url, cbFn, needOKResponse) {
+function fetchPage (url, fetchMethod, customHeaders, cbFn, needOKResponse) {
 	var req = new XMLHttpRequest();
 	if (!req) {
 		cbFn("");
 		return;
 	}
+	
+	if (fetchMethod == "GET") {
+		var method = "GET";
+		var sendData = null;
+	}
+	else {
+		var method = "POST";
+		if (fetchMethod.substr(4, 1) == ":")
+			var sendData = fetchMethod.substr(5);
+		else
+			var sendData = null;
+	}
 
-	debugOutput("Fetch: " + url);
+	if (sendData)
+		debugOutput("Fetch " + method + " (" + sendData + "): " + url);
+	else
+		debugOutput("Fetch " + method + ": " + url);
 
 	try {
-	req.open("GET", url, true);
+	req.open(method, url, true);
 	}
 	catch (e) {
 		debugOutput(e);
 		cbFn("");
 		return;
 	}
+	
+	for (prop in customHeaders) {
+		req.setRequestHeader(prop, customHeaders[prop]);
+		debugOutput("Added custom header: " + prop + "=" + customHeaders[prop]);
+	}
 
 	var abortTimer = setTimeout(function () {req.abort(); cbFn("");}, abortTimeout);
 
 	req.onreadystatechange = function() {				
-		/*if () {
-			mlyrics.lib.debugOutput("Fetch1 abort - track changed");
-			clearTimeout(abortTimer);
-			this.abort();
-			return;
-		}*/
-
 		if (this.readyState != 4) return;
 
 		if (this.status) 
-			debugOutput("Got data with status: " + this.status);
+			debugOutput("OK: got data with status: " + this.status);
 		else
-			debugOutput("Error: cannot reach server");
+			debugOutput("ERROR: cannot reach server");
 
 		clearTimeout(abortTimer);
 
@@ -186,9 +313,9 @@ function fetchPage (url, cbFn, needOKResponse) {
 		cbFn(data);
 	}
 
-	req.onerror = function () {clearTimeout(abortTimer);};
+	req.onerror = function () {clearTimeout(abortTimer); cbFn("");};
 
-	req.send(null);
+	req.send(sendData);
 }
 
 function discoverFetchResultSelectionMarks () {
@@ -219,6 +346,8 @@ function discoverFetchResultSelectionMarks () {
 									document.getElementById("fetchResultEndMarkTextbox").value = result;
 								}
 								document.getElementById("fetchResultTestMarksButton").disabled = false;
+								
+								document.getElementById("mainVbox").scrollTop += getTopPosition("lyricsMarksGrid");
 							}
 						);
 					}
@@ -255,6 +384,8 @@ function backslashSpecialCharacters (strOrig) {
 }
 
 function getUniqueStartCode (pageSourceCode, lyricsStartPos, cbFn) {
+	pageSourceCode = pageSourceCode.toLowerCase();
+	
 	var trackName = document.getElementById("titleOutputTextbox").value.toLowerCase();
 	var artistName = document.getElementById("artistOutputTextbox").value.toLowerCase();
 	var albumName = document.getElementById("albumOutputTextbox").value.toLowerCase();
@@ -265,7 +396,7 @@ function getUniqueStartCode (pageSourceCode, lyricsStartPos, cbFn) {
 	var albumNameLength = albumName.length;
 	
 	document.getElementById("updateMarksProgressmeter").hidden = false;
-	var errorPageCode = document.getElementById("fetchErrorTextbox").value;
+	var errorPageCode = document.getElementById("fetchErrorTextbox").value.toLowerCase();
 	
 	// Cut from start to lyricsStartPos
 	pageSourceCode = pageSourceCode.substring(0, lyricsStartPos);
@@ -352,7 +483,12 @@ function getUniqueStartCode (pageSourceCode, lyricsStartPos, cbFn) {
 		}
 		else {
 			var uniqueInLyricsPage = (remainingCode.indexOf(unStart) == -1);
-			var uniqueInErrorPage = (errorPageCode.indexOf(unStart) == -1);
+			
+			var errTestResult = testErrorResultMark();
+			if (errTestResult && errTestResult != 2)
+				var uniqueInErrorPage = true;				// Ignore unique in error page if error mark OK
+			else
+				var uniqueInErrorPage = (errorPageCode.indexOf(unStart) == -1);
 			
 			// Backspace special characters because regular expression will be returned
 			unStart = backslashSpecialCharacters(unStart);
@@ -476,7 +612,6 @@ function getUniqueEndCode (pageSourceCode, lyricsStartPos, lyricsEndPos, cbFn) {
 			var uniqueInLyricsCode = false;
 			unEnd = "";
 			debugOutput("Unique end was not found");
-			debugOutput("lyricsEndPos+counter >= fullLength: " + (newLyricsEndPos+counter) + ">=" + fullLength) 
 		}
 		else {
 			var uniqueInLyricsCode = (lyricsCode.indexOf(unEnd) == -1);
@@ -514,9 +649,9 @@ function getUniqueEndCode (pageSourceCode, lyricsStartPos, lyricsEndPos, cbFn) {
 }
 
 function testFetchResultSelectionMarks () {
-	var trackName = document.getElementById("titleOutputTextbox").value.toLowerCase();
-	var artistName = document.getElementById("artistOutputTextbox").value.toLowerCase();
-	var albumName = document.getElementById("albumOutputTextbox").value.toLowerCase();
+	var trackName = document.getElementById("titleOutputTextbox").value;
+	var artistName = document.getElementById("artistOutputTextbox").value;
+	var albumName = document.getElementById("albumOutputTextbox").value;
 	
 	var lyricsPageCode = document.getElementById("fetchResultTextbox").value;
 	var errorPageCode = document.getElementById("fetchErrorTextbox").value;
@@ -527,69 +662,97 @@ function testFetchResultSelectionMarks () {
 		
 		startMark = replaceCustomRegExps(startMark);
 		endMark = replaceCustomRegExps(endMark);
+		
+	var startMarkRegExp = new RegExp(startMark, "i");
+	var endMarkRegExp = new RegExp(endMark, "i");
+		
+	var errMarksTestResult = testErrorResultMark();
+	if (!errMarksTestResult) {
+		debugOutput("FAILED: lyrics marks test failed because of error mark test fail");
+		return;
+	}
 	
-	var startMarkPos = lyricsPageCode.search(startMark);
-	//alert(startMarkPos + " == " + lyricsPageCode.indexOf(startMark.replace(/\\\//g, "/")));
-	if (startMarkPos != -1) {
-		var startMarkLength = lyricsPageCode.match(startMark)[0].length; // get length of regular expression's found string
-		if (errorPageCode.search(startMark) == -1) {
-			var endMarkPos = lyricsPageCode.substr(startMarkPos+startMark.length).search(endMark); // regexp indexOf
-			if (endMarkPos != -1) {
-				endMarkPos += startMarkPos+startMark.length;
-				var lyrics = lyricsPageCode.substring(startMarkPos+startMarkLength,  endMarkPos);
-				if (lyrics.length > 10) {
-					debugOutput("Test OK. startMarkPos: " + startMarkPos + " endMarkPos: " + endMarkPos);
-					
-					document.getElementById("fetchResultTestMarksButton").disabled = true;
-					if (testErrorResultMark()) {
-						enableExtrackLyrics(true);
-						globalOriginalLyrics = lyrics;
-					}
-					
-					return;
-				}
-				else {
-					debugOutput("Test failed: extracted lyrics too small, re-check your marks");
-				}
-			}
-			else {
-				debugOutput("Test failed: end mark cannot be found");
-			}
-		}
-		else {
-			debugOutput("Test failed: start mark is not unique");
+	if (startMark != "") {
+		var startMarkPos = lyricsPageCode.search(startMarkRegExp);
+		if (startMarkPos == -1) {
+			debugOutput("FAILED: start mark cannot be found: " + startMark);
+			return;
 		}
 	}
 	else {
-		debugOutput("Test failed: start mark cannot be found")
+		var startMarkPos = 0;
+		debugOutput("WARNING: start mark empty, extract will start from beginning");
 	}
+	
+	if (endMark != "") {
+		var endMarkPos = lyricsPageCode.substr(startMarkPos+startMark.length).search(endMarkRegExp); // regexp indexOf
+		if (endMarkPos == -1) {
+			debugOutput("FAILED: lyrics end mark cannot be found: " + endMark);
+			return;
+		}
+		endMarkPos += startMarkPos+startMark.length;
+	}
+	else {
+		var endMarkPos = lyricsPageCode.length;
+		debugOutput("WARNING: start mark empty, extract will continue till the end");
+	}
+	
+	var startMarkLength = lyricsPageCode.match(startMarkRegExp)[0].length; // get length of regular expression's found string
+	
+	var lyrics = lyricsPageCode.substring(startMarkPos+startMarkLength,  endMarkPos);
+	if (lyrics.length < 10) {
+		debugOutput("FAILED: extracted lyrics too small, re-check your marks");
+		return;
+	}
+
+	var markFoundInErrorPage = (errorPageCode.search(startMarkRegExp) != -1);	
+	if (markFoundInErrorPage) {
+		if (errMarksTestResult == 2) {
+			debugOutput("FAILED: lyrics start mark is not unique and error mark is empty");
+			return;
+		}
+		
+		debugOutput("OK: lyrics start mark is not unique, but error mark test OK (such is not recommended)");
+	}
+	else {
+		if (errMarksTestResult == 2)
+			debugOutput("OK: lyrics marks tested, but error mark empty");
+		else
+			debugOutput("OK: all marks tested");
+	}
+	
+	document.getElementById("fetchResultTestMarksButton").disabled = true;
+	enableExtrackLyrics(true);
+	globalOriginalLyrics = lyrics;
 }
 
 function testErrorResultMark () {
 	var lyricsPageCode = document.getElementById("fetchResultTextbox").value;
 	var errorPageCode = document.getElementById("fetchErrorTextbox").value;
-	var errorMark = document.getElementById("fetchErrorTestMarkTextbox").value.toLowerCase();
+	var errorMark = document.getElementById("fetchErrorTestMarkTextbox").value;
 	
 	errorMark = replaceCustomRegExps(errorMark);
 	
+	var errorMarkRegExp = new RegExp(errorMark, "i");
+	
 	if (errorMark == "") {
 		globalErrorMark = errorMark;
-		return true;
+		return 2;
 	}
 	
-	if (errorPageCode.search(errorMark) == -1) {
-		debugOutput("Test failed: error mark was not found on the error page");
+	if (errorPageCode.search(errorMarkRegExp) == -1) {
+		debugOutput("FAILED: error mark was not found on the error page");
 		return false;
 	}
 	
-	if (lyricsPageCode.search(errorMark) != -1) {
-		debugOutput("Test failed: error mark is not unique");
+	if (lyricsPageCode.search(errorMarkRegExp) != -1) {
+		debugOutput("FAILED: error mark is not unique");
 		return false;
 	}
 	
 	globalErrorMark = errorMark;
 	
-	debugOutput("Test OK: Error mark was found");
+	debugOutput("OK: error mark tested");
 	
 	document.getElementById("fetchErrorTestMarksButton").disabled = true;
 	if (document.getElementById("fetchResultTestMarksButton").disabled)
@@ -599,7 +762,8 @@ function testErrorResultMark () {
 }
 
 function extractLyrics () {
-	if (globalErrorMark != "" && globalOriginalLyrics.search(globalErrorMark) != -1)
+	var globalErrorMarkRegExp = new RegExp(globalErrorMark, "i");
+	if (globalErrorMark != "" && globalOriginalLyrics.search(globalErrorMarkRegExp) != -1)
 		debugOutput("Extract error: error mark found on lyrics page");
 		
 	document.getElementById("lyricsViewVbox").hidden = false;
@@ -640,11 +804,25 @@ function enableExtrackLyrics (enable) {
 	}
 }
 
+function showCustomTrackRegExpField (show, data) {
+	if (!data) data = lastTrackButtonClicked;
+	document.getElementById(data + "CustomRegExpVbox").hidden = !show;
+}
+
 function showCustomLyricsRegExpField (show) {
 	document.getElementById("customLyricsRegExpHbox").hidden = !show;
 }
 
-function lyricsFilterHtmlTags (lyrics) {	
+function showCustomHeaderHbox (show) {
+	document.getElementById("customHeaderShowButton").hidden = show;
+	document.getElementById("customHeaderHbox").hidden = !show;
+}
+
+function lyricsFilterHtmlTags (lyrics) {
+	lyrics = lyrics.replace(/ *\<.+"\> */g, "");
+	lyrics = lyrics.replace(/ *\<.+'\> */g, "");
+	lyrics = lyrics.replace(/ *\<\/.+\> */g, "");
+	lyrics = lyrics.replace(/ *\<.+\/\> */g, "");
 	lyrics = lyrics.replace(/ *\<.+\> */g, "");
 	
 	return lyrics;
@@ -667,8 +845,17 @@ function lyricsFilterNeedlessSyms (lyrics) {
 	return lyrics;
 }
 
+function lyricsFilterStrangeSyms (lyrics) {
+	lyrics = lyrics.replace(/�/g, "");
+	
+	return lyrics;
+}
+
 function lyricsFilterManySpaces (lyrics) {	
 	lyrics = lyrics.replace(/  +/g, " ");
+	lyrics = lyrics.replace(/^ +/g, "");
+	lyrics = lyrics.replace(/ $/g, "");
+	lyrics = lyrics.replace(/\n /g, "\n");
 	
 	return lyrics;
 }
@@ -693,7 +880,21 @@ function lyricsFilterCapitalizeFirsts (lyrics) {
 	return newLyrics;
 }
 
-function lyricsFilterAddCustom (lyrics, searchfor, replacewith) {
+function trackFilterApplyCustom (trackData, searchfor, replacewith) {
+	searchfor = searchfor.replace(/\\n/g, "\n");
+	replacewith = replacewith.replace(/\\n/g, "\n");
+	
+	var re = new RegExp(searchfor, "ig");
+	
+	trackData = trackData.replace(re, replacewith);
+	
+	return trackData;
+}
+
+function lyricsFilterApplyCustom (lyrics, searchfor, replacewith) {
+	searchfor = searchfor.replace(/\\n/g, "\n");
+	replacewith = replacewith.replace(/\\n/g, "\n");
+	
 	var re = new RegExp(searchfor, "ig");
 	
 	lyrics = lyrics.replace(re, replacewith);
@@ -731,9 +932,77 @@ function trackFilterRemoveSpaces (trackData) {
 	return trackData;
 }
 
+function trackFilterTransliterateCyrillicToLatinic (trackData) {	
+	trackData = trackData.replace(/([\u0401-\u0457])/g,
+		function (str, p1, offset, s) {
+			if (str == str.toUpperCase()) {
+				if (typeof(translitArray[str.toLowerCase()]) != 'undefined')
+					return translitArray[str.toLowerCase()].toUpperCase();
+			}
+			else {
+				if (typeof(translitArray[str]) != 'undefined')
+					return translitArray[str];
+			}
+			
+			return str;
+		}
+	);
+	
+	return trackData;
+}
+
+function trackFilterRemoveInRoundBrackets (trackData) {
+	trackData = trackData.replace(/ *\(.+\) */g, "");
+	
+	return trackData;
+}
+
+function trackFilterRemoveInSquareBrackets (trackData) {
+	trackData = trackData.replace(/ *\[.+\] */g, "");
+	
+	return trackData;
+}
+
+function enableTrackFilterUpDownButtons (data, enable) {
+	document.getElementById(data + "UpFilterButton").disabled = !enable;
+	document.getElementById(data + "DownFilterButton").disabled = !enable;
+}
+
 function enableLyricsFilterUpDownButtons (enable) {
 	document.getElementById("upFilterButton").disabled = !enable;
 	document.getElementById("downFilterButton").disabled = !enable;
+}
+
+function moveTrackFilterUp (data) {
+  var fetchListBox = document.getElementById(data + "FiltersListBox");
+  
+  var selectedItem = fetchListBox.selectedItem;
+  var selectedIndex = fetchListBox.selectedIndex;
+  if (selectedItem) {
+    if (selectedIndex) {
+      selectedItem.selected = false;
+      var cloneItem = selectedItem.cloneNode(true);
+      fetchListBox.insertBefore(cloneItem, fetchListBox.getItemAtIndex(selectedIndex-1));
+      fetchListBox.removeChild(selectedItem);
+      fetchListBox.clearSelection();
+      fetchListBox.selectItem(cloneItem);
+      
+      //fetchListBox.scrollToIndex(selectedIndex-1-3);
+      
+      if (!fetchListBox.selectedIndex) {
+		document.getElementById(data + "UpFilterButton").disabled = true;
+      }
+    }
+    else {
+      document.getElementById(data + "UpFilterButton").disabled = true;
+    }
+  }
+  else {
+    document.getElementById(data + "UpFilterButton").disabled = true;
+    document.getElementById(data + "DownFilterButton").disabled = true;
+  }
+  
+  applyTrackFilters(data);
 }
 
 function moveLyricsFilterUp () {
@@ -766,6 +1035,39 @@ function moveLyricsFilterUp () {
   }
   
   applyLyricsFilters();
+}
+
+function moveTrackFilterDown (data) {
+  var fetchListBox = document.getElementById(data + "FiltersListBox");
+  
+  var selectedItem = fetchListBox.selectedItem;
+  var selectedIndex = fetchListBox.selectedIndex;
+  
+  if (selectedItem) {
+    if (selectedIndex < fetchListBox.getRowCount()-1) {
+      selectedItem.selected = false;
+      var cloneItem = selectedItem.cloneNode(true);
+      fetchListBox.insertBefore(cloneItem, fetchListBox.getItemAtIndex(selectedIndex+2));
+      fetchListBox.removeChild(selectedItem);
+      fetchListBox.clearSelection();
+      fetchListBox.selectItem(cloneItem);
+      
+      //fetchListBox.scrollToIndex(selectedIndex+1-3);
+      
+      if (fetchListBox.selectedIndex >= fetchListBox.getRowCount()-1) {
+		document.getElementById(data + "DownFilterButton").disabled = true;
+      }
+    }
+    else {
+      document.getElementById(data + "DownFilterButton").disabled = true;
+    }
+  }
+  else {
+    document.getElementById(data + "UpFilterButton").disabled = true;
+    document.getElementById(data + "DownFilterButton").disabled = true;
+  }
+  
+  applyTrackFilters(data);
 }
 
 function moveLyricsFilterDown () {
@@ -834,6 +1136,58 @@ function removeTrackFilter (data) {
 	applyTrackFilters(data);
 }
 
+function onTrackFilterSelect(data) {
+	var fetchListBox = document.getElementById(data + "FiltersListBox");
+
+	var selectedItem = fetchListBox.selectedItem;
+
+	if (selectedItem) {
+		enableTrackFilterUpDownButtons(data, true);
+		
+		var filter = selectedItem.childNodes[0].getAttribute("data");
+		var customRegExpDelimiterPos = filter.indexOf(customRegExpDelimiter);
+		if (customRegExpDelimiterPos != -1) {			
+			var searchfor = filter.substr(0, customRegExpDelimiterPos);
+			var replacewith = filter.substr(customRegExpDelimiterPos+1);
+			
+			document.getElementById(data + "SearchForTextBox").value = searchfor;
+			document.getElementById(data + "ReplaceWithTextBox").value = replacewith;
+		}
+	}
+	else {
+		enableTrackFilterUpDownButtons(data, false);
+		
+		document.getElementById(data + "SearchForTextBox").value = "";
+		document.getElementById(data + "ReplaceWithTextBox").value = "";
+	}
+}
+
+function onLyricsFilterSelect(data) {
+	var fetchListBox = document.getElementById("lyricsFiltersListBox");
+
+	var selectedItem = fetchListBox.selectedItem;
+
+	if (selectedItem) {
+		enableLyricsFilterUpDownButtons(true);
+		
+		var filter = selectedItem.childNodes[0].getAttribute("data");
+		var customRegExpDelimiterPos = filter.indexOf(customRegExpDelimiter);
+		if (customRegExpDelimiterPos != -1) {
+			var searchfor = filter.substr(0, customRegExpDelimiterPos);
+			var replacewith = filter.substr(customRegExpDelimiterPos+1);
+			
+			document.getElementById("searchLyricsForTextBox").value = searchfor;
+			document.getElementById("replaceLyricsWithTextBox").value = replacewith;
+		}
+	}
+	else {
+		enableLyricsFilterUpDownButtons(false);
+		
+		document.getElementById("searchLyricsForTextBox").value = "";
+		document.getElementById("replaceLyricsWithTextBox").value = "";
+	}
+}
+
 function addLyricsFilter (element) {
 	var lyricsFiltersListBox = document.getElementById("lyricsFiltersListBox");
 	
@@ -847,6 +1201,32 @@ function addLyricsFilter (element) {
     lyricsFiltersListBox.appendChild(row);
     
     applyLyricsFilters();
+}
+
+function addCustomTrackFilter (data) {
+	var searchfor = document.getElementById(data + "SearchForTextBox").value;
+	var replacewith = document.getElementById(data + "ReplaceWithTextBox").value;
+	
+	document.getElementById(data + "SearchForTextBox").value = "";
+	document.getElementById(data + "ReplaceWithTextBox").value = "";
+	
+	showCustomTrackRegExpField(false, data);
+	
+	var trackFiltersListBox = document.getElementById(data + "FiltersListBox");
+
+	var descr = document.createElement('label');
+	descr.setAttribute('data', searchfor + customRegExpDelimiter + replacewith);
+    descr.setAttribute('value', searchfor + customRegExpDelimiter + replacewith);
+    
+	var row = document.createElement('listitem');
+    row.appendChild(descr);
+    
+    trackFiltersListBox.appendChild(row);
+    
+    var rowsnum = trackFiltersListBox.getAttribute("rows");
+	trackFiltersListBox.setAttribute("rows", ++rowsnum);
+    
+    applyTrackFilters(data);
 }
 
 function addCustomLyricsFilter () {
@@ -897,8 +1277,8 @@ function applyLyricsFilters () {
 	var items = fetchListBox.getElementsByTagName("listitem");
 	lyricsTextbox.value = globalOriginalLyrics;
 	for (var i=0; i<items.length; i++) {
-		var data = items[i].childNodes[0].getAttribute("data");
-		switch (data) {
+		var filter = items[i].childNodes[0].getAttribute("data");
+		switch (filter) {
 			case "htmltags":
 				lyricsTextbox.value = lyricsFilterHtmlTags(lyricsTextbox.value);
 				break;
@@ -915,6 +1295,9 @@ function applyLyricsFilters () {
 				lyricsTextbox.value = lyricsFilterManySpaces(lyricsTextbox.value);
 				break;
 				
+			case "strangesyms":
+				lyricsTextbox.value = lyricsFilterStrangeSyms(lyricsTextbox.value);
+				
 			case "tolowercase":
 				lyricsTextbox.value = lyricsFilterLowecase(lyricsTextbox.value);
 				break;
@@ -924,17 +1307,17 @@ function applyLyricsFilters () {
 				break;
 				
 			default:
-				if (data.indexOf(customRegExpDelimiter) == -1) {
-					debugOutput("Unknown lyrics filter: " + data);
+				if (filter.indexOf(customRegExpDelimiter) == -1) {
+					debugOutput("Unknown lyrics filter: " + filter);
 					break;
 				}
 				
-				var searchfor = data.split(customRegExpDelimiter)[0];
-				var replacewith = data.split(customRegExpDelimiter)[1];
+				var searchfor = filter.split(customRegExpDelimiter)[0];
+				var replacewith = filter.split(customRegExpDelimiter)[1];
 				
 				if (!searchfor || searchfor == "") break;
 				
-				lyricsTextbox.value = lyricsFilterAddCustom(lyricsTextbox.value, searchfor, replacewith);
+				lyricsTextbox.value = lyricsFilterApplyCustom(lyricsTextbox.value, searchfor, replacewith);
 				break;
 		}
 	}
@@ -948,7 +1331,8 @@ function applyTrackFilters (data) {
 	var items = fetchListBox.getElementsByTagName("listitem");
 	trackOutputTextbox.value = trackInputTextbox.value;
 	for (var i=0; i<items.length; i++) {
-		switch (items[i].childNodes[0].getAttribute("data")) {
+		var filter = items[i].childNodes[0].getAttribute("data");
+		switch (filter) {
 			case "tolowercaseall":
 				trackOutputTextbox.value = trackFilterToLowerCaseAll(trackOutputTextbox.value);
 				break;
@@ -968,8 +1352,36 @@ function applyTrackFilters (data) {
 			case "removespaces":
 				trackOutputTextbox.value = trackFilterRemoveSpaces(trackOutputTextbox.value);
 				break;
+				
+			case "cyrillictolatinic":
+				trackOutputTextbox.value = trackFilterTransliterateCyrillicToLatinic(trackOutputTextbox.value);
+				break;
+				
+			case "removeinroundbrackets":
+				trackOutputTextbox.value = trackFilterRemoveInRoundBrackets(trackOutputTextbox.value);
+				break;
+				
+			case "removeinsquarebrackets":
+				trackOutputTextbox.value = trackFilterRemoveInSquareBrackets(trackOutputTextbox.value);
+				break;
+				
+			default:
+				if (filter.indexOf(customRegExpDelimiter) == -1) {
+					debugOutput("Unknown " + data + " filter: " + filter);
+					break;
+				}
+				
+				var searchfor = filter.split(customRegExpDelimiter)[0];
+				var replacewith = filter.split(customRegExpDelimiter)[1];
+				
+				if (!searchfor || searchfor == "") break;
+				
+				trackOutputTextbox.value = trackFilterApplyCustom(trackOutputTextbox.value, searchfor, replacewith);
+				break;
 		}
 	}
+	
+	updateRealFetchURL();
 }
 
 function replaceCustomRegExps (data) {
@@ -1081,6 +1493,15 @@ function onSourceClick () {
 		var fetchURLDescription = "";
 		var fetchURLValue = "";
 		
+		var fetchMethodDescription = "";
+		var fetchMethodValue = "";
+		
+		var POSTDataDescription = "";
+		var POSTDataValue = "";
+		
+		var fetchHeadersDescription = "";
+		var fetchHeadersValue = "";
+		
 		var startMarkDescription = "";
 		var startMarkValue = "";
 		
@@ -1090,10 +1511,20 @@ function onSourceClick () {
 		var errorMarkDescription = "";
 		var errorMarkValue = "";
 		
+		var titleFiltersDescription = "";
+		var artistFiltersDescription = "";
+		var albumFiltersDescription = "";
 		var lyricsFiltersDescription = "";
+		
+		var titleFiltersValue = "";
+		var artistFiltersValue = "";
+		var albumFiltersValue = "";
 		var lyricsFiltersValue = "";
 		
-		var filtersArray = "";
+		var titleFiltersArray = "";
+		var artistFiltersArray = "";
+		var albumFiltersArray = "";
+		var lyricsFiltersArray = "";
 		
 		document.getElementById("fetchResultVbox").hidden = true;
 		document.getElementById("fetchErrorVbox").hidden = true;
@@ -1113,8 +1544,23 @@ function onSourceClick () {
 		var descriptionDescription = document.getElementById("sourceDescriptionLabel").value;
 		var descriptionValue = sites[name].Description;
 		
-		var fetchURLDescription = document.getElementById("fetchLabel").value;
+		var fetchURLDescription = document.getElementById("maskedFetchLabel").value;
 		var fetchURLValue = sites[name].FetchURL;
+		
+		var fetchMethodDescription = document.getElementById("requestMethodLabel").value;
+		var fetchMethodValue = sites[name].FetchMethod;
+		
+		if (fetchMethodValue.length > 3 && fetchMethodValue.substr(0, 5) == "POST:") {
+			var POSTDataDescription = "POST " + document.getElementById("postDataLabel").value;
+			var POSTDataValue = fetchMethodValue.substr(5);
+		}
+		else {
+			var POSTDataDescription = "";
+			var POSTDataValue = "";
+		}
+		
+		var fetchHeadersDescription = document.getElementById("headerNameListheader").getAttribute("label");
+		var fetchHeadersValue = sites[name].FetchHeaders;
 		
 		var startMarkDescription = document.getElementById("fetchResultStartMarkLabel").value;
 		var startMarkValue = sites[name].StartMark;
@@ -1125,10 +1571,20 @@ function onSourceClick () {
 		var errorMarkDescription = document.getElementById("fetchResultErrorMarkLabel").value;
 		var errorMarkValue = sites[name].ErrorMark;
 		
+		var titleFiltersDescription = document.getElementById("titleFiltersLabel").getAttribute("label");
+		var artistFiltersDescription = document.getElementById("artistFiltersLabel").getAttribute("label");
+		var albumFiltersDescription = document.getElementById("albumFiltersLabel").getAttribute("label");
 		var lyricsFiltersDescription = document.getElementById("lyricsFiltersCaption").label;
-		var lyricsFiltersValue = sites[name].LyricsFilters.replace(/\t/g, " | ");
 		
-		var filtersArray = sites[name].LyricsFilters.split("\t");
+		var titleFiltersValue = sites[name].TitleFilters.replace(/\t/g, filtersViewDelimiter);
+		var artistFiltersValue = sites[name].ArtistFilters.replace(/\t/g, filtersViewDelimiter);
+		var albumFiltersValue = sites[name].AlbumFilters.replace(/\t/g, filtersViewDelimiter);
+		var lyricsFiltersValue = sites[name].LyricsFilters.replace(/\t/g, filtersViewDelimiter);
+		
+		var titleFiltersArray = (sites[name].TitleFilters == "") ? "" : sites[name].TitleFilters.split("\t");
+		var artistFiltersArray = (sites[name].ArtistFilters == "") ? "" : sites[name].ArtistFilters.split("\t");
+		var albumFiltersArray = (sites[name].AlbumFilters == "") ? "" : sites[name].AlbumFilters.split("\t");
+		var lyricsFiltersArray = (sites[name].LyricsFilters == "") ? "" : sites[name].LyricsFilters.split("\t");
 		
 		document.getElementById("removeSourceButton").disabled = false;
 	}
@@ -1139,7 +1595,14 @@ function onSourceClick () {
 	document.getElementById("sourceDescriptionTextbox").value = descriptionValue;
 	
 	addSourceKeysRow(fetchURLDescription, fetchURLValue);
-	document.getElementById("fetchTextbox").value = fetchURLValue;
+	document.getElementById("maskedFetchTextbox").value = fetchURLValue;
+	
+	addSourceKeysRow(fetchMethodDescription, fetchMethodValue);
+	document.getElementById("requestMethodRadiogroup").selectedIndex = (fetchMethodValue.substr(0, 4) == "POST") ? 1 : 0;
+	
+	document.getElementById("postDataTextbox").value = POSTDataValue;
+		
+	addSourceKeysRow(fetchHeadersDescription, fetchHeadersValue);
 	
 	addSourceKeysRow(startMarkDescription, startMarkValue);
 	document.getElementById("fetchResultStartMarkTextbox").value = startMarkValue;
@@ -1150,7 +1613,37 @@ function onSourceClick () {
 	addSourceKeysRow(errorMarkDescription, errorMarkValue);
 	document.getElementById("fetchErrorTestMarkTextbox").value = errorMarkValue;
 	
+	addSourceKeysRow(titleFiltersDescription, titleFiltersValue);
+	addSourceKeysRow(artistFiltersDescription, artistFiltersValue);
+	addSourceKeysRow(albumFiltersDescription, albumFiltersValue);
 	addSourceKeysRow(lyricsFiltersDescription, lyricsFiltersValue);
+	
+	// Clear lists start
+	var titleFiltersListBox = document.getElementById("titleFiltersListBox");
+	while (titleFiltersListBox.childNodes.length > 2) {
+		var lastChild = titleFiltersListBox.childNodes[titleFiltersListBox.childNodes.length-1];
+		if (lastChild.tagName == "listitem") {
+			titleFiltersListBox.removeChild(lastChild);
+		}
+	}
+	var rowsnum = titleFiltersListBox.getAttribute("rows");
+	titleFiltersListBox.setAttribute("rows", 0);
+	
+	var artistFiltersListBox = document.getElementById("artistFiltersListBox");
+	while (artistFiltersListBox.childNodes.length > 2) {
+		var lastChild = artistFiltersListBox.childNodes[artistFiltersListBox.childNodes.length-1];
+		if (lastChild.tagName == "listitem") artistFiltersListBox.removeChild(lastChild);
+	}
+	var rowsnum = artistFiltersListBox.getAttribute("rows");
+	artistFiltersListBox.setAttribute("rows", 0);
+	
+	var albumFiltersListBox = document.getElementById("albumFiltersListBox");
+	while (albumFiltersListBox.childNodes.length > 2) {
+		var lastChild = albumFiltersListBox.childNodes[albumFiltersListBox.childNodes.length-1];
+		if (lastChild.tagName == "listitem") albumFiltersListBox.removeChild(lastChild);
+	}
+	var rowsnum = albumFiltersListBox.getAttribute("rows");
+	albumFiltersListBox.setAttribute("rows", 0);
 	
 	var lyricsFiltersListBox = document.getElementById("lyricsFiltersListBox");
 	while (lyricsFiltersListBox.childNodes.length > 1) {
@@ -1158,20 +1651,103 @@ function onSourceClick () {
 		if (lastChild.tagName == "listitem") lyricsFiltersListBox.removeChild(lastChild);
 	}
 	
-	for (var i=0; i<filtersArray.length; i++) {
+	var headersListBox = document.getElementById("headersListBox");
+	while (headersListBox.childNodes.length > 2) {
+		var lastChild = headersListBox.childNodes[headersListBox.childNodes.length-1];
+		if (lastChild.tagName == "listitem") headersListBox.removeChild(lastChild);
+	}
+	var rowsnum = headersListBox.getAttribute("rows");
+	headersListBox.setAttribute("rows", 0);
+	// Clear lists end
+	
+	// Add filters to lists start
+	for (var i=0; i<titleFiltersArray.length; i++) {
 		var descr = document.createElement('label');
-		descr.setAttribute('data', filtersArray[i]);
-		descr.setAttribute('value', getLyricsFilterDescription(filtersArray[i]));
+		descr.setAttribute('data', titleFiltersArray[i]);
+		descr.setAttribute('value', getTrackFilterDescription(titleFiltersArray[i]));
+		var row = document.createElement('listitem');
+		row.appendChild(descr);
+		
+		titleFiltersListBox.appendChild(row);
+		
+		var rowsnum = titleFiltersListBox.getAttribute("rows");
+		titleFiltersListBox.setAttribute("rows", ++rowsnum);
+	}
+	applyTrackFilters("title");
+	
+	for (var i=0; i<artistFiltersArray.length; i++) {
+		var descr = document.createElement('label');
+		descr.setAttribute('data', artistFiltersArray[i]);
+		descr.setAttribute('value', getTrackFilterDescription(artistFiltersArray[i]));
+		var row = document.createElement('listitem');
+		row.appendChild(descr);
+		
+		artistFiltersListBox.appendChild(row);
+		
+		var rowsnum = artistFiltersListBox.getAttribute("rows");
+		artistFiltersListBox.setAttribute("rows", ++rowsnum);
+	}
+	applyTrackFilters("artist");
+	
+	for (var i=0; i<albumFiltersArray.length; i++) {
+		var descr = document.createElement('label');
+		descr.setAttribute('data', albumFiltersArray[i]);
+		descr.setAttribute('value', getTrackFilterDescription(albumFiltersArray[i]));
+		var row = document.createElement('listitem');
+		row.appendChild(descr);
+		
+		albumFiltersListBox.appendChild(row);
+		
+		var rowsnum = albumFiltersListBox.getAttribute("rows");
+		albumFiltersListBox.setAttribute("rows", ++rowsnum);
+	}
+	applyTrackFilters("album");
+	
+	for (var i=0; i<lyricsFiltersArray.length; i++) {
+		var descr = document.createElement('label');
+		descr.setAttribute('data', lyricsFiltersArray[i]);
+		descr.setAttribute('value', getLyricsFilterDescription(lyricsFiltersArray[i]));
 		var row = document.createElement('listitem');
 		row.appendChild(descr);
 		
 		lyricsFiltersListBox.appendChild(row);
 	}
+	
+	var FetchHeaders = (fetchHeadersValue != "") ? JSON.parse(fetchHeadersValue) : "";
+	var headersListBox = document.getElementById("headersListBox");
+	for (var prop in FetchHeaders) {
+		var name = document.createElement('label');
+		name.setAttribute('data', prop);
+		name.setAttribute('value', prop);
+		
+		var value = document.createElement('label');
+		value.setAttribute('data', FetchHeaders[prop]);
+		value.setAttribute('value', FetchHeaders[prop]);
+		
+		var row = document.createElement('listitem');
+		row.appendChild(name);
+		row.appendChild(value);
+		
+		headersListBox.appendChild(row);
+		
+		var rowsnum = headersListBox.getAttribute("rows");
+		headersListBox.setAttribute("rows", ++rowsnum);
+	}
+	// Add filters to lists end
+	
 	//applyLyricsFilters();
 }
 
+function updateRealFetchURL () {
+	document.getElementById("realFetchTextbox").value = 
+		replaceCustomRegExps(document.getElementById("maskedFetchTextbox").value);
+}
+
 function addSourceKeysRow (sSetting, sValue) {
-	if (!sSetting || sSetting == "") return;
+	if (!sSetting || sSetting == "") {
+		if (sSetting !="") debugOutput("Cannot add source setting: '" + sSetting + "', '" + sValue + "'");
+		return;
+	}
 	
 	var sourcesKeysListBox = document.getElementById("sourcesKeysListBox");
 	
@@ -1179,18 +1755,36 @@ function addSourceKeysRow (sSetting, sValue) {
 	sourcesKeysListBox.setAttribute("rows", ++rowsnum);
 	
 	var descrSetting = document.createElement('label');
+	descrSetting.setAttribute('style', 'margin:0');
 	descrSetting.setAttribute('data', sSetting);
     descrSetting.setAttribute('value', sSetting);
     
     var descrValue = document.createElement('label');
+    descrValue.setAttribute('style', 'margin:0');
 	descrValue.setAttribute('data', sValue);
     descrValue.setAttribute('value', sValue);
     
 	var row = document.createElement('listitem');
+	
     row.appendChild(descrSetting);
     row.appendChild(descrValue);
+    row.setAttribute('ondblclick', "onSourcesKeyDblClick(this, event)");
     
     sourcesKeysListBox.appendChild(row);
+}
+
+function getTrackFilterDescription (tag) {
+	var trackFiltersPopup = document.getElementById("trackFiltersPopup");
+	
+	for (var i=0; i<trackFiltersPopup.childNodes.length; i++) {
+		var data = trackFiltersPopup.childNodes[i].getAttribute("data");
+		if (data == tag) {
+			var description = trackFiltersPopup.childNodes[i].getAttribute("label");
+			return description;
+		}
+	}
+	
+	return tag;
 }
 
 function getLyricsFilterDescription (tag) {
@@ -1210,10 +1804,38 @@ function getLyricsFilterDescription (tag) {
 function saveSource () {
 	var name = document.getElementById("sourceNameTextbox").value;
 	var Description = document.getElementById("sourceDescriptionTextbox").value;
-	var FetchURL = document.getElementById("fetchTextbox").value;
+	var FetchURL = document.getElementById("maskedFetchTextbox").value;
+	var FetchMethod = (document.getElementById("requestMethodRadiogroup").selectedIndex == 0) ? "GET" : "POST";
 	var StartMark = document.getElementById("fetchResultStartMarkTextbox").value;
 	var EndMark = document.getElementById("fetchResultEndMarkTextbox").value;
 	var ErrorMark = document.getElementById("fetchErrorTestMarkTextbox").value;
+	
+	var TitleFilters = "";
+	var titleFiltersListBox = document.getElementById("titleFiltersListBox");
+	var items = titleFiltersListBox.getElementsByTagName("listitem");
+	for (var i=0; i<items.length; i++) {
+		var data = items[i].childNodes[0].getAttribute("data");
+		TitleFilters += data + "\t";
+	}
+	if (items.length) TitleFilters = TitleFilters.substr(0, TitleFilters.length-1);
+	
+	var ArtistFilters = "";
+	var artistFiltersListBox = document.getElementById("artistFiltersListBox");
+	var items = artistFiltersListBox.getElementsByTagName("listitem");
+	for (var i=0; i<items.length; i++) {
+		var data = items[i].childNodes[0].getAttribute("data");
+		ArtistFilters += data + "\t";
+	}
+	if (items.length) ArtistFilters = ArtistFilters.substr(0, ArtistFilters.length-1);
+	
+	var AlbumFilters = "";
+	var albumFiltersListBox = document.getElementById("albumFiltersListBox");
+	var items = albumFiltersListBox.getElementsByTagName("listitem");
+	for (var i=0; i<items.length; i++) {
+		var data = items[i].childNodes[0].getAttribute("data");
+		AlbumFilters += data + "\t";
+	}
+	if (items.length) AlbumFilters = AlbumFilters.substr(0, AlbumFilters.length-1);
 	
 	var LyricsFilters = "";
 	var fetchListBox = document.getElementById("lyricsFiltersListBox");
@@ -1224,12 +1846,32 @@ function saveSource () {
 	}
 	if (items.length) LyricsFilters = LyricsFilters.substr(0, LyricsFilters.length-1);
 	
+	var headersArray = {};
+	var headersListBox = document.getElementById("headersListBox");
+	var items = headersListBox.getElementsByTagName("listitem");
+	for (var i=0; i<items.length; i++) {
+		var headerName = items[i].childNodes[0].getAttribute("data");
+		var headerValue = items[i].childNodes[1].getAttribute("data");
+		
+		headersArray[headerName] = headerValue;
+	}
+	var FetchHeaders = JSON.stringify(headersArray);
+	
 	sites[name] = {};
 	sites[name].Description = Description;
 	sites[name].FetchURL = FetchURL;
+	sites[name].FetchMethod = FetchMethod;
+	if (FetchMethod == "POST") {
+		var data = document.getElementById("postDataTextbox").value;
+		if (data != "") sites[name].FetchMethod += ":" + data;
+	}
+	sites[name].FetchHeaders = FetchHeaders;
 	sites[name].StartMark = StartMark;
 	sites[name].EndMark = EndMark;
 	sites[name].ErrorMark = ErrorMark;
+	sites[name].TitleFilters = TitleFilters;
+	sites[name].ArtistFilters = ArtistFilters;
+	sites[name].AlbumFilters = AlbumFilters;
 	sites[name].LyricsFilters = LyricsFilters;
 	
 	addSource(name);
@@ -1254,6 +1896,8 @@ function removeSource () {
 function cancelEditing () {
 	var sourcesListBox = document.getElementById("sourcesListBox");
 	sourcesListBox.clearSelection();
+	
+	document.getElementById("mainVbox").scrollTop = 0;
 }
 
 function saveUserDatabase () {
@@ -1316,6 +1960,7 @@ function saveUserDatabase () {
 					document.getElementById("sourceDBFilePath").value = localFile.path;
 				}
 				document.getElementById("saveSourceButton").disabled = true;
+				document.getElementById("mainVbox").scrollTop = 0;
 			}
 			else {
 				debugOutput("ERROR: failed to save to: " + localFile.path);
@@ -1328,6 +1973,136 @@ function saveUserDatabase () {
 function onSiteNameInput () {
 	document.getElementById("saveSourceButton").disabled = 
 		(document.getElementById("sourceNameTextbox").value == "");
+}
+
+function getTopPosition (id) {
+	var item = document.getElementById(id);
+	if (!item) return null;
+	
+	var rect = item.getBoundingClientRect();
+	return rect.top;
+}
+
+function specCharsDecode (inString) {
+	var inArray = inString.split(";");
+	inString = inString.replace(/&#/g, "");
+	
+	var outString = "";
+	for (var i=0; i<inArray.length; i++) {
+		var lastSeparatorPos = inArray[i].lastIndexOf("&#");
+		if (lastSeparatorPos == -1) {
+			outString += inArray[i];
+			continue;
+		}
+		
+		var strBefore = inArray[i].substr(0, lastSeparatorPos);
+		var strAfter = inArray[i].substr(lastSeparatorPos+2);
+		
+		outString += strBefore;
+		if (!parseInt(strAfter, 10)) {
+			switch (strAfter) {
+				case "&nbsp":
+					outString += " ";
+					break;
+					
+				default:
+					outString += strAfter;
+					break;
+			}
+		}
+		else {
+			outString += String.fromCharCode(strAfter);
+		}
+	}
+	
+	outString = outString.replace(/&nbsp/g, " ");
+	
+	return outString;
+}
+	
+function onRequestMethodChange () {
+	document.getElementById("postDataHbox").hidden = 
+		(document.getElementById("requestMethodRadiogroup").selectedIndex == 0);
+}
+
+function addCustomHeader () {
+	var headerName = document.getElementById("customHeaderNameTextbox").value;
+	var headerValue = document.getElementById("customHeaderValueTextbox").value;
+	
+	if (headerName != "" && headerValue != "") {
+		document.getElementById("customHeaderNameTextbox").value = "";
+		document.getElementById("customHeaderValueTextbox").value = "";
+		
+		var headersListBox = document.getElementById("headersListBox");
+
+		var name = document.createElement('label');
+		name.setAttribute('data', headerName);
+		name.setAttribute('value', headerName);
+		
+		var value = document.createElement('label');
+		value.setAttribute('data', headerValue);
+		value.setAttribute('value', headerValue);
+		
+		var row = document.createElement('listitem');
+		row.appendChild(name);
+		row.appendChild(value);
+		
+		headersListBox.appendChild(row);
+		
+		var rowsnum = headersListBox.getAttribute("rows");
+		headersListBox.setAttribute("rows", ++rowsnum);
+	}
+	
+	showCustomHeaderHbox(false);
+}
+
+function removeCustomHeader () {
+	var headersListBox = document.getElementById("headersListBox");
+
+	var selectedItem = headersListBox.selectedItem;
+
+	if (selectedItem) {
+		selectedItem.selected = false;
+		headersListBox.removeChild(selectedItem);
+		headersListBox.clearSelection();
+
+		var rowsnum = headersListBox.getAttribute("rows");
+		headersListBox.setAttribute("rows", --rowsnum);
+	}
+}
+
+function onSourcesKeysListBoxSelect (event) {
+	var listBox = document.getElementById("sourcesKeysListBox");
+	
+	if (listBox.selectedItem) {
+			var items = listBox.getElementsByTagName("listitem");
+			for (var i=0; i<items.length; i++) {
+				if (items[i].childNodes[1].tagName == "textbox") {
+					var editableValueNode = items[i].childNodes[1];
+		
+					var labelValueNode = document.createElement('label');
+					labelValueNode.setAttribute('data', editableValueNode.value);
+					labelValueNode.setAttribute('value', editableValueNode.value);
+					
+					items[i].replaceChild(labelValueNode, editableValueNode);
+				}
+			}
+	}
+	
+}
+
+function onSourcesKeyDblClick (item, event) {
+	event.preventDefault();
+	
+	var labelValueNode = item.childNodes[1];
+	
+	var editableValueNode = document.createElement('textbox');
+	editableValueNode.setAttribute('value', labelValueNode.value);
+	editableValueNode.setAttribute('style', 'margin: 0');
+	
+	item.replaceChild(editableValueNode, labelValueNode);
+	
+	editableValueNode.focus();
 }
 
 function addNotification(notificationText, buttonText, callback, notificationLevel) {
