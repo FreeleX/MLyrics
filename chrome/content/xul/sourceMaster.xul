@@ -53,9 +53,7 @@
 			<caption><checkbox label="Quick help" /></caption>
 			
 			<vbox>
-				<description>This a description</description>
-				<description>This a description</description>
-				<description>This a description</description>
+				<description>Javascript regular expressions (RegExps) supported with track data extensions in custom filters and marks input. Mostly you will not need complex RegExps. Do NOT FORGET to backslash \ special RegExp characters such as . ? \ | ^ $ * + ( ) [ ] { } if you mean it to be a normal symbol. And you MUST NOT enclose regular expression in slash / symbols. All searches case insensitive, but replaces case sensitive.</description>
 			</vbox>
 		</groupbox>
 		
@@ -326,8 +324,9 @@
 					</vbox>
 					<button id="fetchTryButton" label="Try" onclick="onFetchTry();"/>
 				</hbox>
+				<description disabled="true">Specify direct link to lyrics page (try to predict URL). Example: http://www.lyricsbay.com/{f_title}_lyrics-{f_artist}.html Use GET method if you not sure</description>
 				<hbox align="left" valign="middle">
-					<label id="requestMethodLabel" value="Request method" />
+					<label id="requestMethodLabel" value="Fetch method" />
 					<radiogroup id="requestMethodRadiogroup" orient="horizontal" selectedIndex="0" onselect="onRequestMethodChange()">
 						<radio id="requestMethodGETRadio" label="GET" />
 						<radio id="requestMethodPOSTRadio" label="POST" />
@@ -362,7 +361,6 @@
 						
 					</hbox>
 				</vbox>
-				<description disabled="true">Specify direct link to lyrics page (try to predict URL). Example: http://www.lyricsbay.com/{f_title}_lyrics-{f_artist}.html Use GET method if you not sure</description>
 				<progressmeter id="fetchProgressmeter" mode="undetermined" hidden="true"/>
 			</vbox>
 		</groupbox>
@@ -385,21 +383,20 @@
 								<grid id="lyricsMarksGrid">
 									<rows>
 										<row>
-											<label value="Start mark" id="fetchResultStartMarkLabel" />
+											<label value="Start mark (RegExp)" id="fetchResultStartMarkLabel" />
 											<textbox id="fetchResultStartMarkTextbox" value="" flex="1" oninput="onMarksInput()" />
 										</row>
 										<row>
-											<label value="End mark" id="fetchResultEndMarkLabel" />
+											<label value="End mark (RegExp)" id="fetchResultEndMarkLabel" />
 											<textbox id="fetchResultEndMarkTextbox" value="" flex="1" oninput="onMarksInput()" />
 										</row>
 									</rows>
 
 									<columns>
+										<column flex="0" />
 										<column flex="1" />
-										<column flex="3" />
 									</columns>
 								</grid>
-								<description disabled="true">Regular expressions supported. You need to use {title} {artist} {album} instead of direct track title, artist name and album name. Do NOT FORGET to backslash special RegExp character such as . , ? ! \ ^ $ * + ( ) : = [ ] { } | if you mean it to be a normal symbol</description>
 								<button id="fetchResultTestMarksButton" label="Test" flex="1" oncommand="testFetchResultSelectionMarks();"/>
 								<progressmeter id="updateMarksProgressmeter" mode="undetermined" hidden="true"/>
 							</vbox>
@@ -408,7 +405,7 @@
 								<textbox id="fetchErrorTextbox" hidden="false" multiline="true" readonly="true" rows="30" flex="1" />
 								<description disabled="true">This is an ERROR page source code as seen by MLyrics. You may find and input below an additional error mark which will indicate no lyrics on the page or lyrics incorrect </description>
 								<hbox>
-									<label value="Error mark" id="fetchResultErrorMarkLabel" />
+									<label value="Error mark (RegExp)" id="fetchResultErrorMarkLabel" />
 									<textbox id="fetchErrorTestMarkTextbox" value="" flex="1" oninput="onErrorMarkInput()" />
 								</hbox>
 								<button id="fetchErrorTestMarksButton" label="Test" oncommand="testErrorResultMark()" />
