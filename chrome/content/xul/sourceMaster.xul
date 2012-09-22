@@ -495,7 +495,9 @@
 			<hbox>
 				<button id="removeSourceButton" label="Remove this source" flex="0" oncommand="removeSource();" disabled="true" />
 				<button label="Cancel editing" flex="3" oncommand="cancelEditing();" />
+				<button label="&lt;&lt;" tooltiptext="Remove step" disabled="true" />
 				<button id="saveSourceButton" label="Save this source" flex="0" oncommand="saveSource();" disabled="true" />
+				<button label="&gt;&gt;" tooltiptext="Add step" disabled="true" />
 			</hbox>
 		</groupbox>
 		
