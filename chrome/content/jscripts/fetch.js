@@ -856,6 +856,9 @@ mlyrics.fetch = {
 		// ====================
 		LWIKI: {
 			getUrl: function (artist, album, track) {
+				artist = artist.replace(/ *\> */g, ""); artist = artist.replace(/ *\< */g, "");
+				album = album.replace(/ *\> */g, ""); album = album.replace(/ *\< */g, "");
+				track = track.replace(/ *\> */g, ""); track = track.replace(/ *\< */g, "");
 				var url = "http://lyrics.wikia.com/api.php?action=lyrics&fmt=json&func=getSong&artist=" + encodeURIComponent( this.getCleanStr(artist) ) +
 														"&song=" + encodeURIComponent( this.getCleanStr(track) );
 				return url;
