@@ -88,26 +88,13 @@
 					</hbox>
 				</vbox>
 				
-				<listbox id="sourcesKeysListBox"
-						flex="1"
-						rows="0"
-						onselect="onSourcesKeysListBoxSelect(event)"
-				>
-					<listhead>
-						<listheader label="Setting" flex="0" />
-						<listheader label="Value" flex="1" />
-					</listhead>
+				<textbox id="sourcesKeysTextbox" multiline="true" readonly="true" flex="1" rows="20" />
 
-					<listcols>
-						<listcol flex="0"/>
-						<listcol flex="1"/>
-					</listcols>
-				</listbox>
 			</hbox>
 			<description disabled="true" flex="1">Select the source you want to edit\delete. Click empty if you want to create new</description>
 		</groupbox>	
 		
-		<hbox id="trackDataHbox" equalsize="always">
+		<hbox id="trackDataHbox" equalsize="always" disabled="false">
 			<vbox flex="1">
 				<groupbox flex="1">
 					<caption label="Title data" />
@@ -372,7 +359,7 @@
 					
 					<tabbox flex="1" id="lyricsResultTabBox">
 						<tabs >
-							<tab label="Lyrics page" />
+							<tab label="Data page" />
 							<tab label="Error page" />
 						</tabs>
 						
@@ -384,11 +371,11 @@
 									<rows>
 										<row>
 											<label value="Start mark (RegExp)" id="fetchResultStartMarkLabel" />
-											<textbox id="fetchResultStartMarkTextbox" value="" flex="1" oninput="onMarksInput()" />
+											<textbox id="fetchResultStartMarkTextbox" value="" flex="1" oninput="onMarksInput(this)" />
 										</row>
 										<row>
 											<label value="End mark (RegExp)" id="fetchResultEndMarkLabel" />
-											<textbox id="fetchResultEndMarkTextbox" value="" flex="1" oninput="onMarksInput()" />
+											<textbox id="fetchResultEndMarkTextbox" value="" flex="1" oninput="onMarksInput(this)" />
 										</row>
 									</rows>
 
@@ -397,7 +384,7 @@
 										<column flex="1" />
 									</columns>
 								</grid>
-								<button id="fetchResultTestMarksButton" label="Test" flex="1" oncommand="testFetchResultSelectionMarks();"/>
+								<button id="fetchResultTestMarksButton" label="Test" oncommand="testFetchResultSelectionMarks();"/>
 								<progressmeter id="updateMarksProgressmeter" mode="undetermined" hidden="true"/>
 							</vbox>
 							
@@ -406,7 +393,7 @@
 								<description disabled="true">This is an ERROR page source code as seen by MLyrics. You may find and input below an additional error mark which will indicate no lyrics on the page or lyrics incorrect </description>
 								<hbox>
 									<label value="Error mark (RegExp)" id="fetchResultErrorMarkLabel" />
-									<textbox id="fetchErrorTestMarkTextbox" value="" flex="1" oninput="onErrorMarkInput()" />
+									<textbox id="fetchErrorTestMarkTextbox" value="" flex="1" oninput="onErrorMarkInput(this)" />
 								</hbox>
 								<button id="fetchErrorTestMarksButton" label="Test" oncommand="testErrorResultMark()" />
 							</vbox>
@@ -418,15 +405,16 @@
 
 			<vbox flex="1">
 				<groupbox flex="1">
-					<caption label="Filtered Lyrics" />
+					<caption label="Filtered Data" />
 					
 					<vbox id="lyricsViewVbox" flex="1" hidden="true">
 						<textbox id="lyricsTextbox" value="" flex="1" multiline="true" readonly="true" rows="30" />
+						<description disabled="true">If your intention is to get link to the next page - this data can be used on the next step as {nextlink}</description>
 					</vbox>
 				</groupbox>
 				
 				<groupbox>
-					<caption label="Add Custom Lyrics Filter" />
+					<caption label="Add Custom Data Filter" />
 					
 					<hbox id="customLyricsRegExpHbox" hidden="true">
 						<vbox>
@@ -445,7 +433,7 @@
 				</groupbox>
 			
 				<groupbox flex="1">
-					<caption label="Lyrics filters" id="lyricsFiltersCaption" />
+					<caption label="Data filters" id="lyricsFiltersCaption" />
 					
 					<vbox id="lyricsFiltersVbox" flex="1" hidden="true">
 						<hbox>
@@ -478,6 +466,12 @@
 		<groupbox>
 			<caption label="Save" />
 			
+			<radiogroup id="saveDataRadiogroup" flex="1" selectedIndex="0" onselect="onSaveDataSelect();">
+				<radio label="The data is link (part of link) to the next page" />
+				<radio label="The data is lyrics itself" />
+			</radiogroup>
+
+			
 			<vbox id="saveDescriptionVbox" hidden="true">
 				<hbox>
 					<vbox>
@@ -495,9 +489,9 @@
 			<hbox>
 				<button id="removeSourceButton" label="Remove this source" flex="0" oncommand="removeSource();" disabled="true" />
 				<button label="Cancel editing" flex="3" oncommand="cancelEditing();" />
-				<button label="&lt;&lt;" tooltiptext="Remove step" disabled="true" />
-				<button id="saveSourceButton" label="Save this source" flex="0" oncommand="saveSource();" disabled="true" />
-				<button label="&gt;&gt;" tooltiptext="Add step" disabled="true" />
+				<button id="prevStepButton" style="text-align: middle" label="1 &lt;&lt;" tooltiptext="Remove step" disabled="true" oncommand="prevStep();" />
+				<button id="saveSourceButton" label="All steps done" flex="0" oncommand="saveSource();" disabled="true" />
+				<button id="nextStepButton" style="text-align: center" label="&gt;&gt; 2" tooltiptext="Add step" disabled="false" oncommand="nextStep();" />
 			</hbox>
 		</groupbox>
 		
