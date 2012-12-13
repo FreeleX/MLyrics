@@ -1376,7 +1376,7 @@ mlyrics.fetch = {
 			filterText: function (respLyr) {
 				if (respLyr == null || respLyr == "") return "";
 				
-				if (respLyr.substr(0, 3) == "no_") {
+				if (respLyr.replace(/^ +/, "").substr(0, 3) == "no_") {
 				  respLyr = "";
 				}
 				
