@@ -443,14 +443,8 @@ mlyrics.pane = {
 			
 			var prefStyleFile = mlyrics.pane.prefs.getCharPref(fullScreenStr + "styleSheet");
 			
-			if ( currentSkin == "purplerain" && (prefStyleFile == customStyleFile) ) {
-				CSS_defined.setAttribute("href", "purplerain.css");
-			}
-			else if ( currentSkin == "pinkmartini" && (prefStyleFile == customStyleFile) ) {
-				CSS_defined.setAttribute("href", "pinkmartini.css");
-			}
-			else if ( currentSkin == "coppery" && (prefStyleFile == customStyleFile) ) {
-				CSS_defined.setAttribute("href", "coppery.css");
+			if (prefStyleFile == customStyleFile) {
+				CSS_defined.setAttribute("href", currentSkin + ".css");
 			} else {
 				CSS_defined.setAttribute("href", prefStyleFile);
 			}
