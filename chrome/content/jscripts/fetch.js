@@ -1000,6 +1000,8 @@ mlyrics.fetch = {
 				
 				respLyr = respLyr.replace(/<br \/>/g, "&#10;");
 				respLyr = respLyr.replace(/<i>/g, "").replace(/<\/i>/g, "");
+				respLyr = respLyr.replace(/<a href=[^&]*>/g, "");
+				respLyr = respLyr.replace(/<\/a>/g, "");
 				respLyr = this.specCharsDecode(respLyr);
 				respLyr = respLyr.replace(/\r\n/g, "\n");
 				
