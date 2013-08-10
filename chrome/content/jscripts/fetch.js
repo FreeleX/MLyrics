@@ -906,7 +906,7 @@ mlyrics.fetch = {
 						var songUrlStartPos = respLyr.indexOf("'url':'");
 						if (songUrlStartPos != -1) {
 							var songUrlEndPos = respLyr.indexOf("'", songUrlStartPos+7);
-							var songUrl = decodeURIComponent(respLyr.substring(songUrlStartPos+7, songUrlEndPos));
+							var songUrl = respLyr.substring(songUrlStartPos+7, songUrlEndPos);
 							
 							sourceObj.getLyrics2(songUrl, cbFn);
 						}
@@ -982,8 +982,8 @@ mlyrics.fetch = {
 			
 			filterText: function (respLyr) {
 				if (respLyr == null || respLyr == "") return "";
-				
 				var lyrFirstPos = respLyr.indexOf("</a></div>&");
+				if (lyrFirstPos == -1) lyrFirstPos = respLyr.indexOf("</a></div><b>&");
 				if (lyrFirstPos != -1) {
 					var lyrLastPos = respLyr.indexOf("<!--", lyrFirstPos);
 					respLyr = respLyr.substring(lyrFirstPos+10, lyrLastPos);
@@ -998,6 +998,8 @@ mlyrics.fetch = {
 			fixCharacters: function(respLyr) {
 				if (respLyr== null || respLyr == "") return "";
 				
+				respLyr = respLyr.replace(/<b>/g, "");
+				respLyr = respLyr.replace(/<\/b>/g, "");
 				respLyr = respLyr.replace(/<br \/>/g, "&#10;");
 				respLyr = respLyr.replace(/<i>/g, "").replace(/<\/i>/g, "");
 				respLyr = respLyr.replace(/<a href=[^&]*>/g, "");
