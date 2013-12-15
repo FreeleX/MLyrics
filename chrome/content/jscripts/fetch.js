@@ -982,11 +982,10 @@ mlyrics.fetch = {
 			
 			filterText: function (respLyr) {
 				if (respLyr == null || respLyr == "") return "";
-				var lyrFirstPos = respLyr.indexOf("</a></div>&");
-				if (lyrFirstPos == -1) lyrFirstPos = respLyr.indexOf("</a></div><b>&");
+				var lyrFirstPos = respLyr.indexOf("<div class='lyricbox'>");
 				if (lyrFirstPos != -1) {
 					var lyrLastPos = respLyr.indexOf("<!--", lyrFirstPos);
-					respLyr = respLyr.substring(lyrFirstPos+10, lyrLastPos);
+					respLyr = respLyr.substring(lyrFirstPos, lyrLastPos);
 				}
 				else {
 					respLyr = "";
@@ -997,15 +996,11 @@ mlyrics.fetch = {
 			
 			fixCharacters: function(respLyr) {
 				if (respLyr== null || respLyr == "") return "";
-				
-				respLyr = respLyr.replace(/<b>/g, "");
-				respLyr = respLyr.replace(/<\/b>/g, "");
-				respLyr = respLyr.replace(/<br \/>/g, "&#10;");
-				respLyr = respLyr.replace(/<i>/g, "").replace(/<\/i>/g, "");
-				respLyr = respLyr.replace(/<a href=[^&]*>/g, "");
-				respLyr = respLyr.replace(/<\/a>/g, "");
+				respLyr = respLyr.replace(/\"/g, "\'");
+				respLyr = respLyr.replace(/<br *\/>/g, "&#10;");
+				respLyr = respLyr.replace(/(<([^>]+)>)/ig, "");
+				respLyr = respLyr.replace(/[^((&#)\d+;)]/ig, "");
 				respLyr = this.specCharsDecode(respLyr);
-				respLyr = respLyr.replace(/\r\n/g, "\n");
 				
 				//respLyr = respLyr.substr(0, respLyr.length-1);
 					
