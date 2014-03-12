@@ -159,14 +159,19 @@ mlyrics.fetch = {
 				
 				if(respLyr.indexOf("<div id=\"info\">") == -1 && respLyr.indexOf("<div id=\'info\'>") == -1) {
 					if(respLyr.indexOf("<div id='at'>") != -1) {
+						// NOTE: Untested with new layout
 						var respLyrResult = respLyr.split("<p>");
 						var lyrDiv = respLyrResult[2].split("</p>");
 						var respLyr = lyrDiv[0];
 					} else {
 						var respLyrResult = respLyr.split("<p>");
 						if (respLyrResult.length > 1) {
-							var lyrDiv = respLyrResult[1].split("</p>");
-							var respLyr = lyrDiv[0];
+							var lyr = [];
+							for (var i = 1; i < respLyrResult.length; i++) {
+								var lyrDiv = respLyrResult[i].split("</p>");
+								lyr.push(lyrDiv[0]);
+							}
+							var respLyr = lyr.join("\n\n");
 						}
 						else {
 							var respLyr = "";
