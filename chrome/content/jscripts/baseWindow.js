@@ -22,7 +22,7 @@ if (typeof(this.mlyrics) !== 'object') {
 			
 			_uninstall : false,
 			list : null,
-			traceGuid: "{6039188e-d135-11df-bcc9-c7e1ded72085}",
+			traceGuid: mlyrics.lib.GUID,
 			
 			observe : function(subject, topic, data) {
 				switch(topic) {

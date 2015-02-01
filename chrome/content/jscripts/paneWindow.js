@@ -435,6 +435,7 @@ mlyrics.pane = {
 			var feathersMgr = Components.classes['@songbirdnest.com/songbird/feathersmanager;1'].getService(Ci.sbIFeathersManager);
 			var currentSkin = feathersMgr.currentSkinName;
 			var customStyleFile = "chrome://songbird/skin/mlyrics.css";
+            var currentStyleFile = currentSkin + ".css";
 
 			if (!mlyrics.pane.fullScreenMode.fullScreen)
 				var fullScreenStr = "";
@@ -444,7 +445,15 @@ mlyrics.pane = {
 			var prefStyleFile = mlyrics.pane.prefs.getCharPref(fullScreenStr + "styleSheet");
 			
 			if (prefStyleFile == customStyleFile) {
-				CSS_defined.setAttribute("href", currentSkin + ".css");
+                var nsiBaseDirFile = Components.classes['@mozilla.org/extensions/manager;1'].getService(Ci.nsIExtensionManager)
+                                .getInstallLocation(mlyrics.lib.GUID)
+                                .getItemLocation(mlyrics.lib.GUID);
+                nsiBaseDirFile.append('chrome');
+                nsiBaseDirFile.append('content');
+                nsiBaseDirFile.append('style');
+                nsiBaseDirFile.append(currentStyleFile);
+                
+                CSS_defined.setAttribute("href", nsiBaseDirFile.exists() ? currentStyleFile : customStyleFile);
 			} else {
 				CSS_defined.setAttribute("href", prefStyleFile);
 			}

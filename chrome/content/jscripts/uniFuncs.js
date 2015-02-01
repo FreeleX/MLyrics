@@ -15,6 +15,7 @@ mlyrics.lib = {
 	xulRuntime: null,
 	localFile: null,
 	metadataService: null,
+	GUID: "{6039188e-d135-11df-bcc9-c7e1ded72085}",
 
 	init: function () {
 		this.preferenceService = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.mlyrics.");
